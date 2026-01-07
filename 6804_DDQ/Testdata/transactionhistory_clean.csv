@@ -1,0 +1,501 @@
+question,base_question,api
+Mình muốn Biến động số tiền gần đây nha,Biến động số dư gần đây,getTransactionHistory
+cần Có thể Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Làm ơn Tiền vào tiền ra tháng này,Tiền vào tiền ra tháng này,getTransactionHistory
+Tôi cần Xem lịch sử giao dịch nha,Xem lịch sử giao dịch,getTransactionHistory
+Giúp Xem lịch sử giao dịch giúp với,Xem lịch sử giao dịch,getTransactionHistory
+muốn Làm ơn Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+tui muốn Làm ơn Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Cho tui Có thể Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+Được không nếu Kiểm tra sao kê tài khoản nha,Kiểm tra sao kê tài khoản,getTransactionHistory
+Đã chi tiêu được bao nhiêu nhé được không,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho em Có thể Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+cần Cho mình Giao dịch gần đây của,Giao dịch gần đây của tôi,getTransactionHistory
+Có thể Cho mình Giao dịch gần đây của tui,Giao dịch gần đây của tôi,getTransactionHistory
+Vui lòng Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Giúp tôi xem sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Tiền vào tiền ra tháng này nhé ạ,Tiền vào tiền ra tháng này,getTransactionHistory
+Mình muốn Lịch sử chuyển khoản giùm,Lịch sử chuyển khoản,getTransactionHistory
+Giúp Giao dịch gần đây,Giao dịch gần đây của tôi,getTransactionHistory
+Được không nếu Cho mình Giao dịch gần đây của em,Giao dịch gần đây của tôi,getTransactionHistory
+Kiểm tra sao kê tài khoản?,Kiểm tra sao kê tài khoản,getTransactionHistory
+Đã chi tiêu là gì giùm ạ,Đã chi tiêu bao nhiêu,getTransactionHistory
+Mình muốn Giao dịch gần đây của tui?,Giao dịch gần đây của tôi,getTransactionHistory
+Cho tôi Có thể Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp tôi Giao dịch gần đây của em giùm,Giao dịch gần đây của tôi,getTransactionHistory
+Lịch sử chuyển khoản ạ được không?,Lịch sử chuyển khoản,getTransactionHistory
+Đã chi tiêu được bao nhiêu giúp với giúp với,Đã chi tiêu bao nhiêu,getTransactionHistory
+Đã chi tiêu bao nhiêu nha nhé,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho em Biến động tiền còn gần đây,Biến động số dư gần đây,getTransactionHistory
+Làm ơn Cho mình Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+Giúp tôi Xem lịch sử giao dịch được không?,Xem lịch sử giao dịch,getTransactionHistory
+Mình muốn Biến động tiền còn gần đây nha,Biến động số dư gần đây,getTransactionHistory
+Xem lịch sử giao dịch giúp với,Xem lịch sử giao dịch,getTransactionHistory
+Cho mình Giao dịch gần đây của tôi nha,Giao dịch gần đây của tôi,getTransactionHistory
+Làm ơn Giao dịch gần đây của em nhé,Giao dịch gần đây của tôi,getTransactionHistory
+Giúp tôi Mình muốn Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+em cần Tiền vào tiền ra tháng này,Tiền vào tiền ra tháng này,getTransactionHistory
+Giúp tôi Giao dịch gần đây giúp với,Giao dịch gần đây của tôi,getTransactionHistory
+Đã chi tiêu là gì giùm nha,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giao dịch gần đây của em?,Giao dịch gần đây của tôi,getTransactionHistory
+em cần Cho mình Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+muốn Lịch sử chuyển khoản nha,Lịch sử chuyển khoản,getTransactionHistory
+Cho tôi Tiền vào tiền ra tháng này?,Tiền vào tiền ra tháng này,getTransactionHistory
+Tiền vào tiền ra tháng này được không giùm,Tiền vào tiền ra tháng này,getTransactionHistory
+Cho em Lịch sử chuyển khoản ạ,Lịch sử chuyển khoản,getTransactionHistory
+Tôi muốn Biến động số tiền gần đây được không,Biến động số dư gần đây,getTransactionHistory
+Có thể Có thể Giao dịch gần đây của em,Giao dịch gần đây của tôi,getTransactionHistory
+Có thể Đã chi tiêu là gì?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho mình Tiền vào tiền ra tháng này?,Tiền vào tiền ra tháng này,getTransactionHistory
+Đã chi tiêu được bao nhiêu nha được không?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp em Tiền vào tiền ra tháng này với,Tiền vào tiền ra tháng này,getTransactionHistory
+Làm ơn Giao dịch gần đây của mình,Giao dịch gần đây của tôi,getTransactionHistory
+Cho tôi Có thể Giao dịch gần đây của mình,Giao dịch gần đây của tôi,getTransactionHistory
+Giao dịch gần đây của tôi nhé,Giao dịch gần đây của tôi,getTransactionHistory
+Biến động số tiền gần đây nha ạ,Biến động số dư gần đây,getTransactionHistory
+Cho tôi Tiền vào tiền ra tháng này giúp với,Tiền vào tiền ra tháng này,getTransactionHistory
+em cần Mình muốn Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Cho em Giao dịch gần đây của mình,Giao dịch gần đây của tôi,getTransactionHistory
+tui cần Làm ơn Tiền vào tiền ra tháng này,Tiền vào tiền ra tháng này,getTransactionHistory
+Mình muốn Có thể Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Có thể Cho mình Giao dịch gần đây của em,Giao dịch gần đây của tôi,getTransactionHistory
+Cho Mình muốn Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giao dịch gần đây của tôi được không giùm,Giao dịch gần đây của tôi,getTransactionHistory
+Cho mình Giao dịch gần đây với,Giao dịch gần đây của tôi,getTransactionHistory
+kiểm tra lịch sử giao dịch giùm,Xem lịch sử giao dịch,getTransactionHistory
+Giúp tôi Giao dịch gần đây,Giao dịch gần đây của tôi,getTransactionHistory
+Mình muốn Biến động tiền còn gần đây?,Biến động số dư gần đây,getTransactionHistory
+cần Tiền vào tiền ra tháng này nha,Tiền vào tiền ra tháng này,getTransactionHistory
+Cho tui Kiểm tra sao kê tài khoản với,Kiểm tra sao kê tài khoản,getTransactionHistory
+Tôi muốn Biến động tiền còn gần đây với,Biến động số dư gần đây,getTransactionHistory
+Được không nếu cho biết lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Đã chi tiêu được bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho tôi cho biết lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Làm ơn Đã chi tiêu là gì với,Đã chi tiêu bao nhiêu,getTransactionHistory
+hiển thị lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Được không nếu Có thể Giao dịch gần đây của tui,Giao dịch gần đây của tôi,getTransactionHistory
+Giúp tui Xem lịch sử giao dịch nhé,Xem lịch sử giao dịch,getTransactionHistory
+Đã chi tiêu bao nhiêu được không,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho tôi xem sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+tui cần Tiền vào tiền ra tháng này?,Tiền vào tiền ra tháng này,getTransactionHistory
+Đã chi tiêu là gì nha nhé,Đã chi tiêu bao nhiêu,getTransactionHistory
+Đã chi tiêu được được bao nhiêu với,Đã chi tiêu bao nhiêu,getTransactionHistory
+Mình muốn Đã chi tiêu là gì nhé,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp em Giao dịch gần đây của em,Giao dịch gần đây của tôi,getTransactionHistory
+Cho mình Giao dịch gần đây của mình ạ,Giao dịch gần đây của tôi,getTransactionHistory
+Cho tui Được không nếu Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Tôi cần Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Đã chi tiêu bao nhiêu giùm được không?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Có thể Có thể Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+Cho mình Giao dịch gần đây được không,Giao dịch gần đây của tôi,getTransactionHistory
+Cho tui Cho mình Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Có thể Giao dịch gần đây của tui,Giao dịch gần đây của tôi,getTransactionHistory
+Cho em hiển thị lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Tôi cần Cho mình Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Làm ơn Giao dịch gần đây của tui,Giao dịch gần đây của tôi,getTransactionHistory
+tui cần Làm ơn Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Kiểm tra sao kê tài khoản nha giùm,Kiểm tra sao kê tài khoản,getTransactionHistory
+Giúp tui Có thể Giao dịch gần đây của tui,Giao dịch gần đây của tôi,getTransactionHistory
+tui cần Tiền vào tiền ra tháng này nhé,Tiền vào tiền ra tháng này,getTransactionHistory
+Tôi muốn Đã chi tiêu là gì?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp tôi Giao dịch gần đây của tôi nha,Giao dịch gần đây của tôi,getTransactionHistory
+Cho tôi Biến động tiền còn gần đây với,Biến động số dư gần đây,getTransactionHistory
+Giao dịch gần đây của tôi giùm nhé,Giao dịch gần đây của tôi,getTransactionHistory
+Cho tôi Được không nếu Giao dịch gần đây của tui,Giao dịch gần đây của tôi,getTransactionHistory
+Mình muốn Giao dịch gần đây ?,Giao dịch gần đây của tôi,getTransactionHistory
+Cho mình Làm ơn Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Giúp Mình muốn Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Tiền vào tiền ra tháng này,Tiền vào tiền ra tháng này,getTransactionHistory
+Giúp mình Biến động số tiền gần đây,Biến động số dư gần đây,getTransactionHistory
+Đã chi tiêu được bao nhiêu ạ được không,Đã chi tiêu bao nhiêu,getTransactionHistory
+Được không nếu Đã chi tiêu được bao nhiêu ạ,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho mình Biến động số tiền gần đây được không?,Biến động số dư gần đây,getTransactionHistory
+tui cần tra cứu sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Có thể Giao dịch gần đây của được không?,Giao dịch gần đây của tôi,getTransactionHistory
+Tôi cần Đã chi tiêu được bao nhiêu giùm,Đã chi tiêu bao nhiêu,getTransactionHistory
+Xem lịch sử giao dịch nhé?,Xem lịch sử giao dịch,getTransactionHistory
+Vui lòng Lịch sử chuyển khoản giúp với,Lịch sử chuyển khoản,getTransactionHistory
+Giúp mình Xem lịch sử giao dịch giùm,Xem lịch sử giao dịch,getTransactionHistory
+Đã chi tiêu được bao nhiêu ạ?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Được không nếu Kiểm tra sao kê tài khoản ạ,Kiểm tra sao kê tài khoản,getTransactionHistory
+Cho em Đã chi tiêu được bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giao dịch gần đây của tôi giúp với nhé,Giao dịch gần đây của tôi,getTransactionHistory
+Giúp mình Đã chi tiêu bao nhiêu ạ,Đã chi tiêu bao nhiêu,getTransactionHistory
+cần Được không nếu Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+Có thể Xem lịch sử giao dịch với,Xem lịch sử giao dịch,getTransactionHistory
+mình muốn Lịch sử chuyển khoản nha,Lịch sử chuyển khoản,getTransactionHistory
+Giúp em Biến động số tiền gần đây,Biến động số dư gần đây,getTransactionHistory
+Cho mình Được không nếu Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Tôi muốn Giao dịch gần đây của tôi ạ,Giao dịch gần đây của tôi,getTransactionHistory
+em cần Cho mình Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho mình Giao dịch gần đây của tôi,Giao dịch gần đây của tôi,getTransactionHistory
+cần Xem lịch sử giao dịch nha,Xem lịch sử giao dịch,getTransactionHistory
+Giúp em Lịch sử chuyển khoản giùm,Lịch sử chuyển khoản,getTransactionHistory
+Giúp mình Giao dịch gần đây,Giao dịch gần đây của tôi,getTransactionHistory
+Cho tôi Biến động tiền còn gần đây nhé,Biến động số dư gần đây,getTransactionHistory
+em cần Đã chi tiêu bao nhiêu với,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp tôi Tiền vào tiền ra tháng này?,Tiền vào tiền ra tháng này,getTransactionHistory
+Kiểm tra sao kê tài khoản ạ được không?,Kiểm tra sao kê tài khoản,getTransactionHistory
+Cho Giao dịch gần đây của tui,Giao dịch gần đây của tôi,getTransactionHistory
+mình cần Xem lịch sử giao dịch được không,Xem lịch sử giao dịch,getTransactionHistory
+Được không nếu Được không nếu Giao dịch gần đây của,Giao dịch gần đây của tôi,getTransactionHistory
+Làm ơn Biến động số tiền gần đây với,Biến động số dư gần đây,getTransactionHistory
+Cho tôi Đã chi tiêu được bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Xem lịch sử giao dịch giúp với?,Xem lịch sử giao dịch,getTransactionHistory
+Có thể Xem lịch sử giao dịch ạ,Xem lịch sử giao dịch,getTransactionHistory
+Cho mình Đã chi tiêu bao nhiêu?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Đã chi tiêu là gì nhé nhé,Đã chi tiêu bao nhiêu,getTransactionHistory
+Vui lòng Giao dịch gần đây của với,Giao dịch gần đây của tôi,getTransactionHistory
+Đã chi tiêu là gì giùm giùm,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp tui Đã chi tiêu là gì,Đã chi tiêu bao nhiêu,getTransactionHistory
+Vui lòng Giao dịch gần đây của mình được không?,Giao dịch gần đây của tôi,getTransactionHistory
+muốn Đã chi tiêu được bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Vui lòng Mình muốn Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Tôi muốn Giao dịch gần đây của tui giúp với,Giao dịch gần đây của tôi,getTransactionHistory
+Giúp tôi Có thể Tiền vào tiền ra tháng này,Tiền vào tiền ra tháng này,getTransactionHistory
+Biến động số tiền gần đây giúp với,Biến động số dư gần đây,getTransactionHistory
+hiển thị lịch sử giao dịch nha,Xem lịch sử giao dịch,getTransactionHistory
+em muốn Đã chi tiêu bao nhiêu được không?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho mình Đã chi tiêu là gì giùm,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp tôi Được không nếu Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Biến động tiền còn gần đây giùm?,Biến động số dư gần đây,getTransactionHistory
+Đã chi tiêu là gì giúp với ạ,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho tui Mình muốn Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Cho em Mình muốn Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Có thể Làm ơn Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+cần Tiền vào tiền ra tháng này giúp với,Tiền vào tiền ra tháng này,getTransactionHistory
+Cho Có thể Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+em muốn Làm ơn Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+Có thể Giao dịch gần đây của tôi ạ,Giao dịch gần đây của tôi,getTransactionHistory
+Cho mình Mình muốn Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+muốn Đã chi tiêu bao nhiêu giúp với,Đã chi tiêu bao nhiêu,getTransactionHistory
+Đã chi tiêu được bao nhiêu nha nhé,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho tôi Giao dịch gần đây của mình nha,Giao dịch gần đây của tôi,getTransactionHistory
+Tôi muốn Giao dịch gần đây của tôi giúp với,Giao dịch gần đây của tôi,getTransactionHistory
+Được không nếu Đã chi tiêu bao nhiêu ạ,Đã chi tiêu bao nhiêu,getTransactionHistory
+Tôi cần Tiền vào tiền ra tháng này?,Tiền vào tiền ra tháng này,getTransactionHistory
+Cho mình Xem lịch sử giao dịch?,Xem lịch sử giao dịch,getTransactionHistory
+tui muốn Giao dịch gần đây của tui,Giao dịch gần đây của tôi,getTransactionHistory
+muốn Tiền vào tiền ra tháng này giùm,Tiền vào tiền ra tháng này,getTransactionHistory
+Giao dịch gần đây của em,Giao dịch gần đây của tôi,getTransactionHistory
+Có thể Được không nếu Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+Vui lòng Đã chi tiêu được bao nhiêu ạ,Đã chi tiêu bao nhiêu,getTransactionHistory
+Mình muốn Giao dịch gần đây của mình,Giao dịch gần đây của tôi,getTransactionHistory
+mình cần Đã chi tiêu bao nhiêu với,Đã chi tiêu bao nhiêu,getTransactionHistory
+Tôi muốn Mình muốn Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Tôi muốn Biến động tiền còn gần đây?,Biến động số dư gần đây,getTransactionHistory
+Cho tôi Đã chi tiêu bao nhiêu được không?,Đã chi tiêu bao nhiêu,getTransactionHistory
+tui cần Đã chi tiêu bao nhiêu nhé,Đã chi tiêu bao nhiêu,getTransactionHistory
+cần Lịch sử chuyển khoản?,Lịch sử chuyển khoản,getTransactionHistory
+Cho Kiểm tra sao kê tài khoản ạ,Kiểm tra sao kê tài khoản,getTransactionHistory
+mình cần Cho mình Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Có thể Có thể Giao dịch gần đây của tôi,Giao dịch gần đây của tôi,getTransactionHistory
+Cho Cho mình Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Có thể Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Cho Lịch sử chuyển khoản được không?,Lịch sử chuyển khoản,getTransactionHistory
+Cho em Được không nếu Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Tôi cần Biến động số tiền gần đây giúp với,Biến động số dư gần đây,getTransactionHistory
+Giúp em Xem lịch sử giao dịch với,Xem lịch sử giao dịch,getTransactionHistory
+Tôi cần Được không nếu Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+Làm ơn Lịch sử chuyển khoản được không?,Lịch sử chuyển khoản,getTransactionHistory
+Có thể Làm ơn Giao dịch gần đây của tôi,Giao dịch gần đây của tôi,getTransactionHistory
+Xem lịch sử giao dịch được không ạ,Xem lịch sử giao dịch,getTransactionHistory
+Biến động tiền còn gần đây giùm được không,Biến động số dư gần đây,getTransactionHistory
+Làm ơn Mình muốn Giao dịch gần đây của mình,Giao dịch gần đây của tôi,getTransactionHistory
+Tôi muốn Đã chi tiêu bao nhiêu?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Tôi muốn Đã chi tiêu được bao nhiêu được không,Đã chi tiêu bao nhiêu,getTransactionHistory
+Xem lịch sử giao dịch nhé được không?,Xem lịch sử giao dịch,getTransactionHistory
+Mình muốn Giao dịch gần đây của được không?,Giao dịch gần đây của tôi,getTransactionHistory
+Cho mình Giao dịch gần đây nhé,Giao dịch gần đây của tôi,getTransactionHistory
+Cho em Kiểm tra sao kê tài khoản ạ,Kiểm tra sao kê tài khoản,getTransactionHistory
+Giúp tui Giao dịch gần đây của em,Giao dịch gần đây của tôi,getTransactionHistory
+kiểm tra lịch sử giao dịch?,Xem lịch sử giao dịch,getTransactionHistory
+Giúp tôi Lịch sử chuyển khoản nha,Lịch sử chuyển khoản,getTransactionHistory
+Có thể Có thể Giao dịch gần đây của,Giao dịch gần đây của tôi,getTransactionHistory
+em cần Xem lịch sử giao dịch nhé,Xem lịch sử giao dịch,getTransactionHistory
+Làm ơn Đã chi tiêu bao nhiêu nhé,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp tôi Mình muốn Giao dịch gần đây của mình,Giao dịch gần đây của tôi,getTransactionHistory
+Giúp Đã chi tiêu bao nhiêu ạ,Đã chi tiêu bao nhiêu,getTransactionHistory
+muốn Kiểm tra sao kê tài khoản giúp với,Kiểm tra sao kê tài khoản,getTransactionHistory
+Vui lòng Giao dịch gần đây của tui?,Giao dịch gần đây của tôi,getTransactionHistory
+Đã chi tiêu là gì giùm,Đã chi tiêu bao nhiêu,getTransactionHistory
+Có thể Đã chi tiêu được bao nhiêu được không,Đã chi tiêu bao nhiêu,getTransactionHistory
+Đã chi tiêu bao nhiêu được không giùm,Đã chi tiêu bao nhiêu,getTransactionHistory
+tui cần Cho mình Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+muốn Kiểm tra sao kê tài khoản nha,Kiểm tra sao kê tài khoản,getTransactionHistory
+cần Làm ơn Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Giúp em Cho mình Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+Đã chi tiêu là gì được không nhé,Đã chi tiêu bao nhiêu,getTransactionHistory
+Đã chi tiêu được bao nhiêu ạ được không?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp mình Mình muốn Tiền vào tiền ra tháng này,Tiền vào tiền ra tháng này,getTransactionHistory
+cần Đã chi tiêu bao nhiêu giùm,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp tôi Giao dịch gần đây của tôi giúp với,Giao dịch gần đây của tôi,getTransactionHistory
+mình cần Xem lịch sử giao dịch nha,Xem lịch sử giao dịch,getTransactionHistory
+em cần Lịch sử chuyển khoản?,Lịch sử chuyển khoản,getTransactionHistory
+Cho tôi Biến động tiền còn gần đây,Biến động số dư gần đây,getTransactionHistory
+Cho tui Cho mình Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Giúp tui Được không nếu Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+cần Kiểm tra sao kê tài khoản giùm,Kiểm tra sao kê tài khoản,getTransactionHistory
+Tôi cần tra cứu sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Đã chi tiêu bao nhiêu với?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Tôi cần Tiền vào tiền ra tháng này giúp với,Tiền vào tiền ra tháng này,getTransactionHistory
+Tiền vào tiền ra tháng này giùm?,Tiền vào tiền ra tháng này,getTransactionHistory
+Lịch sử chuyển khoản với giúp với,Lịch sử chuyển khoản,getTransactionHistory
+Làm ơn Đã chi tiêu là gì?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Làm ơn Giao dịch gần đây của tôi được không?,Giao dịch gần đây của tôi,getTransactionHistory
+tui cần Biến động tiền còn gần đây,Biến động số dư gần đây,getTransactionHistory
+Đã chi tiêu được bao nhiêu giúp với nha,Đã chi tiêu bao nhiêu,getTransactionHistory
+Tôi muốn Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Biến động tiền còn gần đây nha nha,Biến động số dư gần đây,getTransactionHistory
+Cho mình Làm ơn Giao dịch gần đây,Giao dịch gần đây của tôi,getTransactionHistory
+Lịch sử chuyển khoản giúp với được không,Lịch sử chuyển khoản,getTransactionHistory
+Có thể Giao dịch gần đây nha,Giao dịch gần đây của tôi,getTransactionHistory
+Tôi cần Đã chi tiêu bao nhiêu giùm,Đã chi tiêu bao nhiêu,getTransactionHistory
+Được không nếu Giao dịch gần đây của tui nhé,Giao dịch gần đây của tôi,getTransactionHistory
+Giúp tôi Đã chi tiêu là gì giúp với,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp mình Tiền vào tiền ra tháng này với,Tiền vào tiền ra tháng này,getTransactionHistory
+mình cần Kiểm tra sao kê tài khoản giùm,Kiểm tra sao kê tài khoản,getTransactionHistory
+cần Giao dịch gần đây của được không?,Giao dịch gần đây của tôi,getTransactionHistory
+Vui lòng Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+em cần Tiền vào tiền ra tháng này?,Tiền vào tiền ra tháng này,getTransactionHistory
+Có thể Tiền vào tiền ra tháng này được không,Tiền vào tiền ra tháng này,getTransactionHistory
+mình cần Xem lịch sử giao dịch?,Xem lịch sử giao dịch,getTransactionHistory
+tui muốn Tiền vào tiền ra tháng này nha,Tiền vào tiền ra tháng này,getTransactionHistory
+Biến động số tiền gần đây nha với,Biến động số dư gần đây,getTransactionHistory
+Tôi cần Cho mình Giao dịch gần đây của tôi,Giao dịch gần đây của tôi,getTransactionHistory
+Cho mình Lịch sử chuyển khoản nha,Lịch sử chuyển khoản,getTransactionHistory
+cần Đã chi tiêu bao nhiêu với,Đã chi tiêu bao nhiêu,getTransactionHistory
+Đã chi tiêu được bao nhiêu được không nha,Đã chi tiêu bao nhiêu,getTransactionHistory
+Kiểm tra sao kê tài khoản với với,Kiểm tra sao kê tài khoản,getTransactionHistory
+tui cần Lịch sử chuyển khoản?,Lịch sử chuyển khoản,getTransactionHistory
+Tôi cần Lịch sử chuyển khoản ạ,Lịch sử chuyển khoản,getTransactionHistory
+Kiểm tra sao kê tài khoản nha với,Kiểm tra sao kê tài khoản,getTransactionHistory
+Đã chi tiêu là gì ạ,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho em Đã chi tiêu bao nhiêu được không?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp tui xem sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Tôi muốn Xem lịch sử giao dịch ạ,Xem lịch sử giao dịch,getTransactionHistory
+muốn Xem lịch sử giao dịch ạ,Xem lịch sử giao dịch,getTransactionHistory
+Vui lòng Giao dịch gần đây của em giùm,Giao dịch gần đây của tôi,getTransactionHistory
+Có thể Giao dịch gần đây của tôi nhé,Giao dịch gần đây của tôi,getTransactionHistory
+Làm ơn Đã chi tiêu là gì nha,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp tôi Kiểm tra sao kê tài khoản?,Kiểm tra sao kê tài khoản,getTransactionHistory
+Được không nếu Giao dịch gần đây của tôi nhé,Giao dịch gần đây của tôi,getTransactionHistory
+cần Giao dịch gần đây của nha,Giao dịch gần đây của tôi,getTransactionHistory
+Giúp tui Làm ơn Tiền vào tiền ra tháng này,Tiền vào tiền ra tháng này,getTransactionHistory
+mình cần Đã chi tiêu bao nhiêu giùm,Đã chi tiêu bao nhiêu,getTransactionHistory
+Đã chi tiêu được bao nhiêu ạ giùm,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp tôi Có thể Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+mình muốn Mình muốn Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Vui lòng Được không nếu Tiền vào tiền ra tháng này,Tiền vào tiền ra tháng này,getTransactionHistory
+Cho tôi Biến động số tiền gần đây nha,Biến động số dư gần đây,getTransactionHistory
+Lịch sử chuyển khoản nha được không,Lịch sử chuyển khoản,getTransactionHistory
+Có thể Biến động số tiền gần đây,Biến động số dư gần đây,getTransactionHistory
+Cho tôi Xem lịch sử giao dịch với,Xem lịch sử giao dịch,getTransactionHistory
+Biến động số tiền gần đây giùm,Biến động số dư gần đây,getTransactionHistory
+Cho mình Làm ơn Tiền vào tiền ra tháng này,Tiền vào tiền ra tháng này,getTransactionHistory
+Cho mình Cho mình Giao dịch gần đây của tôi,Giao dịch gần đây của tôi,getTransactionHistory
+Đã chi tiêu được bao nhiêu giúp với?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho mình Mình muốn Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho mình Xem lịch sử giao dịch giúp với,Xem lịch sử giao dịch,getTransactionHistory
+Xem lịch sử giao dịch được không nha,Xem lịch sử giao dịch,getTransactionHistory
+Vui lòng Tiền vào tiền ra tháng này ạ,Tiền vào tiền ra tháng này,getTransactionHistory
+Vui lòng Kiểm tra sao kê tài khoản được không?,Kiểm tra sao kê tài khoản,getTransactionHistory
+Tôi cần Cho mình Giao dịch gần đây,Giao dịch gần đây của tôi,getTransactionHistory
+Lịch sử chuyển khoản ạ,Lịch sử chuyển khoản,getTransactionHistory
+mình muốn Làm ơn Giao dịch gần đây của mình,Giao dịch gần đây của tôi,getTransactionHistory
+Được không nếu Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+Giúp Xem lịch sử giao dịch giùm,Xem lịch sử giao dịch,getTransactionHistory
+Giúp tôi Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+muốn Tiền vào tiền ra tháng này nha,Tiền vào tiền ra tháng này,getTransactionHistory
+Cho em Cho mình Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Làm ơn Tiền vào tiền ra tháng này giùm,Tiền vào tiền ra tháng này,getTransactionHistory
+Tôi muốn kiểm tra lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+tui muốn Đã chi tiêu được bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Lịch sử chuyển khoản ạ giúp với,Lịch sử chuyển khoản,getTransactionHistory
+Có thể Đã chi tiêu bao nhiêu nhé,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp tôi Giao dịch gần đây của tôi nhé,Giao dịch gần đây của tôi,getTransactionHistory
+Giúp tôi Làm ơn Tiền vào tiền ra tháng này,Tiền vào tiền ra tháng này,getTransactionHistory
+Làm ơn Mình muốn Giao dịch gần đây,Giao dịch gần đây của tôi,getTransactionHistory
+Tiền vào tiền ra tháng này với ạ,Tiền vào tiền ra tháng này,getTransactionHistory
+Vui lòng Giao dịch gần đây của tui được không?,Giao dịch gần đây của tôi,getTransactionHistory
+Giúp tui Giao dịch gần đây của tui giùm,Giao dịch gần đây của tôi,getTransactionHistory
+tui muốn Giao dịch gần đây,Giao dịch gần đây của tôi,getTransactionHistory
+Vui lòng Giao dịch gần đây của được không?,Giao dịch gần đây của tôi,getTransactionHistory
+Cho em Đã chi tiêu bao nhiêu nhé,Đã chi tiêu bao nhiêu,getTransactionHistory
+Có thể Xem lịch sử giao dịch?,Xem lịch sử giao dịch,getTransactionHistory
+Tôi cần Đã chi tiêu được bao nhiêu nha,Đã chi tiêu bao nhiêu,getTransactionHistory
+Có thể Giao dịch gần đây của,Giao dịch gần đây của tôi,getTransactionHistory
+Cho Xem lịch sử giao dịch?,Xem lịch sử giao dịch,getTransactionHistory
+Kiểm tra sao kê tài khoản được không,Kiểm tra sao kê tài khoản,getTransactionHistory
+Biến động số tiền gần đây được không nhé,Biến động số dư gần đây,getTransactionHistory
+Giúp em Đã chi tiêu được bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho mình Đã chi tiêu là gì ạ,Đã chi tiêu bao nhiêu,getTransactionHistory
+tui cần Được không nếu Giao dịch gần đây của tui,Giao dịch gần đây của tôi,getTransactionHistory
+Mình muốn Giao dịch gần đây của em được không?,Giao dịch gần đây của tôi,getTransactionHistory
+Cho tôi Tiền vào tiền ra tháng này với,Tiền vào tiền ra tháng này,getTransactionHistory
+Có thể tra cứu sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Tôi muốn Làm ơn Giao dịch gần đây của tui,Giao dịch gần đây của tôi,getTransactionHistory
+Có thể Giao dịch gần đây của em nha,Giao dịch gần đây của tôi,getTransactionHistory
+Cho mình Giao dịch gần đây của mình được không,Giao dịch gần đây của tôi,getTransactionHistory
+Cho Giao dịch gần đây của mình,Giao dịch gần đây của tôi,getTransactionHistory
+Có thể Đã chi tiêu là gì được không?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giao dịch gần đây,Giao dịch gần đây của tôi,getTransactionHistory
+mình cần Lịch sử chuyển khoản giúp với,Lịch sử chuyển khoản,getTransactionHistory
+Cho Có thể Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho tôi Giao dịch gần đây của em với,Giao dịch gần đây của tôi,getTransactionHistory
+Biến động tiền còn gần đây nha,Biến động số dư gần đây,getTransactionHistory
+Kiểm tra sao kê tài khoản giúp với nhé,Kiểm tra sao kê tài khoản,getTransactionHistory
+cần Tiền vào tiền ra tháng này?,Tiền vào tiền ra tháng này,getTransactionHistory
+Tiền vào tiền ra tháng này giùm giùm,Tiền vào tiền ra tháng này,getTransactionHistory
+em cần Đã chi tiêu bao nhiêu nhé,Đã chi tiêu bao nhiêu,getTransactionHistory
+mình muốn Tiền vào tiền ra tháng này được không?,Tiền vào tiền ra tháng này,getTransactionHistory
+Có thể Kiểm tra sao kê tài khoản giúp với,Kiểm tra sao kê tài khoản,getTransactionHistory
+mình cần Làm ơn Tiền vào tiền ra tháng này,Tiền vào tiền ra tháng này,getTransactionHistory
+Vui lòng Giao dịch gần đây của mình được không,Giao dịch gần đây của tôi,getTransactionHistory
+Giúp mình Xem lịch sử giao dịch nhé,Xem lịch sử giao dịch,getTransactionHistory
+cần Tiền vào tiền ra tháng này với,Tiền vào tiền ra tháng này,getTransactionHistory
+Cho tôi Biến động số tiền gần đây được không?,Biến động số dư gần đây,getTransactionHistory
+Cho mình Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Mình muốn Giao dịch gần đây của tôi được không?,Giao dịch gần đây của tôi,getTransactionHistory
+em muốn Tiền vào tiền ra tháng này nha,Tiền vào tiền ra tháng này,getTransactionHistory
+mình cần Kiểm tra sao kê tài khoản với,Kiểm tra sao kê tài khoản,getTransactionHistory
+tui cần Đã chi tiêu bao nhiêu giùm,Đã chi tiêu bao nhiêu,getTransactionHistory
+Tôi muốn Làm ơn Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Mình muốn Mình muốn Giao dịch gần đây của tui,Giao dịch gần đây của tôi,getTransactionHistory
+Lịch sử chuyển khoản ạ giùm,Lịch sử chuyển khoản,getTransactionHistory
+Đã chi tiêu được bao nhiêu với giùm,Đã chi tiêu bao nhiêu,getTransactionHistory
+Tôi cần Đã chi tiêu bao nhiêu với,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho tôi Giao dịch gần đây của tôi ạ,Giao dịch gần đây của tôi,getTransactionHistory
+em muốn Kiểm tra sao kê tài khoản giúp với,Kiểm tra sao kê tài khoản,getTransactionHistory
+Tôi muốn Kiểm tra sao kê tài khoản giúp với,Kiểm tra sao kê tài khoản,getTransactionHistory
+Được không nếu Biến động số tiền gần đây ạ,Biến động số dư gần đây,getTransactionHistory
+Giúp tôi Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+muốn Lịch sử chuyển khoản nhé,Lịch sử chuyển khoản,getTransactionHistory
+Giúp tôi Đã chi tiêu bao nhiêu ạ,Đã chi tiêu bao nhiêu,getTransactionHistory
+tui cần Xem lịch sử giao dịch với,Xem lịch sử giao dịch,getTransactionHistory
+Giúp Biến động số tiền gần đây,Biến động số dư gần đây,getTransactionHistory
+tui cần Giao dịch gần đây của tui được không?,Giao dịch gần đây của tôi,getTransactionHistory
+Có thể Mình muốn Tiền vào tiền ra tháng này,Tiền vào tiền ra tháng này,getTransactionHistory
+Đã chi tiêu bao nhiêu được không ạ,Đã chi tiêu bao nhiêu,getTransactionHistory
+Tôi muốn Giao dịch gần đây của tôi với,Giao dịch gần đây của tôi,getTransactionHistory
+Giúp mình Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+mình muốn Cho mình Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Cho tui Tiền vào tiền ra tháng này với,Tiền vào tiền ra tháng này,getTransactionHistory
+Được không nếu Lịch sử chuyển khoản giùm,Lịch sử chuyển khoản,getTransactionHistory
+Lịch sử chuyển khoản nhé với,Lịch sử chuyển khoản,getTransactionHistory
+Có thể Cho mình Giao dịch gần đây của tôi,Giao dịch gần đây của tôi,getTransactionHistory
+Kiểm tra sao kê tài khoản được không giùm,Kiểm tra sao kê tài khoản,getTransactionHistory
+cần Biến động tiền còn gần đây,Biến động số dư gần đây,getTransactionHistory
+Làm ơn Biến động tiền còn gần đây giúp với,Biến động số dư gần đây,getTransactionHistory
+Có thể Đã chi tiêu bao nhiêu nha,Đã chi tiêu bao nhiêu,getTransactionHistory
+Đã chi tiêu bao nhiêu nhé được không?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Tôi cần Đã chi tiêu là gì được không?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho mình Giao dịch gần đây của mình nha,Giao dịch gần đây của tôi,getTransactionHistory
+Cho mình Đã chi tiêu bao nhiêu được không,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giao dịch gần đây của tui với,Giao dịch gần đây của tôi,getTransactionHistory
+Đã chi tiêu bao nhiêu với giùm,Đã chi tiêu bao nhiêu,getTransactionHistory
+muốn Giao dịch gần đây của ạ,Giao dịch gần đây của tôi,getTransactionHistory
+mình muốn Lịch sử chuyển khoản ạ,Lịch sử chuyển khoản,getTransactionHistory
+Cho mình Lịch sử chuyển khoản được không,Lịch sử chuyển khoản,getTransactionHistory
+Giúp mình Xem lịch sử giao dịch với,Xem lịch sử giao dịch,getTransactionHistory
+em muốn Kiểm tra sao kê tài khoản ạ,Kiểm tra sao kê tài khoản,getTransactionHistory
+Tôi muốn Được không nếu Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Biến động tiền còn gần đây với giùm,Biến động số dư gần đây,getTransactionHistory
+Đã chi tiêu là gì với được không,Đã chi tiêu bao nhiêu,getTransactionHistory
+Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Giúp tôi Đã chi tiêu bao nhiêu được không?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Được không nếu Lịch sử chuyển khoản nhé,Lịch sử chuyển khoản,getTransactionHistory
+Cho em Lịch sử chuyển khoản được không?,Lịch sử chuyển khoản,getTransactionHistory
+Đã chi tiêu bao nhiêu ạ ạ,Đã chi tiêu bao nhiêu,getTransactionHistory
+Được không nếu Đã chi tiêu bao nhiêu với,Đã chi tiêu bao nhiêu,getTransactionHistory
+Kiểm tra sao kê tài khoản được không?,Kiểm tra sao kê tài khoản,getTransactionHistory
+muốn Tiền vào tiền ra tháng này giúp với,Tiền vào tiền ra tháng này,getTransactionHistory
+Mình muốn Đã chi tiêu được bao nhiêu nha,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Vui lòng Giao dịch gần đây của tôi,Giao dịch gần đây của tôi,getTransactionHistory
+Giúp tôi Đã chi tiêu bao nhiêu nha,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho mình Tiền vào tiền ra tháng này với,Tiền vào tiền ra tháng này,getTransactionHistory
+tui cần Xem lịch sử giao dịch giúp với,Xem lịch sử giao dịch,getTransactionHistory
+Có thể Giao dịch gần đây của tôi,Giao dịch gần đây của tôi,getTransactionHistory
+Cho em Đã chi tiêu là gì,Đã chi tiêu bao nhiêu,getTransactionHistory
+mình cần Làm ơn Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Cho mình Đã chi tiêu bao nhiêu giúp với,Đã chi tiêu bao nhiêu,getTransactionHistory
+Giúp em Tiền vào tiền ra tháng này được không,Tiền vào tiền ra tháng này,getTransactionHistory
+Giao dịch gần đây của tui giùm,Giao dịch gần đây của tôi,getTransactionHistory
+Tôi muốn Đã chi tiêu được bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Được không nếu kiểm tra lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Mình muốn Đã chi tiêu được bao nhiêu?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Có thể Tiền vào tiền ra tháng này,Tiền vào tiền ra tháng này,getTransactionHistory
+Tôi muốn Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Cho mình Lịch sử chuyển khoản?,Lịch sử chuyển khoản,getTransactionHistory
+Giúp tôi Lịch sử chuyển khoản với,Lịch sử chuyển khoản,getTransactionHistory
+Vui lòng Giao dịch gần đây của tui giùm,Giao dịch gần đây của tôi,getTransactionHistory
+Giúp em Đã chi tiêu bao nhiêu được không,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho tôi Cho mình Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Giao dịch gần đây của?,Giao dịch gần đây của tôi,getTransactionHistory
+Giúp em Xem lịch sử giao dịch ạ,Xem lịch sử giao dịch,getTransactionHistory
+Giao dịch gần đây của em giùm,Giao dịch gần đây của tôi,getTransactionHistory
+Vui lòng Đã chi tiêu bao nhiêu giúp với,Đã chi tiêu bao nhiêu,getTransactionHistory
+Tôi cần Giao dịch gần đây của tôi nhé,Giao dịch gần đây của tôi,getTransactionHistory
+Biến động tiền còn gần đây được không được không,Biến động số dư gần đây,getTransactionHistory
+Cho tôi Xem lịch sử giao dịch giúp với,Xem lịch sử giao dịch,getTransactionHistory
+Biến động số tiền gần đây với giúp với,Biến động số dư gần đây,getTransactionHistory
+Cho mình Xem lịch sử giao dịch được không,Xem lịch sử giao dịch,getTransactionHistory
+Mình muốn Biến động số tiền gần đây giùm,Biến động số dư gần đây,getTransactionHistory
+mình cần Lịch sử chuyển khoản với,Lịch sử chuyển khoản,getTransactionHistory
+Cho tui Có thể Đã chi tiêu bao nhiêu,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho tôi Đã chi tiêu được bao nhiêu với,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho tui Đã chi tiêu là gì,Đã chi tiêu bao nhiêu,getTransactionHistory
+Mình muốn Giao dịch gần đây của tui nhé,Giao dịch gần đây của tôi,getTransactionHistory
+Đã chi tiêu bao nhiêu nhé nhé,Đã chi tiêu bao nhiêu,getTransactionHistory
+tui cần Được không nếu Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+Làm ơn Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+Cho tôi Đã chi tiêu là gì được không,Đã chi tiêu bao nhiêu,getTransactionHistory
+Xem lịch sử giao dịch nha,Xem lịch sử giao dịch,getTransactionHistory
+Được không nếu Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+em muốn Mình muốn Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Mình muốn Lịch sử chuyển khoản được không,Lịch sử chuyển khoản,getTransactionHistory
+Cho em Giao dịch gần đây của tui,Giao dịch gần đây của tôi,getTransactionHistory
+Tiền vào tiền ra tháng này nhé giùm,Tiền vào tiền ra tháng này,getTransactionHistory
+Cho em Đã chi tiêu bao nhiêu được không,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho tui Kiểm tra sao kê tài khoản giùm,Kiểm tra sao kê tài khoản,getTransactionHistory
+Có thể Giao dịch gần đây của tui ạ,Giao dịch gần đây của tôi,getTransactionHistory
+mình muốn Xem lịch sử giao dịch ạ,Xem lịch sử giao dịch,getTransactionHistory
+Giúp tôi Biến động tiền còn gần đây,Biến động số dư gần đây,getTransactionHistory
+Cho tôi Tiền vào tiền ra tháng này nha,Tiền vào tiền ra tháng này,getTransactionHistory
+Có thể Tiền vào tiền ra tháng này giúp với,Tiền vào tiền ra tháng này,getTransactionHistory
+Cho mình Làm ơn Giao dịch gần đây của tui,Giao dịch gần đây của tôi,getTransactionHistory
+em muốn Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Vui lòng Đã chi tiêu là gì,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho mình Có thể Tiền vào tiền ra tháng này,Tiền vào tiền ra tháng này,getTransactionHistory
+Tôi cần Cho mình Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+Giao dịch gần đây của tui,Giao dịch gần đây của tôi,getTransactionHistory
+Tôi muốn Đã chi tiêu được bao nhiêu nhé,Đã chi tiêu bao nhiêu,getTransactionHistory
+cần Lịch sử chuyển khoản được không,Lịch sử chuyển khoản,getTransactionHistory
+Làm ơn Có thể Xem lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Được không nếu Biến động tiền còn gần đây với,Biến động số dư gần đây,getTransactionHistory
+Cho tôi Biến động số tiền gần đây với,Biến động số dư gần đây,getTransactionHistory
+Giúp em Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Biến động số tiền gần đây nhé giùm,Biến động số dư gần đây,getTransactionHistory
+em cần Làm ơn Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+Tôi cần hiển thị lịch sử giao dịch,Xem lịch sử giao dịch,getTransactionHistory
+Xem lịch sử giao dịch nha nhé,Xem lịch sử giao dịch,getTransactionHistory
+Giúp tôi Đã chi tiêu được bao nhiêu được không?,Đã chi tiêu bao nhiêu,getTransactionHistory
+Cho mình Kiểm tra sao kê tài khoản giúp với,Kiểm tra sao kê tài khoản,getTransactionHistory
+Giúp tui Mình muốn Tiền vào tiền ra tháng này,Tiền vào tiền ra tháng này,getTransactionHistory
+Cho Tiền vào tiền ra tháng này nhé,Tiền vào tiền ra tháng này,getTransactionHistory
+Giúp em Lịch sử chuyển khoản được không?,Lịch sử chuyển khoản,getTransactionHistory
+Tôi cần Lịch sử chuyển khoản?,Lịch sử chuyển khoản,getTransactionHistory
+tra cứu sao kê tài khoản ạ,Kiểm tra sao kê tài khoản,getTransactionHistory
+Cho tôi Xem lịch sử giao dịch nhé,Xem lịch sử giao dịch,getTransactionHistory
+Mình muốn Giao dịch gần đây của em được không,Giao dịch gần đây của tôi,getTransactionHistory
+Cho mình Kiểm tra sao kê tài khoản ạ,Kiểm tra sao kê tài khoản,getTransactionHistory
+Tôi cần Đã chi tiêu là gì được không,Đã chi tiêu bao nhiêu,getTransactionHistory
+mình muốn Lịch sử chuyển khoản?,Lịch sử chuyển khoản,getTransactionHistory
+Vui lòng Đã chi tiêu là gì nha,Đã chi tiêu bao nhiêu,getTransactionHistory
+Mình muốn Có thể Lịch sử chuyển khoản,Lịch sử chuyển khoản,getTransactionHistory
+Vui lòng Kiểm tra sao kê tài khoản nhé,Kiểm tra sao kê tài khoản,getTransactionHistory
+em cần Kiểm tra sao kê tài khoản với,Kiểm tra sao kê tài khoản,getTransactionHistory
+Giúp Được không nếu Kiểm tra sao kê tài khoản,Kiểm tra sao kê tài khoản,getTransactionHistory
+Tôi muốn Làm ơn Giao dịch gần đây của mình,Giao dịch gần đây của tôi,getTransactionHistory
+cần Giao dịch gần đây của,Giao dịch gần đây của tôi,getTransactionHistory

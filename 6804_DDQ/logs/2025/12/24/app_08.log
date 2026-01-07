@@ -1,0 +1,54 @@
+2025-12-24 08:28:48 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-24 08:31:56 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-24 08:31:56 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-24 08:31:56 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 08:31:56 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 08:31:56 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-24 08:48:09 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-24 08:48:09 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-24 08:48:09 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 08:48:09 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 08:48:09 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-24 08:48:10 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-24 08:48:10 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 08:48:10 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 08:48:10 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-24 08:49:40 | INFO     | log:151 | [search_single] Searching: 'cho tôi xem lịch sử giao dịch của tài khoản 020063...' (top_k=10)
+2025-12-24 08:49:40 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 08:49:40 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 08:49:40 | DEBUG    | log:153 | [normalize_query] 'cho tôi xem lịch sử giao dịch của tài kh...' -> 'Cho tôi xem lịch sử giao dịch của tài kh...'
+2025-12-24 08:49:40 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho tôi xem lịch sử giao dịch của tài khoản 020063535533] - formatted_query: [Cho tôi xem lịch sử giao dịch của tài khoản 020063535533] - normalized_query: [Cho tôi xem lịch sử giao dịch của tài khoản 020063535533]
+2025-12-24 08:49:40 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.8559, max=14.6557
+2025-12-24 08:49:40 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Cho tôi xem lịch sử giao dịch ...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-24 08:49:40 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Cho tôi xem lịch sử giao dịch ...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-24 08:49:40 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-24 08:49:40 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8321, sem=0.8673, bm25=1.0000, boost=0.2500)
+2025-12-24 08:56:27 | INFO     | log:151 | [search_single] Searching: 'tôi muốn xem lịch sửa giao dịch của tài khoản 0334...' (top_k=10)
+2025-12-24 08:56:27 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 08:56:27 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 08:56:27 | DEBUG    | log:153 | [normalize_query] 'tôi muốn xem lịch sửa giao dịch của tài ...' -> 'Tôi muốn xem lịch sửa giao dịch của tài ...'
+2025-12-24 08:56:27 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tôi muốn xem lịch sửa giao dịch của tài khoản 0334921271] - formatted_query: [Tôi muốn xem lịch sửa giao dịch của tài khoản 0334921271] - normalized_query: [Tôi muốn xem lịch sửa giao dịch của tài khoản 0334921271]
+2025-12-24 08:56:27 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6546, max=14.3736
+2025-12-24 08:56:27 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tôi muốn xem lịch sửa giao dịc...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-24 08:56:27 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tôi muốn xem lịch sửa giao dịc...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-24 08:56:27 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-24 08:56:27 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8294, sem=0.8634, bm25=1.0000, boost=0.2500)
+2025-12-24 08:56:50 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-24 08:56:50 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-24 08:56:50 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 08:56:50 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 08:56:50 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-24 08:56:53 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-24 08:56:53 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 08:56:53 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 08:56:53 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-24 08:58:55 | INFO     | log:151 | [search_single] Searching: 'tôi muốn xem lịch sửa giao dịch của tài khoản 2008...' (top_k=10)
+2025-12-24 08:58:55 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 08:58:55 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 08:58:55 | DEBUG    | log:153 | [normalize_query] 'tôi muốn xem lịch sửa giao dịch của tài ...' -> 'Tôi muốn xem lịch sửa giao dịch của tài ...'
+2025-12-24 08:58:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tôi muốn xem lịch sửa giao dịch của tài khoản 2008891241014] - formatted_query: [Tôi muốn xem lịch sửa giao dịch của tài khoản 2008891241014] - normalized_query: [Tôi muốn xem lịch sửa giao dịch của tài khoản 2008891241014]
+2025-12-24 08:58:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6546, max=14.3736
+2025-12-24 08:58:55 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tôi muốn xem lịch sửa giao dịc...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-24 08:58:55 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tôi muốn xem lịch sửa giao dịc...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-24 08:58:55 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-24 08:58:55 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8350, sem=0.8715, bm25=1.0000, boost=0.2500)

@@ -1,0 +1,90 @@
+12/23, 11:19:58 [ner_inference] [NER] [QUESTION]: Xem các giao dịch chuyển tiền đã thực hiện
+12/23, 11:19:58 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'chuyển tiền'}]
+12/23, 14:28:22 [ner_inference] [NER] [QUESTION]: Cho tôi xem lịch sử giao dịch của tài khoản 0123456789
+12/23, 14:28:22 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '0123456789'}]
+12/23, 15:01:22 [ner_inference] [NER] Initializing NER Service...
+12/23, 15:01:22 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NlpHUST_electra-base-vn_v2...
+12/23, 15:04:35 [ner_inference] [NER] Initializing NER Service...
+12/23, 15:04:35 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NlpHUST_electra-base-vn_v2...
+12/23, 15:04:35 [ner_inference] [NER] Model loaded successfully on cuda
+12/23, 15:04:35 [ner_inference] [NER] NER Service ready!
+12/23, 15:05:52 [ner_inference] [NER] Initializing NER Service...
+12/23, 15:05:52 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NlpHUST_electra-base-vn_v2...
+12/23, 15:05:53 [ner_inference] [NER] Model loaded successfully on cuda
+12/23, 15:05:53 [ner_inference] [NER] NER Service ready!
+12/23, 15:09:40 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 0123456789], score:[0.8628]
+12/23, 15:09:40 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 0123456789
+12/23, 15:09:40 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '0123456789'}]
+12/23, 15:24:38 [ner_inference] [NER] Initializing NER Service...
+12/23, 15:24:38 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NlpHUST_electra-base-vn_v2...
+12/23, 15:24:39 [ner_inference] [NER] Model loaded successfully on cuda
+12/23, 15:24:39 [ner_inference] [NER] NER Service ready!
+12/23, 15:25:08 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 0123456789], score:[0.8628]
+12/23, 15:25:08 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 0123456789
+12/23, 15:25:08 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '0123456789'}]
+12/23, 15:26:12 [ner_inference] [NER] Initializing NER Service...
+12/23, 15:26:12 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NlpHUST_electra-base-vn_v2...
+12/23, 15:26:12 [ner_inference] [NER] Model loaded successfully on cuda
+12/23, 15:26:12 [ner_inference] [NER] NER Service ready!
+12/23, 15:26:31 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 0123456789], score:[0.8628]
+12/23, 15:26:31 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 0123456789
+12/23, 15:26:31 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '0123456789'}]
+12/23, 15:31:49 [ner_inference] [NER] Initializing NER Service...
+12/23, 15:31:49 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NlpHUST_electra-base-vn_v2...
+12/23, 15:31:50 [ner_inference] [NER] Model loaded successfully on cuda
+12/23, 15:31:50 [ner_inference] [NER] NER Service ready!
+12/23, 15:32:05 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 0123456789], score:[0.8628]
+12/23, 15:32:05 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 0123456789
+12/23, 15:32:05 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '0123456789'}]
+12/23, 15:33:49 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 0123456789], score:[0.8628]
+12/23, 15:33:49 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 0123456789
+12/23, 15:33:49 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '0123456789'}]
+12/23, 15:40:50 [ner_inference] [NER] Initializing NER Service...
+12/23, 15:40:50 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NlpHUST_electra-base-vn_v2...
+12/23, 15:40:50 [ner_inference] [NER] Model loaded successfully on cuda
+12/23, 15:40:50 [ner_inference] [NER] NER Service ready!
+12/23, 15:41:45 [ner_inference] [NER] Initializing NER Service...
+12/23, 15:41:45 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NlpHUST_electra-base-vn_v2...
+12/23, 15:41:45 [ner_inference] [NER] Model loaded successfully on cuda
+12/23, 15:41:45 [ner_inference] [NER] NER Service ready!
+12/23, 15:42:22 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 020063535533], score:[0.8321]
+12/23, 15:42:22 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 020063535533
+12/23, 15:42:22 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '020063535533'}]
+12/23, 15:45:12 [ner_inference] [NER] Initializing NER Service...
+12/23, 15:45:12 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NlpHUST_electra-base-vn_v2...
+12/23, 15:45:13 [ner_inference] [NER] Model loaded successfully on cuda
+12/23, 15:45:13 [ner_inference] [NER] NER Service ready!
+12/23, 15:47:22 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 020063535533], score:[0.8321]
+12/23, 15:47:22 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 020063535533
+12/23, 15:47:22 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '020063535533'}]
+12/23, 15:48:36 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 020063535533], score:[0.8321]
+12/23, 15:48:36 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 020063535533
+12/23, 15:48:36 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '020063535533'}]
+12/23, 16:34:17 [ner_inference] [NER] Initializing NER Service...
+12/23, 16:34:17 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NlpHUST_electra-base-vn_v2...
+12/23, 16:34:17 [ner_inference] [NER] Model loaded successfully on cuda
+12/23, 16:34:17 [ner_inference] [NER] NER Service ready!
+12/23, 16:35:14 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 020063535533], score:[0.8321]
+12/23, 16:35:14 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 020063535533
+12/23, 16:35:14 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '020063535533'}]
+12/23, 16:38:43 [ner_inference] [NER] Initializing NER Service...
+12/23, 16:38:43 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NlpHUST_electra-base-vn_v2...
+12/23, 16:38:44 [ner_inference] [NER] Model loaded successfully on cuda
+12/23, 16:38:44 [ner_inference] [NER] NER Service ready!
+12/23, 16:40:59 [ner_inference] [NER] Initializing NER Service...
+12/23, 16:40:59 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NlpHUST_electra-base-vn_v2...
+12/23, 16:40:59 [ner_inference] [NER] Model loaded successfully on cuda
+12/23, 16:40:59 [ner_inference] [NER] NER Service ready!
+12/23, 16:41:19 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 020063535533], score:[0.8321]
+12/23, 16:41:19 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 020063535533
+12/23, 16:41:19 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '020063535533'}]

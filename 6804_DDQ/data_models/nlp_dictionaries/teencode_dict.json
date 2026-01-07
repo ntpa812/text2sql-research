@@ -1,0 +1,259 @@
+{
+  "_metadata": {
+    "version": "1.0",
+    "description": "Vietnamese teencode dictionary - mapping informal to formal Vietnamese",
+    "last_updated": "2025-01-01",
+    "total_entries": 200
+  },
+  "mappings": {
+    "ko": "không",
+    "k": "không",
+    "kh": "không",
+    "khg": "không",
+    "hok": "không",
+    "hem": "không",
+    "kg": "không",
+    "kp": "không phải",
+    "kbh": "không bao giờ",
+    "kbt": "không biết",
+
+    "dc": "được",
+    "đc": "được",
+    "dk": "được",
+    "đk": "được",
+    "duoc": "được",
+
+    "vs": "với",
+    "voi": "với",
+    "vơi": "với",
+
+    "cj": "gì",
+    "j": "gì",
+    "gi": "gì",
+    "z": "gì",
+    "zì": "gì",
+
+    "r": "rồi",
+    "rui": "rồi",
+    "ròi": "rồi",
+
+    "trc": "trước",
+    "truoc": "trước",
+    "trươc": "trước",
+
+    "sau": "sau",
+    "sao": "sao",
+    "ns": "nói",
+
+    "m": "mình",
+    "mk": "mình",
+    "mik": "mình",
+    "minh": "mình",
+
+    "bn": "bạn",
+    "bạn": "bạn",
+    "ban": "bạn",
+
+    "ck": "chồng",
+    "vk": "vợ",
+    "gđ": "gia đình",
+    "gd": "gia đình",
+
+    "cx": "cũng",
+    "cung": "cũng",
+    "cux": "cũng",
+
+    "oy": "rồi",
+    "oi": "rồi",
+
+    "lm": "làm",
+    "lam": "làm",
+    "làm": "làm",
+
+    "sn": "sinh nhật",
+    "sinh": "sinh",
+
+    "thg": "tháng",
+    "thang": "tháng",
+
+    "năm": "năm",
+    "nam": "năm",
+
+    "ngày": "ngày",
+    "ngay": "ngày",
+
+    "hôm": "hôm",
+    "hom": "hôm",
+
+    "nay": "nay",
+    "qua": "qua",
+    "mai": "mai",
+
+    "ib": "inbox",
+    "inbox": "nhắn tin",
+
+    "fb": "facebook",
+    "face": "facebook",
+
+    "đt": "điện thoại",
+    "dt": "điện thoại",
+    "fone": "điện thoại",
+    "phone": "điện thoại",
+
+    "đag": "đang",
+    "dang": "đang",
+    "dag": "đang",
+
+    "tke": "tài khoản",
+    "tk": "tài khoản",
+    "acc": "tài khoản",
+
+    "ntn": "như thế nào",
+    "sn": "sinh nhật",
+
+    "ae": "anh em",
+    "a": "anh",
+    "e": "em",
+    "c": "chị",
+    "chj": "chị",
+
+    "ng": "người",
+    "nguoi": "người",
+    "ngta": "người ta",
+
+    "nc": "nước",
+    "nuoc": "nước",
+
+    "vh": "văn hóa",
+    "van": "văn",
+
+    "vn": "việt nam",
+    "vietnam": "việt nam",
+
+    "tp": "thành phố",
+    "tphcm": "thành phố hồ chí minh",
+    "hcm": "hồ chí minh",
+    "hn": "hà nội",
+    "sg": "sài gòn",
+
+    "xin": "xin",
+    "cho": "cho",
+    "hỏi": "hỏi",
+    "hoi": "hỏi",
+
+    "bít": "biết",
+    "biet": "biết",
+    "bjt": "biết",
+    "bt": "biết",
+
+    "thik": "thích",
+    "thich": "thích",
+    "thíck": "thích",
+
+    "cần": "cần",
+    "can": "cần",
+    "cân": "cần",
+
+    "muốn": "muốn",
+    "muon": "muốn",
+    "mún": "muốn",
+
+    "pải": "phải",
+    "fải": "phải",
+    "fai": "phải",
+    "phai": "phải",
+
+    "típ": "tiếp",
+    "tiep": "tiếp",
+
+    "mới": "mới",
+    "moi": "mới",
+    "ms": "mới",
+
+    "cũ": "cũ",
+    "cu": "cũ",
+
+    "nha": "nhà",
+    "nhà": "nhà",
+
+    "trog": "trong",
+    "trong": "trong",
+    "trg": "trong",
+
+    "ngoài": "ngoài",
+    "ngoai": "ngoài",
+    "ng": "ngoài",
+
+    "lun": "luôn",
+    "luon": "luôn",
+
+    "nè": "nè",
+    "ne": "nè",
+    "nha": "nhé",
+    "nhé": "nhé",
+    "nhe": "nhé",
+
+    "ok": "được",
+    "okie": "được",
+    "okê": "được",
+    "oke": "được",
+
+    "thanks": "cảm ơn",
+    "thank": "cảm ơn",
+    "tks": "cảm ơn",
+    "thankiu": "cảm ơn",
+    "cam on": "cảm ơn",
+
+    "sorry": "xin lỗi",
+    "sr": "xin lỗi",
+    "sori": "xin lỗi",
+
+    "plz": "xin hãy",
+    "pls": "xin hãy",
+    "please": "xin hãy",
+
+    "bye": "tạm biệt",
+    "bai": "tạm biệt",
+    "bb": "tạm biệt",
+
+    "hi": "xin chào",
+    "hello": "xin chào",
+    "chào": "xin chào",
+    "chao": "xin chào",
+    "alo": "xin chào",
+
+    "z": "vậy",
+    "zậy": "vậy",
+    "vậy": "vậy",
+
+    "thui": "thôi",
+    "thôi": "thôi",
+    "thoy": "thôi",
+
+    "cht": "chết",
+    "chet": "chết",
+
+    "đi": "đi",
+    "di": "đi",
+
+    "lại": "lại",
+    "lai": "lại",
+
+    "về": "về",
+    "ve": "về",
+
+    "ra": "ra",
+    "vào": "vào",
+    "vao": "vào",
+
+    "lên": "lên",
+    "len": "lên",
+
+    "xuống": "xuống",
+    "xuong": "xuống",
+
+    "sx": "sản xuất",
+    "sp": "sản phẩm",
+    "dv": "dịch vụ"
+  }
+}

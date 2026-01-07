@@ -1,0 +1,2 @@
+12/25, 10:10:51 [ner_inference] [NER] [QUESTION]: Giao dịch từ ngày 19/8 đến 20/10
+12/25, 10:10:51 [ner_inference] [NER] [RESULT]: [{'Ngày_giao_dịch': 'từ ngày 19/8 đến 20/10'}]

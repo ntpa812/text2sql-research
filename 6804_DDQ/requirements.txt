@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pandas
+openpyxl
+pixeltable
+sentence-transformers
+python-multipart
+jinja2
+pymysql

@@ -1,0 +1,170 @@
+2025-12-31 16:06:38 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-31 16:06:38 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-31 16:06:38 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-31 16:06:38 | INFO     | log:151 | [list_documents] Found 5 documents
+2025-12-31 16:06:41 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-31 16:06:41 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-31 16:06:41 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-31 16:06:41 | INFO     | log:151 | [list_documents] Found 5 documents
+2025-12-31 16:06:49 | CRITICAL | log:149 | [delete_all_documents] ⚠️ User requested DELETE ALL...
+2025-12-31 16:06:49 | CRITICAL | log:149 | [drop_and_create_tables] ⚠️ DROPPING ALL DATA...
+2025-12-31 16:06:49 | INFO     | log:151 | [_create_tables_internal] Creating new tables...
+2025-12-31 16:06:49 | DEBUG    | log:153 | [_create_tables_internal] Documents table created
+2025-12-31 16:06:49 | DEBUG    | log:153 | [_create_tables_internal] Examples table created
+2025-12-31 16:06:49 | DEBUG    | log:153 | [_create_tables_internal] search_embed index added
+2025-12-31 16:06:49 | DEBUG    | log:153 | [_create_tables_internal] example_embed index added
+2025-12-31 16:06:49 | INFO     | log:151 | [_create_tables_internal] All indexes created with model: intfloat/multilingual-e5-large
+2025-12-31 16:06:49 | DEBUG    | log:153 | [invalidate_embeddings_cache] Embeddings cache invalidated
+2025-12-31 16:06:49 | DEBUG    | log:153 | [reset_all_caches] All caches invalidated
+2025-12-31 16:06:49 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-31 16:06:49 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-31 16:06:49 | DEBUG    | log:153 | [get_tables] Loaded existing tables
+2025-12-31 16:06:49 | INFO     | log:151 | [list_documents] Found 0 documents
+2025-12-31 16:06:52 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-31 16:06:52 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-31 16:06:52 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-31 16:06:52 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-31 16:06:52 | INFO     | log:151 | [list_documents] Found 0 documents
+2025-12-31 16:06:59 | INFO     | log:151 | [upload_documents] Uploading 1 files
+2025-12-31 16:06:59 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-31 16:06:59 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-31 16:06:59 | DEBUG    | log:153 | [build_search_text] Built search_text (716 chars)
+2025-12-31 16:06:59 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=0, search_text length=716
+2025-12-31 16:06:59 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=0...
+2025-12-31 16:06:59 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.05s for doc_id=0
+2025-12-31 16:06:59 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 20 examples
+2025-12-31 16:06:59 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 20 examples for doc_id=0
+2025-12-31 16:06:59 | DEBUG    | log:153 | [build_search_text] Built search_text (792 chars)
+2025-12-31 16:06:59 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=1, search_text length=792
+2025-12-31 16:06:59 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=1...
+2025-12-31 16:06:59 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=1
+2025-12-31 16:06:59 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 20 examples
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 20 examples for doc_id=1
+2025-12-31 16:07:00 | DEBUG    | log:153 | [build_search_text] Built search_text (786 chars)
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=2, search_text length=786
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=2...
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=2
+2025-12-31 16:07:00 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 20 examples
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 20 examples for doc_id=2
+2025-12-31 16:07:00 | DEBUG    | log:153 | [build_search_text] Built search_text (787 chars)
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=3, search_text length=787
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=3...
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=3
+2025-12-31 16:07:00 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 20 examples
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 20 examples for doc_id=3
+2025-12-31 16:07:00 | DEBUG    | log:153 | [build_search_text] Built search_text (837 chars)
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=4, search_text length=837
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=4...
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=4
+2025-12-31 16:07:00 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 20 examples
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 20 examples for doc_id=4
+2025-12-31 16:07:00 | DEBUG    | log:153 | [build_search_text] Built search_text (921 chars)
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=5, search_text length=921
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=5...
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=5
+2025-12-31 16:07:00 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 21 examples
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 21 examples for doc_id=5
+2025-12-31 16:07:00 | DEBUG    | log:153 | [build_search_text] Built search_text (687 chars)
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=6, search_text length=687
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=6...
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=6
+2025-12-31 16:07:00 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 1 examples
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 1 examples for doc_id=6
+2025-12-31 16:07:00 | DEBUG    | log:153 | [build_search_text] Built search_text (782 chars)
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=7, search_text length=782
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=7...
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=7
+2025-12-31 16:07:00 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 19 examples
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 19 examples for doc_id=7
+2025-12-31 16:07:00 | DEBUG    | log:153 | [build_search_text] Built search_text (936 chars)
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=8, search_text length=936
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=8...
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=8
+2025-12-31 16:07:00 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 20 examples
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 20 examples for doc_id=8
+2025-12-31 16:07:00 | DEBUG    | log:153 | [build_search_text] Built search_text (688 chars)
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=9, search_text length=688
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=9...
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=9
+2025-12-31 16:07:00 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 20 examples
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 20 examples for doc_id=9
+2025-12-31 16:07:00 | DEBUG    | log:153 | [build_search_text] Built search_text (679 chars)
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=10, search_text length=679
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=10...
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=10
+2025-12-31 16:07:00 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 0 examples
+2025-12-31 16:07:00 | DEBUG    | log:153 | [build_search_text] Built search_text (694 chars)
+2025-12-31 16:07:00 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=11, search_text length=694
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=11...
+2025-12-31 16:07:00 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=11
+2025-12-31 16:07:00 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 14 examples
+2025-12-31 16:07:01 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 14 examples for doc_id=11
+2025-12-31 16:07:01 | DEBUG    | log:153 | [build_search_text] Built search_text (653 chars)
+2025-12-31 16:07:01 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=12, search_text length=653
+2025-12-31 16:07:01 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=12...
+2025-12-31 16:07:01 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=12
+2025-12-31 16:07:01 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 18 examples
+2025-12-31 16:07:01 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 18 examples for doc_id=12
+2025-12-31 16:07:01 | DEBUG    | log:153 | [build_search_text] Built search_text (858 chars)
+2025-12-31 16:07:01 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=13, search_text length=858
+2025-12-31 16:07:01 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=13...
+2025-12-31 16:07:01 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=13
+2025-12-31 16:07:01 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 19 examples
+2025-12-31 16:07:01 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 19 examples for doc_id=13
+2025-12-31 16:07:01 | DEBUG    | log:153 | [build_search_text] Built search_text (653 chars)
+2025-12-31 16:07:01 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=14, search_text length=653
+2025-12-31 16:07:01 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=14...
+2025-12-31 16:07:01 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=14
+2025-12-31 16:07:01 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 19 examples
+2025-12-31 16:07:01 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 19 examples for doc_id=14
+2025-12-31 16:07:01 | INFO     | log:151 | [upload_documents] Inserted 15 docs with 251 examples
+2025-12-31 16:07:01 | DEBUG    | log:153 | [invalidate_embeddings_cache] Embeddings cache invalidated
+2025-12-31 16:07:01 | DEBUG    | log:153 | [reset_all_caches] All caches invalidated
+2025-12-31 16:07:01 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-31 16:07:01 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-31 16:07:01 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-31 16:07:01 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-31 16:07:09 | INFO     | log:151 | [upload_documents] Uploading 1 files
+2025-12-31 16:07:09 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-31 16:07:09 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-31 16:07:09 | DEBUG    | log:153 | [build_search_text] Built search_text (981 chars)
+2025-12-31 16:07:09 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=15, search_text length=981
+2025-12-31 16:07:09 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=15...
+2025-12-31 16:07:09 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=15
+2025-12-31 16:07:09 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 20 examples
+2025-12-31 16:07:09 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 20 examples for doc_id=15
+2025-12-31 16:07:09 | DEBUG    | log:153 | [build_search_text] Built search_text (1044 chars)
+2025-12-31 16:07:09 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=16, search_text length=1044
+2025-12-31 16:07:09 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=16...
+2025-12-31 16:07:09 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=16
+2025-12-31 16:07:09 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 20 examples
+2025-12-31 16:07:09 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 20 examples for doc_id=16
+2025-12-31 16:07:09 | DEBUG    | log:153 | [build_search_text] Built search_text (1096 chars)
+2025-12-31 16:07:09 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=17, search_text length=1096
+2025-12-31 16:07:09 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=17...
+2025-12-31 16:07:09 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=17
+2025-12-31 16:07:09 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 20 examples
+2025-12-31 16:07:09 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 20 examples for doc_id=17
+2025-12-31 16:07:09 | DEBUG    | log:153 | [build_search_text] Built search_text (1124 chars)
+2025-12-31 16:07:09 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=18, search_text length=1124
+2025-12-31 16:07:09 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=18...
+2025-12-31 16:07:09 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=18
+2025-12-31 16:07:09 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 20 examples
+2025-12-31 16:07:09 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 20 examples for doc_id=18
+2025-12-31 16:07:09 | DEBUG    | log:153 | [build_search_text] Built search_text (1079 chars)
+2025-12-31 16:07:09 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=19, search_text length=1079
+2025-12-31 16:07:09 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=19...
+2025-12-31 16:07:09 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.04s for doc_id=19
+2025-12-31 16:07:09 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 20 examples
+2025-12-31 16:07:09 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 20 examples for doc_id=19
+2025-12-31 16:07:09 | INFO     | log:151 | [upload_documents] Inserted 5 docs with 100 examples
+2025-12-31 16:07:09 | DEBUG    | log:153 | [invalidate_embeddings_cache] Embeddings cache invalidated
+2025-12-31 16:07:09 | DEBUG    | log:153 | [reset_all_caches] All caches invalidated
+2025-12-31 16:07:09 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-31 16:07:09 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-31 16:07:09 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-31 16:07:09 | INFO     | log:151 | [list_documents] Found 20 documents
+2025-12-31 16:07:13 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-31 16:07:13 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-31 16:07:13 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-31 16:07:13 | INFO     | log:151 | [list_documents] Found 20 documents

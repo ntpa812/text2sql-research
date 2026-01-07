@@ -1,0 +1,22 @@
+{
+  "O": 0,
+  "B-nội_dung_chuyển_tiền": 1,
+  "I-bank": 2,
+  "I-giờ_giao_dịch": 3,
+  "I-loại_giao_dịch": 4,
+  "I-Số_tài_khoản": 5,
+  "B-Loại_tài_khoản": 6,
+  "I-nội_dung_chuyển_tiền": 7,
+  "B-bank": 8,
+  "I-số_tiền": 9,
+  "B-giờ_giao_dịch": 10,
+  "B-Ngày_giao_dịch": 11,
+  "B-Loại_tiền_tệ": 12,
+  "B-loại_giao_dịch": 13,
+  "I-Ngày_giao_dịch": 14,
+  "B-Tên_tài_khoản": 15,
+  "I-Loại_tài_khoản": 16,
+  "I-Tên_tài_khoản": 17,
+  "B-số_tiền": 18,
+  "B-Số_tài_khoản": 19
+}

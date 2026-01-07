@@ -1,0 +1,253 @@
+12/30, 08:41:09 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền của tôi?...' -> 'kiểm tra các giao dịch nhận tiền của tôi?...'
+12/30, 08:41:09 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền của tôi?], score:[0.8147]
+12/30, 08:41:09 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền của tôi?
+12/30, 08:41:09 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}]
+12/30, 08:58:44 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 08:58:44 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 08:58:44 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 08:58:44 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:08:14 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 09:08:14 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 09:08:14 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 09:08:14 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:09:03 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 09:09:03 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+
+], score:[0.8334]
+12/30, 09:09:03 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 09:09:03 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:09:45 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 09:09:45 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+
+], score:[0.8334]
+12/30, 09:09:45 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 09:09:45 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:10:57 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 09:10:57 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 09:10:57 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 09:10:57 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:11:49 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 09:11:49 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 09:11:49 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 09:11:49 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:12:21 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'phí chuyển khoản qua app là bao nhiêu?...' -> 'phí chuyển khoản qua app là bao nhiêu?...'
+12/30, 09:12:21 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu phí giao dịch], intent: [Tra cứu phí giao dịch], question:[Phí chuyển khoản qua app là bao nhiêu?], score:[0.821]
+12/30, 09:12:21 [ner_inference] [NER] [QUESTION]: phí chuyển khoản qua app là bao nhiêu?
+12/30, 09:12:21 [ner_inference] [NER] [RESULT]: []
+12/30, 09:12:24 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 09:12:24 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 09:12:24 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 09:12:24 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:12:59 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'phí chuyển khoản qua app là bao nhiêu?...' -> 'phí chuyển khoản qua app là bao nhiêu?...'
+12/30, 09:12:59 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu phí giao dịch], intent: [Tra cứu phí giao dịch], question:[Phí chuyển khoản qua app là bao nhiêu?], score:[0.821]
+12/30, 09:12:59 [ner_inference] [NER] [QUESTION]: phí chuyển khoản qua app là bao nhiêu?
+12/30, 09:12:59 [ner_inference] [NER] [RESULT]: []
+12/30, 09:13:25 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 09:13:25 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 09:13:25 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 09:13:25 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:13:46 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'phí chuyển khoản qua app là bao nhiêu?phí chuyển k...' -> 'phí chuyển khoản qua app là bao nhiêu?phí chuyển k...'
+12/30, 09:13:46 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu phí giao dịch], intent: [Tra cứu phí giao dịch], question:[Phí chuyển khoản qua app là bao nhiêu?Phí chuyển khoản qua app là bao nhiêu?], score:[0.8228]
+12/30, 09:13:46 [ner_inference] [NER] [QUESTION]: phí chuyển khoản qua app là bao nhiêu?phí chuyển khoản qua app là bao nhiêu?
+12/30, 09:13:46 [ner_inference] [NER] [RESULT]: []
+12/30, 09:14:47 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'phí chuyển khoản qua app là bao nhiêu?...' -> 'phí chuyển khoản qua app là bao nhiêu?...'
+12/30, 09:14:47 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu phí giao dịch], intent: [Tra cứu phí giao dịch], question:[Phí chuyển khoản qua app là bao nhiêu?], score:[0.821]
+12/30, 09:14:47 [ner_inference] [NER] [QUESTION]: phí chuyển khoản qua app là bao nhiêu?
+12/30, 09:14:47 [ner_inference] [NER] [RESULT]: []
+12/30, 09:15:08 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'phí giao dịch liên ngân hàng là bao nhiêu?...' -> 'phí giao dịch liên ngân hàng là bao nhiêu?...'
+12/30, 09:15:08 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu phí giao dịch], intent: [Tra cứu phí giao dịch], question:[Phí giao dịch liên nh là bao nhiêu?], score:[0.8346]
+12/30, 09:15:08 [ner_inference] [NER] [QUESTION]: phí giao dịch liên ngân hàng là bao nhiêu?
+12/30, 09:15:08 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'liên ngân hàng'}]
+12/30, 09:19:18 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'phí giao dịch liên ngân hàng là bao nhiêu?...' -> 'phí giao dịch liên ngân hàng là bao nhiêu?...'
+12/30, 09:19:18 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu phí giao dịch], intent: [Tra cứu phí giao dịch], question:[Phí giao dịch liên nh là bao nhiêu?], score:[0.8346]
+12/30, 09:19:18 [ner_inference] [NER] [QUESTION]: phí giao dịch liên ngân hàng là bao nhiêu?
+12/30, 09:19:18 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'liên ngân hàng'}]
+12/30, 09:19:56 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 09:19:56 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 09:19:56 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 09:19:56 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:25:59 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 09:25:59 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 09:25:59 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 09:25:59 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:30:40 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 09:30:40 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 09:30:40 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 09:30:40 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:31:58 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 09:31:58 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 09:31:58 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 09:31:58 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:33:27 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 09:33:27 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 09:33:27 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 09:33:27 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:35:42 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 09:35:42 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 09:35:42 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 09:35:42 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:36:28 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra trạng thái lỗi, thời gian xác thực, quy t...' -> 'kiểm tra trạng thái lỗi, thời gian xác thực, quy t...'
+12/30, 09:36:28 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu giao dịch theo trạng thái], intent: [Tra cứu giao dịch theo trạng thái], question:[kiểm tra trạng thái lỗi, thời gian xác thực, quy trình thanh toán], score:[0.8384]
+12/30, 09:36:28 [ner_inference] [NER] [QUESTION]: kiểm tra trạng thái lỗi, thời gian xác thực, quy trình thanh toán
+12/30, 09:36:28 [ner_inference] [NER] [RESULT]: []
+12/30, 09:37:21 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 09:37:21 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 09:37:21 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 09:37:21 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:37:37 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 09:37:37 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 09:37:37 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 09:37:37 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 09:38:38 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'xem chi tiết các giao dịch nhận tiền của tôi?...' -> 'xem chi tiết các giao dịch nhận tiền của tôi?...'
+12/30, 09:38:38 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu chi tiết một giao dịch cụ thể], intent: [Tra cứu chi tiết một giao dịch cụ thể], question:[Xem chi tiết các giao dịch nhận tiền của tôi?], score:[0.8078]
+12/30, 09:38:38 [ner_inference] [NER] [QUESTION]: xem chi tiết các giao dịch nhận tiền của tôi?
+12/30, 09:38:38 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}]
+12/30, 09:39:28 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'xem chi tiết các giao dịch nhận tiền tới số tài kh...' -> 'xem chi tiết các giao dịch nhận tiền tới số tài kh...'
+12/30, 09:39:28 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu chi tiết một giao dịch cụ thể], intent: [Tra cứu chi tiết một giao dịch cụ thể], question:[Xem chi tiết các giao dịch nhận tiền tới số tài khoản 2008699091010], score:[0.803]
+12/30, 09:39:28 [ner_inference] [NER] [QUESTION]: xem chi tiết các giao dịch nhận tiền tới số tài khoản 2008699091010
+12/30, 09:39:28 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008699091010'}]
+12/30, 09:49:28 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'xem chi tiết các giao dịch nhận tiền tới số tài kh...' -> 'xem chi tiết các giao dịch nhận tiền tới số tài kh...'
+12/30, 09:49:28 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu chi tiết một giao dịch cụ thể], intent: [Tra cứu chi tiết một giao dịch cụ thể], question:[Xem chi tiết các giao dịch nhận tiền tới số tài khoản 2924962372], score:[0.8056]
+12/30, 09:49:28 [ner_inference] [NER] [QUESTION]: xem chi tiết các giao dịch nhận tiền tới số tài khoản 2924962372
+12/30, 09:49:28 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2924962372'}]
+12/30, 09:50:44 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'xem chi tiết các giao dịch nhận tiền tới số tài kh...' -> 'xem chi tiết các giao dịch nhận tiền tới số tài kh...'
+12/30, 09:50:44 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu chi tiết một giao dịch cụ thể], intent: [Tra cứu chi tiết một giao dịch cụ thể], question:[Xem chi tiết các giao dịch nhận tiền tới số tài khoản 065656498756], score:[0.8039]
+12/30, 09:50:44 [ner_inference] [NER] [QUESTION]: xem chi tiết các giao dịch nhận tiền tới số tài khoản 065656498756
+12/30, 09:50:44 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '065656498756'}]
+12/30, 10:01:07 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'tôi muốn xem lịch sửa giao dịch của tài khoản 2008...' -> 'tôi muốn xem lịch sửa giao dịch của tài khoản 2008...'
+12/30, 10:01:07 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Tôi muốn xem lịch sửa giao dịch của tài khoản 2008891241014], score:[0.835]
+12/30, 10:01:07 [ner_inference] [NER] [QUESTION]: tôi muốn xem lịch sửa giao dịch của tài khoản 2008891241014
+12/30, 10:01:07 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '2008891241014'}]
+12/30, 10:01:15 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'tôi muốn xem lịch sửa giao dịch của tài khoản 2008...' -> 'tôi muốn xem lịch sửa giao dịch của tài khoản 2008...'
+12/30, 10:01:15 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Tôi muốn xem lịch sửa giao dịch của tài khoản 2008891241014], score:[0.835]
+12/30, 10:01:15 [ner_inference] [NER] [QUESTION]: tôi muốn xem lịch sửa giao dịch của tài khoản 2008891241014
+12/30, 10:01:15 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '2008891241014'}]
+12/30, 10:10:32 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:10:32 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 10:10:32 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:10:32 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 10:15:45 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:15:45 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 10:15:45 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:15:45 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 10:19:03 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:19:03 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 10:19:03 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:19:03 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 10:19:42 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:19:42 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 10:19:42 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:19:42 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 10:22:20 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:22:20 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 10:22:20 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:22:20 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 10:23:23 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:23:23 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+], score:[0.8334]
+12/30, 10:23:23 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:23:23 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 10:27:08 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:27:08 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+], score:[0.8334]
+12/30, 10:27:08 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:27:08 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 10:27:39 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:27:39 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 10:27:39 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:27:39 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 10:27:59 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:27:59 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 10:27:59 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:27:59 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 10:29:11 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:29:11 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 10:29:11 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:29:11 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 10:30:36 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:30:36 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 10:30:36 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:30:36 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 10:32:28 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:32:28 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+], score:[0.8334]
+12/30, 10:32:28 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:32:28 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 10:34:28 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'xem chi tiết các giao dịch nhận tiền tới số tài kh...' -> 'xem chi tiết các giao dịch nhận tiền tới số tài kh...'
+12/30, 10:34:28 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu chi tiết một giao dịch cụ thể], intent: [Tra cứu chi tiết một giao dịch cụ thể], question:[Xem chi tiết các giao dịch nhận tiền tới số tài khoản 065656498756], score:[0.8039]
+12/30, 10:34:28 [ner_inference] [NER] [QUESTION]: xem chi tiết các giao dịch nhận tiền tới số tài khoản 065656498756
+12/30, 10:34:28 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '065656498756'}]
+12/30, 10:35:07 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:35:07 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 10:35:07 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:35:07 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 10:36:07 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:36:07 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+], score:[0.8334]
+12/30, 10:36:07 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:36:07 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 10:36:39 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:36:39 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 10:36:39 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:36:39 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 10:37:02 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'xem chi tiết các giao dịch nhận tiền tới số tài kh...' -> 'xem chi tiết các giao dịch nhận tiền tới số tài kh...'
+12/30, 10:37:02 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu chi tiết một giao dịch cụ thể], intent: [Tra cứu chi tiết một giao dịch cụ thể], question:[Xem chi tiết các giao dịch nhận tiền tới số tài khoản 065656498756], score:[0.8039]
+12/30, 10:37:02 [ner_inference] [NER] [QUESTION]: xem chi tiết các giao dịch nhận tiền tới số tài khoản 065656498756
+12/30, 10:37:02 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '065656498756'}]
+12/30, 10:38:11 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' -> 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...'
+12/30, 10:38:11 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?], score:[0.8334]
+12/30, 10:38:11 [ner_inference] [NER] [QUESTION]: kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?
+12/30, 10:38:11 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'nhận tiền'}, {'Số_tài_khoản': '2008698951018'}]
+12/30, 18:50:35 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'cho tôi xem lịch sử giao dịch của tài khoản 020063...' -> 'cho tôi xem lịch sử giao dịch của tài khoản 020063...'
+12/30, 18:50:36 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 020063535533], score:[0.8321]
+12/30, 18:50:36 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 020063535533
+12/30, 18:50:36 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '020063535533'}]

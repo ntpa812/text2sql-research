@@ -1,0 +1,19 @@
+2025-12-27 10:05:10 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-27 10:05:10 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-27 10:05:10 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-27 10:05:10 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-27 10:05:10 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-27 10:05:13 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-27 10:05:13 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-27 10:05:13 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-27 10:05:13 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-27 10:09:30 | INFO     | log:151 | [search_single] Searching: 'cho tôi xem lịch sử giao dịch của tài khoản 020063...' (top_k=10)
+2025-12-27 10:09:30 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-27 10:09:30 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-27 10:09:30 | DEBUG    | log:153 | [normalize_query] 'cho tôi xem lịch sử giao dịch của tài kh...' -> 'Cho tôi xem lịch sử giao dịch của tài kh...'
+2025-12-27 10:09:30 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho tôi xem lịch sử giao dịch của tài khoản 020063535533] - formatted_query: [Cho tôi xem lịch sử giao dịch của tài khoản 020063535533] - normalized_query: [Cho tôi xem lịch sử giao dịch của tài khoản 020063535533]
+2025-12-27 10:09:30 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.8559, max=14.6557
+2025-12-27 10:09:30 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Cho tôi xem lịch sử giao dịch ...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-27 10:09:30 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Cho tôi xem lịch sử giao dịch ...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-27 10:09:30 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-27 10:09:30 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8321, sem=0.8673, bm25=1.0000, boost=0.2500)

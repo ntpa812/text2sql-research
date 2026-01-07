@@ -1,0 +1,1244 @@
+2025-12-30 16:23:16 | INFO     | log:151 | [search_batch_stream] Batch stream search from: query_1.xlsx
+2025-12-30 16:23:16 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 16:23:16 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] 'Check hộ mình lịch sử stk 0123456789...' -> 'Check hộ mình lịch sử stk 0123456789...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Check hộ mình lịch sử stk 0123456789] - formatted_query: [Check hộ mình lịch sử stk 0123456789] - normalized_query: [Check hộ mình lịch sử stk 0123456789]
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0802, max=7.4489
+2025-12-30 16:23:16 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check hộ mình lịch sử stk 0123...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:23:16 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check hộ mình lịch sử stk 0123...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:23:16 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check hộ mình lịch sử stk 0123...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] 'lich su tk 0123456789...' -> 'Lich su tk 0123456789...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lich su tk 0123456789] - formatted_query: [Lich su tk 0123456789] - normalized_query: [Lich su tk 0123456789]
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0321, max=8.6502
+2025-12-30 16:23:16 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Lich su tk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:23:16 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Lich su tk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] 'Xem biến động số dư của 0123456789...' -> 'Xem biến động số dư của 0123456789...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Xem biến động số dư của 0123456789] - formatted_query: [Xem biến động số dư của 0123456789] - normalized_query: [Xem biến động số dư của 0123456789]
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1342, max=8.3664
+2025-12-30 16:23:16 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem biến động số dư của 0123456789'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] 'Cho mình coi lịch sử gd 0123456789...' -> 'Cho mình coi lịch sử gd 0123456789...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Cho mình coi lịch sử gd 0123456789] - formatted_query: [Cho mình coi lịch sử gd 0123456789] - normalized_query: [Cho mình coi lịch sử gd 0123456789]
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0641, max=5.2370
+2025-12-30 16:23:16 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Cho mình coi lịch sử gd 0123456789'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] 'hien thi gd 0123456789...' -> 'Hien thi gd 0123456789...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [hien thi gd 0123456789] - formatted_query: [Hien thi gd 0123456789] - normalized_query: [Hien thi gd 0123456789]
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=7.2089
+2025-12-30 16:23:16 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Hien thi gd 0123456789'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] 'Truy vấn lịch sử giao dịch của 012345678...' -> 'Truy vấn lịch sử giao dịch của 012345678...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Truy vấn lịch sử giao dịch của 0123456789] - formatted_query: [Truy vấn lịch sử giao dịch của 0123456789] - normalized_query: [Truy vấn lịch sử giao dịch của 0123456789]
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.3768, max=5.6541
+2025-12-30 16:23:16 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Truy vấn lịch sử giao dịch của 0123456789'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] '0123456789 da giao dich gi?...' -> '0123456789 da giao dich gi...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 da giao dich gi?] - formatted_query: [0123456789 da giao dich gi] - normalized_query: [0123456789 da giao dich gi]
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=7.4285
+2025-12-30 16:23:16 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 da giao dich gi'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] 'stk 0123456789 co tien ra vao ntn?...' -> 'Stk 0123456789 co tien ra vao ntn...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [stk 0123456789 co tien ra vao ntn?] - formatted_query: [Stk 0123456789 co tien ra vao ntn] - normalized_query: [Stk 0123456789 co tien ra vao ntn]
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0357, max=8.7556
+2025-12-30 16:23:16 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Stk 0123456789 co tien ra vao ...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:23:16 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Stk 0123456789 co tien ra vao ...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] 'Show lịch sử giao dịch 0123456789...' -> 'Show lịch sử giao dịch 0123456789...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Show lịch sử giao dịch 0123456789] - formatted_query: [Show lịch sử giao dịch 0123456789] - normalized_query: [Show lịch sử giao dịch 0123456789]
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.3114, max=5.5826
+2025-12-30 16:23:16 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Show lịch sử giao dịch 0123456789'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] 'check giup minh giao dich 0123456789...' -> 'Check giup minh giao dich 0123456789...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check giup minh giao dich 0123456789] - formatted_query: [Check giup minh giao dich 0123456789] - normalized_query: [Check giup minh giao dich 0123456789]
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=5.2535
+2025-12-30 16:23:16 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check giup minh giao dich 0123...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:23:16 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check giup minh giao dich 0123...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] 'Xem sao kê chi tiết tk 0123456789...' -> 'Xem sao kê chi tiết tk 0123456789...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Xem sao kê chi tiết tk 0123456789] - formatted_query: [Xem sao kê chi tiết tk 0123456789] - normalized_query: [Xem sao kê chi tiết tk 0123456789]
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=24.8616
+2025-12-30 16:23:16 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem sao kê chi tiết tk 0123456...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:23:16 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem sao kê chi tiết tk 0123456...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] 'List giao dịch của số 0123456789...' -> 'List giao dịch của số 0123456789...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [List giao dịch của số 0123456789] - formatted_query: [List giao dịch của số 0123456789] - normalized_query: [List giao dịch của số 0123456789]
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1678, max=13.0413
+2025-12-30 16:23:16 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'List giao dịch của số 0123456789'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] 'Truy xuất dữ liệu gd 0123456789...' -> 'Truy xuất dữ liệu gd 0123456789...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Truy xuất dữ liệu gd 0123456789] - formatted_query: [Truy xuất dữ liệu gd 0123456789] - normalized_query: [Truy xuất dữ liệu gd 0123456789]
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0802, max=5.1383
+2025-12-30 16:23:16 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Truy xuất dữ liệu gd 0123456789'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] 'Xem nhật ký giao dịch tk 0123456789...' -> 'Xem nhật ký giao dịch tk 0123456789...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Xem nhật ký giao dịch tk 0123456789] - formatted_query: [Xem nhật ký giao dịch tk 0123456789] - normalized_query: [Xem nhật ký giao dịch tk 0123456789]
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=15.9386
+2025-12-30 16:23:16 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem nhật ký giao dịch tk 01234...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:23:16 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem nhật ký giao dịch tk 01234...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] '0123456789 co bien dong gi ko?...' -> '0123456789 co bien dong gi ko...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 co bien dong gi ko?] - formatted_query: [0123456789 co bien dong gi ko] - normalized_query: [0123456789 co bien dong gi ko]
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.7008
+2025-12-30 16:23:16 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 co bien dong gi ko'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [normalize_query] 'Kiểm tra các khoản chuyển đến 0123456789...' -> 'Kiểm tra các khoản chuyển đến 0123456789...'
+2025-12-30 16:23:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Kiểm tra các khoản chuyển đến 0123456789] - formatted_query: [Kiểm tra các khoản chuyển đến 0123456789] - normalized_query: [Kiểm tra các khoản chuyển đến 0123456789]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1940, max=11.1345
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Kiểm tra các khoản chuyển đến 0123456789'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [normalize_query] 'Xem các khoản chuyển đi từ số tk 0123456...' -> 'Xem các khoản chuyển đi từ số tk 0123456...'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Xem các khoản chuyển đi từ số tk 0123456789] - formatted_query: [Xem các khoản chuyển đi từ số tk 0123456789] - normalized_query: [Xem các khoản chuyển đi từ số tk 0123456789]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.3504, max=14.3635
+2025-12-30 16:23:17 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem các khoản chuyển đi từ số ...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem các khoản chuyển đi từ số ...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:23:17 | DEBUG    | log:153 | [normalize_query] 'Cho xem sao kê 0123456789 mới nhất...' -> 'Cho xem sao kê 0123456789 mới nhất...'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Cho xem sao kê 0123456789 mới nhất] - formatted_query: [Cho xem sao kê 0123456789 mới nhất] - normalized_query: [Cho xem sao kê 0123456789 mới nhất]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=19.0710
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Cho xem sao kê 0123456789 mới nhất'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [normalize_query] 'Muốn coi giao dịch của 0123456789...' -> 'Muốn coi giao dịch của 0123456789...'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Muốn coi giao dịch của 0123456789] - formatted_query: [Muốn coi giao dịch của 0123456789] - normalized_query: [Muốn coi giao dịch của 0123456789]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=6.5858
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Muốn coi giao dịch của 0123456789'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [normalize_query] 'Admin check lịch sử 0123456789 giúp...' -> 'Admin check lịch sử 0123456789 giúp...'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Admin check lịch sử 0123456789 giúp] - formatted_query: [Admin check lịch sử 0123456789 giúp] - normalized_query: [Admin check lịch sử 0123456789 giúp]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0641, max=5.2370
+2025-12-30 16:23:17 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Admin check lịch sử 0123456789...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Admin check lịch sử 0123456789...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:23:17 | DEBUG    | log:153 | [normalize_query] 'tk 0123456789 có lịch sử ntn vậy?...' -> 'Tk 0123456789 có lịch sử ntn vậy...'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tk 0123456789 có lịch sử ntn vậy?] - formatted_query: [Tk 0123456789 có lịch sử ntn vậy] - normalized_query: [Tk 0123456789 có lịch sử ntn vậy]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0717, max=13.8730
+2025-12-30 16:23:17 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tk 0123456789 có lịch sử ntn v...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tk 0123456789 có lịch sử ntn v...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:23:17 | DEBUG    | log:153 | [normalize_query] 'Lấy thông tin các giao dịch 0123456789...' -> 'Lấy thông tin các giao dịch 0123456789...'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Lấy thông tin các giao dịch 0123456789] - formatted_query: [Lấy thông tin các giao dịch 0123456789] - normalized_query: [Lấy thông tin các giao dịch 0123456789]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.3114, max=8.0014
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Lấy thông tin các giao dịch 0123456789'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [normalize_query] 'Mọi giao dịch của 0123456789 là gì?...' -> 'Mọi giao dịch của 0123456789 là gì...'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Mọi giao dịch của 0123456789 là gì?] - formatted_query: [Mọi giao dịch của 0123456789 là gì] - normalized_query: [Mọi giao dịch của 0123456789 là gì]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=9.6034
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Mọi giao dịch của 0123456789 là gì'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [normalize_query] 'Kiểm tra thu chi của số tk 0123456789...' -> 'Kiểm tra thu chi của số tk 0123456789...'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Kiểm tra thu chi của số tk 0123456789] - formatted_query: [Kiểm tra thu chi của số tk 0123456789] - normalized_query: [Kiểm tra thu chi của số tk 0123456789]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1054, max=15.0255
+2025-12-30 16:23:17 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra thu chi của số tk 012...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra thu chi của số tk 012...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:23:17 | DEBUG    | log:153 | [normalize_query] 'check giùm tk 0123456789 nhé...' -> 'Check giùm tk 0123456789 nhé...'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check giùm tk 0123456789 nhé] - formatted_query: [Check giùm tk 0123456789 nhé] - normalized_query: [Check giùm tk 0123456789 nhé]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.5562
+2025-12-30 16:23:17 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check giùm tk 0123456789 nhé...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:23:17 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check giùm tk 0123456789 nhé...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Check giùm tk 0123456789 nhé...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-30 16:23:17 | DEBUG    | log:153 | [normalize_query] 'Tra cứu gd stk 0123456789 trong hôm nay...' -> 'Tra cứu gd stk 0123456789 trong hôm nay...'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Tra cứu gd stk 0123456789 trong hôm nay] - formatted_query: [Tra cứu gd stk 0123456789 trong hôm nay] - normalized_query: [Tra cứu gd stk 0123456789 trong hôm nay]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6059, max=12.7812
+2025-12-30 16:23:17 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu gd stk 0123456789 tron...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:23:17 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu gd stk 0123456789 tron...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['nay']
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tra cứu gd stk 0123456789 tron...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:23:17 | DEBUG    | log:153 | [normalize_query] 'show lich su 0123456789 cho minh...' -> 'Show lich su 0123456789 cho minh...'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [show lich su 0123456789 cho minh] - formatted_query: [Show lich su 0123456789 cho minh] - normalized_query: [Show lich su 0123456789 cho minh]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0321, max=5.1430
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Show lich su 0123456789 cho minh'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [normalize_query] 'Xem các giao dịch phát sinh từ số 012345...' -> 'Xem các giao dịch phát sinh từ số 012345...'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Xem các giao dịch phát sinh từ số 0123456789] - formatted_query: [Xem các giao dịch phát sinh từ số 0123456789] - normalized_query: [Xem các giao dịch phát sinh từ số 0123456789]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1678, max=27.6280
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem các giao dịch phát sinh từ số 0123456789'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [normalize_query] '0123456789 da bank cho ai nhung gi?...' -> '0123456789 da bank cho ai nhung gi...'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 da bank cho ai nhung gi?] - formatted_query: [0123456789 da bank cho ai nhung gi] - normalized_query: [0123456789 da bank cho ai nhung gi]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=7.2239
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 da bank cho ai nhung gi'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [normalize_query] 'Xem stk 0123456789 nhận tiền từ đâu...' -> 'Xem stk 0123456789 nhận tiền từ đâu...'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Xem stk 0123456789 nhận tiền từ đâu] - formatted_query: [Xem stk 0123456789 nhận tiền từ đâu] - normalized_query: [Xem stk 0123456789 nhận tiền từ đâu]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0671, max=12.5671
+2025-12-30 16:23:17 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem stk 0123456789 nhận tiền t...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:23:17 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem stk 0123456789 nhận tiền t...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Xem stk 0123456789 nhận tiền t...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 2, 'Tra cứu giao dịch nhận tiền': 2}
+2025-12-30 16:23:17 | DEBUG    | log:153 | [normalize_query] 'Sao kê tk 0123456789 với bạn ơi...' -> 'Sao kê tk 0123456789 với bạn ơi...'
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Sao kê tk 0123456789 với bạn ơi] - formatted_query: [Sao kê tk 0123456789 với bạn ơi] - normalized_query: [Sao kê tk 0123456789 với bạn ơi]
+2025-12-30 16:23:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=16.7328
+2025-12-30 16:23:17 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Sao kê tk 0123456789 với bạn ơ...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:23:17 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Sao kê tk 0123456789 với bạn ơ...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:23:17 | INFO     | log:151 | [search_batch_stream] Completed in 0.93s, avg 0.030s/row, saved to query_1_192-168-40-86_20251230_162316.xlsx
+2025-12-30 16:46:55 | INFO     | log:151 | [search_batch_stream] Batch stream search from: query_1.xlsx
+2025-12-30 16:46:55 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 16:46:55 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] 'Check hộ mình lịch sử stk 0123456789...' -> 'Check hộ mình lịch sử stk 0123456789...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Check hộ mình lịch sử stk 0123456789] - formatted_query: [Check hộ mình lịch sử stk 0123456789] - normalized_query: [Check hộ mình lịch sử stk 0123456789]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0802, max=7.4489
+2025-12-30 16:46:55 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check hộ mình lịch sử stk 0123...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:55 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check hộ mình lịch sử stk 0123...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check hộ mình lịch sử stk 0123...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] 'lich su tk 0123456789...' -> 'Lich su tk 0123456789...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lich su tk 0123456789] - formatted_query: [Lich su tk 0123456789] - normalized_query: [Lich su tk 0123456789]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0321, max=8.6502
+2025-12-30 16:46:55 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Lich su tk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Lich su tk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] 'Xem biến động số dư của 0123456789...' -> 'Xem biến động số dư của 0123456789...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Xem biến động số dư của 0123456789] - formatted_query: [Xem biến động số dư của 0123456789] - normalized_query: [Xem biến động số dư của 0123456789]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1342, max=8.3664
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem biến động số dư của 0123456789'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] 'Cho mình coi lịch sử gd 0123456789...' -> 'Cho mình coi lịch sử gd 0123456789...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Cho mình coi lịch sử gd 0123456789] - formatted_query: [Cho mình coi lịch sử gd 0123456789] - normalized_query: [Cho mình coi lịch sử gd 0123456789]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0641, max=5.2370
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Cho mình coi lịch sử gd 0123456789'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] 'hien thi gd 0123456789...' -> 'Hien thi gd 0123456789...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [hien thi gd 0123456789] - formatted_query: [Hien thi gd 0123456789] - normalized_query: [Hien thi gd 0123456789]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=7.2089
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Hien thi gd 0123456789'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] 'Truy vấn lịch sử giao dịch của 012345678...' -> 'Truy vấn lịch sử giao dịch của 012345678...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Truy vấn lịch sử giao dịch của 0123456789] - formatted_query: [Truy vấn lịch sử giao dịch của 0123456789] - normalized_query: [Truy vấn lịch sử giao dịch của 0123456789]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.3768, max=5.6541
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Truy vấn lịch sử giao dịch của 0123456789'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] '0123456789 da giao dich gi?...' -> '0123456789 da giao dich gi...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 da giao dich gi?] - formatted_query: [0123456789 da giao dich gi] - normalized_query: [0123456789 da giao dich gi]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=7.4285
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 da giao dich gi'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] 'stk 0123456789 co tien ra vao ntn?...' -> 'Stk 0123456789 co tien ra vao ntn...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [stk 0123456789 co tien ra vao ntn?] - formatted_query: [Stk 0123456789 co tien ra vao ntn] - normalized_query: [Stk 0123456789 co tien ra vao ntn]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0357, max=8.7556
+2025-12-30 16:46:55 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Stk 0123456789 co tien ra vao ...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Stk 0123456789 co tien ra vao ...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] 'Show lịch sử giao dịch 0123456789...' -> 'Show lịch sử giao dịch 0123456789...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Show lịch sử giao dịch 0123456789] - formatted_query: [Show lịch sử giao dịch 0123456789] - normalized_query: [Show lịch sử giao dịch 0123456789]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.3114, max=5.5826
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Show lịch sử giao dịch 0123456789'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] 'check giup minh giao dich 0123456789...' -> 'Check giup minh giao dich 0123456789...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check giup minh giao dich 0123456789] - formatted_query: [Check giup minh giao dich 0123456789] - normalized_query: [Check giup minh giao dich 0123456789]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=5.2535
+2025-12-30 16:46:55 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check giup minh giao dich 0123...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check giup minh giao dich 0123...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] 'Xem sao kê chi tiết tk 0123456789...' -> 'Xem sao kê chi tiết tk 0123456789...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Xem sao kê chi tiết tk 0123456789] - formatted_query: [Xem sao kê chi tiết tk 0123456789] - normalized_query: [Xem sao kê chi tiết tk 0123456789]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=24.8616
+2025-12-30 16:46:55 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem sao kê chi tiết tk 0123456...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem sao kê chi tiết tk 0123456...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] 'List giao dịch của số 0123456789...' -> 'List giao dịch của số 0123456789...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [List giao dịch của số 0123456789] - formatted_query: [List giao dịch của số 0123456789] - normalized_query: [List giao dịch của số 0123456789]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1678, max=13.0413
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'List giao dịch của số 0123456789'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] 'Truy xuất dữ liệu gd 0123456789...' -> 'Truy xuất dữ liệu gd 0123456789...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Truy xuất dữ liệu gd 0123456789] - formatted_query: [Truy xuất dữ liệu gd 0123456789] - normalized_query: [Truy xuất dữ liệu gd 0123456789]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0802, max=5.1383
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Truy xuất dữ liệu gd 0123456789'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] 'Xem nhật ký giao dịch tk 0123456789...' -> 'Xem nhật ký giao dịch tk 0123456789...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Xem nhật ký giao dịch tk 0123456789] - formatted_query: [Xem nhật ký giao dịch tk 0123456789] - normalized_query: [Xem nhật ký giao dịch tk 0123456789]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=15.9386
+2025-12-30 16:46:55 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem nhật ký giao dịch tk 01234...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem nhật ký giao dịch tk 01234...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] '0123456789 co bien dong gi ko?...' -> '0123456789 co bien dong gi ko...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 co bien dong gi ko?] - formatted_query: [0123456789 co bien dong gi ko] - normalized_query: [0123456789 co bien dong gi ko]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.7008
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 co bien dong gi ko'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] 'Kiểm tra các khoản chuyển đến 0123456789...' -> 'Kiểm tra các khoản chuyển đến 0123456789...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Kiểm tra các khoản chuyển đến 0123456789] - formatted_query: [Kiểm tra các khoản chuyển đến 0123456789] - normalized_query: [Kiểm tra các khoản chuyển đến 0123456789]
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1940, max=11.1345
+2025-12-30 16:46:55 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Kiểm tra các khoản chuyển đến 0123456789'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [normalize_query] 'Xem các khoản chuyển đi từ số tk 0123456...' -> 'Xem các khoản chuyển đi từ số tk 0123456...'
+2025-12-30 16:46:55 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Xem các khoản chuyển đi từ số tk 0123456789] - formatted_query: [Xem các khoản chuyển đi từ số tk 0123456789] - normalized_query: [Xem các khoản chuyển đi từ số tk 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.3504, max=14.3635
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem các khoản chuyển đi từ số ...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem các khoản chuyển đi từ số ...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'Cho xem sao kê 0123456789 mới nhất...' -> 'Cho xem sao kê 0123456789 mới nhất...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Cho xem sao kê 0123456789 mới nhất] - formatted_query: [Cho xem sao kê 0123456789 mới nhất] - normalized_query: [Cho xem sao kê 0123456789 mới nhất]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=19.0710
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Cho xem sao kê 0123456789 mới nhất'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'Muốn coi giao dịch của 0123456789...' -> 'Muốn coi giao dịch của 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Muốn coi giao dịch của 0123456789] - formatted_query: [Muốn coi giao dịch của 0123456789] - normalized_query: [Muốn coi giao dịch của 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=6.5858
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Muốn coi giao dịch của 0123456789'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'Admin check lịch sử 0123456789 giúp...' -> 'Admin check lịch sử 0123456789 giúp...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Admin check lịch sử 0123456789 giúp] - formatted_query: [Admin check lịch sử 0123456789 giúp] - normalized_query: [Admin check lịch sử 0123456789 giúp]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0641, max=5.2370
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Admin check lịch sử 0123456789...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Admin check lịch sử 0123456789...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'tk 0123456789 có lịch sử ntn vậy?...' -> 'Tk 0123456789 có lịch sử ntn vậy...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tk 0123456789 có lịch sử ntn vậy?] - formatted_query: [Tk 0123456789 có lịch sử ntn vậy] - normalized_query: [Tk 0123456789 có lịch sử ntn vậy]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0717, max=13.8730
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tk 0123456789 có lịch sử ntn v...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tk 0123456789 có lịch sử ntn v...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'Lấy thông tin các giao dịch 0123456789...' -> 'Lấy thông tin các giao dịch 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Lấy thông tin các giao dịch 0123456789] - formatted_query: [Lấy thông tin các giao dịch 0123456789] - normalized_query: [Lấy thông tin các giao dịch 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.3114, max=8.0014
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Lấy thông tin các giao dịch 0123456789'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'Mọi giao dịch của 0123456789 là gì?...' -> 'Mọi giao dịch của 0123456789 là gì...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Mọi giao dịch của 0123456789 là gì?] - formatted_query: [Mọi giao dịch của 0123456789 là gì] - normalized_query: [Mọi giao dịch của 0123456789 là gì]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=9.6034
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Mọi giao dịch của 0123456789 là gì'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'Kiểm tra thu chi của số tk 0123456789...' -> 'Kiểm tra thu chi của số tk 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Kiểm tra thu chi của số tk 0123456789] - formatted_query: [Kiểm tra thu chi của số tk 0123456789] - normalized_query: [Kiểm tra thu chi của số tk 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1054, max=15.0255
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra thu chi của số tk 012...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra thu chi của số tk 012...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'check giùm tk 0123456789 nhé...' -> 'Check giùm tk 0123456789 nhé...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check giùm tk 0123456789 nhé] - formatted_query: [Check giùm tk 0123456789 nhé] - normalized_query: [Check giùm tk 0123456789 nhé]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.5562
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check giùm tk 0123456789 nhé...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check giùm tk 0123456789 nhé...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Check giùm tk 0123456789 nhé...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'Tra cứu gd stk 0123456789 trong hôm nay...' -> 'Tra cứu gd stk 0123456789 trong hôm nay...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Tra cứu gd stk 0123456789 trong hôm nay] - formatted_query: [Tra cứu gd stk 0123456789 trong hôm nay] - normalized_query: [Tra cứu gd stk 0123456789 trong hôm nay]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6059, max=12.7812
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu gd stk 0123456789 tron...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu gd stk 0123456789 tron...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['nay']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tra cứu gd stk 0123456789 tron...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'show lich su 0123456789 cho minh...' -> 'Show lich su 0123456789 cho minh...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [show lich su 0123456789 cho minh] - formatted_query: [Show lich su 0123456789 cho minh] - normalized_query: [Show lich su 0123456789 cho minh]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0321, max=5.1430
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Show lich su 0123456789 cho minh'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'Xem các giao dịch phát sinh từ số 012345...' -> 'Xem các giao dịch phát sinh từ số 012345...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Xem các giao dịch phát sinh từ số 0123456789] - formatted_query: [Xem các giao dịch phát sinh từ số 0123456789] - normalized_query: [Xem các giao dịch phát sinh từ số 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1678, max=27.6280
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem các giao dịch phát sinh từ số 0123456789'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] '0123456789 da bank cho ai nhung gi?...' -> '0123456789 da bank cho ai nhung gi...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 da bank cho ai nhung gi?] - formatted_query: [0123456789 da bank cho ai nhung gi] - normalized_query: [0123456789 da bank cho ai nhung gi]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=7.2239
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 da bank cho ai nhung gi'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'Xem stk 0123456789 nhận tiền từ đâu...' -> 'Xem stk 0123456789 nhận tiền từ đâu...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Xem stk 0123456789 nhận tiền từ đâu] - formatted_query: [Xem stk 0123456789 nhận tiền từ đâu] - normalized_query: [Xem stk 0123456789 nhận tiền từ đâu]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0671, max=12.5671
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem stk 0123456789 nhận tiền t...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem stk 0123456789 nhận tiền t...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Xem stk 0123456789 nhận tiền t...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 2, 'Tra cứu giao dịch nhận tiền': 2}
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'Sao kê tk 0123456789 với bạn ơi...' -> 'Sao kê tk 0123456789 với bạn ơi...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Sao kê tk 0123456789 với bạn ơi] - formatted_query: [Sao kê tk 0123456789 với bạn ơi] - normalized_query: [Sao kê tk 0123456789 với bạn ơi]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=16.7328
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Sao kê tk 0123456789 với bạn ơ...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Sao kê tk 0123456789 với bạn ơ...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'check lsgd 0123456789...' -> 'Check lsgd 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check lsgd 0123456789] - formatted_query: [Check lsgd 0123456789] - normalized_query: [Check lsgd 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check lsgd 0123456789...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check lsgd 0123456789...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'trich xuat giao dich 0123456789...' -> 'Trich xuat giao dich 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [trich xuat giao dich 0123456789] - formatted_query: [Trich xuat giao dich 0123456789] - normalized_query: [Trich xuat giao dich 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=5.2535
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Trich xuat giao dich 0123456789'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] '0123456789 vua chuyen khoan cho ai ko?...' -> '0123456789 vua chuyen khoan cho ai ko...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 vua chuyen khoan cho ai ko?] - formatted_query: [0123456789 vua chuyen khoan cho ai ko] - normalized_query: [0123456789 vua chuyen khoan cho ai ko]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0366, max=5.4979
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 vua chuyen khoan cho ai ko'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'Co tin nhan bien dong nao tu 0123456789 ...' -> 'Co tin nhan bien dong nao tu 0123456789 ...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Co tin nhan bien dong nao tu 0123456789 k?] - formatted_query: [Co tin nhan bien dong nao tu 0123456789 k] - normalized_query: [Co tin nhan bien dong nao tu 0123456789 k]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0336, max=9.7713
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Co tin nhan bien dong nao tu 0123456789 k'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'Xac thuc giao dich cho stk 0123456789...' -> 'Xac thuc giao dich cho stk 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Xac thuc giao dich cho stk 0123456789] - formatted_query: [Xac thuc giao dich cho stk 0123456789] - normalized_query: [Xac thuc giao dich cho stk 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.2230, max=14.0195
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xac thuc giao dich cho stk 012...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xac thuc giao dich cho stk 012...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'Bang ke chi tiet cho 0123456789...' -> 'Bang ke chi tiet cho 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Bang ke chi tiet cho 0123456789] - formatted_query: [Bang ke chi tiet cho 0123456789] - normalized_query: [Bang ke chi tiet cho 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0344, max=10.1062
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Bang ke chi tiet cho 0123456789'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] '0123456789 lich su...' -> '0123456789 lich su...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 lich su] - formatted_query: [0123456789 lich su] - normalized_query: [0123456789 lich su]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0321, max=5.1430
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 lich su'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'soi ho minh tk 0123456789...' -> 'Soi ho minh tk 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [soi ho minh tk 0123456789] - formatted_query: [Soi ho minh tk 0123456789] - normalized_query: [Soi ho minh tk 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.5562
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Soi ho minh tk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Soi ho minh tk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'du lieu giao dich cua 0123456789 dau?...' -> 'Du lieu giao dich cua 0123456789 dau...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [du lieu giao dich cua 0123456789 dau?] - formatted_query: [Du lieu giao dich cua 0123456789 dau] - normalized_query: [Du lieu giao dich cua 0123456789 dau]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.2349, max=9.3219
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Du lieu giao dich cua 0123456789 dau'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'lay sao ke thang nay cua 0123456789...' -> 'Lay sao ke thang nay cua 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lay sao ke thang nay cua 0123456789] - formatted_query: [Lay sao ke thang nay cua 0123456789] - normalized_query: [Lay sao ke thang nay cua 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0336, max=12.0524
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Lay sao ke thang nay cua 01234...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['nay']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Lay sao ke thang nay cua 01234...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'bot ơi check 0123456789...' -> 'Bot ơi check 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [bot ơi check 0123456789] - formatted_query: [Bot ơi check 0123456789] - normalized_query: [Bot ơi check 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Bot ơi check 0123456789...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Bot ơi check 0123456789...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'xem dong tien cua 0123456789...' -> 'Xem dong tien cua 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem dong tien cua 0123456789] - formatted_query: [Xem dong tien cua 0123456789] - normalized_query: [Xem dong tien cua 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0336, max=8.2477
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem dong tien cua 0123456789'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'tk 0123456789 co ai chuyen tien vao ko?...' -> 'Tk 0123456789 co ai chuyen tien vao ko...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tk 0123456789 co ai chuyen tien vao ko?] - formatted_query: [Tk 0123456789 co ai chuyen tien vao ko] - normalized_query: [Tk 0123456789 co ai chuyen tien vao ko]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0714, max=10.1046
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tk 0123456789 co ai chuyen tie...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tk 0123456789 co ai chuyen tie...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'tim kiem gd gan nhat 0123456789...' -> 'Tim kiem gd gan nhat 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tim kiem gd gan nhat 0123456789] - formatted_query: [Tim kiem gd gan nhat 0123456789] - normalized_query: [Tim kiem gd gan nhat 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=9.7925
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Tim kiem gd gan nhat 0123456789'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'xem lai cac lenh chuyen 0123456789...' -> 'Xem lai cac lenh chuyen 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem lai cac lenh chuyen 0123456789] - formatted_query: [Xem lai cac lenh chuyen 0123456789] - normalized_query: [Xem lai cac lenh chuyen 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0671, max=8.2655
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem lai cac lenh chuyen 0123456789'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] '0123456789 bdsd...' -> '0123456789 bdsd...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 bdsd] - formatted_query: [0123456789 bdsd] - normalized_query: [0123456789 bdsd]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 bdsd'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'cho xem toan bo lich su 0123456789...' -> 'Cho xem toan bo lich su 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho xem toan bo lich su 0123456789] - formatted_query: [Cho xem toan bo lich su 0123456789] - normalized_query: [Cho xem toan bo lich su 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0687, max=8.3766
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Cho xem toan bo lich su 0123456789'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'quet lich su giao dich stk 0123456789...' -> 'Quet lich su giao dich stk 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [quet lich su giao dich stk 0123456789] - formatted_query: [Quet lich su giao dich stk 0123456789] - normalized_query: [Quet lich su giao dich stk 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.2014, max=14.0843
+2025-12-30 16:46:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Quet lich su giao dich stk 012...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Quet lich su giao dich stk 012...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] '0123456789 giao dich ntn...' -> '0123456789 giao dich ntn...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 giao dich ntn] - formatted_query: [0123456789 giao dich ntn] - normalized_query: [0123456789 giao dich ntn]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=7.9181
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 giao dich ntn'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'filter lich su 0123456789 cho minh...' -> 'Filter lich su 0123456789 cho minh...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [filter lich su 0123456789 cho minh] - formatted_query: [Filter lich su 0123456789 cho minh] - normalized_query: [Filter lich su 0123456789 cho minh]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0321, max=5.1430
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Filter lich su 0123456789 cho minh'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'xem bien dong so du gan day 0123456789...' -> 'Xem bien dong so du gan day 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem bien dong so du gan day 0123456789] - formatted_query: [Xem bien dong so du gan day 0123456789] - normalized_query: [Xem bien dong so du gan day 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=8.3160
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem bien dong so du gan day 0123456789'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'lich su gd 0123456789 co j hot ko...' -> 'Lich su gd 0123456789 co j hot ko...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lich su gd 0123456789 co j hot ko] - formatted_query: [Lich su gd 0123456789 co j hot ko] - normalized_query: [Lich su gd 0123456789 co j hot ko]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0358, max=6.6199
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Lich su gd 0123456789 co j hot ko'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'kiem tra thong so giao dich 0123456789...' -> 'Kiem tra thong so giao dich 0123456789...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiem tra thong so giao dich 0123456789] - formatted_query: [Kiem tra thong so giao dich 0123456789] - normalized_query: [Kiem tra thong so giao dich 0123456789]
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.2014, max=10.9697
+2025-12-30 16:46:56 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Kiem tra thong so giao dich 0123456789'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [normalize_query] 'xem giup cac giao dich da thuc hien 0123...' -> 'Xem giup cac giao dich da thuc hien 0123...'
+2025-12-30 16:46:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem giup cac giao dich da thuc hien 0123456789] - formatted_query: [Xem giup cac giao dich da thuc hien 0123456789] - normalized_query: [Xem giup cac giao dich da thuc hien 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1342, max=9.7982
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem giup cac giao dich da thuc hien 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'cho tui coi ls 0123456789...' -> 'Cho tui coi ls 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho tui coi ls 0123456789] - formatted_query: [Cho tui coi ls 0123456789] - normalized_query: [Cho tui coi ls 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Cho tui coi ls 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] '0123456789 co bao nhieu gd roi...' -> '0123456789 co bao nhieu gd roi...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 co bao nhieu gd roi] - formatted_query: [0123456789 co bao nhieu gd roi] - normalized_query: [0123456789 co bao nhieu gd roi]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0178, max=7.7246
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 co bao nhieu gd roi'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'xem chi tiet thu chi 0123456789...' -> 'Xem chi tiet thu chi 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem chi tiet thu chi 0123456789] - formatted_query: [Xem chi tiet thu chi 0123456789] - normalized_query: [Xem chi tiet thu chi 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0344, max=13.1956
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem chi tiet thu chi 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] '0123456789 sao ke moi nhat...' -> '0123456789 sao ke moi nhat...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 sao ke moi nhat] - formatted_query: [0123456789 sao ke moi nhat] - normalized_query: [0123456789 sao ke moi nhat]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=9.1372
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 sao ke moi nhat'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'mo nhat ky gd 0123456789...' -> 'Mo nhat ky gd 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [mo nhat ky gd 0123456789] - formatted_query: [Mo nhat ky gd 0123456789] - normalized_query: [Mo nhat ky gd 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=6.3813
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Mo nhat ky gd 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] '0123456789 co phat sinh gd nao ko...' -> '0123456789 co phat sinh gd nao ko...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 co phat sinh gd nao ko] - formatted_query: [0123456789 co phat sinh gd nao ko] - normalized_query: [0123456789 co phat sinh gd nao ko]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=13.8176
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 co phat sinh gd nao ko'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'truy xuat nhat ky tk 0123456789...' -> 'Truy xuat nhat ky tk 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [truy xuat nhat ky tk 0123456789] - formatted_query: [Truy xuat nhat ky tk 0123456789] - normalized_query: [Truy xuat nhat ky tk 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0182, max=8.5741
+2025-12-30 16:46:57 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Truy xuat nhat ky tk 012345678...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Truy xuat nhat ky tk 012345678...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'lich su luan chuyen tien 0123456789...' -> 'Lich su luan chuyen tien 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lich su luan chuyen tien 0123456789] - formatted_query: [Lich su luan chuyen tien 0123456789] - normalized_query: [Lich su luan chuyen tien 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1182, max=5.2144
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Lich su luan chuyen tien 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'xem log giao dich 0123456789...' -> 'Xem log giao dich 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem log giao dich 0123456789] - formatted_query: [Xem log giao dich 0123456789] - normalized_query: [Xem log giao dich 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=8.4344
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem log giao dich 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'check log 0123456789...' -> 'Check log 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check log 0123456789] - formatted_query: [Check log 0123456789] - normalized_query: [Check log 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:46:57 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check log 0123456789...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check log 0123456789...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'lay danh sach chuyen khoan 0123456789...' -> 'Lay danh sach chuyen khoan 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lay danh sach chuyen khoan 0123456789] - formatted_query: [Lay danh sach chuyen khoan 0123456789] - normalized_query: [Lay danh sach chuyen khoan 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0549, max=16.8653
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Lay danh sach chuyen khoan 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'thong tin bdsd tk 0123456789...' -> 'Thong tin bdsd tk 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [thong tin bdsd tk 0123456789] - formatted_query: [Thong tin bdsd tk 0123456789] - normalized_query: [Thong tin bdsd tk 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0481, max=8.6437
+2025-12-30 16:46:57 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Thong tin bdsd tk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Thong tin bdsd tk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'cho m xem bien dong tk 0123456789...' -> 'Cho m xem bien dong tk 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho m xem bien dong tk 0123456789] - formatted_query: [Cho m xem bien dong tk 0123456789] - normalized_query: [Cho m xem bien dong tk 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=11.7371
+2025-12-30 16:46:57 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Cho m xem bien dong tk 0123456...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Cho m xem bien dong tk 0123456...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] '0123456789 history...' -> '0123456789 history...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 history] - formatted_query: [0123456789 history] - normalized_query: [0123456789 history]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 history'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'xem lich su bank 0123456789...' -> 'Xem lich su bank 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem lich su bank 0123456789] - formatted_query: [Xem lich su bank 0123456789] - normalized_query: [Xem lich su bank 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0671, max=9.6561
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem lich su bank 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'tra cuu lsgd 0123456789 nhanh...' -> 'Tra cuu lsgd 0123456789 nhanh...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cuu lsgd 0123456789 nhanh] - formatted_query: [Tra cuu lsgd 0123456789 nhanh] - normalized_query: [Tra cuu lsgd 0123456789 nhanh]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1913, max=5.2972
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Tra cuu lsgd 0123456789 nhanh'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] '0123456789 co chuyen tien di dau ko...' -> '0123456789 co chuyen tien di dau ko...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 co chuyen tien di dau ko] - formatted_query: [0123456789 co chuyen tien di dau ko] - normalized_query: [0123456789 co chuyen tien di dau ko]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0714, max=6.5973
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 co chuyen tien di dau ko'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'tim lich su gd cua so 0123456789...' -> 'Tim lich su gd cua so 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tim lich su gd cua so 0123456789] - formatted_query: [Tim lich su gd cua so 0123456789] - normalized_query: [Tim lich su gd cua so 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=6.5257
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Tim lich su gd cua so 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] '0123456789 kiem tra giao dich...' -> '0123456789 kiem tra giao dich...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 kiem tra giao dich] - formatted_query: [0123456789 kiem tra giao dich] - normalized_query: [0123456789 kiem tra giao dich]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1342, max=14.8871
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 kiem tra giao dich'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'hien thi lich su chuyen nhan 0123456789...' -> 'Hien thi lich su chuyen nhan 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [hien thi lich su chuyen nhan 0123456789] - formatted_query: [Hien thi lich su chuyen nhan 0123456789] - normalized_query: [Hien thi lich su chuyen nhan 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1342, max=7.5245
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Hien thi lich su chuyen nhan 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'xem thong tin giao dich tk 0123456789...' -> 'Xem thong tin giao dich tk 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem thong tin giao dich tk 0123456789] - formatted_query: [Xem thong tin giao dich tk 0123456789] - normalized_query: [Xem thong tin giao dich tk 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.2014, max=18.5923
+2025-12-30 16:46:57 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem thong tin giao dich tk 012...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem thong tin giao dich tk 012...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] '0123456789 check lich su dum...' -> '0123456789 check lich su dum...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 check lich su dum] - formatted_query: [0123456789 check lich su dum] - normalized_query: [0123456789 check lich su dum]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0321, max=5.1430
+2025-12-30 16:46:57 | DEBUG    | log:153 | [get_keyword_boost] Query: '0123456789 check lich su dum...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] Classified: '0123456789 check lich su dum...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'xuat file giao dich 0123456789...' -> 'Xuat file giao dich 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xuat file giao dich 0123456789] - formatted_query: [Xuat file giao dich 0123456789] - normalized_query: [Xuat file giao dich 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=5.2535
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xuat file giao dich 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'coi bien dong so du cua 0123456789...' -> 'Coi bien dong so du cua 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [coi bien dong so du cua 0123456789] - formatted_query: [Coi bien dong so du cua 0123456789] - normalized_query: [Coi bien dong so du cua 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0535, max=5.1351
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Coi bien dong so du cua 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'lich su thu chi tk 0123456789...' -> 'Lich su thu chi tk 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lich su thu chi tk 0123456789] - formatted_query: [Lich su thu chi tk 0123456789] - normalized_query: [Lich su thu chi tk 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0481, max=9.3821
+2025-12-30 16:46:57 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Lich su thu chi tk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Lich su thu chi tk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'xem lsgd cho so 0123456789...' -> 'Xem lsgd cho so 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem lsgd cho so 0123456789] - formatted_query: [Xem lsgd cho so 0123456789] - normalized_query: [Xem lsgd cho so 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0336, max=8.2802
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem lsgd cho so 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'hien thi moi gd 0123456789...' -> 'Hien thi moi gd 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [hien thi moi gd 0123456789] - formatted_query: [Hien thi moi gd 0123456789] - normalized_query: [Hien thi moi gd 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=7.2089
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Hien thi moi gd 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'check stk 0123456789 ls...' -> 'Check stk 0123456789 ls...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check stk 0123456789 ls] - formatted_query: [Check stk 0123456789 ls] - normalized_query: [Check stk 0123456789 ls]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0160, max=7.2609
+2025-12-30 16:46:57 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check stk 0123456789 ls...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:57 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check stk 0123456789 ls...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check stk 0123456789 ls...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'truy van du lieu stk 0123456789...' -> 'Truy van du lieu stk 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [truy van du lieu stk 0123456789] - formatted_query: [Truy van du lieu stk 0123456789] - normalized_query: [Truy van du lieu stk 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.2934, max=7.4038
+2025-12-30 16:46:57 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Truy van du lieu stk 012345678...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Truy van du lieu stk 012345678...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'sao ke gd cua 0123456789 dau nhi...' -> 'Sao ke gd cua 0123456789 dau nhi...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [sao ke gd cua 0123456789 dau nhi] - formatted_query: [Sao ke gd cua 0123456789 dau nhi] - normalized_query: [Sao ke gd cua 0123456789 dau nhi]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=9.1372
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Sao ke gd cua 0123456789 dau nhi'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] '0123456789 xem ls...' -> '0123456789 xem ls...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 xem ls] - formatted_query: [0123456789 xem ls] - normalized_query: [0123456789 xem ls]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.2298
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 xem ls'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'cho t xin ls giao dich 0123456789...' -> 'Cho t xin ls giao dich 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho t xin ls giao dich 0123456789] - formatted_query: [Cho t xin ls giao dich 0123456789] - normalized_query: [Cho t xin ls giao dich 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=5.2535
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Cho t xin ls giao dich 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'check hộ em 0123456789 phát...' -> 'Check hộ em 0123456789 phát...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check hộ em 0123456789 phát] - formatted_query: [Check hộ em 0123456789 phát] - normalized_query: [Check hộ em 0123456789 phát]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=6.7545
+2025-12-30 16:46:57 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check hộ em 0123456789 phát...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check hộ em 0123456789 phát...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'liệt kê các chuyển khoản 0123456789...' -> 'Liệt kê các chuyển khoản 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [liệt kê các chuyển khoản 0123456789] - formatted_query: [Liệt kê các chuyển khoản 0123456789] - normalized_query: [Liệt kê các chuyển khoản 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.2817, max=20.1731
+2025-12-30 16:46:57 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Liệt kê các chuyển khoản 01234...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Liệt kê các chuyển khoản 01234...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'stk 0123456789 đã giao dịch bao nhiêu lầ...' -> 'Stk 0123456789 đã giao dịch bao nhiêu lầ...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [stk 0123456789 đã giao dịch bao nhiêu lần] - formatted_query: [Stk 0123456789 đã giao dịch bao nhiêu lần] - normalized_query: [Stk 0123456789 đã giao dịch bao nhiêu lần]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1678, max=13.8107
+2025-12-30 16:46:57 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Stk 0123456789 đã giao dịch ba...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Stk 0123456789 đã giao dịch ba...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'hiển thị dòng tiền 0123456789...' -> 'Hiển thị dòng tiền 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [hiển thị dòng tiền 0123456789] - formatted_query: [Hiển thị dòng tiền 0123456789] - normalized_query: [Hiển thị dòng tiền 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0197, max=9.8914
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Hiển thị dòng tiền 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] 'tra soát lịch sử 0123456789...' -> 'Tra soát lịch sử 0123456789...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra soát lịch sử 0123456789] - formatted_query: [Tra soát lịch sử 0123456789] - normalized_query: [Tra soát lịch sử 0123456789]
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1041, max=7.9520
+2025-12-30 16:46:57 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Tra soát lịch sử 0123456789'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [normalize_query] '0123456789 giao dich j roi...' -> '0123456789 giao dich j roi...'
+2025-12-30 16:46:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 giao dich j roi] - formatted_query: [0123456789 giao dich j roi] - normalized_query: [0123456789 giao dich j roi]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=7.9181
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 giao dich j roi'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'kiểm tra gd của tài khoản 0123456789...' -> 'Kiểm tra gd của tài khoản 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra gd của tài khoản 0123456789] - formatted_query: [Kiểm tra gd của tài khoản 0123456789] - normalized_query: [Kiểm tra gd của tài khoản 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.3248, max=21.3453
+2025-12-30 16:46:58 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra gd của tài khoản 0123...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra gd của tài khoản 0123...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'xem lại lịch sử bank tiền 0123456789...' -> 'Xem lại lịch sử bank tiền 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem lại lịch sử bank tiền 0123456789] - formatted_query: [Xem lại lịch sử bank tiền 0123456789] - normalized_query: [Xem lại lịch sử bank tiền 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1678, max=11.1003
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem lại lịch sử bank tiền 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] '0123456789 lich su gd...' -> '0123456789 lich su gd...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 lich su gd] - formatted_query: [0123456789 lich su gd] - normalized_query: [0123456789 lich su gd]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0321, max=5.1430
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 lich su gd'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'tìm biến động 0123456789...' -> 'Tìm biến động 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tìm biến động 0123456789] - formatted_query: [Tìm biến động 0123456789] - normalized_query: [Tìm biến động 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=10.4593
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Tìm biến động 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'lấy thông tin ls gd 0123456789...' -> 'Lấy thông tin ls gd 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lấy thông tin ls gd 0123456789] - formatted_query: [Lấy thông tin ls gd 0123456789] - normalized_query: [Lấy thông tin ls gd 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1122, max=5.2305
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Lấy thông tin ls gd 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'show me history of 0123456789...' -> 'Show me history of 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [show me history of 0123456789] - formatted_query: [Show me history of 0123456789] - normalized_query: [Show me history of 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Show me history of 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'lich su gd tk 0123456789 check...' -> 'Lich su gd tk 0123456789 check...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lich su gd tk 0123456789 check] - formatted_query: [Lich su gd tk 0123456789 check] - normalized_query: [Lich su gd tk 0123456789 check]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0321, max=8.6502
+2025-12-30 16:46:58 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Lich su gd tk 0123456789 check...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:46:58 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Lich su gd tk 0123456789 check...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Lich su gd tk 0123456789 check...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'xem lại các khoản tiền 0123456789...' -> 'Xem lại các khoản tiền 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem lại các khoản tiền 0123456789] - formatted_query: [Xem lại các khoản tiền 0123456789] - normalized_query: [Xem lại các khoản tiền 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.2417, max=8.6609
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem lại các khoản tiền 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'soi lich su 0123456789...' -> 'Soi lich su 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [soi lich su 0123456789] - formatted_query: [Soi lich su 0123456789] - normalized_query: [Soi lich su 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0321, max=5.1430
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Soi lich su 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'lsgd cua 0123456789...' -> 'Lsgd cua 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lsgd cua 0123456789] - formatted_query: [Lsgd cua 0123456789] - normalized_query: [Lsgd cua 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Lsgd cua 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'cho m xem 0123456789 bien dong...' -> 'Cho m xem 0123456789 bien dong...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho m xem 0123456789 bien dong] - formatted_query: [Cho m xem 0123456789 bien dong] - normalized_query: [Cho m xem 0123456789 bien dong]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.2298
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Cho m xem 0123456789 bien dong'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'danh sach bien dong 0123456789...' -> 'Danh sach bien dong 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [danh sach bien dong 0123456789] - formatted_query: [Danh sach bien dong 0123456789] - normalized_query: [Danh sach bien dong 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=11.5738
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Danh sach bien dong 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'tra stk 0123456789 ra lich su...' -> 'Tra stk 0123456789 ra lich su...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra stk 0123456789 ra lich su] - formatted_query: [Tra stk 0123456789 ra lich su] - normalized_query: [Tra stk 0123456789 ra lich su]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0880, max=7.4053
+2025-12-30 16:46:58 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra stk 0123456789 ra lich su...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tra stk 0123456789 ra lich su...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'xem cac khoan chuyen den cua 0123456789...' -> 'Xem cac khoan chuyen den cua 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem cac khoan chuyen den cua 0123456789] - formatted_query: [Xem cac khoan chuyen den cua 0123456789] - normalized_query: [Xem cac khoan chuyen den cua 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.2753, max=8.6787
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem cac khoan chuyen den cua 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] '0123456789 bao gio gd...' -> '0123456789 bao gio gd...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 bao gio gd] - formatted_query: [0123456789 bao gio gd] - normalized_query: [0123456789 bao gio gd]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0160, max=5.0668
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 bao gio gd'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'liet ke sao ke 0123456789...' -> 'Liet ke sao ke 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [liet ke sao ke 0123456789] - formatted_query: [Liet ke sao ke 0123456789] - normalized_query: [Liet ke sao ke 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=11.3122
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Liet ke sao ke 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'tim lich su stk 0123456789...' -> 'Tim lich su stk 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tim lich su stk 0123456789] - formatted_query: [Tim lich su stk 0123456789] - normalized_query: [Tim lich su stk 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=8.6872
+2025-12-30 16:46:58 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tim lich su stk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tim lich su stk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] '0123456789 co bien dong gi mới ko...' -> '0123456789 co bien dong gi mới ko...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 co bien dong gi mới ko] - formatted_query: [0123456789 co bien dong gi mới ko] - normalized_query: [0123456789 co bien dong gi mới ko]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.7008
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 co bien dong gi mới ko'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'xem chi tiết các lệnh gd 0123456789...' -> 'Xem chi tiết các lệnh gd 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem chi tiết các lệnh gd 0123456789] - formatted_query: [Xem chi tiết các lệnh gd 0123456789] - normalized_query: [Xem chi tiết các lệnh gd 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=13.1778
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem chi tiết các lệnh gd 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'log giao dich 0123456789 check ho...' -> 'Log giao dich 0123456789 check ho...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [log giao dich 0123456789 check ho] - formatted_query: [Log giao dich 0123456789 check ho] - normalized_query: [Log giao dich 0123456789 check ho]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=5.2535
+2025-12-30 16:46:58 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Log giao dich 0123456789 check...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Log giao dich 0123456789 check...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'stk 0123456789 xem lich su gd...' -> 'Stk 0123456789 xem lich su gd...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [stk 0123456789 xem lich su gd] - formatted_query: [Stk 0123456789 xem lich su gd] - normalized_query: [Stk 0123456789 xem lich su gd]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=11.8681
+2025-12-30 16:46:58 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Stk 0123456789 xem lich su gd...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Stk 0123456789 xem lich su gd...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'mo lich su stk 0123456789...' -> 'Mo lich su stk 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [mo lich su stk 0123456789] - formatted_query: [Mo lich su stk 0123456789] - normalized_query: [Mo lich su stk 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0481, max=8.6872
+2025-12-30 16:46:58 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Mo lich su stk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Mo lich su stk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'check giùm 0123456789 lich su...' -> 'Check giùm 0123456789 lich su...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check giùm 0123456789 lich su] - formatted_query: [Check giùm 0123456789 lich su] - normalized_query: [Check giùm 0123456789 lich su]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0321, max=5.1430
+2025-12-30 16:46:58 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check giùm 0123456789 lich su...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check giùm 0123456789 lich su...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'coi lịch sử cho 0123456789...' -> 'Coi lịch sử cho 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [coi lịch sử cho 0123456789] - formatted_query: [Coi lịch sử cho 0123456789] - normalized_query: [Coi lịch sử cho 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0641, max=5.2370
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Coi lịch sử cho 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'lấy danh sách gd 0123456789...' -> 'Lấy danh sách gd 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lấy danh sách gd 0123456789] - formatted_query: [Lấy danh sách gd 0123456789] - normalized_query: [Lấy danh sách gd 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0353, max=14.2968
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Lấy danh sách gd 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] '0123456789 nhat ky gd...' -> '0123456789 nhat ky gd...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 nhat ky gd] - formatted_query: [0123456789 nhat ky gd] - normalized_query: [0123456789 nhat ky gd]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 nhat ky gd'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'cho xem toan bo bien dong 0123456789...' -> 'Cho xem toan bo bien dong 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho xem toan bo bien dong 0123456789] - formatted_query: [Cho xem toan bo bien dong 0123456789] - normalized_query: [Cho xem toan bo bien dong 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.3390
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Cho xem toan bo bien dong 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'quet du lieu gd stk 0123456789...' -> 'Quet du lieu gd stk 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [quet du lieu gd stk 0123456789] - formatted_query: [Quet du lieu gd stk 0123456789] - normalized_query: [Quet du lieu gd stk 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0802, max=7.3323
+2025-12-30 16:46:58 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Quet du lieu gd stk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Quet du lieu gd stk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'bdsd cua 0123456789 ntn...' -> 'Bdsd cua 0123456789 ntn...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [bdsd cua 0123456789 ntn] - formatted_query: [Bdsd cua 0123456789 ntn] - normalized_query: [Bdsd cua 0123456789 ntn]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Bdsd cua 0123456789 ntn'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'cho tui xem sao ke 0123456789...' -> 'Cho tui xem sao ke 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho tui xem sao ke 0123456789] - formatted_query: [Cho tui xem sao ke 0123456789] - normalized_query: [Cho tui xem sao ke 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=13.6504
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Cho tui xem sao ke 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'xem tien vao tien ra 0123456789...' -> 'Xem tien vao tien ra 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem tien vao tien ra 0123456789] - formatted_query: [Xem tien vao tien ra 0123456789] - normalized_query: [Xem tien vao tien ra 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0336, max=8.2477
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem tien vao tien ra 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] '0123456789 co gd nao gan day ko...' -> '0123456789 co gd nao gan day ko...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 co gd nao gan day ko] - formatted_query: [0123456789 co gd nao gan day ko] - normalized_query: [0123456789 co gd nao gan day ko]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.7008
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 co gd nao gan day ko'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'lay ls gd cho 0123456789...' -> 'Lay ls gd cho 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lay ls gd cho 0123456789] - formatted_query: [Lay ls gd cho 0123456789] - normalized_query: [Lay ls gd cho 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0160, max=5.0781
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Lay ls gd cho 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'stk 0123456789 co bien dong s dư ko...' -> 'Stk 0123456789 co bien dong s dư ko...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [stk 0123456789 co bien dong s dư ko] - formatted_query: [Stk 0123456789 co bien dong s dư ko] - normalized_query: [Stk 0123456789 co bien dong s dư ko]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0535, max=8.7735
+2025-12-30 16:46:58 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Stk 0123456789 co bien dong s ...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Stk 0123456789 co bien dong s ...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'truy luc lich su 0123456789...' -> 'Truy luc lich su 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [truy luc lich su 0123456789] - formatted_query: [Truy luc lich su 0123456789] - normalized_query: [Truy luc lich su 0123456789]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0481, max=5.1608
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Truy luc lich su 0123456789'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] '0123456789 giao dich the nao...' -> '0123456789 giao dich the nao...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 giao dich the nao] - formatted_query: [0123456789 giao dich the nao] - normalized_query: [0123456789 giao dich the nao]
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=10.4801
+2025-12-30 16:46:58 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 giao dich the nao'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [normalize_query] 'xem lai sao ke 0123456789...' -> 'Xem lai sao ke 0123456789...'
+2025-12-30 16:46:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem lai sao ke 0123456789] - formatted_query: [Xem lai sao ke 0123456789] - normalized_query: [Xem lai sao ke 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=12.3181
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem lai sao ke 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'trich xuat ls gd 0123456789...' -> 'Trich xuat ls gd 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [trich xuat ls gd 0123456789] - formatted_query: [Trich xuat ls gd 0123456789] - normalized_query: [Trich xuat ls gd 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Trich xuat ls gd 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'check gấp lịch sử 0123456789...' -> 'Check gấp lịch sử 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check gấp lịch sử 0123456789] - formatted_query: [Check gấp lịch sử 0123456789] - normalized_query: [Check gấp lịch sử 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0641, max=5.2370
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check gấp lịch sử 0123456789...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check gấp lịch sử 0123456789...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] '0123456789 gd gần đây nhất là gì...' -> '0123456789 gd gần đây nhất là gì...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 gd gần đây nhất là gì] - formatted_query: [0123456789 gd gần đây nhất là gì] - normalized_query: [0123456789 gd gần đây nhất là gì]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=13.4154
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: '0123456789 gd gần đây nhất là ...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['gần đây']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] Classified: '0123456789 gd gần đây nhất là ...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'Cho tớ xin list gd 0123456789...' -> 'Cho tớ xin list gd 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Cho tớ xin list gd 0123456789] - formatted_query: [Cho tớ xin list gd 0123456789] - normalized_query: [Cho tớ xin list gd 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Cho tớ xin list gd 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'sao ke nhanh 0123456789...' -> 'Sao ke nhanh 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [sao ke nhanh 0123456789] - formatted_query: [Sao ke nhanh 0123456789] - normalized_query: [Sao ke nhanh 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=9.1372
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Sao ke nhanh 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] '0123456789 check giùm lịch sử bank...' -> '0123456789 check giùm lịch sử bank...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 check giùm lịch sử bank] - formatted_query: [0123456789 check giùm lịch sử bank] - normalized_query: [0123456789 check giùm lịch sử bank]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0641, max=5.2370
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: '0123456789 check giùm lịch sử ...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] Classified: '0123456789 check giùm lịch sử ...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'liệt kê chuyển khoản 0123456789 tháng nà...' -> 'Liệt kê chuyển khoản 0123456789 tháng nà...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [liệt kê chuyển khoản 0123456789 tháng này] - formatted_query: [Liệt kê chuyển khoản 0123456789 tháng này] - normalized_query: [Liệt kê chuyển khoản 0123456789 tháng này]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.2817, max=20.1731
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Liệt kê chuyển khoản 012345678...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tháng']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Liệt kê chuyển khoản 012345678...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Liệt kê chuyển khoản 012345678...' | Scores: {'Tra cứu lịch sử giao dịch theo khoảng thời gian': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'xem các khoản nhận của 0123456789...' -> 'Xem các khoản nhận của 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem các khoản nhận của 0123456789] - formatted_query: [Xem các khoản nhận của 0123456789] - normalized_query: [Xem các khoản nhận của 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.2081, max=8.8289
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem các khoản nhận của 0123456...' | Doc: Tra cứu giao dịch nh | Boost: 0.25 | Matched: ['nhận']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem các khoản nhận của 0123456...' -> Tra cứu giao dịch nhận tiền (score=1)
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] '0123456789 lịch sử biến động...' -> '0123456789 lịch sử biến động...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 lịch sử biến động] - formatted_query: [0123456789 lịch sử biến động] - normalized_query: [0123456789 lịch sử biến động]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0732, max=5.2370
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 lịch sử biến động'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'truy cứu giao dịch 0123456789...' -> 'Truy cứu giao dịch 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [truy cứu giao dịch 0123456789] - formatted_query: [Truy cứu giao dịch 0123456789] - normalized_query: [Truy cứu giao dịch 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.5147, max=6.2538
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Truy cứu giao dịch 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] '0123456789 lịch sử chi tiết...' -> '0123456789 lịch sử chi tiết...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 lịch sử chi tiết] - formatted_query: [0123456789 lịch sử chi tiết] - normalized_query: [0123456789 lịch sử chi tiết]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0641, max=7.5203
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 lịch sử chi tiết'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'xem ho bien dong so du 0123456789...' -> 'Xem ho bien dong so du 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem ho bien dong so du 0123456789] - formatted_query: [Xem ho bien dong so du 0123456789] - normalized_query: [Xem ho bien dong so du 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=8.3160
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem ho bien dong so du 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'tai khoan 0123456789 co ai ck ko...' -> 'Tai khoan 0123456789 co ai ck ko...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tai khoan 0123456789 co ai ck ko] - formatted_query: [Tai khoan 0123456789 co ai ck ko] - normalized_query: [Tai khoan 0123456789 co ai ck ko]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1667, max=11.9590
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tai khoan 0123456789 co ai ck ...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tai khoan 0123456789 co ai ck ...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'thong ke gd stk 0123456789...' -> 'Thong ke gd stk 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [thong ke gd stk 0123456789] - formatted_query: [Thong ke gd stk 0123456789] - normalized_query: [Thong ke gd stk 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0353, max=10.0460
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Thong ke gd stk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Thong ke gd stk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'soi lai giao dich 0123456789...' -> 'Soi lai giao dich 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [soi lai giao dich 0123456789] - formatted_query: [Soi lai giao dich 0123456789] - normalized_query: [Soi lai giao dich 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=5.2535
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Soi lai giao dich 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] '0123456789 thong tin bien dong...' -> '0123456789 thong tin bien dong...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 thong tin bien dong] - formatted_query: [0123456789 thong tin bien dong] - normalized_query: [0123456789 thong tin bien dong]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0481, max=5.1365
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 thong tin bien dong'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'check ls bank stk 0123456789...' -> 'Check ls bank stk 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check ls bank stk 0123456789] - formatted_query: [Check ls bank stk 0123456789] - normalized_query: [Check ls bank stk 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0160, max=7.2609
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check ls bank stk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check ls bank stk 0123456789...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check ls bank stk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'cho m xem cai lich su 0123456789...' -> 'Cho m xem cai lich su 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho m xem cai lich su 0123456789] - formatted_query: [Cho m xem cai lich su 0123456789] - normalized_query: [Cho m xem cai lich su 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0671, max=8.3238
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Cho m xem cai lich su 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'xem nhat ky thu chi 0123456789...' -> 'Xem nhat ky thu chi 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem nhat ky thu chi 0123456789] - formatted_query: [Xem nhat ky thu chi 0123456789] - normalized_query: [Xem nhat ky thu chi 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0344, max=8.9616
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem nhat ky thu chi 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'lay thong tin gd gan nhat 0123456789...' -> 'Lay thong tin gd gan nhat 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lay thong tin gd gan nhat 0123456789] - formatted_query: [Lay thong tin gd gan nhat 0123456789] - normalized_query: [Lay thong tin gd gan nhat 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0729, max=5.1656
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Lay thong tin gd gan nhat 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] '0123456789 check bdsd...' -> '0123456789 check bdsd...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 check bdsd] - formatted_query: [0123456789 check bdsd] - normalized_query: [0123456789 check bdsd]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: '0123456789 check bdsd...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] Classified: '0123456789 check bdsd...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'mo lich su giao dich 0123456789...' -> 'Mo lich su giao dich 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [mo lich su giao dich 0123456789] - formatted_query: [Mo lich su giao dich 0123456789] - normalized_query: [Mo lich su giao dich 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1678, max=6.6799
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Mo lich su giao dich 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'trích lục tài khoản 0123456789...' -> 'Trích lục tài khoản 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [trích lục tài khoản 0123456789] - formatted_query: [Trích lục tài khoản 0123456789] - normalized_query: [Trích lục tài khoản 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=15.7087
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Trích lục tài khoản 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Trích lục tài khoản 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] '0123456789 co tien vao ko ad...' -> '0123456789 co tien vao ko ad...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 co tien vao ko ad] - formatted_query: [0123456789 co tien vao ko ad] - normalized_query: [0123456789 co tien vao ko ad]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0178, max=6.5437
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 co tien vao ko ad'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'coi sao ke stk 0123456789...' -> 'Coi sao ke stk 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [coi sao ke stk 0123456789] - formatted_query: [Coi sao ke stk 0123456789] - normalized_query: [Coi sao ke stk 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0177, max=11.3492
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Coi sao ke stk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Coi sao ke stk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'tim kiem gd stk 0123456789...' -> 'Tim kiem gd stk 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tim kiem gd stk 0123456789] - formatted_query: [Tim kiem gd stk 0123456789] - normalized_query: [Tim kiem gd stk 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0336, max=12.0044
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tim kiem gd stk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tim kiem gd stk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'check giao dich cu 0123456789...' -> 'Check giao dich cu 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check giao dich cu 0123456789] - formatted_query: [Check giao dich cu 0123456789] - normalized_query: [Check giao dich cu 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=5.2535
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check giao dich cu 0123456789...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check giao dich cu 0123456789...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'xem lai cac giao dich 0123456789...' -> 'Xem lai cac giao dich 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem lai cac giao dich 0123456789] - formatted_query: [Xem lai cac giao dich 0123456789] - normalized_query: [Xem lai cac giao dich 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=8.4344
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem lai cac giao dich 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] '0123456789 co phat sinh gi ko...' -> '0123456789 co phat sinh gi ko...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 co phat sinh gi ko] - formatted_query: [0123456789 co phat sinh gi ko] - normalized_query: [0123456789 co phat sinh gi ko]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=13.8176
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 co phat sinh gi ko'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'nhat ky bien dong 0123456789...' -> 'Nhat ky bien dong 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [nhat ky bien dong 0123456789] - formatted_query: [Nhat ky bien dong 0123456789] - normalized_query: [Nhat ky bien dong 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Nhat ky bien dong 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'xem nhung gd cua 0123456789...' -> 'Xem nhung gd cua 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem nhung gd cua 0123456789] - formatted_query: [Xem nhung gd cua 0123456789] - normalized_query: [Xem nhung gd cua 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.2298
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem nhung gd cua 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] '0123456789 tra cứu nhanh...' -> '0123456789 tra cứu nhanh...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 tra cứu nhanh] - formatted_query: [0123456789 tra cứu nhanh] - normalized_query: [0123456789 tra cứu nhanh]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.5007, max=5.6928
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 tra cứu nhanh'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'show lsgd 0123456789 t xem...' -> 'Show lsgd 0123456789 t xem...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [show lsgd 0123456789 t xem] - formatted_query: [Show lsgd 0123456789 t xem] - normalized_query: [Show lsgd 0123456789 t xem]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.2298
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Show lsgd 0123456789 t xem'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'liet ke cac khoan chi 0123456789...' -> 'Liet ke cac khoan chi 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [liet ke cac khoan chi 0123456789] - formatted_query: [Liet ke cac khoan chi 0123456789] - normalized_query: [Liet ke cac khoan chi 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.2130, max=11.1070
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Liet ke cac khoan chi 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] '0123456789 gd hom nay...' -> '0123456789 gd hom nay...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 gd hom nay] - formatted_query: [0123456789 gd hom nay] - normalized_query: [0123456789 gd hom nay]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=6.6794
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: '0123456789 gd hom nay...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['nay']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] Classified: '0123456789 gd hom nay...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'vao xem lich su 0123456789...' -> 'Vao xem lich su 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [vao xem lich su 0123456789] - formatted_query: [Vao xem lich su 0123456789] - normalized_query: [Vao xem lich su 0123456789]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0671, max=9.6561
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Vao xem lich su 0123456789'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'lsgd stk 0123456789 xem ntn...' -> 'Lsgd stk 0123456789 xem ntn...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lsgd stk 0123456789 xem ntn] - formatted_query: [Lsgd stk 0123456789 xem ntn] - normalized_query: [Lsgd stk 0123456789 xem ntn]
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0336, max=10.4417
+2025-12-30 16:46:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Lsgd stk 0123456789 xem ntn...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:46:59 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Lsgd stk 0123456789 xem ntn...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:46:59 | DEBUG    | log:153 | [normalize_query] 'check log bdsd 0123456789...' -> 'Check log bdsd 0123456789...'
+2025-12-30 16:46:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check log bdsd 0123456789] - formatted_query: [Check log bdsd 0123456789] - normalized_query: [Check log bdsd 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:47:00 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check log bdsd 0123456789...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check log bdsd 0123456789...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'xem 0123456789 co ai ban cho ko...' -> 'Xem 0123456789 co ai ban cho ko...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem 0123456789 co ai ban cho ko] - formatted_query: [Xem 0123456789 co ai ban cho ko] - normalized_query: [Xem 0123456789 co ai ban cho ko]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=9.7067
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem 0123456789 co ai ban cho ko'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'kiem tra thong tin ck 0123456789...' -> 'Kiem tra thong tin ck 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiem tra thong tin ck 0123456789] - formatted_query: [Kiem tra thong tin ck 0123456789] - normalized_query: [Kiem tra thong tin ck 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0880, max=10.7731
+2025-12-30 16:47:00 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiem tra thong tin ck 01234567...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiem tra thong tin ck 01234567...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] '0123456789 show detail gd...' -> '0123456789 show detail gd...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 show detail gd] - formatted_query: [0123456789 show detail gd] - normalized_query: [0123456789 show detail gd]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 show detail gd'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'tai khoan 0123456789 check ls...' -> 'Tai khoan 0123456789 check ls...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tai khoan 0123456789 check ls] - formatted_query: [Tai khoan 0123456789 check ls] - normalized_query: [Tai khoan 0123456789 check ls]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=10.4821
+2025-12-30 16:47:00 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tai khoan 0123456789 check ls...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tai khoan 0123456789 check ls...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] '0123456789 xem ls bank...' -> '0123456789 xem ls bank...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 xem ls bank] - formatted_query: [0123456789 xem ls bank] - normalized_query: [0123456789 xem ls bank]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.2298
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 xem ls bank'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'truy van nhanh stk 0123456789...' -> 'Truy van nhanh stk 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [truy van nhanh stk 0123456789] - formatted_query: [Truy van nhanh stk 0123456789] - normalized_query: [Truy van nhanh stk 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0802, max=7.3323
+2025-12-30 16:47:00 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Truy van nhanh stk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Truy van nhanh stk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'thong ke lich su 0123456789...' -> 'Thong ke lich su 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [thong ke lich su 0123456789] - formatted_query: [Thong ke lich su 0123456789] - normalized_query: [Thong ke lich su 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0530, max=7.9281
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Thong ke lich su 0123456789'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'xem dong tien ra vao 0123456789...' -> 'Xem dong tien ra vao 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem dong tien ra vao 0123456789] - formatted_query: [Xem dong tien ra vao 0123456789] - normalized_query: [Xem dong tien ra vao 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0336, max=8.2477
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem dong tien ra vao 0123456789'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] '0123456789 history bank...' -> '0123456789 history bank...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 history bank] - formatted_query: [0123456789 history bank] - normalized_query: [0123456789 history bank]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 history bank'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'mo bang ke gd 0123456789...' -> 'Mo bang ke gd 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [mo bang ke gd 0123456789] - formatted_query: [Mo bang ke gd 0123456789] - normalized_query: [Mo bang ke gd 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0177, max=9.1551
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Mo bang ke gd 0123456789'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'xem stk 0123456789 tung gd j...' -> 'Xem stk 0123456789 tung gd j...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem stk 0123456789 tung gd j] - formatted_query: [Xem stk 0123456789 tung gd j] - normalized_query: [Xem stk 0123456789 tung gd j]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0336, max=10.4417
+2025-12-30 16:47:00 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem stk 0123456789 tung gd j...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem stk 0123456789 tung gd j...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'check bdsd gan day 0123456789...' -> 'Check bdsd gan day 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check bdsd gan day 0123456789] - formatted_query: [Check bdsd gan day 0123456789] - normalized_query: [Check bdsd gan day 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:47:00 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check bdsd gan day 0123456789...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check bdsd gan day 0123456789...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'lay sao ke gd 0123456789...' -> 'Lay sao ke gd 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lay sao ke gd 0123456789] - formatted_query: [Lay sao ke gd 0123456789] - normalized_query: [Lay sao ke gd 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0177, max=9.1664
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Lay sao ke gd 0123456789'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'soi ho e lich su 0123456789...' -> 'Soi ho e lich su 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [soi ho e lich su 0123456789] - formatted_query: [Soi ho e lich su 0123456789] - normalized_query: [Soi ho e lich su 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0321, max=5.1430
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Soi ho e lich su 0123456789'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] '0123456789 da tung ck cho ai...' -> '0123456789 da tung ck cho ai...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 da tung ck cho ai] - formatted_query: [0123456789 da tung ck cho ai] - normalized_query: [0123456789 da tung ck cho ai]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:47:00 | DEBUG    | log:153 | [get_keyword_boost] Query: '0123456789 da tung ck cho ai...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] Classified: '0123456789 da tung ck cho ai...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'xem thong ke gd 0123456789...' -> 'Xem thong ke gd 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem thong ke gd 0123456789] - formatted_query: [Xem thong ke gd 0123456789] - normalized_query: [Xem thong ke gd 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0336, max=11.0150
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem thong ke gd 0123456789'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'hien thi lsgd cua 0123456789...' -> 'Hien thi lsgd cua 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [hien thi lsgd cua 0123456789] - formatted_query: [Hien thi lsgd cua 0123456789] - normalized_query: [Hien thi lsgd cua 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=7.2089
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Hien thi lsgd cua 0123456789'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] '0123456789 co gd nao moi nhat...' -> '0123456789 co gd nao moi nhat...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 co gd nao moi nhat] - formatted_query: [0123456789 co gd nao moi nhat] - normalized_query: [0123456789 co gd nao moi nhat]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.7008
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 co gd nao moi nhat'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'truy lục giao dịch 0123456789...' -> 'Truy lục giao dịch 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [truy lục giao dịch 0123456789] - formatted_query: [Truy lục giao dịch 0123456789] - normalized_query: [Truy lục giao dịch 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1342, max=5.2714
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Truy lục giao dịch 0123456789'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'xem lai cac lenh ck 0123456789...' -> 'Xem lai cac lenh ck 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem lai cac lenh ck 0123456789] - formatted_query: [Xem lai cac lenh ck 0123456789] - normalized_query: [Xem lai cac lenh ck 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.2298
+2025-12-30 16:47:00 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem lai cac lenh ck 0123456789...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem lai cac lenh ck 0123456789...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'coi bien dong 0123456789...' -> 'Coi bien dong 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [coi bien dong 0123456789] - formatted_query: [Coi bien dong 0123456789] - normalized_query: [Coi bien dong 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Coi bien dong 0123456789'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'check money in out 0123456789...' -> 'Check money in out 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check money in out 0123456789] - formatted_query: [Check money in out 0123456789] - normalized_query: [Check money in out 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:47:00 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check money in out 0123456789...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check money in out 0123456789...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] '0123456789 xem nhung bien dong...' -> '0123456789 xem nhung bien dong...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 xem nhung bien dong] - formatted_query: [0123456789 xem nhung bien dong] - normalized_query: [0123456789 xem nhung bien dong]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.2298
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 xem nhung bien dong'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'lay nhat ky stk 0123456789...' -> 'Lay nhat ky stk 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lay nhat ky stk 0123456789] - formatted_query: [Lay nhat ky stk 0123456789] - normalized_query: [Lay nhat ky stk 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0365, max=7.2900
+2025-12-30 16:47:00 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Lay nhat ky stk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Lay nhat ky stk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'cho minh xem log gd 0123456789...' -> 'Cho minh xem log gd 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho minh xem log gd 0123456789] - formatted_query: [Cho minh xem log gd 0123456789] - normalized_query: [Cho minh xem log gd 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.2298
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Cho minh xem log gd 0123456789'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] '0123456789 thong tin chuyen khoan...' -> '0123456789 thong tin chuyen khoan...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 thong tin chuyen khoan] - formatted_query: [0123456789 thong tin chuyen khoan] - normalized_query: [0123456789 thong tin chuyen khoan]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1896, max=5.5854
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 thong tin chuyen khoan'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'xem nhanh gd 0123456789...' -> 'Xem nhanh gd 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem nhanh gd 0123456789] - formatted_query: [Xem nhanh gd 0123456789] - normalized_query: [Xem nhanh gd 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.2298
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem nhanh gd 0123456789'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'check lsgd cho tk 0123456789...' -> 'Check lsgd cho tk 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check lsgd cho tk 0123456789] - formatted_query: [Check lsgd cho tk 0123456789] - normalized_query: [Check lsgd cho tk 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.5562
+2025-12-30 16:47:00 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check lsgd cho tk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:47:00 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check lsgd cho tk 0123456789...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Check lsgd cho tk 0123456789...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'show chi tiet 0123456789 gd...' -> 'Show chi tiet 0123456789 gd...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [show chi tiet 0123456789 gd] - formatted_query: [Show chi tiet 0123456789 gd] - normalized_query: [Show chi tiet 0123456789 gd]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=7.3323
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Show chi tiet 0123456789 gd'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'sao ke tk 0123456789 di ad...' -> 'Sao ke tk 0123456789 di ad...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [sao ke tk 0123456789 di ad] - formatted_query: [Sao ke tk 0123456789 di ad] - normalized_query: [Sao ke tk 0123456789 di ad]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=12.6445
+2025-12-30 16:47:00 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Sao ke tk 0123456789 di ad...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tk']
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Sao ke tk 0123456789 di ad...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] '0123456789 co ai chuyen tien k...' -> '0123456789 co ai chuyen tien k...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 co ai chuyen tien k] - formatted_query: [0123456789 co ai chuyen tien k] - normalized_query: [0123456789 co ai chuyen tien k]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0714, max=6.5973
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 co ai chuyen tien k'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'liet ke bien dong 0123456789...' -> 'Liet ke bien dong 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [liet ke bien dong 0123456789] - formatted_query: [Liet ke bien dong 0123456789] - normalized_query: [Liet ke bien dong 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=9.9799
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Liet ke bien dong 0123456789'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'xem toan bo lich su bank 0123456789...' -> 'Xem toan bo lich su bank 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem toan bo lich su bank 0123456789] - formatted_query: [Xem toan bo lich su bank 0123456789] - normalized_query: [Xem toan bo lich su bank 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0687, max=8.3766
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem toan bo lich su bank 0123456789'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] '0123456789 kiem tra history...' -> '0123456789 kiem tra history...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 kiem tra history] - formatted_query: [0123456789 kiem tra history] - normalized_query: [0123456789 kiem tra history]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0336, max=10.6855
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 kiem tra history'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'xem lich su nhan tien 0123456789...' -> 'Xem lich su nhan tien 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem lich su nhan tien 0123456789] - formatted_query: [Xem lich su nhan tien 0123456789] - normalized_query: [Xem lich su nhan tien 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=10.0458
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem lich su nhan tien 0123456789'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'tra cuu nhanh stk 0123456789...' -> 'Tra cuu nhanh stk 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cuu nhanh stk 0123456789] - formatted_query: [Tra cuu nhanh stk 0123456789] - normalized_query: [Tra cuu nhanh stk 0123456789]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.2090, max=7.5091
+2025-12-30 16:47:00 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cuu nhanh stk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tra cuu nhanh stk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] '0123456789 check gd tớ xem...' -> '0123456789 check gd tớ xem...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 check gd tớ xem] - formatted_query: [0123456789 check gd tớ xem] - normalized_query: [0123456789 check gd tớ xem]
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.2298
+2025-12-30 16:47:00 | DEBUG    | log:153 | [get_keyword_boost] Query: '0123456789 check gd tớ xem...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:00 | DEBUG    | log:153 | [classify_query_intent] Classified: '0123456789 check gd tớ xem...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:47:00 | DEBUG    | log:153 | [normalize_query] 'liệt kê thu chi của 0123456789...' -> 'Liệt kê thu chi của 0123456789...'
+2025-12-30 16:47:00 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [liệt kê thu chi của 0123456789] - formatted_query: [Liệt kê thu chi của 0123456789] - normalized_query: [Liệt kê thu chi của 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0344, max=15.8414
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Liệt kê thu chi của 0123456789'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'check stk 0123456789 gap...' -> 'Check stk 0123456789 gap...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [check stk 0123456789 gap] - formatted_query: [Check stk 0123456789 gap] - normalized_query: [Check stk 0123456789 gap]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0160, max=7.2609
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check stk 0123456789 gap...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Check stk 0123456789 gap...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Check stk 0123456789 gap...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] '0123456789 co lich su bank ko...' -> '0123456789 co lich su bank ko...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 co lich su bank ko] - formatted_query: [0123456789 co lich su bank ko] - normalized_query: [0123456789 co lich su bank ko]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0358, max=6.6199
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 co lich su bank ko'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'truy cuu bdsd 0123456789...' -> 'Truy cuu bdsd 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [truy cuu bdsd 0123456789] - formatted_query: [Truy cuu bdsd 0123456789] - normalized_query: [Truy cuu bdsd 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1723, max=5.2646
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Truy cuu bdsd 0123456789'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'cho e xin sao ke 0123456789...' -> 'Cho e xin sao ke 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho e xin sao ke 0123456789] - formatted_query: [Cho e xin sao ke 0123456789] - normalized_query: [Cho e xin sao ke 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=9.1372
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Cho e xin sao ke 0123456789'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'mo ls gd stk 0123456789...' -> 'Mo ls gd stk 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [mo ls gd stk 0123456789] - formatted_query: [Mo ls gd stk 0123456789] - normalized_query: [Mo ls gd stk 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0160, max=8.5932
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Mo ls gd stk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Mo ls gd stk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] '0123456789 check lai gd...' -> '0123456789 check lai gd...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 check lai gd] - formatted_query: [0123456789 check lai gd] - normalized_query: [0123456789 check lai gd]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: '0123456789 check lai gd...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] Classified: '0123456789 check lai gd...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'hien thi lich su chuyen tien 0123456789...' -> 'Hien thi lich su chuyen tien 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [hien thi lich su chuyen tien 0123456789] - formatted_query: [Hien thi lich su chuyen tien 0123456789] - normalized_query: [Hien thi lich su chuyen tien 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1182, max=7.3744
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Hien thi lich su chuyen tien 0123456789'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'thong tin lsgd 0123456789...' -> 'Thong tin lsgd 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [thong tin lsgd 0123456789] - formatted_query: [Thong tin lsgd 0123456789] - normalized_query: [Thong tin lsgd 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0481, max=5.1365
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Thong tin lsgd 0123456789'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'xem du lieu bank 0123456789...' -> 'Xem du lieu bank 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem du lieu bank 0123456789] - formatted_query: [Xem du lieu bank 0123456789] - normalized_query: [Xem du lieu bank 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1342, max=8.3013
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem du lieu bank 0123456789'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] '0123456789 thong ke chuyen nhan...' -> '0123456789 thong ke chuyen nhan...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 thong ke chuyen nhan] - formatted_query: [0123456789 thong ke chuyen nhan] - normalized_query: [0123456789 thong ke chuyen nhan]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=8.0557
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 thong ke chuyen nhan'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'tra cứu số dư biến động 0123456789...' -> 'Tra cứu số dư biến động 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cứu số dư biến động 0123456789] - formatted_query: [Tra cứu số dư biến động 0123456789] - normalized_query: [Tra cứu số dư biến động 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.7066, max=5.8294
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Tra cứu số dư biến động 0123456789'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'coi ho 0123456789 co gd j...' -> 'Coi ho 0123456789 co gd j...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [coi ho 0123456789 co gd j] - formatted_query: [Coi ho 0123456789 co gd j] - normalized_query: [Coi ho 0123456789 co gd j]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=6.5258
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Coi ho 0123456789 co gd j'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] '0123456789 check bdsd moi...' -> '0123456789 check bdsd moi...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 check bdsd moi] - formatted_query: [0123456789 check bdsd moi] - normalized_query: [0123456789 check bdsd moi]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: '0123456789 check bdsd moi...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] Classified: '0123456789 check bdsd moi...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'lay lich su gd cho stk 0123456789...' -> 'Lay lich su gd cho stk 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [lay lich su gd cho stk 0123456789] - formatted_query: [Lay lich su gd cho stk 0123456789] - normalized_query: [Lay lich su gd cho stk 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0641, max=7.3841
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Lay lich su gd cho stk 0123456...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Lay lich su gd cho stk 0123456...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'cho tui xem gd stk 0123456789...' -> 'Cho tui xem gd stk 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho tui xem gd stk 0123456789] - formatted_query: [Cho tui xem gd stk 0123456789] - normalized_query: [Cho tui xem gd stk 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0336, max=10.4417
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Cho tui xem gd stk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Cho tui xem gd stk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] '0123456789 co bien dong nao ko...' -> '0123456789 co bien dong nao ko...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 co bien dong nao ko] - formatted_query: [0123456789 co bien dong nao ko] - normalized_query: [0123456789 co bien dong nao ko]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.7008
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 co bien dong nao ko'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'show bang ke chi tiet 0123456789...' -> 'Show bang ke chi tiet 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [show bang ke chi tiet 0123456789] - formatted_query: [Show bang ke chi tiet 0123456789] - normalized_query: [Show bang ke chi tiet 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0344, max=10.1062
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Show bang ke chi tiet 0123456789'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'kiem tra thong tin gd 0123456789...' -> 'Kiem tra thong tin gd 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiem tra thong tin gd 0123456789] - formatted_query: [Kiem tra thong tin gd 0123456789] - normalized_query: [Kiem tra thong tin gd 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0880, max=10.7731
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Kiem tra thong tin gd 0123456789'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] '0123456789 check lai lich su...' -> '0123456789 check lai lich su...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 check lai lich su] - formatted_query: [0123456789 check lai lich su] - normalized_query: [0123456789 check lai lich su]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0321, max=5.1430
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: '0123456789 check lai lich su...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] Classified: '0123456789 check lai lich su...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'mo log giao dich stk 0123456789...' -> 'Mo log giao dich stk 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [mo log giao dich stk 0123456789] - formatted_query: [Mo log giao dich stk 0123456789] - normalized_query: [Mo log giao dich stk 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1342, max=15.3226
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Mo log giao dich stk 012345678...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Mo log giao dich stk 012345678...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'xem thu chi stk 0123456789...' -> 'Xem thu chi stk 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem thu chi stk 0123456789] - formatted_query: [Xem thu chi stk 0123456789] - normalized_query: [Xem thu chi stk 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0687, max=11.1736
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem thu chi stk 0123456789...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem thu chi stk 0123456789...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] '0123456789 xem bdsd...' -> '0123456789 xem bdsd...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 xem bdsd] - formatted_query: [0123456789 xem bdsd] - normalized_query: [0123456789 xem bdsd]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.2298
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 xem bdsd'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'quet lich su cho 0123456789...' -> 'Quet lich su cho 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [quet lich su cho 0123456789] - formatted_query: [Quet lich su cho 0123456789] - normalized_query: [Quet lich su cho 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0321, max=5.1430
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Quet lich su cho 0123456789'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'tra cuu lsgd cho so 0123456789...' -> 'Tra cuu lsgd cho so 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cuu lsgd cho so 0123456789] - formatted_query: [Tra cuu lsgd cho so 0123456789] - normalized_query: [Tra cuu lsgd cho so 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.2467, max=5.3476
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Tra cuu lsgd cho so 0123456789'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] '0123456789 xem sao ke ngay...' -> '0123456789 xem sao ke ngay...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 xem sao ke ngay] - formatted_query: [0123456789 xem sao ke ngay] - normalized_query: [0123456789 xem sao ke ngay]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=13.6504
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 xem sao ke ngay'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] '0123456789 check hộ phát...' -> '0123456789 check hộ phát...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 check hộ phát] - formatted_query: [0123456789 check hộ phát] - normalized_query: [0123456789 check hộ phát]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=6.7545
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: '0123456789 check hộ phát...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] Classified: '0123456789 check hộ phát...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'Lấy file giao dịch 0123456789...' -> 'Lấy file giao dịch 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Lấy file giao dịch 0123456789] - formatted_query: [Lấy file giao dịch 0123456789] - normalized_query: [Lấy file giao dịch 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1678, max=5.3119
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Lấy file giao dịch 0123456789'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] '0123456789 hôm nay có biến động gì?...' -> '0123456789 hôm nay có biến động gì...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 hôm nay có biến động gì?] - formatted_query: [0123456789 hôm nay có biến động gì] - normalized_query: [0123456789 hôm nay có biến động gì]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=12.3527
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: '0123456789 hôm nay có biến độn...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['nay']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] Classified: '0123456789 hôm nay có biến độn...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'Coi dùm tui lsgd của 0123456789...' -> 'Coi dùm tui lsgd của 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Coi dùm tui lsgd của 0123456789] - formatted_query: [Coi dùm tui lsgd của 0123456789] - normalized_query: [Coi dùm tui lsgd của 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Coi dùm tui lsgd của 0123456789'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'Hỏi lịch sử tài khoản 0123456789...' -> 'Hỏi lịch sử tài khoản 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Hỏi lịch sử tài khoản 0123456789] - formatted_query: [Hỏi lịch sử tài khoản 0123456789] - normalized_query: [Hỏi lịch sử tài khoản 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0732, max=18.5613
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Hỏi lịch sử tài khoản 01234567...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Hỏi lịch sử tài khoản 01234567...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] '0123456789 tra cứu giao dịch đi...' -> '0123456789 tra cứu giao dịch đi...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 tra cứu giao dịch đi] - formatted_query: [0123456789 tra cứu giao dịch đi] - normalized_query: [0123456789 tra cứu giao dịch đi]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.9131, max=9.6691
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 tra cứu giao dịch đi'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'Cho xem bảng sao kê 0123456789...' -> 'Cho xem bảng sao kê 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Cho xem bảng sao kê 0123456789] - formatted_query: [Cho xem bảng sao kê 0123456789] - normalized_query: [Cho xem bảng sao kê 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0336, max=16.4243
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Cho xem bảng sao kê 0123456789'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] '0123456789 có chuyển hay nhận gì không?...' -> '0123456789 có chuyển hay nhận gì không...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 có chuyển hay nhận gì không?] - formatted_query: [0123456789 có chuyển hay nhận gì không] - normalized_query: [0123456789 có chuyển hay nhận gì không]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0380, max=17.4138
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: '0123456789 có chuyển hay nhận ...' | Doc: Tra cứu giao dịch nh | Boost: 0.25 | Matched: ['nhận']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] Classified: '0123456789 có chuyển hay nhận ...' -> Tra cứu giao dịch nhận tiền (score=1)
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'Show all giao dịch 0123456789...' -> 'Show all giao dịch 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Show all giao dịch 0123456789] - formatted_query: [Show all giao dịch 0123456789] - normalized_query: [Show all giao dịch 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=5.2535
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Show all giao dịch 0123456789'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] '0123456789 xem thông số biến động...' -> '0123456789 xem thông số biến động...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 xem thông số biến động] - formatted_query: [0123456789 xem thông số biến động] - normalized_query: [0123456789 xem thông số biến động]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=8.3599
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 xem thông số biến động'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'Bới lại lịch sử ck của 0123456789...' -> 'Bới lại lịch sử ck của 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Bới lại lịch sử ck của 0123456789] - formatted_query: [Bới lại lịch sử ck của 0123456789] - normalized_query: [Bới lại lịch sử ck của 0123456789]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0641, max=5.2370
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Bới lại lịch sử ck của 0123456...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Bới lại lịch sử ck của 0123456...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] '0123456789 check nhanh history...' -> '0123456789 check nhanh history...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 check nhanh history] - formatted_query: [0123456789 check nhanh history] - normalized_query: [0123456789 check nhanh history]
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=5.0489
+2025-12-30 16:47:01 | DEBUG    | log:153 | [get_keyword_boost] Query: '0123456789 check nhanh history...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['ck']
+2025-12-30 16:47:01 | DEBUG    | log:153 | [classify_query_intent] Classified: '0123456789 check nhanh history...' -> Tra cứu giao dịch chuyển tiền (score=1)
+2025-12-30 16:47:01 | DEBUG    | log:153 | [normalize_query] 'Truy cứu nhật ký bank 0123456789...' -> 'Truy cứu nhật ký bank 0123456789...'
+2025-12-30 16:47:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Truy cứu nhật ký bank 0123456789] - formatted_query: [Truy cứu nhật ký bank 0123456789] - normalized_query: [Truy cứu nhật ký bank 0123456789]
+2025-12-30 16:47:02 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.3928, max=5.4624
+2025-12-30 16:47:02 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Truy cứu nhật ký bank 0123456789'
+2025-12-30 16:47:02 | DEBUG    | log:153 | [normalize_query] '0123456789 thống kê mọi biến động...' -> '0123456789 thống kê mọi biến động...'
+2025-12-30 16:47:02 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 thống kê mọi biến động] - formatted_query: [0123456789 thống kê mọi biến động] - normalized_query: [0123456789 thống kê mọi biến động]
+2025-12-30 16:47:02 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0336, max=15.6150
+2025-12-30 16:47:02 | DEBUG    | log:153 | [get_keyword_boost] Query: '0123456789 thống kê mọi biến đ...' | Doc: Thống kê giao dịch t | Boost: 0.25 | Matched: ['thống kê']
+2025-12-30 16:47:02 | DEBUG    | log:153 | [classify_query_intent] Classified: '0123456789 thống kê mọi biến đ...' -> Thống kê giao dịch theo nhóm (score=1)
+2025-12-30 16:47:02 | DEBUG    | log:153 | [normalize_query] 'Hien thi danh sach thu chi 0123456789...' -> 'Hien thi danh sach thu chi 0123456789...'
+2025-12-30 16:47:02 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Hien thi danh sach thu chi 0123456789] - formatted_query: [Hien thi danh sach thu chi 0123456789] - normalized_query: [Hien thi danh sach thu chi 0123456789]
+2025-12-30 16:47:02 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0344, max=14.4656
+2025-12-30 16:47:02 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Hien thi danh sach thu chi 0123456789'
+2025-12-30 16:47:02 | DEBUG    | log:153 | [normalize_query] '0123456789 co thong tin gd moi ko ad...' -> '0123456789 co thong tin gd moi ko ad...'
+2025-12-30 16:47:02 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [0123456789 co thong tin gd moi ko ad] - formatted_query: [0123456789 co thong tin gd moi ko ad] - normalized_query: [0123456789 co thong tin gd moi ko ad]
+2025-12-30 16:47:02 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0535, max=6.6134
+2025-12-30 16:47:02 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: '0123456789 co thong tin gd moi ko ad'
+2025-12-30 16:47:02 | DEBUG    | log:153 | [normalize_query] 'Xem dum cai bdsd 0123456789...' -> 'Xem dum cai bdsd 0123456789...'
+2025-12-30 16:47:02 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Xem dum cai bdsd 0123456789] - formatted_query: [Xem dum cai bdsd 0123456789] - normalized_query: [Xem dum cai bdsd 0123456789]
+2025-12-30 16:47:02 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0000, max=8.2298
+2025-12-30 16:47:02 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Xem dum cai bdsd 0123456789'
+2025-12-30 16:47:02 | DEBUG    | log:153 | [normalize_query] 'Lay du lieu bien dong cho 0123456789...' -> 'Lay du lieu bien dong cho 0123456789...'
+2025-12-30 16:47:02 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Lay du lieu bien dong cho 0123456789] - formatted_query: [Lay du lieu bien dong cho 0123456789] - normalized_query: [Lay du lieu bien dong cho 0123456789]
+2025-12-30 16:47:02 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.0802, max=5.1496
+2025-12-30 16:47:02 | DEBUG    | log:153 | [classify_query_intent] No keyword matches found in: 'Lay du lieu bien dong cho 0123456789'
+2025-12-30 16:47:02 | INFO     | log:151 | [search_batch_stream] Completed in 6.63s, avg 0.027s/row, saved to query_1_192-168-40-86_20251230_164655.xlsx

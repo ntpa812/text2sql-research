@@ -1,0 +1,44 @@
+2025-12-29 18:11:00 | INFO     | log:151 | [lifespan] Server shutting down
+2025-12-29 18:11:15 | INFO     | log:151 | [config] Loaded config | DEBUG_MODE=3
+2025-12-29 18:11:18 | INFO     | log:151 | [main] FastAPI app initialized (Per-Example Embedding Architecture)
+2025-12-29 18:11:18 | INFO     | log:151 | [lifespan] Server starting - running warmup...
+2025-12-29 18:11:18 | INFO     | log:151 | [warmup] Loading tables...
+2025-12-29 18:11:18 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 18:11:24 | DEBUG    | log:153 | [get_tables] Loaded existing tables
+2025-12-29 18:11:24 | INFO     | log:151 | [warmup] Tables loaded: 15 docs, 251 examples
+2025-12-29 18:11:24 | INFO     | log:151 | [warmup] Loading embedding model...
+2025-12-29 18:11:24 | INFO     | log:151 | [get_embedding_model] Loading model on GPU (NVIDIA RTX A5000)...
+2025-12-29 18:11:30 | INFO     | log:151 | [get_embedding_model] Model loaded on GPU (NVIDIA RTX A5000)
+2025-12-29 18:11:30 | INFO     | log:151 | [warmup] Embedding model loaded on GPU (NVIDIA RTX A5000)
+2025-12-29 18:11:30 | INFO     | log:151 | [warmup] Building embeddings cache...
+2025-12-29 18:11:30 | INFO     | log:151 | [build_embeddings_cache] Building embeddings cache...
+2025-12-29 18:11:31 | INFO     | log:151 | [build_embeddings_cache] Cache built in 0.96s: 251 examples, 15 docs on GPU (NVIDIA RTX A5000)
+2025-12-29 18:11:31 | INFO     | log:151 | [warmup] Embeddings cache built
+2025-12-29 18:11:31 | INFO     | log:151 | [warmup] Building corpus stats cache...
+2025-12-29 18:11:31 | INFO     | log:151 | [get_corpus_stats] Rebuilding corpus stats cache...
+2025-12-29 18:11:31 | INFO     | log:151 | [warmup] Corpus stats cache built
+2025-12-29 18:11:31 | INFO     | log:151 | [warmup] System ready in 12.24s | URLs: ['http://localhost:6804', 'http://192.168.3.7:6804']
+2025-12-29 18:11:45 | INFO     | log:151 | [search_single] Searching: 'tra cứu phí giao dịch chuyển khoản đến số tài khoả...' (top_k=10)
+2025-12-29 18:11:45 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 18:11:45 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 18:11:45 | DEBUG    | log:153 | [normalize_query] 'tra cứu phí giao dịch chuyển khoản đến s...' -> 'Tra cứu phí giao dịch chuyển khoản đến s...'
+2025-12-29 18:11:45 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cứu phí giao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi] - formatted_query: [Tra cứu phí giao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi] - normalized_query: [Tra cứu phí giao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi]
+2025-12-29 18:11:45 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=1.3442, max=25.4538
+2025-12-29 18:11:45 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phí giao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 18:11:45 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phí giao dịch chuyển k...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-29 18:11:45 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phí giao dịch chuyển k...' | Doc: Tra cứu phí giao dịc | Boost: 0.25 | Matched: ['phí']
+2025-12-29 18:11:45 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tra cứu phí giao dịch chuyển k...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch chuyển tiền': 1, 'Tra cứu phí giao dịch': 1}
+2025-12-29 18:11:45 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 18:11:45 | DEBUG    | log:153 | [search_single] Top: Tra cứu phí giao dịch... (score=0.8366, sem=0.8737, bm25=1.0000, boost=0.2500)
+2025-12-29 18:12:15 | INFO     | log:151 | [search_single] Searching: 'tra cứu phí giao dịch chuyển khoản đến số tài khoả...' (top_k=10)
+2025-12-29 18:12:15 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 18:12:15 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 18:12:15 | DEBUG    | log:153 | [normalize_query] 'tra cứu phí giao dịch chuyển khoản đến s...' -> 'Tra cứu phí giao dịch chuyển khoản đến s...'
+2025-12-29 18:12:15 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cứu phí giao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi] - formatted_query: [Tra cứu phí giao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi] - normalized_query: [Tra cứu phí giao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi]
+2025-12-29 18:12:15 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=1.3442, max=25.4538
+2025-12-29 18:12:15 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phí giao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 18:12:15 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phí giao dịch chuyển k...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-29 18:12:15 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phí giao dịch chuyển k...' | Doc: Tra cứu phí giao dịc | Boost: 0.25 | Matched: ['phí']
+2025-12-29 18:12:15 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tra cứu phí giao dịch chuyển k...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch chuyển tiền': 1, 'Tra cứu phí giao dịch': 1}
+2025-12-29 18:12:15 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 18:12:15 | DEBUG    | log:153 | [search_single] Top: Tra cứu phí giao dịch... (score=0.8366, sem=0.8737, bm25=1.0000, boost=0.2500)

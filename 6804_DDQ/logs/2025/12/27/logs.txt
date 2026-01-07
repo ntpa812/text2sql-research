@@ -1,0 +1,4 @@
+12/27, 10:09:30 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 020063535533], score:[0.8321]
+12/27, 10:09:30 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 020063535533
+12/27, 10:09:30 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '020063535533'}]

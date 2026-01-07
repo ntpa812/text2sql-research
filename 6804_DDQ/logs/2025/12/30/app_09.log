@@ -1,0 +1,291 @@
+2025-12-30 09:08:14 | INFO     | log:151 | [search_single] Searching: 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' (top_k=10)
+2025-12-30 09:08:14 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:08:14 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:08:14 | DEBUG    | log:153 | [normalize_query] 'kiểm tra các giao dịch nhận tiền đến số ...' -> 'Kiểm tra các giao dịch nhận tiền đến số ...'
+2025-12-30 09:08:14 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi] - normalized_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi]
+2025-12-30 09:08:14 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6150, max=16.3504
+2025-12-30 09:08:14 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:08:14 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:08:14 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra các giao dịch nhận ti...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:08:14 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:08:14 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8334, sem=0.8691, bm25=1.0000, boost=0.2500)
+2025-12-30 09:09:03 | INFO     | log:151 | [search_single] Searching: 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' (top_k=10)
+2025-12-30 09:09:03 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:09:03 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:09:03 | DEBUG    | log:153 | [normalize_query] 'kiểm tra các giao dịch nhận tiền đến số ...' -> 'Kiểm tra các giao dịch nhận tiền đến số ...'
+2025-12-30 09:09:03 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi] - normalized_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi]
+2025-12-30 09:09:03 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6150, max=16.3504
+2025-12-30 09:09:03 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:09:03 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:09:03 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra các giao dịch nhận ti...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:09:03 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:09:03 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8334, sem=0.8691, bm25=1.0000, boost=0.2500)
+2025-12-30 09:09:45 | INFO     | log:151 | [search_single] Searching: 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' (top_k=10)
+2025-12-30 09:09:45 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:09:45 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:09:45 | DEBUG    | log:153 | [normalize_query] 'kiểm tra các giao dịch nhận tiền đến số ...' -> 'Kiểm tra các giao dịch nhận tiền đến số ...'
+2025-12-30 09:09:45 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi] - normalized_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi]
+2025-12-30 09:09:45 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6150, max=16.3504
+2025-12-30 09:09:45 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:09:45 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:09:45 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra các giao dịch nhận ti...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:09:45 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:09:45 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8334, sem=0.8691, bm25=1.0000, boost=0.2500)
+2025-12-30 09:10:57 | INFO     | log:151 | [search_single] Searching: 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' (top_k=10)
+2025-12-30 09:10:57 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:10:57 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:10:57 | DEBUG    | log:153 | [normalize_query] 'kiểm tra các giao dịch nhận tiền đến số ...' -> 'Kiểm tra các giao dịch nhận tiền đến số ...'
+2025-12-30 09:10:57 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi] - normalized_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi]
+2025-12-30 09:10:57 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6150, max=16.3504
+2025-12-30 09:10:57 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:10:57 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:10:57 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra các giao dịch nhận ti...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:10:57 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:10:57 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8334, sem=0.8691, bm25=1.0000, boost=0.2500)
+2025-12-30 09:11:49 | INFO     | log:151 | [search_single] Searching: 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' (top_k=10)
+2025-12-30 09:11:49 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:11:49 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:11:49 | DEBUG    | log:153 | [normalize_query] 'kiểm tra các giao dịch nhận tiền đến số ...' -> 'Kiểm tra các giao dịch nhận tiền đến số ...'
+2025-12-30 09:11:49 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi] - normalized_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi]
+2025-12-30 09:11:49 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6150, max=16.3504
+2025-12-30 09:11:49 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:11:49 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:11:49 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra các giao dịch nhận ti...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:11:49 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:11:49 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8334, sem=0.8691, bm25=1.0000, boost=0.2500)
+2025-12-30 09:12:21 | INFO     | log:151 | [search_single] Searching: 'phí chuyển khoản qua app là bao nhiêu?...' (top_k=10)
+2025-12-30 09:12:21 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:12:21 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:12:21 | DEBUG    | log:153 | [normalize_query] 'phí chuyển khoản qua app là bao nhiêu?...' -> 'Phí chuyển khoản qua app là bao nhiêu...'
+2025-12-30 09:12:21 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [phí chuyển khoản qua app là bao nhiêu?] - formatted_query: [Phí chuyển khoản qua app là bao nhiêu] - normalized_query: [Phí chuyển khoản qua app là bao nhiêu]
+2025-12-30 09:12:21 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1812, max=14.6983
+2025-12-30 09:12:21 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Phí chuyển khoản qua app là ba...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-30 09:12:21 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Phí chuyển khoản qua app là ba...' | Doc: Tra cứu phí giao dịc | Boost: 0.25 | Matched: ['phí']
+2025-12-30 09:12:21 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Phí chuyển khoản qua app là ba...' | Scores: {'Tra cứu giao dịch chuyển tiền': 1, 'Tra cứu phí giao dịch': 1}
+2025-12-30 09:12:21 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:12:21 | DEBUG    | log:153 | [search_single] Top: Tra cứu phí giao dịch... (score=0.8210, sem=0.8514, bm25=1.0000, boost=0.2500)
+2025-12-30 09:12:24 | INFO     | log:151 | [search_single] Searching: 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' (top_k=10)
+2025-12-30 09:12:24 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:12:24 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:12:24 | DEBUG    | log:153 | [normalize_query] 'kiểm tra các giao dịch nhận tiền đến số ...' -> 'Kiểm tra các giao dịch nhận tiền đến số ...'
+2025-12-30 09:12:24 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi] - normalized_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi]
+2025-12-30 09:12:24 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6150, max=16.3504
+2025-12-30 09:12:24 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:12:24 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:12:24 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra các giao dịch nhận ti...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:12:24 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:12:24 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8334, sem=0.8691, bm25=1.0000, boost=0.2500)
+2025-12-30 09:12:59 | INFO     | log:151 | [search_single] Searching: 'phí chuyển khoản qua app là bao nhiêu?...' (top_k=10)
+2025-12-30 09:12:59 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:12:59 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:12:59 | DEBUG    | log:153 | [normalize_query] 'phí chuyển khoản qua app là bao nhiêu?...' -> 'Phí chuyển khoản qua app là bao nhiêu...'
+2025-12-30 09:12:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [phí chuyển khoản qua app là bao nhiêu?] - formatted_query: [Phí chuyển khoản qua app là bao nhiêu] - normalized_query: [Phí chuyển khoản qua app là bao nhiêu]
+2025-12-30 09:12:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1812, max=14.6983
+2025-12-30 09:12:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Phí chuyển khoản qua app là ba...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-30 09:12:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Phí chuyển khoản qua app là ba...' | Doc: Tra cứu phí giao dịc | Boost: 0.25 | Matched: ['phí']
+2025-12-30 09:12:59 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Phí chuyển khoản qua app là ba...' | Scores: {'Tra cứu giao dịch chuyển tiền': 1, 'Tra cứu phí giao dịch': 1}
+2025-12-30 09:12:59 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:12:59 | DEBUG    | log:153 | [search_single] Top: Tra cứu phí giao dịch... (score=0.8210, sem=0.8514, bm25=1.0000, boost=0.2500)
+2025-12-30 09:13:25 | INFO     | log:151 | [search_single] Searching: 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' (top_k=10)
+2025-12-30 09:13:25 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:13:25 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:13:25 | DEBUG    | log:153 | [normalize_query] 'kiểm tra các giao dịch nhận tiền đến số ...' -> 'Kiểm tra các giao dịch nhận tiền đến số ...'
+2025-12-30 09:13:25 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi] - normalized_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi]
+2025-12-30 09:13:25 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6150, max=16.3504
+2025-12-30 09:13:25 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:13:25 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:13:25 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra các giao dịch nhận ti...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:13:25 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:13:25 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8334, sem=0.8691, bm25=1.0000, boost=0.2500)
+2025-12-30 09:13:46 | INFO     | log:151 | [search_single] Searching: 'phí chuyển khoản qua app là bao nhiêu?phí chuyển k...' (top_k=10)
+2025-12-30 09:13:46 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:13:46 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:13:46 | DEBUG    | log:153 | [normalize_query] 'phí chuyển khoản qua app là bao nhiêu?ph...' -> 'Phí chuyển khoản qua app là bao nhiêu?ph...'
+2025-12-30 09:13:46 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [phí chuyển khoản qua app là bao nhiêu?phí chuyển khoản qua app là bao nhiêu?] - formatted_query: [Phí chuyển khoản qua app là bao nhiêu?phí chuyển khoản qua app là bao nhiêu] - normalized_query: [Phí chuyển khoản qua app là bao nhiêu?phí chuyển khoản qua app là bao nhiêu]
+2025-12-30 09:13:46 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1812, max=14.6983
+2025-12-30 09:13:46 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Phí chuyển khoản qua app là ba...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-30 09:13:46 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Phí chuyển khoản qua app là ba...' | Doc: Tra cứu phí giao dịc | Boost: 0.25 | Matched: ['phí']
+2025-12-30 09:13:46 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Phí chuyển khoản qua app là ba...' | Scores: {'Tra cứu giao dịch chuyển tiền': 1, 'Tra cứu phí giao dịch': 1}
+2025-12-30 09:13:46 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:13:46 | DEBUG    | log:153 | [search_single] Top: Tra cứu phí giao dịch... (score=0.8228, sem=0.8540, bm25=1.0000, boost=0.2500)
+2025-12-30 09:14:47 | INFO     | log:151 | [search_single] Searching: 'phí chuyển khoản qua app là bao nhiêu?...' (top_k=10)
+2025-12-30 09:14:47 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:14:47 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:14:47 | DEBUG    | log:153 | [normalize_query] 'phí chuyển khoản qua app là bao nhiêu?...' -> 'Phí chuyển khoản qua app là bao nhiêu...'
+2025-12-30 09:14:47 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [phí chuyển khoản qua app là bao nhiêu?] - formatted_query: [Phí chuyển khoản qua app là bao nhiêu] - normalized_query: [Phí chuyển khoản qua app là bao nhiêu]
+2025-12-30 09:14:47 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1812, max=14.6983
+2025-12-30 09:14:47 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Phí chuyển khoản qua app là ba...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-30 09:14:47 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Phí chuyển khoản qua app là ba...' | Doc: Tra cứu phí giao dịc | Boost: 0.25 | Matched: ['phí']
+2025-12-30 09:14:47 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Phí chuyển khoản qua app là ba...' | Scores: {'Tra cứu giao dịch chuyển tiền': 1, 'Tra cứu phí giao dịch': 1}
+2025-12-30 09:14:47 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:14:47 | DEBUG    | log:153 | [search_single] Top: Tra cứu phí giao dịch... (score=0.8210, sem=0.8514, bm25=1.0000, boost=0.2500)
+2025-12-30 09:15:08 | INFO     | log:151 | [search_single] Searching: 'phí giao dịch liên ngân hàng là bao nhiêu?...' (top_k=10)
+2025-12-30 09:15:08 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:15:08 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:15:08 | DEBUG    | log:153 | [normalize_query] 'phí giao dịch liên ngân hàng là bao nhiê...' -> 'Phí giao dịch liên ngân hàng là bao nhiê...'
+2025-12-30 09:15:08 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [phí giao dịch liên ngân hàng là bao nhiêu?] - formatted_query: [Phí giao dịch liên ngân hàng là bao nhiêu] - normalized_query: [Phí giao dịch liên ngân hàng là bao nhiêu]
+2025-12-30 09:15:08 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1342, max=23.6714
+2025-12-30 09:15:08 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Phí giao dịch liên ngân hàng l...' | Doc: Tra cứu giao dịch th | Boost: 0.25 | Matched: ['liên ngân hàng']
+2025-12-30 09:15:08 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Phí giao dịch liên ngân hàng l...' | Doc: Tra cứu phí giao dịc | Boost: 0.25 | Matched: ['phí']
+2025-12-30 09:15:08 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Phí giao dịch liên ngân hàng l...' | Scores: {'Tra cứu giao dịch theo loại giao dịch': 1, 'Tra cứu phí giao dịch': 1}
+2025-12-30 09:15:08 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:15:08 | DEBUG    | log:153 | [search_single] Top: Tra cứu phí giao dịch... (score=0.8346, sem=0.8708, bm25=1.0000, boost=0.2500)
+2025-12-30 09:19:18 | INFO     | log:151 | [search_single] Searching: 'phí giao dịch liên ngân hàng là bao nhiêu?...' (top_k=10)
+2025-12-30 09:19:18 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:19:18 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:19:18 | DEBUG    | log:153 | [normalize_query] 'phí giao dịch liên ngân hàng là bao nhiê...' -> 'Phí giao dịch liên ngân hàng là bao nhiê...'
+2025-12-30 09:19:18 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [phí giao dịch liên ngân hàng là bao nhiêu?] - formatted_query: [Phí giao dịch liên ngân hàng là bao nhiêu] - normalized_query: [Phí giao dịch liên ngân hàng là bao nhiêu]
+2025-12-30 09:19:18 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1342, max=23.6714
+2025-12-30 09:19:18 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Phí giao dịch liên ngân hàng l...' | Doc: Tra cứu giao dịch th | Boost: 0.25 | Matched: ['liên ngân hàng']
+2025-12-30 09:19:18 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Phí giao dịch liên ngân hàng l...' | Doc: Tra cứu phí giao dịc | Boost: 0.25 | Matched: ['phí']
+2025-12-30 09:19:18 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Phí giao dịch liên ngân hàng l...' | Scores: {'Tra cứu giao dịch theo loại giao dịch': 1, 'Tra cứu phí giao dịch': 1}
+2025-12-30 09:19:18 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:19:18 | DEBUG    | log:153 | [search_single] Top: Tra cứu phí giao dịch... (score=0.8346, sem=0.8708, bm25=1.0000, boost=0.2500)
+2025-12-30 09:19:56 | INFO     | log:151 | [search_single] Searching: 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' (top_k=10)
+2025-12-30 09:19:56 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:19:56 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:19:56 | DEBUG    | log:153 | [normalize_query] 'kiểm tra các giao dịch nhận tiền đến số ...' -> 'Kiểm tra các giao dịch nhận tiền đến số ...'
+2025-12-30 09:19:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi] - normalized_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi]
+2025-12-30 09:19:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6150, max=16.3504
+2025-12-30 09:19:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:19:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:19:56 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra các giao dịch nhận ti...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:19:56 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:19:56 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8334, sem=0.8691, bm25=1.0000, boost=0.2500)
+2025-12-30 09:25:59 | INFO     | log:151 | [search_single] Searching: 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' (top_k=10)
+2025-12-30 09:25:59 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:25:59 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:25:59 | DEBUG    | log:153 | [normalize_query] 'kiểm tra các giao dịch nhận tiền đến số ...' -> 'Kiểm tra các giao dịch nhận tiền đến số ...'
+2025-12-30 09:25:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi] - normalized_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi]
+2025-12-30 09:25:59 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6150, max=16.3504
+2025-12-30 09:25:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:25:59 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:25:59 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra các giao dịch nhận ti...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:25:59 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:25:59 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8334, sem=0.8691, bm25=1.0000, boost=0.2500)
+2025-12-30 09:30:40 | INFO     | log:151 | [search_single] Searching: 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' (top_k=10)
+2025-12-30 09:30:40 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:30:40 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:30:40 | DEBUG    | log:153 | [normalize_query] 'kiểm tra các giao dịch nhận tiền đến số ...' -> 'Kiểm tra các giao dịch nhận tiền đến số ...'
+2025-12-30 09:30:40 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi] - normalized_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi]
+2025-12-30 09:30:40 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6150, max=16.3504
+2025-12-30 09:30:40 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:30:40 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:30:40 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra các giao dịch nhận ti...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:30:40 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:30:40 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8334, sem=0.8691, bm25=1.0000, boost=0.2500)
+2025-12-30 09:31:58 | INFO     | log:151 | [search_single] Searching: 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' (top_k=10)
+2025-12-30 09:31:58 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:31:58 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:31:58 | DEBUG    | log:153 | [normalize_query] 'kiểm tra các giao dịch nhận tiền đến số ...' -> 'Kiểm tra các giao dịch nhận tiền đến số ...'
+2025-12-30 09:31:58 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi] - normalized_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi]
+2025-12-30 09:31:58 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6150, max=16.3504
+2025-12-30 09:31:58 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:31:58 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:31:58 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra các giao dịch nhận ti...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:31:58 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:31:58 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8334, sem=0.8691, bm25=1.0000, boost=0.2500)
+2025-12-30 09:33:27 | INFO     | log:151 | [search_single] Searching: 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' (top_k=10)
+2025-12-30 09:33:27 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:33:27 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:33:27 | DEBUG    | log:153 | [normalize_query] 'kiểm tra các giao dịch nhận tiền đến số ...' -> 'Kiểm tra các giao dịch nhận tiền đến số ...'
+2025-12-30 09:33:27 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi] - normalized_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi]
+2025-12-30 09:33:27 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6150, max=16.3504
+2025-12-30 09:33:27 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:33:27 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:33:27 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra các giao dịch nhận ti...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:33:27 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:33:27 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8334, sem=0.8691, bm25=1.0000, boost=0.2500)
+2025-12-30 09:35:42 | INFO     | log:151 | [search_single] Searching: 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' (top_k=10)
+2025-12-30 09:35:42 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:35:42 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:35:42 | DEBUG    | log:153 | [normalize_query] 'kiểm tra các giao dịch nhận tiền đến số ...' -> 'Kiểm tra các giao dịch nhận tiền đến số ...'
+2025-12-30 09:35:42 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi] - normalized_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi]
+2025-12-30 09:35:42 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6150, max=16.3504
+2025-12-30 09:35:42 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:35:42 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:35:42 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra các giao dịch nhận ti...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:35:42 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:35:42 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8334, sem=0.8691, bm25=1.0000, boost=0.2500)
+2025-12-30 09:36:28 | INFO     | log:151 | [search_single] Searching: 'kiểm tra trạng thái lỗi, thời gian xác thực, quy t...' (top_k=10)
+2025-12-30 09:36:28 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:36:28 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:36:28 | DEBUG    | log:153 | [normalize_query] 'kiểm tra trạng thái lỗi, thời gian xác t...' -> 'Kiểm tra trạng thái lỗi, thời gian xác t...'
+2025-12-30 09:36:28 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra trạng thái lỗi, thời gian xác thực, quy trình thanh toán] - formatted_query: [Kiểm tra trạng thái lỗi, thời gian xác thực, quy trình thanh toán] - normalized_query: [Kiểm tra trạng thái lỗi, thời gian xác thực, quy trình thanh toán]
+2025-12-30 09:36:28 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1201, max=15.9893
+2025-12-30 09:36:28 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra trạng thái lỗi, thời ...' | Doc: Tra cứu giao dịch th | Boost: 0.25 | Matched: ['trạng thái']
+2025-12-30 09:36:28 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra trạng thái lỗi, thời ...' | Doc: Tra cứu giao dịch th | Boost: 0.25 | Matched: ['thanh toán']
+2025-12-30 09:36:28 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra trạng thái lỗi, thời ...' | Doc: Tra cứu giao dịch th | Boost: 0.25 | Matched: ['thanh toán']
+2025-12-30 09:36:28 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Kiểm tra trạng thái lỗi, thời ...' | Scores: {'Tra cứu giao dịch theo trạng thái': 1, 'Tra cứu giao dịch theo loại giao dịch': 1, 'Tra cứu giao dịch thanh toán hóa đơn': 1}
+2025-12-30 09:36:28 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:36:28 | DEBUG    | log:153 | [search_single] Top: Tra cứu giao dịch theo trạng thái... (score=0.8384, sem=0.8763, bm25=1.0000, boost=0.2500)
+2025-12-30 09:37:21 | INFO     | log:151 | [search_single] Searching: 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' (top_k=10)
+2025-12-30 09:37:21 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:37:21 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:37:21 | DEBUG    | log:153 | [normalize_query] 'kiểm tra các giao dịch nhận tiền đến số ...' -> 'Kiểm tra các giao dịch nhận tiền đến số ...'
+2025-12-30 09:37:21 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi] - normalized_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi]
+2025-12-30 09:37:21 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6150, max=16.3504
+2025-12-30 09:37:21 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:37:21 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:37:21 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra các giao dịch nhận ti...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:37:21 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:37:21 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8334, sem=0.8691, bm25=1.0000, boost=0.2500)
+2025-12-30 09:37:37 | INFO     | log:151 | [search_single] Searching: 'kiểm tra các giao dịch nhận tiền đến số tài khoản ...' (top_k=10)
+2025-12-30 09:37:37 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:37:37 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:37:37 | DEBUG    | log:153 | [normalize_query] 'kiểm tra các giao dịch nhận tiền đến số ...' -> 'Kiểm tra các giao dịch nhận tiền đến số ...'
+2025-12-30 09:37:37 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi] - normalized_query: [Kiểm tra các giao dịch nhận tiền đến số tài khoản 2008698951018 của tôi]
+2025-12-30 09:37:37 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6150, max=16.3504
+2025-12-30 09:37:37 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:37:37 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Kiểm tra các giao dịch nhận ti...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:37:37 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Kiểm tra các giao dịch nhận ti...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:37:37 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:37:37 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8334, sem=0.8691, bm25=1.0000, boost=0.2500)
+2025-12-30 09:38:38 | INFO     | log:151 | [search_single] Searching: 'xem chi tiết các giao dịch nhận tiền của tôi?...' (top_k=10)
+2025-12-30 09:38:38 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:38:38 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:38:38 | DEBUG    | log:153 | [normalize_query] 'xem chi tiết các giao dịch nhận tiền của...' -> 'Xem chi tiết các giao dịch nhận tiền của...'
+2025-12-30 09:38:38 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem chi tiết các giao dịch nhận tiền của tôi?] - formatted_query: [Xem chi tiết các giao dịch nhận tiền của tôi] - normalized_query: [Xem chi tiết các giao dịch nhận tiền của tôi]
+2025-12-30 09:38:38 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=3.5303, max=24.8833
+2025-12-30 09:38:38 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem chi tiết các giao dịch nhậ...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:38:38 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem chi tiết các giao dịch nhậ...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:38:38 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:38:38 | DEBUG    | log:153 | [search_single] Top: Tra cứu chi tiết một giao dịch cụ thể... (score=0.8078, sem=0.8683, bm25=1.0000, boost=0.0000)
+2025-12-30 09:38:44 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-30 09:38:44 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-30 09:38:44 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:38:44 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:38:44 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-30 09:39:28 | INFO     | log:151 | [search_single] Searching: 'xem chi tiết các giao dịch nhận tiền tới số tài kh...' (top_k=10)
+2025-12-30 09:39:28 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:39:28 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:39:28 | DEBUG    | log:153 | [normalize_query] 'xem chi tiết các giao dịch nhận tiền tới...' -> 'Xem chi tiết các giao dịch nhận tiền tới...'
+2025-12-30 09:39:28 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem chi tiết các giao dịch nhận tiền tới số tài khoản 2008699091010] - formatted_query: [Xem chi tiết các giao dịch nhận tiền tới số tài khoản 2008699091010] - normalized_query: [Xem chi tiết các giao dịch nhận tiền tới số tài khoản 2008699091010]
+2025-12-30 09:39:28 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=3.8626, max=24.9991
+2025-12-30 09:39:28 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem chi tiết các giao dịch nhậ...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:39:28 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem chi tiết các giao dịch nhậ...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:39:28 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem chi tiết các giao dịch nhậ...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:39:28 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:39:28 | DEBUG    | log:153 | [search_single] Top: Tra cứu chi tiết một giao dịch cụ thể... (score=0.8030, sem=0.8614, bm25=1.0000, boost=0.0000)
+2025-12-30 09:49:28 | INFO     | log:151 | [search_single] Searching: 'xem chi tiết các giao dịch nhận tiền tới số tài kh...' (top_k=10)
+2025-12-30 09:49:28 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:49:28 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:49:28 | DEBUG    | log:153 | [normalize_query] 'xem chi tiết các giao dịch nhận tiền tới...' -> 'Xem chi tiết các giao dịch nhận tiền tới...'
+2025-12-30 09:49:28 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem chi tiết các giao dịch nhận tiền tới số tài khoản 2924962372] - formatted_query: [Xem chi tiết các giao dịch nhận tiền tới số tài khoản 2924962372] - normalized_query: [Xem chi tiết các giao dịch nhận tiền tới số tài khoản 2924962372]
+2025-12-30 09:49:28 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=3.8626, max=24.9991
+2025-12-30 09:49:28 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem chi tiết các giao dịch nhậ...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:49:28 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem chi tiết các giao dịch nhậ...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:49:28 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem chi tiết các giao dịch nhậ...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:49:28 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:49:28 | DEBUG    | log:153 | [search_single] Top: Tra cứu chi tiết một giao dịch cụ thể... (score=0.8056, sem=0.8651, bm25=1.0000, boost=0.0000)
+2025-12-30 09:50:44 | INFO     | log:151 | [search_single] Searching: 'xem chi tiết các giao dịch nhận tiền tới số tài kh...' (top_k=10)
+2025-12-30 09:50:44 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-30 09:50:44 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-30 09:50:44 | DEBUG    | log:153 | [normalize_query] 'xem chi tiết các giao dịch nhận tiền tới...' -> 'Xem chi tiết các giao dịch nhận tiền tới...'
+2025-12-30 09:50:44 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem chi tiết các giao dịch nhận tiền tới số tài khoản 065656498756] - formatted_query: [Xem chi tiết các giao dịch nhận tiền tới số tài khoản 065656498756] - normalized_query: [Xem chi tiết các giao dịch nhận tiền tới số tài khoản 065656498756]
+2025-12-30 09:50:44 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=3.8626, max=24.9991
+2025-12-30 09:50:44 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem chi tiết các giao dịch nhậ...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-30 09:50:44 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem chi tiết các giao dịch nhậ...' | Doc: Tra cứu giao dịch nh | Boost: 0.50 | Matched: ['nhận tiền', 'nhận']
+2025-12-30 09:50:44 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem chi tiết các giao dịch nhậ...' -> Tra cứu giao dịch nhận tiền (score=2)
+2025-12-30 09:50:44 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-30 09:50:44 | DEBUG    | log:153 | [search_single] Top: Tra cứu chi tiết một giao dịch cụ thể... (score=0.8039, sem=0.8627, bm25=1.0000, boost=0.0000)

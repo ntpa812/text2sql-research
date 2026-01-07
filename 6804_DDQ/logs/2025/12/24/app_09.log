@@ -1,0 +1,81 @@
+2025-12-24 09:14:31 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-24 09:14:31 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-24 09:14:31 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 09:14:31 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 09:14:31 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-24 09:14:32 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-24 09:14:32 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 09:14:32 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 09:14:32 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-24 09:16:46 | INFO     | log:151 | [search_single] Searching: 'tôi muốn xem lịch sửa giao dịch của tài khoản 0334...' (top_k=10)
+2025-12-24 09:16:46 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 09:16:46 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 09:16:46 | DEBUG    | log:153 | [normalize_query] 'tôi muốn xem lịch sửa giao dịch của tài ...' -> 'Tôi muốn xem lịch sửa giao dịch của tài ...'
+2025-12-24 09:16:46 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tôi muốn xem lịch sửa giao dịch của tài khoản 0334921271] - formatted_query: [Tôi muốn xem lịch sửa giao dịch của tài khoản 0334921271] - normalized_query: [Tôi muốn xem lịch sửa giao dịch của tài khoản 0334921271]
+2025-12-24 09:16:46 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6546, max=14.3736
+2025-12-24 09:16:46 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tôi muốn xem lịch sửa giao dịc...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-24 09:16:46 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tôi muốn xem lịch sửa giao dịc...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-24 09:16:46 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-24 09:16:46 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8294, sem=0.8634, bm25=1.0000, boost=0.2500)
+2025-12-24 09:19:38 | INFO     | log:151 | [search_single] Searching: 'tôi muốn xem lịch sửa giao dịch của tài khoản 0334...' (top_k=10)
+2025-12-24 09:19:38 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 09:19:38 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 09:19:38 | DEBUG    | log:153 | [normalize_query] 'tôi muốn xem lịch sửa giao dịch của tài ...' -> 'Tôi muốn xem lịch sửa giao dịch của tài ...'
+2025-12-24 09:19:38 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tôi muốn xem lịch sửa giao dịch của tài khoản 0334921271] - formatted_query: [Tôi muốn xem lịch sửa giao dịch của tài khoản 0334921271] - normalized_query: [Tôi muốn xem lịch sửa giao dịch của tài khoản 0334921271]
+2025-12-24 09:19:38 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6546, max=14.3736
+2025-12-24 09:19:38 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tôi muốn xem lịch sửa giao dịc...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-24 09:19:38 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tôi muốn xem lịch sửa giao dịc...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-24 09:19:38 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-24 09:19:38 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8294, sem=0.8634, bm25=1.0000, boost=0.2500)
+2025-12-24 09:19:56 | INFO     | log:151 | [search_single] Searching: 'tôi muốn xem lịch sửa giao dịch của tài khoản 2008...' (top_k=10)
+2025-12-24 09:19:56 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 09:19:56 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 09:19:56 | DEBUG    | log:153 | [normalize_query] 'tôi muốn xem lịch sửa giao dịch của tài ...' -> 'Tôi muốn xem lịch sửa giao dịch của tài ...'
+2025-12-24 09:19:56 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tôi muốn xem lịch sửa giao dịch của tài khoản 2008891241014] - formatted_query: [Tôi muốn xem lịch sửa giao dịch của tài khoản 2008891241014] - normalized_query: [Tôi muốn xem lịch sửa giao dịch của tài khoản 2008891241014]
+2025-12-24 09:19:56 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6546, max=14.3736
+2025-12-24 09:19:56 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tôi muốn xem lịch sửa giao dịc...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-24 09:19:56 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tôi muốn xem lịch sửa giao dịc...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-24 09:19:56 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-24 09:19:56 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8350, sem=0.8715, bm25=1.0000, boost=0.2500)
+2025-12-24 09:40:35 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-24 09:40:35 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-24 09:40:35 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 09:40:35 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 09:40:35 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-24 09:40:37 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-24 09:40:37 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 09:40:37 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 09:40:37 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-24 09:41:11 | INFO     | log:151 | [search_single] Searching: 'tổng số tiền đã giao dịch trong tháng này là bao n...' (top_k=10)
+2025-12-24 09:41:11 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 09:41:11 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 09:41:11 | DEBUG    | log:153 | [normalize_query] 'tổng số tiền đã giao dịch trong tháng nà...' -> 'Tổng số tiền đã giao dịch trong tháng nà...'
+2025-12-24 09:41:11 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tổng số tiền đã giao dịch trong tháng này là bao nhiêu?] - formatted_query: [Tổng số tiền đã giao dịch trong tháng này là bao nhiêu] - normalized_query: [Tổng số tiền đã giao dịch trong tháng này là bao nhiêu]
+2025-12-24 09:41:11 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.3512, max=26.9267
+2025-12-24 09:41:11 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tổng số tiền đã giao dịch tron...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tháng']
+2025-12-24 09:41:11 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tổng số tiền đã giao dịch tron...' | Doc: Tổng hợp số tiền gia | Boost: 0.25 | Matched: ['tổng']
+2025-12-24 09:41:11 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tổng số tiền đã giao dịch tron...' | Scores: {'Tra cứu lịch sử giao dịch theo khoảng thời gian': 1, 'Tổng hợp số tiền giao dịch': 1}
+2025-12-24 09:41:11 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-24 09:41:11 | DEBUG    | log:153 | [search_single] Top: Tổng hợp số tiền giao dịch... (score=0.8637, sem=0.9124, bm25=1.0000, boost=0.2500)
+2025-12-24 09:43:16 | INFO     | log:151 | [search_single] Searching: 'tổng số tiền đã giao dịch trong tháng trước là bao...' (top_k=10)
+2025-12-24 09:43:16 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 09:43:16 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 09:43:16 | DEBUG    | log:153 | [normalize_query] 'tổng số tiền đã giao dịch trong tháng tr...' -> 'Tổng số tiền đã giao dịch trong tháng tr...'
+2025-12-24 09:43:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tổng số tiền đã giao dịch trong tháng trước là bao nhiêu?] - formatted_query: [Tổng số tiền đã giao dịch trong tháng trước là bao nhiêu] - normalized_query: [Tổng số tiền đã giao dịch trong tháng trước là bao nhiêu]
+2025-12-24 09:43:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.3512, max=22.9747
+2025-12-24 09:43:16 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tổng số tiền đã giao dịch tron...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tháng']
+2025-12-24 09:43:16 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tổng số tiền đã giao dịch tron...' | Doc: Tổng hợp số tiền gia | Boost: 0.25 | Matched: ['tổng']
+2025-12-24 09:43:16 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tổng số tiền đã giao dịch tron...' | Scores: {'Tra cứu lịch sử giao dịch theo khoảng thời gian': 1, 'Tổng hợp số tiền giao dịch': 1}
+2025-12-24 09:43:16 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-24 09:43:16 | DEBUG    | log:153 | [search_single] Top: Tổng hợp số tiền giao dịch... (score=0.8617, sem=0.9095, bm25=1.0000, boost=0.2500)
+2025-12-24 09:43:40 | INFO     | log:151 | [search_single] Searching: 'tổng số tiền đã giao dịch trong năm 2024 là bao nh...' (top_k=10)
+2025-12-24 09:43:40 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-24 09:43:40 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-24 09:43:40 | DEBUG    | log:153 | [normalize_query] 'tổng số tiền đã giao dịch trong năm 2024...' -> 'Tổng số tiền đã giao dịch trong năm 2024...'
+2025-12-24 09:43:40 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tổng số tiền đã giao dịch trong năm 2024 là bao nhiêu?] - formatted_query: [Tổng số tiền đã giao dịch trong năm 2024 là bao nhiêu] - normalized_query: [Tổng số tiền đã giao dịch trong năm 2024 là bao nhiêu]
+2025-12-24 09:43:40 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.3512, max=23.1966
+2025-12-24 09:43:40 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tổng số tiền đã giao dịch tron...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['năm']
+2025-12-24 09:43:40 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tổng số tiền đã giao dịch tron...' | Doc: Tổng hợp số tiền gia | Boost: 0.25 | Matched: ['tổng']
+2025-12-24 09:43:40 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tổng số tiền đã giao dịch tron...' | Scores: {'Tra cứu lịch sử giao dịch theo khoảng thời gian': 1, 'Tổng hợp số tiền giao dịch': 1}
+2025-12-24 09:43:40 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-24 09:43:40 | DEBUG    | log:153 | [search_single] Top: Tổng hợp số tiền giao dịch... (score=0.8212, sem=0.8518, bm25=1.0000, boost=0.2500)

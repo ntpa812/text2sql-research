@@ -1,0 +1,116 @@
+12/29, 13:53:05 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 2008698951018], score:[0.8325]
+12/29, 13:53:05 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 2008698951018
+12/29, 13:53:05 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '2008698951018'}]
+12/29, 13:55:04 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[cho tôi xem lịch sử giao dịch của tài khoản 2008698951018], score:[0.8325]
+12/29, 13:55:04 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 2008698951018
+12/29, 13:55:04 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '2008698951018'}]
+12/29, 14:48:16 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 2008698951018], score:[0.8325]
+12/29, 14:48:16 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 2008698951018
+12/29, 14:48:16 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '2008698951018'}]
+12/29, 15:02:28 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 020063535533], score:[0.8321]
+12/29, 15:02:28 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 020063535533
+12/29, 15:02:28 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '020063535533'}]
+12/29, 15:11:46 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[cho tôi xem lịch sử giao dịch của tài khoản 2008698951018], score:[0.8325]
+12/29, 15:11:46 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 2008698951018
+12/29, 15:11:46 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '2008698951018'}]
+12/29, 15:27:43 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 2008698951018], score:[0.8325]
+12/29, 15:27:43 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 2008698951018
+12/29, 15:27:43 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '2008698951018'}]
+12/29, 15:27:57 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 2008698951018], score:[0.8325]
+12/29, 15:27:57 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 2008698951018
+12/29, 15:27:57 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '2008698951018'}]
+12/29, 15:45:25 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[cho tôi xem lịch sử giao dịch của tài khoản 2008698951018], score:[0.8325]
+12/29, 15:45:25 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 2008698951018
+12/29, 15:45:25 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '2008698951018'}]
+12/29, 16:34:10 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 2008698951018], score:[0.8325]
+12/29, 16:34:10 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 2008698951018
+12/29, 16:34:10 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '2008698951018'}]
+12/29, 16:35:01 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu giao dịch theo loại giao dịch], intent: [Tra cứu giao dịch theo loại giao dịch], question:[Tra cứu phỉ gỉao dịch chuyển khoản đến stk 2008698951018  của tôi?], score:[0.802]
+12/29, 16:35:01 [ner_inference] [NER] [QUESTION]: tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi?
+12/29, 16:35:01 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'chuyển khoản'}, {'Số_tài_khoản': '2008698951018'}]
+12/29, 16:35:40 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu giao dịch theo loại giao dịch], intent: [Tra cứu giao dịch theo loại giao dịch], question:[Tra cứu phỉ gỉao dịch chuyển khoản đến stk 2008698951018 của tôi ngày 20/09/2018], score:[0.8013]
+12/29, 16:35:40 [ner_inference] [NER] [QUESTION]: tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018
+12/29, 16:35:40 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'chuyển khoản'}, {'Số_tài_khoản': '2008698951018'}, {'Ngày_giao_dịch': '20/09/2018'}]
+12/29, 16:37:13 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu giao dịch theo loại giao dịch], intent: [Tra cứu giao dịch theo loại giao dịch], question:[Tra cứu phỉ gỉao dịch chuyển khoản đến stk 2008698951018 của tôi ngày 20/09/2018], score:[0.8013]
+12/29, 16:37:13 [ner_inference] [NER] [QUESTION]: tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018
+12/29, 16:37:13 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'chuyển khoản'}, {'Số_tài_khoản': '2008698951018'}, {'Ngày_giao_dịch': '20/09/2018'}]
+12/29, 16:37:32 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 2008698951018], score:[0.8325]
+12/29, 16:37:32 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 2008698951018
+12/29, 16:37:32 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '2008698951018'}]
+12/29, 16:40:30 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu giao dịch theo loại giao dịch], intent: [Tra cứu giao dịch theo loại giao dịch], question:[Tra cứu phỉ gỉao dịch chuyển khoản đến stk 2008698951018 của tôi ngày 20/09/2018], score:[0.8013]
+12/29, 16:40:30 [ner_inference] [NER] [QUESTION]: tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018
+12/29, 16:40:30 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'chuyển khoản'}, {'Số_tài_khoản': '2008698951018'}, {'Ngày_giao_dịch': '20/09/2018'}]
+12/29, 16:41:22 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu giao dịch theo loại giao dịch], intent: [Tra cứu giao dịch theo loại giao dịch], question:[Tra cứu phỉ gỉao dịch chuyển khoản đến stk 2008698951018], score:[0.7954]
+12/29, 16:41:22 [ner_inference] [NER] [QUESTION]: tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018
+12/29, 16:41:22 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'chuyển khoản'}, {'Số_tài_khoản': '2008698951018'}]
+12/29, 16:41:34 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu giao dịch theo loại giao dịch], intent: [Tra cứu giao dịch theo loại giao dịch], question:[Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018], score:[0.7954]
+12/29, 16:41:34 [ner_inference] [NER] [QUESTION]: tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018
+12/29, 16:41:34 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'chuyển khoản'}, {'Số_tài_khoản': '2008698951018'}]
+12/29, 16:42:00 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu giao dịch theo loại giao dịch], intent: [Tra cứu giao dịch theo loại giao dịch], question:[Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018], score:[0.7954]
+12/29, 16:42:00 [ner_inference] [NER] [QUESTION]: tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018
+12/29, 16:42:00 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'chuyển khoản'}, {'Số_tài_khoản': '2008698951018'}]
+12/29, 16:42:19 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu phí giao dịch], intent: [Tra cứu phí giao dịch], question:[Tra cứu phí gỉao dịch chuyển khoản đến số tài khoản 2008698951018], score:[0.8253]
+12/29, 16:42:19 [ner_inference] [NER] [QUESTION]: tra cứu phí gỉao dịch chuyển khoản đến số tài khoản 2008698951018
+12/29, 16:42:19 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'chuyển khoản'}, {'Số_tài_khoản': '2008698951018'}]
+12/29, 16:47:16 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 2008698951018], score:[0.8325]
+12/29, 16:47:16 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 2008698951018
+12/29, 16:47:16 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '2008698951018'}]
+12/29, 16:50:20 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu giao dịch theo loại giao dịch], intent: [Tra cứu giao dịch theo loại giao dịch], question:[Tra cứu phỉ gỉao dịch chuyển khoản đến stk 2008698951018 của tôi ngày 20/09/2018], score:[0.8013]
+12/29, 16:50:20 [ner_inference] [NER] [QUESTION]: tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018
+12/29, 16:50:20 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'chuyển khoản'}, {'Số_tài_khoản': '2008698951018'}, {'Ngày_giao_dịch': '20/09/2018'}]
+12/29, 16:55:43 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu giao dịch theo loại giao dịch], intent: [Tra cứu giao dịch theo loại giao dịch], question:[Tra cứu phỉ gỉao dịch chuyển khoản đến stk 2008698951018 của tôi ], score:[0.802]
+12/29, 16:55:43 [ner_inference] [NER] [QUESTION]: tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi
+12/29, 16:55:43 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'chuyển khoản'}, {'Số_tài_khoản': '2008698951018'}]
+12/29, 16:57:17 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu giao dịch theo loại giao dịch], intent: [Tra cứu giao dịch theo loại giao dịch], question:[tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi], score:[0.802]
+12/29, 16:57:17 [ner_inference] [NER] [QUESTION]: tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi
+12/29, 16:57:17 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'chuyển khoản'}, {'Số_tài_khoản': '2008698951018'}]
+12/29, 17:00:22 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu phí giao dịch], intent: [Tra cứu phí giao dịch], question:[tra cứu phí gỉao dịch chuyển khoản đến stk 2008698951018 của tôi], score:[0.8308]
+12/29, 17:00:22 [ner_inference] [NER] [QUESTION]: tra cứu phí gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi
+12/29, 17:00:22 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'chuyển khoản'}, {'Số_tài_khoản': '2008698951018'}]
+12/29, 17:48:36 [ner_inference] [NER] Initializing NER Service...
+12/29, 17:48:36 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NlpHUST_electra-base-vn_v2...
+12/29, 17:48:36 [ner_inference] [NER] Model loaded successfully on cuda
+12/29, 17:48:36 [ner_inference] [NER] NER Service ready!
+12/29, 17:49:29 [VietnameseNormalizer] Loading Vietnamese Text Corrector model...
+12/29, 17:49:29 [VietnameseNormalizer] Vietnamese Text Corrector model loaded successfully
+12/29, 17:49:30 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'can cu bo luat lao dong 2019 va cac van ban huong ...' -> 'căn cứ bộ luật lao động 2019 và các văn bản hướng ...'
+12/29, 17:50:48 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'tra cứu phí gỉao dịch chuyển khoản đến stk 2008698...' -> 'tra cứu phí giao dịch chuyển khoản đến stk 2008698...'
+12/29, 18:11:18 [ner_inference] [NER] Initializing NER Service...
+12/29, 18:11:18 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NlpHUST_electra-base-vn_v2...
+12/29, 18:11:18 [ner_inference] [NER] Model loaded successfully on cuda
+12/29, 18:11:18 [ner_inference] [NER] NER Service ready!
+12/29, 18:11:44 [VietnameseNormalizer] Loading Vietnamese Text Corrector model...
+12/29, 18:11:45 [VietnameseNormalizer] Vietnamese Text Corrector model loaded successfully
+12/29, 18:11:45 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'tra cứu phí gỉao dịch chuyển khoản đến số tài khoả...' -> 'tra cứu phí giao dịch chuyển khoản đến số tài khoả...'
+12/29, 18:11:45 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu phí giao dịch], intent: [Tra cứu phí giao dịch], question:[tra cứu phí gỉao dịch chuyển khoản đến stk 2008698951018 của tôi], score:[0.8366]
+12/29, 18:11:45 [ner_inference] [NER] [QUESTION]: tra cứu phí giao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi
+12/29, 18:11:45 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'chuyển khoản'}, {'Số_tài_khoản': '2008698951018'}]
+12/29, 18:12:15 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'tra cứu phí gỉao dịch chuyển khoản đến số tài khoả...' -> 'tra cứu phí giao dịch chuyển khoản đến số tài khoả...'
+12/29, 18:12:15 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu phí giao dịch], intent: [Tra cứu phí giao dịch], question:[tra cứu phí gỉao dịch chuyển khoản đến stk 2008698951018 của tôi], score:[0.8366]
+12/29, 18:12:15 [ner_inference] [NER] [QUESTION]: tra cứu phí giao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi
+12/29, 18:12:15 [ner_inference] [NER] [RESULT]: [{'loại_giao_dịch': 'chuyển khoản'}, {'Số_tài_khoản': '2008698951018'}]

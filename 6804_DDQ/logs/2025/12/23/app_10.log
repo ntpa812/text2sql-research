@@ -1,0 +1,67 @@
+2025-12-23 10:27:51 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-23 10:27:53 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-23 10:27:53 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-23 10:27:53 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-23 10:27:53 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-23 10:27:53 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-23 10:27:53 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-23 10:27:53 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-23 10:27:53 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-23 10:27:53 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-23 10:27:57 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-23 10:27:57 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-23 10:27:57 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-23 10:27:57 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-23 10:27:58 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-23 10:27:58 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-23 10:27:58 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-23 10:27:58 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-23 10:29:52 | INFO     | log:151 | [search_single] Searching: 'tông giao dịch tháng trước...' (top_k=10)
+2025-12-23 10:29:52 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-23 10:29:52 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-23 10:29:52 | DEBUG    | log:153 | [normalize_query] 'tông giao dịch tháng trước...' -> 'Tông giao dịch tháng trước...'
+2025-12-23 10:29:52 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tông giao dịch tháng trước] - formatted_query: [Tông giao dịch tháng trước] - normalized_query: [Tông giao dịch tháng trước]
+2025-12-23 10:29:52 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.1007, max=12.3487
+2025-12-23 10:29:52 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tông giao dịch tháng trước...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tháng']
+2025-12-23 10:29:52 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tông giao dịch tháng trước...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-23 10:29:52 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-23 10:29:52 | DEBUG    | log:153 | [search_single] Top: Thống kê giao dịch theo nhóm... (score=0.8139, sem=0.8770, bm25=1.0000, boost=0.0000)
+2025-12-23 10:30:10 | INFO     | log:151 | [search_single] Searching: 'xem thông tin tài khoản 1231231232...' (top_k=10)
+2025-12-23 10:30:10 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-23 10:30:10 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-23 10:30:10 | DEBUG    | log:153 | [normalize_query] 'xem thông tin tài khoản 1231231232...' -> 'Xem thông tin tài khoản 1231231232...'
+2025-12-23 10:30:10 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem thông tin tài khoản 1231231232] - formatted_query: [Xem thông tin tài khoản 1231231232] - normalized_query: [Xem thông tin tài khoản 1231231232]
+2025-12-23 10:30:10 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.6210, max=6.6849
+2025-12-23 10:30:10 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem thông tin tài khoản 123123...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-23 10:30:11 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Xem thông tin tài khoản 123123...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-23 10:30:11 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-23 10:30:11 | DEBUG    | log:153 | [search_single] Top: Tra cứu chi tiết một giao dịch cụ thể... (score=0.7988, sem=0.8555, bm25=1.0000, boost=0.0000)
+2025-12-23 10:56:11 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-23 10:56:11 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-23 10:56:11 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-23 10:56:11 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-23 10:56:11 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-23 10:56:32 | INFO     | log:151 | [search_single] Searching: 'xem các giao dịch chuyển tiền trong tài khoản...' (top_k=10)
+2025-12-23 10:56:32 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-23 10:56:32 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-23 10:56:32 | DEBUG    | log:153 | [normalize_query] 'xem các giao dịch chuyển tiền trong tài ...' -> 'Xem các giao dịch chuyển tiền trong tài ...'
+2025-12-23 10:56:32 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem các giao dịch chuyển tiền trong tài khoản] - formatted_query: [Xem các giao dịch chuyển tiền trong tài khoản] - normalized_query: [Xem các giao dịch chuyển tiền trong tài khoản]
+2025-12-23 10:56:32 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=3.7466, max=27.6150
+2025-12-23 10:56:32 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem các giao dịch chuyển tiền ...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-23 10:56:32 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem các giao dịch chuyển tiền ...' | Doc: Tra cứu giao dịch th | Boost: 0.25 | Matched: ['chuyển tiền']
+2025-12-23 10:56:32 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem các giao dịch chuyển tiền ...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển tiền']
+2025-12-23 10:56:32 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Xem các giao dịch chuyển tiền ...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch theo loại giao dịch': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-23 10:56:32 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-23 10:56:32 | DEBUG    | log:153 | [search_single] Top: Tra cứu giao dịch theo loại giao dịch... (score=0.8702, sem=0.9217, bm25=1.0000, boost=0.2500)
+2025-12-23 10:56:34 | INFO     | log:151 | [search_single] Searching: 'xem các giao dịch chuyển tiền trong tài khoản...' (top_k=10)
+2025-12-23 10:56:34 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-23 10:56:34 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-23 10:56:34 | DEBUG    | log:153 | [normalize_query] 'xem các giao dịch chuyển tiền trong tài ...' -> 'Xem các giao dịch chuyển tiền trong tài ...'
+2025-12-23 10:56:34 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [xem các giao dịch chuyển tiền trong tài khoản] - formatted_query: [Xem các giao dịch chuyển tiền trong tài khoản] - normalized_query: [Xem các giao dịch chuyển tiền trong tài khoản]
+2025-12-23 10:56:34 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=3.7466, max=27.6150
+2025-12-23 10:56:34 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem các giao dịch chuyển tiền ...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-23 10:56:34 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem các giao dịch chuyển tiền ...' | Doc: Tra cứu giao dịch th | Boost: 0.25 | Matched: ['chuyển tiền']
+2025-12-23 10:56:34 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Xem các giao dịch chuyển tiền ...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển tiền']
+2025-12-23 10:56:34 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Xem các giao dịch chuyển tiền ...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch theo loại giao dịch': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-23 10:56:34 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-23 10:56:34 | DEBUG    | log:153 | [search_single] Top: Tra cứu giao dịch theo loại giao dịch... (score=0.8702, sem=0.9217, bm25=1.0000, boost=0.2500)

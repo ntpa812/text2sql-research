@@ -1,0 +1,362 @@
+2025-12-22 09:00:16,936 INFO sqlalchemy.engine.Engine base.py:1846: select pg_catalog.version()
+2025-12-22 09:00:16,937 INFO sqlalchemy.engine.Engine base.py:1846: [raw sql] {}
+2025-12-22 09:00:16,937 INFO sqlalchemy.engine.Engine base.py:1846: select current_schema()
+2025-12-22 09:00:16,938 INFO sqlalchemy.engine.Engine base.py:1846: [raw sql] {}
+2025-12-22 09:00:16,938 INFO sqlalchemy.engine.Engine base.py:1846: show standard_conforming_strings
+2025-12-22 09:00:16,938 INFO sqlalchemy.engine.Engine base.py:1846: [raw sql] {}
+2025-12-22 09:00:16,942 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:16,943 INFO sqlalchemy.engine.Engine base.py:1846: SELECT COUNT(*) FROM pg_database WHERE datname = 'pixeltable'
+2025-12-22 09:00:16,943 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00012s] {}
+2025-12-22 09:00:16,943 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:16,944 INFO pixeltable env.py:499: found database at: postgresql+psycopg://postgres:@/pixeltable?host=/tmp/6804_Intent_DDQ/javis_6804/a4c59b1b19
+2025-12-22 09:00:16,944 INFO pixeltable env.py:582: Created SQLAlchemy engine at: postgresql+psycopg://postgres:@/pixeltable?host=/tmp/6804_Intent_DDQ/javis_6804/a4c59b1b19
+2025-12-22 09:00:16,944 INFO pixeltable env.py:583: Engine dialect: postgresql
+2025-12-22 09:00:16,944 INFO pixeltable env.py:584: Engine driver : psycopg
+2025-12-22 09:00:16,947 INFO sqlalchemy.engine.Engine base.py:1846: select pg_catalog.version()
+2025-12-22 09:00:16,947 INFO sqlalchemy.engine.Engine base.py:1846: [raw sql] {}
+2025-12-22 09:00:16,948 INFO sqlalchemy.engine.Engine base.py:1846: select current_schema()
+2025-12-22 09:00:16,948 INFO sqlalchemy.engine.Engine base.py:1846: [raw sql] {}
+2025-12-22 09:00:16,948 INFO sqlalchemy.engine.Engine base.py:1846: show standard_conforming_strings
+2025-12-22 09:00:16,948 INFO sqlalchemy.engine.Engine base.py:1846: [raw sql] {}
+2025-12-22 09:00:16,949 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:16,950 INFO sqlalchemy.engine.Engine base.py:1846: SHOW TIME ZONE
+2025-12-22 09:00:16,950 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00007s] {}
+2025-12-22 09:00:16,950 INFO pixeltable env.py:589: Database time zone is now: Asia/Ho_Chi_Minh
+2025-12-22 09:00:16,950 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:16,950 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:16,953 INFO sqlalchemy.engine.Engine base.py:1846: SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = %(table_name)s::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[%(param_1)s::VARCHAR, %(param_2)s::VARCHAR, %(param_3)s::VARCHAR, %(param_4)s::VARCHAR, %(param_5)s::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != %(nspname_1)s::VARCHAR
+2025-12-22 09:00:16,953 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00015s] {'table_name': 'systeminfo', 'param_1': 'r', 'param_2': 'p', 'param_3': 'f', 'param_4': 'v', 'param_5': 'm', 'nspname_1': 'pg_catalog'}
+2025-12-22 09:00:16,954 INFO sqlalchemy.engine.Engine base.py:1846: SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = %(table_name)s::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[%(param_1)s::VARCHAR, %(param_2)s::VARCHAR, %(param_3)s::VARCHAR, %(param_4)s::VARCHAR, %(param_5)s::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != %(nspname_1)s::VARCHAR
+2025-12-22 09:00:16,954 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 0.001259s ago] {'table_name': 'dirs', 'param_1': 'r', 'param_2': 'p', 'param_3': 'f', 'param_4': 'v', 'param_5': 'm', 'nspname_1': 'pg_catalog'}
+2025-12-22 09:00:16,954 INFO sqlalchemy.engine.Engine base.py:1846: SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = %(table_name)s::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[%(param_1)s::VARCHAR, %(param_2)s::VARCHAR, %(param_3)s::VARCHAR, %(param_4)s::VARCHAR, %(param_5)s::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != %(nspname_1)s::VARCHAR
+2025-12-22 09:00:16,954 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 0.001656s ago] {'table_name': 'tables', 'param_1': 'r', 'param_2': 'p', 'param_3': 'f', 'param_4': 'v', 'param_5': 'm', 'nspname_1': 'pg_catalog'}
+2025-12-22 09:00:16,955 INFO sqlalchemy.engine.Engine base.py:1846: SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = %(table_name)s::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[%(param_1)s::VARCHAR, %(param_2)s::VARCHAR, %(param_3)s::VARCHAR, %(param_4)s::VARCHAR, %(param_5)s::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != %(nspname_1)s::VARCHAR
+2025-12-22 09:00:16,955 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 0.002007s ago] {'table_name': 'tableversions', 'param_1': 'r', 'param_2': 'p', 'param_3': 'f', 'param_4': 'v', 'param_5': 'm', 'nspname_1': 'pg_catalog'}
+2025-12-22 09:00:16,955 INFO sqlalchemy.engine.Engine base.py:1846: SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = %(table_name)s::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[%(param_1)s::VARCHAR, %(param_2)s::VARCHAR, %(param_3)s::VARCHAR, %(param_4)s::VARCHAR, %(param_5)s::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != %(nspname_1)s::VARCHAR
+2025-12-22 09:00:16,955 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 0.002304s ago] {'table_name': 'tableschemaversions', 'param_1': 'r', 'param_2': 'p', 'param_3': 'f', 'param_4': 'v', 'param_5': 'm', 'nspname_1': 'pg_catalog'}
+2025-12-22 09:00:16,955 INFO sqlalchemy.engine.Engine base.py:1846: SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = %(table_name)s::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[%(param_1)s::VARCHAR, %(param_2)s::VARCHAR, %(param_3)s::VARCHAR, %(param_4)s::VARCHAR, %(param_5)s::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != %(nspname_1)s::VARCHAR
+2025-12-22 09:00:16,955 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 0.002576s ago] {'table_name': 'pendingtableops', 'param_1': 'r', 'param_2': 'p', 'param_3': 'f', 'param_4': 'v', 'param_5': 'm', 'nspname_1': 'pg_catalog'}
+2025-12-22 09:00:16,955 INFO sqlalchemy.engine.Engine base.py:1846: SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = %(table_name)s::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[%(param_1)s::VARCHAR, %(param_2)s::VARCHAR, %(param_3)s::VARCHAR, %(param_4)s::VARCHAR, %(param_5)s::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != %(nspname_1)s::VARCHAR
+2025-12-22 09:00:16,955 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 0.002901s ago] {'table_name': 'functions', 'param_1': 'r', 'param_2': 'p', 'param_3': 'f', 'param_4': 'v', 'param_5': 'm', 'nspname_1': 'pg_catalog'}
+2025-12-22 09:00:16,956 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:16,958 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:16,960 INFO sqlalchemy.engine.Engine base.py:1846: SELECT count(*) AS count_1 
+FROM (SELECT systeminfo.dummy AS systeminfo_dummy, systeminfo.md AS systeminfo_md 
+FROM systeminfo) AS anon_1
+2025-12-22 09:00:16,960 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00012s] {}
+2025-12-22 09:00:16,961 INFO sqlalchemy.engine.Engine base.py:2713: ROLLBACK
+2025-12-22 09:00:16,961 INFO pixeltable env.py:507: Connected to Pixeltable database at: postgresql+psycopg://postgres:@/pixeltable?host=/tmp/6804_Intent_DDQ/javis_6804/a4c59b1b19
+2025-12-22 09:00:16,964 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:16,964 INFO sqlalchemy.engine.Engine base.py:1846: SELECT systeminfo.dummy AS systeminfo_dummy, systeminfo.md AS systeminfo_md 
+FROM systeminfo FOR UPDATE
+2025-12-22 09:00:16,964 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00009s] {}
+2025-12-22 09:00:16,965 INFO pixeltable __init__.py:62: Current database version: 44, installed version: 44
+2025-12-22 09:00:16,965 INFO sqlalchemy.engine.Engine base.py:2713: ROLLBACK
+2025-12-22 09:00:16,965 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:16,968 INFO sqlalchemy.engine.Engine base.py:1846: SELECT count(*) AS count_1 
+FROM (SELECT dirs.id AS dirs_id, dirs.parent_id AS dirs_parent_id, dirs.md AS dirs_md, dirs.additional_md AS dirs_additional_md, dirs.lock_dummy AS dirs_lock_dummy 
+FROM dirs 
+WHERE (dirs.md ->> %(md_1)s::TEXT) IS NULL) AS anon_1
+2025-12-22 09:00:16,968 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00016s] {'md_1': 'user'}
+2025-12-22 09:00:16,968 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:16,968 INFO pixeltable catalog.py:2361: Initialized catalog.
+2025-12-22 09:00:16,969 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:16,969 INFO sqlalchemy.engine.Engine base.py:1846: SELECT dirs.id, dirs.parent_id, dirs.md, dirs.additional_md, dirs.lock_dummy 
+FROM dirs 
+WHERE dirs.parent_id IS NULL AND (dirs.md ->> %(md_1)s::TEXT) IS NULL
+2025-12-22 09:00:16,969 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00010s] {'md_1': 'user'}
+2025-12-22 09:00:16,971 INFO sqlalchemy.engine.Engine base.py:1846: SELECT dirs.id, dirs.parent_id, dirs.md, dirs.additional_md, dirs.lock_dummy 
+FROM dirs 
+WHERE dirs.parent_id = %(parent_id_1)s::UUID AND (dirs.md ->> %(md_1)s::TEXT) = %(param_1)s::VARCHAR AND (dirs.md ->> %(md_2)s::TEXT) IS NULL
+2025-12-22 09:00:16,971 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00012s] {'parent_id_1': UUID('a28d586a-8b0d-422d-bb06-2cb6b6ee8695'), 'md_1': 'name', 'param_1': 'knowledge_base_6804', 'md_2': 'user'}
+2025-12-22 09:00:16,972 INFO sqlalchemy.engine.Engine base.py:1846: SELECT dirs.id, dirs.parent_id, dirs.md, dirs.additional_md, dirs.lock_dummy 
+FROM dirs 
+WHERE dirs.parent_id = %(parent_id_1)s::UUID AND (dirs.md ->> %(md_1)s::TEXT) = %(param_1)s::VARCHAR AND (dirs.md ->> %(md_2)s::TEXT) IS NULL
+2025-12-22 09:00:16,972 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 0.00103s ago] {'parent_id_1': UUID('ec2ab1e6-9d7a-432b-82d7-0415120641c6'), 'md_1': 'name', 'param_1': 'documents_6804', 'md_2': 'user'}
+2025-12-22 09:00:16,973 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.id 
+FROM tables 
+WHERE (tables.md ->> %(md_1)s::TEXT) = %(param_1)s::VARCHAR AND tables.dir_id = %(dir_id_1)s::UUID AND coalesce((tables.md ->> %(md_2)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR AND (tables.md ->> %(md_3)s::TEXT) IS NULL
+2025-12-22 09:00:16,974 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00014s] {'md_1': 'name', 'param_1': 'documents_6804', 'dir_id_1': UUID('ec2ab1e6-9d7a-432b-82d7-0415120641c6'), 'md_2': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2', 'md_3': 'user'}
+2025-12-22 09:00:16,974 INFO pixeltable catalog.py:1809: Loading table 58414fc9-def7-46ef-b621-51d5e813b57d
+2025-12-22 09:00:16,975 INFO sqlalchemy.engine.Engine base.py:1846: SELECT count(*) AS count_1 
+FROM pendingtableops 
+WHERE pendingtableops.tbl_id = %(tbl_id_1)s::UUID
+2025-12-22 09:00:16,975 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00010s] {'tbl_id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d')}
+2025-12-22 09:00:16,977 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.id, tables.dir_id, tables.md, tables.additional_md, tables.lock_dummy, tableschemaversions.tbl_id, tableschemaversions.schema_version, tableschemaversions.md AS md_1, tableschemaversions.additional_md AS additional_md_1 
+FROM tables JOIN tableschemaversions ON tables.id = tableschemaversions.tbl_id 
+WHERE tables.id = tableschemaversions.tbl_id AND CAST(tables.md[%(md_2)s::TEXT] AS INTEGER) = tableschemaversions.schema_version AND tables.id = %(id_1)s::UUID
+2025-12-22 09:00:16,977 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00012s] {'md_2': 'current_schema_version', 'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d')}
+2025-12-22 09:00:16,982 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.id, tables.dir_id, tables.md, tables.additional_md, tables.lock_dummy, tableversions.tbl_id, tableversions.version, tableversions.md AS md_1, tableversions.additional_md AS additional_md_1, tableschemaversions.tbl_id AS tbl_id_1, tableschemaversions.schema_version, tableschemaversions.md AS md_2, tableschemaversions.additional_md AS additional_md_2 
+FROM tables JOIN tableversions ON tables.id = tableversions.tbl_id JOIN tableschemaversions ON tables.id = tableschemaversions.tbl_id 
+WHERE tables.id = %(id_1)s::UUID AND tableversions.tbl_id = %(tbl_id_2)s::UUID AND tableschemaversions.tbl_id = %(tbl_id_3)s::UUID AND CAST(tables.md[%(md_3)s::TEXT] AS INTEGER) = tableversions.version AND CAST(tables.md[%(md_4)s::TEXT] AS INTEGER) = tableschemaversions.schema_version
+2025-12-22 09:00:16,982 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00014s] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'tbl_id_2': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'tbl_id_3': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'md_3': 'current_version', 'md_4': 'current_schema_version'}
+2025-12-22 09:00:16,986 INFO sqlalchemy.engine.Engine base.py:1846: SELECT count(*) AS count_1 
+FROM tables JOIN pendingtableops ON tables.id = pendingtableops.tbl_id 
+WHERE pendingtableops.tbl_id = %(tbl_id_1)s::UUID AND tables.id = %(id_1)s::UUID
+2025-12-22 09:00:16,986 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00012s] {'tbl_id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d')}
+2025-12-22 09:00:16,987 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.id 
+FROM tables 
+WHERE ((tables.md[%(md_1)s::TEXT][%(param_1)s::TEXT][%(param_2)s::INT]) ->> %(param_3)s::INT) = %(param_4)s::VARCHAR AND ((tables.md[%(md_2)s::TEXT][%(param_5)s::TEXT][%(param_6)s::INT]) ->> %(param_7)s::INT) IS NULL
+2025-12-22 09:00:16,987 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00013s] {'md_1': 'view_md', 'param_1': 'base_versions', 'param_2': 0, 'param_3': 0, 'param_4': '58414fc9def746efb62151d5e813b57d', 'md_2': 'view_md', 'param_5': 'base_versions', 'param_6': 0, 'param_7': 1}
+2025-12-22 09:00:33,911 INFO sqlalchemy.engine.Engine base.py:1846: SELECT COUNT(*) FROM pg_catalog.pg_tables WHERE schemaname = 'public' AND tablename = 'tbl_58414fc9def746efb62151d5e813b57d'
+2025-12-22 09:00:33,911 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00048s] {}
+2025-12-22 09:00:33,914 INFO sqlalchemy.engine.Engine base.py:1846: SELECT column_name FROM information_schema.columns WHERE table_name = 'tbl_58414fc9def746efb62151d5e813b57d' ORDER BY ordinal_position
+2025-12-22 09:00:33,914 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00008s] {}
+2025-12-22 09:00:33,921 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:33,922 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:33,923 INFO sqlalchemy.engine.Engine base.py:1846: SELECT dirs.id, dirs.parent_id, dirs.md, dirs.additional_md, dirs.lock_dummy 
+FROM dirs 
+WHERE dirs.parent_id IS NULL AND (dirs.md ->> %(md_1)s::TEXT) IS NULL
+2025-12-22 09:00:33,923 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 16.95s ago] {'md_1': 'user'}
+2025-12-22 09:00:33,924 INFO sqlalchemy.engine.Engine base.py:1846: SELECT dirs.id, dirs.parent_id, dirs.md, dirs.additional_md, dirs.lock_dummy 
+FROM dirs 
+WHERE dirs.parent_id = %(parent_id_1)s::UUID AND (dirs.md ->> %(md_1)s::TEXT) = %(param_1)s::VARCHAR AND (dirs.md ->> %(md_2)s::TEXT) IS NULL
+2025-12-22 09:00:33,924 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 16.95s ago] {'parent_id_1': UUID('a28d586a-8b0d-422d-bb06-2cb6b6ee8695'), 'md_1': 'name', 'param_1': 'knowledge_base_6804', 'md_2': 'user'}
+2025-12-22 09:00:33,924 INFO sqlalchemy.engine.Engine base.py:1846: SELECT dirs.id, dirs.parent_id, dirs.md, dirs.additional_md, dirs.lock_dummy 
+FROM dirs 
+WHERE dirs.parent_id = %(parent_id_1)s::UUID AND (dirs.md ->> %(md_1)s::TEXT) = %(param_1)s::VARCHAR AND (dirs.md ->> %(md_2)s::TEXT) IS NULL
+2025-12-22 09:00:33,925 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 16.95s ago] {'parent_id_1': UUID('ec2ab1e6-9d7a-432b-82d7-0415120641c6'), 'md_1': 'name', 'param_1': 'examples', 'md_2': 'user'}
+2025-12-22 09:00:33,925 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.id 
+FROM tables 
+WHERE (tables.md ->> %(md_1)s::TEXT) = %(param_1)s::VARCHAR AND tables.dir_id = %(dir_id_1)s::UUID AND coalesce((tables.md ->> %(md_2)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR AND (tables.md ->> %(md_3)s::TEXT) IS NULL
+2025-12-22 09:00:33,925 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 16.95s ago] {'md_1': 'name', 'param_1': 'examples', 'dir_id_1': UUID('ec2ab1e6-9d7a-432b-82d7-0415120641c6'), 'md_2': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2', 'md_3': 'user'}
+2025-12-22 09:00:33,926 INFO pixeltable catalog.py:1809: Loading table ab5ed723-f203-43ff-9b84-e08f5ca571ed
+2025-12-22 09:00:33,926 INFO sqlalchemy.engine.Engine base.py:1846: SELECT count(*) AS count_1 
+FROM pendingtableops 
+WHERE pendingtableops.tbl_id = %(tbl_id_1)s::UUID
+2025-12-22 09:00:33,926 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 16.95s ago] {'tbl_id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed')}
+2025-12-22 09:00:33,927 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.id, tables.dir_id, tables.md, tables.additional_md, tables.lock_dummy, tableschemaversions.tbl_id, tableschemaversions.schema_version, tableschemaversions.md AS md_1, tableschemaversions.additional_md AS additional_md_1 
+FROM tables JOIN tableschemaversions ON tables.id = tableschemaversions.tbl_id 
+WHERE tables.id = tableschemaversions.tbl_id AND CAST(tables.md[%(md_2)s::TEXT] AS INTEGER) = tableschemaversions.schema_version AND tables.id = %(id_1)s::UUID
+2025-12-22 09:00:33,927 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 16.95s ago] {'md_2': 'current_schema_version', 'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed')}
+2025-12-22 09:00:33,929 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.id, tables.dir_id, tables.md, tables.additional_md, tables.lock_dummy, tableversions.tbl_id, tableversions.version, tableversions.md AS md_1, tableversions.additional_md AS additional_md_1, tableschemaversions.tbl_id AS tbl_id_1, tableschemaversions.schema_version, tableschemaversions.md AS md_2, tableschemaversions.additional_md AS additional_md_2 
+FROM tables JOIN tableversions ON tables.id = tableversions.tbl_id JOIN tableschemaversions ON tables.id = tableschemaversions.tbl_id 
+WHERE tables.id = %(id_1)s::UUID AND tableversions.tbl_id = %(tbl_id_2)s::UUID AND tableschemaversions.tbl_id = %(tbl_id_3)s::UUID AND CAST(tables.md[%(md_3)s::TEXT] AS INTEGER) = tableversions.version AND CAST(tables.md[%(md_4)s::TEXT] AS INTEGER) = tableschemaversions.schema_version
+2025-12-22 09:00:33,929 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 16.95s ago] {'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'tbl_id_2': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'tbl_id_3': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'md_3': 'current_version', 'md_4': 'current_schema_version'}
+2025-12-22 09:00:33,931 INFO sqlalchemy.engine.Engine base.py:1846: SELECT count(*) AS count_1 
+FROM tables JOIN pendingtableops ON tables.id = pendingtableops.tbl_id 
+WHERE pendingtableops.tbl_id = %(tbl_id_1)s::UUID AND tables.id = %(id_1)s::UUID
+2025-12-22 09:00:33,931 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 16.95s ago] {'tbl_id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed')}
+2025-12-22 09:00:33,932 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.id 
+FROM tables 
+WHERE ((tables.md[%(md_1)s::TEXT][%(param_1)s::TEXT][%(param_2)s::INT]) ->> %(param_3)s::INT) = %(param_4)s::VARCHAR AND ((tables.md[%(md_2)s::TEXT][%(param_5)s::TEXT][%(param_6)s::INT]) ->> %(param_7)s::INT) IS NULL
+2025-12-22 09:00:33,932 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 16.94s ago] {'md_1': 'view_md', 'param_1': 'base_versions', 'param_2': 0, 'param_3': 0, 'param_4': 'ab5ed723f20343ff9b84e08f5ca571ed', 'md_2': 'view_md', 'param_5': 'base_versions', 'param_6': 0, 'param_7': 1}
+2025-12-22 09:00:33,940 INFO sqlalchemy.engine.Engine base.py:1846: SELECT COUNT(*) FROM pg_catalog.pg_tables WHERE schemaname = 'public' AND tablename = 'tbl_ab5ed723f20343ff9b84e08f5ca571ed'
+2025-12-22 09:00:33,940 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00011s] {}
+2025-12-22 09:00:33,940 INFO sqlalchemy.engine.Engine base.py:1846: SELECT column_name FROM information_schema.columns WHERE table_name = 'tbl_ab5ed723f20343ff9b84e08f5ca571ed' ORDER BY ordinal_position
+2025-12-22 09:00:33,940 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00007s] {}
+2025-12-22 09:00:33,944 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:33,944 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:33,945 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.id, tables.dir_id, tables.md, tables.additional_md, tables.lock_dummy 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID
+2025-12-22 09:00:33,945 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00011s] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d')}
+2025-12-22 09:00:33,947 INFO sqlalchemy.engine.Engine base.py:1846: SELECT count(*) AS count_1 
+FROM pendingtableops 
+WHERE pendingtableops.tbl_id = %(tbl_id_1)s::UUID
+2025-12-22 09:00:33,947 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 16.97s ago] {'tbl_id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d')}
+2025-12-22 09:00:33,949 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:33,949 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00011s] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:33,949 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:33,949 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 0.0009286s ago] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:33,950 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:33,950 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:33,951 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:33,951 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 0.002441s ago] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:33,952 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:33,952 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 0.003234s ago] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:33,955 INFO sqlalchemy.engine.Engine base.py:1846: WITH anon_1 AS 
+(SELECT tbl_58414fc9def746efb62151d5e813b57d.col_0 AS col_0, tbl_58414fc9def746efb62151d5e813b57d.col_1 AS col_1, tbl_58414fc9def746efb62151d5e813b57d.col_2 AS col_2, tbl_58414fc9def746efb62151d5e813b57d.col_3 AS col_3, tbl_58414fc9def746efb62151d5e813b57d.col_4 AS col_4, tbl_58414fc9def746efb62151d5e813b57d.col_5 AS col_5, tbl_58414fc9def746efb62151d5e813b57d.col_6 AS col_6, tbl_58414fc9def746efb62151d5e813b57d.col_7 AS col_7, tbl_58414fc9def746efb62151d5e813b57d.col_8 AS col_8, tbl_58414fc9def746efb62151d5e813b57d.col_9 AS col_9, tbl_58414fc9def746efb62151d5e813b57d.col_2_cellmd AS col_2_cellmd, tbl_58414fc9def746efb62151d5e813b57d.rowid AS rowid, tbl_58414fc9def746efb62151d5e813b57d.v_min AS v_min 
+FROM tbl_58414fc9def746efb62151d5e813b57d 
+WHERE tbl_58414fc9def746efb62151d5e813b57d.v_min <= %(v_min_1)s::BIGINT AND tbl_58414fc9def746efb62151d5e813b57d.v_max > %(v_max_1)s::BIGINT)
+ SELECT count(*) AS all_count 
+FROM anon_1
+2025-12-22 09:00:33,956 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00013s] {'v_min_1': 16, 'v_max_1': 16}
+2025-12-22 09:00:33,957 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:33,957 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:33,957 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.id, tables.dir_id, tables.md, tables.additional_md, tables.lock_dummy 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID
+2025-12-22 09:00:33,957 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 0.01202s ago] {'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed')}
+2025-12-22 09:00:33,958 INFO sqlalchemy.engine.Engine base.py:1846: SELECT count(*) AS count_1 
+FROM pendingtableops 
+WHERE pendingtableops.tbl_id = %(tbl_id_1)s::UUID
+2025-12-22 09:00:33,958 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 16.98s ago] {'tbl_id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed')}
+2025-12-22 09:00:33,959 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:33,959 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 0.01065s ago] {'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:33,960 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:33,960 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 0.01131s ago] {'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:33,960 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:33,961 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:33,961 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:33,961 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 0.01261s ago] {'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:33,962 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:33,962 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 0.0133s ago] {'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:33,964 INFO sqlalchemy.engine.Engine base.py:1846: WITH anon_1 AS 
+(SELECT tbl_ab5ed723f20343ff9b84e08f5ca571ed.col_0 AS col_0, tbl_ab5ed723f20343ff9b84e08f5ca571ed.col_1 AS col_1, tbl_ab5ed723f20343ff9b84e08f5ca571ed.col_2 AS col_2, tbl_ab5ed723f20343ff9b84e08f5ca571ed.rowid AS rowid, tbl_ab5ed723f20343ff9b84e08f5ca571ed.v_min AS v_min 
+FROM tbl_ab5ed723f20343ff9b84e08f5ca571ed 
+WHERE tbl_ab5ed723f20343ff9b84e08f5ca571ed.v_min <= %(v_min_1)s::BIGINT AND tbl_ab5ed723f20343ff9b84e08f5ca571ed.v_max > %(v_max_1)s::BIGINT)
+ SELECT count(*) AS all_count 
+FROM anon_1
+2025-12-22 09:00:33,964 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00012s] {'v_min_1': 15, 'v_max_1': 15}
+2025-12-22 09:00:33,964 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:41,460 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:41,461 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:41,461 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 7.513s ago] {'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:41,463 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:41,463 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 7.514s ago] {'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:41,464 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:41,464 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:41,464 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:41,465 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 7.516s ago] {'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:41,465 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:41,465 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 7.517s ago] {'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:41,468 INFO sqlalchemy.engine.Engine base.py:1846: EXPLAIN SELECT tbl_ab5ed723f20343ff9b84e08f5ca571ed.col_0, tbl_ab5ed723f20343ff9b84e08f5ca571ed.col_1, tbl_ab5ed723f20343ff9b84e08f5ca571ed.col_2, tbl_ab5ed723f20343ff9b84e08f5ca571ed.rowid, tbl_ab5ed723f20343ff9b84e08f5ca571ed.v_min 
+FROM tbl_ab5ed723f20343ff9b84e08f5ca571ed 
+WHERE tbl_ab5ed723f20343ff9b84e08f5ca571ed.v_min <= 15 AND tbl_ab5ed723f20343ff9b84e08f5ca571ed.v_max > 15
+2025-12-22 09:00:41,468 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00010s] {}
+2025-12-22 09:00:41,469 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tbl_ab5ed723f20343ff9b84e08f5ca571ed.col_0, tbl_ab5ed723f20343ff9b84e08f5ca571ed.col_1, tbl_ab5ed723f20343ff9b84e08f5ca571ed.col_2, tbl_ab5ed723f20343ff9b84e08f5ca571ed.rowid, tbl_ab5ed723f20343ff9b84e08f5ca571ed.v_min 
+FROM tbl_ab5ed723f20343ff9b84e08f5ca571ed 
+WHERE tbl_ab5ed723f20343ff9b84e08f5ca571ed.v_min <= %(v_min_1)s::BIGINT AND tbl_ab5ed723f20343ff9b84e08f5ca571ed.v_max > %(v_max_1)s::BIGINT
+2025-12-22 09:00:41,469 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00008s] {'v_min_1': 15, 'v_max_1': 15}
+2025-12-22 09:00:41,473 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:41,968 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:41,969 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:41,969 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 8.021s ago] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:41,971 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:41,971 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 8.022s ago] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:41,972 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:41,972 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:41,972 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:41,972 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 8.024s ago] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:41,973 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:41,973 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 8.025s ago] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:41,976 INFO sqlalchemy.engine.Engine base.py:1846: EXPLAIN SELECT tbl_58414fc9def746efb62151d5e813b57d.col_0, tbl_58414fc9def746efb62151d5e813b57d.col_1, tbl_58414fc9def746efb62151d5e813b57d.col_3, tbl_58414fc9def746efb62151d5e813b57d.col_4, tbl_58414fc9def746efb62151d5e813b57d.col_5, tbl_58414fc9def746efb62151d5e813b57d.col_2, tbl_58414fc9def746efb62151d5e813b57d.col_6, tbl_58414fc9def746efb62151d5e813b57d.col_2_cellmd, tbl_58414fc9def746efb62151d5e813b57d.rowid, tbl_58414fc9def746efb62151d5e813b57d.v_min 
+FROM tbl_58414fc9def746efb62151d5e813b57d 
+WHERE tbl_58414fc9def746efb62151d5e813b57d.v_min <= 16 AND tbl_58414fc9def746efb62151d5e813b57d.v_max > 16
+2025-12-22 09:00:41,976 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00010s] {}
+2025-12-22 09:00:41,977 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tbl_58414fc9def746efb62151d5e813b57d.col_0, tbl_58414fc9def746efb62151d5e813b57d.col_1, tbl_58414fc9def746efb62151d5e813b57d.col_3, tbl_58414fc9def746efb62151d5e813b57d.col_4, tbl_58414fc9def746efb62151d5e813b57d.col_5, tbl_58414fc9def746efb62151d5e813b57d.col_2, tbl_58414fc9def746efb62151d5e813b57d.col_6, tbl_58414fc9def746efb62151d5e813b57d.col_2_cellmd, tbl_58414fc9def746efb62151d5e813b57d.rowid, tbl_58414fc9def746efb62151d5e813b57d.v_min 
+FROM tbl_58414fc9def746efb62151d5e813b57d 
+WHERE tbl_58414fc9def746efb62151d5e813b57d.v_min <= %(v_min_1)s::BIGINT AND tbl_58414fc9def746efb62151d5e813b57d.v_max > %(v_max_1)s::BIGINT
+2025-12-22 09:00:41,977 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00008s] {'v_min_1': 16, 'v_max_1': 16}
+2025-12-22 09:00:41,978 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:42,185 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:42,186 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:42,186 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 8.237s ago] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:42,187 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:42,187 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 8.239s ago] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:42,190 INFO sqlalchemy.engine.Engine base.py:1846: EXPLAIN SELECT tbl_58414fc9def746efb62151d5e813b57d.col_0, tbl_58414fc9def746efb62151d5e813b57d.col_1, tbl_58414fc9def746efb62151d5e813b57d.col_2, tbl_58414fc9def746efb62151d5e813b57d.col_3, tbl_58414fc9def746efb62151d5e813b57d.col_4, tbl_58414fc9def746efb62151d5e813b57d.col_5, tbl_58414fc9def746efb62151d5e813b57d.col_6, tbl_58414fc9def746efb62151d5e813b57d.col_7, tbl_58414fc9def746efb62151d5e813b57d.col_8, tbl_58414fc9def746efb62151d5e813b57d.col_9, tbl_58414fc9def746efb62151d5e813b57d.col_2_cellmd, tbl_58414fc9def746efb62151d5e813b57d.rowid, tbl_58414fc9def746efb62151d5e813b57d.v_min 
+FROM tbl_58414fc9def746efb62151d5e813b57d 
+WHERE tbl_58414fc9def746efb62151d5e813b57d.v_min <= 16 AND tbl_58414fc9def746efb62151d5e813b57d.v_max > 16
+2025-12-22 09:00:42,190 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00010s] {}
+2025-12-22 09:00:42,191 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tbl_58414fc9def746efb62151d5e813b57d.col_0, tbl_58414fc9def746efb62151d5e813b57d.col_1, tbl_58414fc9def746efb62151d5e813b57d.col_2, tbl_58414fc9def746efb62151d5e813b57d.col_3, tbl_58414fc9def746efb62151d5e813b57d.col_4, tbl_58414fc9def746efb62151d5e813b57d.col_5, tbl_58414fc9def746efb62151d5e813b57d.col_6, tbl_58414fc9def746efb62151d5e813b57d.col_7, tbl_58414fc9def746efb62151d5e813b57d.col_8, tbl_58414fc9def746efb62151d5e813b57d.col_9, tbl_58414fc9def746efb62151d5e813b57d.col_2_cellmd, tbl_58414fc9def746efb62151d5e813b57d.rowid, tbl_58414fc9def746efb62151d5e813b57d.v_min 
+FROM tbl_58414fc9def746efb62151d5e813b57d 
+WHERE tbl_58414fc9def746efb62151d5e813b57d.v_min <= %(v_min_1)s::BIGINT AND tbl_58414fc9def746efb62151d5e813b57d.v_max > %(v_max_1)s::BIGINT
+2025-12-22 09:00:42,191 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00009s] {'v_min_1': 16, 'v_max_1': 16}
+2025-12-22 09:00:42,192 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:42,194 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:42,194 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:42,194 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 8.246s ago] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:42,195 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:42,195 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 8.246s ago] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:42,196 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:42,196 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:42,197 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:42,197 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 8.248s ago] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:42,198 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:42,198 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 8.249s ago] {'id_1': UUID('58414fc9-def7-46ef-b621-51d5e813b57d'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:42,200 INFO sqlalchemy.engine.Engine base.py:1846: EXPLAIN SELECT tbl_58414fc9def746efb62151d5e813b57d.col_0, tbl_58414fc9def746efb62151d5e813b57d.col_1, tbl_58414fc9def746efb62151d5e813b57d.col_3, tbl_58414fc9def746efb62151d5e813b57d.col_5, tbl_58414fc9def746efb62151d5e813b57d.rowid, tbl_58414fc9def746efb62151d5e813b57d.v_min 
+FROM tbl_58414fc9def746efb62151d5e813b57d 
+WHERE tbl_58414fc9def746efb62151d5e813b57d.v_min <= 16 AND tbl_58414fc9def746efb62151d5e813b57d.v_max > 16
+2025-12-22 09:00:42,200 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00009s] {}
+2025-12-22 09:00:42,200 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tbl_58414fc9def746efb62151d5e813b57d.col_0, tbl_58414fc9def746efb62151d5e813b57d.col_1, tbl_58414fc9def746efb62151d5e813b57d.col_3, tbl_58414fc9def746efb62151d5e813b57d.col_5, tbl_58414fc9def746efb62151d5e813b57d.rowid, tbl_58414fc9def746efb62151d5e813b57d.v_min 
+FROM tbl_58414fc9def746efb62151d5e813b57d 
+WHERE tbl_58414fc9def746efb62151d5e813b57d.v_min <= %(v_min_1)s::BIGINT AND tbl_58414fc9def746efb62151d5e813b57d.v_max > %(v_max_1)s::BIGINT
+2025-12-22 09:00:42,200 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00008s] {'v_min_1': 16, 'v_max_1': 16}
+2025-12-22 09:00:42,201 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:42,202 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:42,202 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:42,202 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 8.254s ago] {'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:42,203 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:42,203 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 8.255s ago] {'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:42,204 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT
+2025-12-22 09:00:42,204 INFO sqlalchemy.engine.Engine base.py:2710: BEGIN (implicit)
+2025-12-22 09:00:42,204 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:42,204 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 8.256s ago] {'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:42,205 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tables.md 
+FROM tables 
+WHERE tables.id = %(id_1)s::UUID AND coalesce((tables.md ->> %(md_1)s::TEXT), %(coalesce_1)s::VARCHAR) != %(coalesce_2)s::VARCHAR
+2025-12-22 09:00:42,205 INFO sqlalchemy.engine.Engine base.py:1846: [cached since 8.256s ago] {'id_1': UUID('ab5ed723-f203-43ff-9b84-e08f5ca571ed'), 'md_1': 'pending_stmt', 'coalesce_1': '-1', 'coalesce_2': '2'}
+2025-12-22 09:00:42,207 INFO sqlalchemy.engine.Engine base.py:1846: EXPLAIN SELECT tbl_ab5ed723f20343ff9b84e08f5ca571ed.col_0, tbl_ab5ed723f20343ff9b84e08f5ca571ed.col_1, tbl_ab5ed723f20343ff9b84e08f5ca571ed.rowid, tbl_ab5ed723f20343ff9b84e08f5ca571ed.v_min 
+FROM tbl_ab5ed723f20343ff9b84e08f5ca571ed 
+WHERE tbl_ab5ed723f20343ff9b84e08f5ca571ed.v_min <= 15 AND tbl_ab5ed723f20343ff9b84e08f5ca571ed.v_max > 15
+2025-12-22 09:00:42,207 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00010s] {}
+2025-12-22 09:00:42,207 INFO sqlalchemy.engine.Engine base.py:1846: SELECT tbl_ab5ed723f20343ff9b84e08f5ca571ed.col_0, tbl_ab5ed723f20343ff9b84e08f5ca571ed.col_1, tbl_ab5ed723f20343ff9b84e08f5ca571ed.rowid, tbl_ab5ed723f20343ff9b84e08f5ca571ed.v_min 
+FROM tbl_ab5ed723f20343ff9b84e08f5ca571ed 
+WHERE tbl_ab5ed723f20343ff9b84e08f5ca571ed.v_min <= %(v_min_1)s::BIGINT AND tbl_ab5ed723f20343ff9b84e08f5ca571ed.v_max > %(v_max_1)s::BIGINT
+2025-12-22 09:00:42,207 INFO sqlalchemy.engine.Engine base.py:1846: [generated in 0.00009s] {'v_min_1': 15, 'v_max_1': 15}
+2025-12-22 09:00:42,210 INFO sqlalchemy.engine.Engine base.py:2716: COMMIT

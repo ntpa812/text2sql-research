@@ -1,0 +1,239 @@
+{
+  "_metadata": {
+    "version": "1.1",
+    "description": "Vietnamese keyboard typing errors - Telex and VNI input methods (conservative mappings)",
+    "last_updated": "2025-01-01",
+    "input_methods": ["telex", "vni"],
+    "note": "Only map unambiguous errors to avoid context-dependent mistakes"
+  },
+  "telex_patterns": {
+    "_description": "Telex typing errors: double letters, misplaced tone marks - only unambiguous cases",
+
+    "vowel_errors": {
+      "aa": "â",
+      "aw": "ă",
+      "ee": "ê",
+      "oo": "ô",
+      "ow": "ơ",
+      "uw": "ư",
+      "dd": "đ"
+    },
+
+    "tone_marks": {
+      "s": "sắc",
+      "f": "huyền",
+      "r": "hỏi",
+      "x": "ngã",
+      "j": "nặng"
+    },
+
+    "common_errors": {
+      "nhuxng": "những",
+      "nhwng": "những",
+      "nhuwnxg": "những",
+
+      "tieenf": "tiền",
+      "tieen": "tiền",
+      "tienf": "tiền",
+
+      "nguowif": "người",
+      "nguoif": "người",
+
+      "dduocwj": "được",
+      "dduoc": "được",
+      "duwocwj": "được",
+
+      "ddaay": "đây",
+      "dday": "đây",
+
+      "ddos": "đó",
+
+      "cuar": "của",
+      "cuax": "của",
+
+      "vaof": "vào",
+      "vafo": "vào",
+
+      "laaf": "là",
+      "laf": "là",
+
+      "cos": "có",
+      "cso": "có",
+
+      "taij": "tại",
+      "taif": "tại",
+
+      "veef": "về",
+      "vef": "về",
+
+      "theef": "thế",
+      "thef": "thế",
+
+      "naayf": "này",
+
+      "mowtj": "một",
+      "motj": "một",
+
+      "chowr": "chờ",
+      "chor": "chờ",
+
+      "giaf": "giá",
+
+      "laix": "lại",
+      "laij": "lại",
+
+      "dder": "để",
+      "ddef": "để",
+
+      "khis": "khí",
+
+      "vuaws": "vừa",
+
+      "lucs": "lúc",
+
+      "sawp": "sắp",
+
+      "trowr": "trở",
+
+      "phais": "phải",
+
+      "bieets": "biết",
+
+      "caanf": "cần",
+
+      "muoons": "muốn",
+
+      "lowns": "lớn",
+
+      "nhos": "nhỏ",
+
+      "ddawngs": "đúng",
+
+      "tiets": "tiết",
+
+      "suaats": "suất",
+
+      "hannj": "hạn",
+
+      "guiwr": "gửi",
+
+      "ruuts": "rút",
+
+      "noopj": "nộp",
+
+      "chuyeenr": "chuyển",
+
+      "khoanr": "khoản",
+
+      "ngaanf": "ngân",
+
+      "haangf": "hàng",
+
+      "theer": "thẻ",
+
+      "tins": "tín",
+
+      "dunngj": "dụng",
+
+      "soos": "số",
+
+      "duwj": "dư",
+
+      "nowj": "nợ",
+
+      "traaxr": "trả"
+    }
+  },
+
+  "vni_patterns": {
+    "_description": "VNI typing errors: number-based tone marks",
+
+    "tone_numbers": {
+      "1": "sắc",
+      "2": "huyền",
+      "3": "hỏi",
+      "4": "ngã",
+      "5": "nặng",
+      "6": "circumflex (â, ê, ô)",
+      "7": "horn (ơ, ư)",
+      "8": "breve (ă)",
+      "9": "đ"
+    },
+
+    "common_errors": {
+      "nhu7ng": "những",
+      "nhu4ng": "những",
+      "tie62n": "tiền",
+      "tien2": "tiền",
+      "nguoi2": "người",
+      "ngu7o2i": "người",
+      "d9uo75c": "được",
+      "duoc5": "được",
+      "co1": "có",
+      "la2": "là",
+      "d9a6y": "đây",
+      "d9o1": "đó",
+      "cu3a": "của",
+      "ta5i": "tại",
+      "ve62": "về",
+      "the61": "thế",
+      "na2y": "này",
+      "mo65t": "một",
+      "cho72": "chờ",
+      "gia1": "giá",
+      "la5i": "lại",
+      "d9e63": "để",
+      "pha3i": "phải",
+      "bie61t": "biết",
+      "ca62n": "cần",
+      "muo61n": "muốn",
+      "lo71n": "lớn",
+      "nho3": "nhỏ",
+      "d9u1ng": "đúng",
+      "tie61t": "tiết",
+      "la4i": "lãi",
+      "sua61t": "suất",
+      "ky2": "kỳ",
+      "ha5n": "hạn",
+      "gu73i": "gửi",
+      "ru1t": "rút",
+      "no65p": "nộp",
+      "chuye63n": "chuyển",
+      "khoa3n": "khoản",
+      "nga6n": "ngân",
+      "ha2ng": "hàng",
+      "the3": "thẻ",
+      "ti1n": "tín",
+      "du5ng": "dụng",
+      "so61": "số",
+      "du7": "dư",
+      "no75": "nợ",
+      "tra3": "trả"
+    }
+  },
+
+  "special_cases": {
+    "_description": "Special cases - only unambiguous multi-word phrases",
+
+    "banking_typos": {
+      "taii khoan": "tài khoản",
+      "chuyen khoan": "chuyển khoản",
+      "lai suat": "lãi suất",
+      "tiet kiem": "tiết kiệm",
+      "the tin dung": "thẻ tín dụng",
+      "vay von": "vay vốn",
+      "vay tien": "vay tiền",
+      "rut tien": "rút tiền",
+      "nop tien": "nộp tiền",
+      "gui tien": "gửi tiền",
+      "ngan hang": "ngân hàng",
+      "hop dong": "hợp đồng",
+      "quyen loi": "quyền lợi",
+      "the le": "thể lệ",
+      "dieu khoan": "điều khoản",
+      "dieu kien": "điều kiện",
+      "chung chi tien gui": "chứng chỉ tiền gửi",
+      "phat hanh": "phát hành"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+/home/javis-ai/jai/lib/python3.13/site-packages/pixeltable_pgserver/pginstall/bin/postgres "-D" "/home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/database/pixeltable/pgdata" "-h" "" "-k" "/home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/database/pixeltable/pgdata"

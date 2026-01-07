@@ -1,0 +1,236 @@
+2025-12-29 16:31:22 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-29 16:31:23 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-29 16:31:23 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:31:23 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:31:23 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-29 16:34:10 | INFO     | log:151 | [search_single] Searching: 'cho tôi xem lịch sử giao dịch của tài khoản 200869...' (top_k=10)
+2025-12-29 16:34:10 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:34:10 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:34:10 | DEBUG    | log:153 | [normalize_query] 'cho tôi xem lịch sử giao dịch của tài kh...' -> 'Cho tôi xem lịch sử giao dịch của tài kh...'
+2025-12-29 16:34:10 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho tôi xem lịch sử giao dịch của tài khoản 2008698951018] - formatted_query: [Cho tôi xem lịch sử giao dịch của tài khoản 2008698951018] - normalized_query: [Cho tôi xem lịch sử giao dịch của tài khoản 2008698951018]
+2025-12-29 16:34:10 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.8559, max=14.6557
+2025-12-29 16:34:10 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Cho tôi xem lịch sử giao dịch ...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 16:34:10 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Cho tôi xem lịch sử giao dịch ...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-29 16:34:10 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:34:10 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8325, sem=0.8679, bm25=1.0000, boost=0.2500)
+2025-12-29 16:35:01 | INFO     | log:151 | [search_single] Searching: 'tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoả...' (top_k=10)
+2025-12-29 16:35:01 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:35:01 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:35:01 | DEBUG    | log:153 | [normalize_query] 'tra cứu phỉ gỉao dịch chuyển khoản đến s...' -> 'Tra cứu phỉ gỉao dịch chuyển khoản đến s...'
+2025-12-29 16:35:01 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi?] - formatted_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi] - normalized_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi]
+2025-12-29 16:35:01 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=1.3442, max=12.9055
+2025-12-29 16:35:01 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 16:35:01 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-29 16:35:01 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tra cứu phỉ gỉao dịch chuyển k...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-29 16:35:01 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:35:01 | DEBUG    | log:153 | [search_single] Top: Tra cứu giao dịch theo loại giao dịch... (score=0.8020, sem=0.8601, bm25=1.0000, boost=0.0000)
+2025-12-29 16:35:40 | INFO     | log:151 | [search_single] Searching: 'tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoả...' (top_k=10)
+2025-12-29 16:35:40 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:35:40 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:35:40 | DEBUG    | log:153 | [normalize_query] 'tra cứu phỉ gỉao dịch chuyển khoản đến s...' -> 'Tra cứu phỉ gỉao dịch chuyển khoản đến s...'
+2025-12-29 16:35:40 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018] - formatted_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018] - normalized_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018]
+2025-12-29 16:35:40 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=1.3589, max=12.9055
+2025-12-29 16:35:40 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 16:35:40 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['ngày']
+2025-12-29 16:35:40 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-29 16:35:40 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tra cứu phỉ gỉao dịch chuyển k...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu lịch sử giao dịch theo khoảng thời gian': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-29 16:35:40 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:35:40 | DEBUG    | log:153 | [search_single] Top: Tra cứu giao dịch theo loại giao dịch... (score=0.8013, sem=0.8590, bm25=1.0000, boost=0.0000)
+2025-12-29 16:37:13 | INFO     | log:151 | [search_single] Searching: 'tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoả...' (top_k=10)
+2025-12-29 16:37:13 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:37:13 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:37:13 | DEBUG    | log:153 | [normalize_query] 'tra cứu phỉ gỉao dịch chuyển khoản đến s...' -> 'Tra cứu phỉ gỉao dịch chuyển khoản đến s...'
+2025-12-29 16:37:13 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018] - formatted_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018] - normalized_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018]
+2025-12-29 16:37:13 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=1.3589, max=12.9055
+2025-12-29 16:37:13 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 16:37:13 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['ngày']
+2025-12-29 16:37:13 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-29 16:37:13 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tra cứu phỉ gỉao dịch chuyển k...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu lịch sử giao dịch theo khoảng thời gian': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-29 16:37:13 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:37:13 | DEBUG    | log:153 | [search_single] Top: Tra cứu giao dịch theo loại giao dịch... (score=0.8013, sem=0.8590, bm25=1.0000, boost=0.0000)
+2025-12-29 16:37:32 | INFO     | log:151 | [search_single] Searching: 'cho tôi xem lịch sử giao dịch của tài khoản 200869...' (top_k=10)
+2025-12-29 16:37:32 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:37:32 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:37:32 | DEBUG    | log:153 | [normalize_query] 'cho tôi xem lịch sử giao dịch của tài kh...' -> 'Cho tôi xem lịch sử giao dịch của tài kh...'
+2025-12-29 16:37:32 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho tôi xem lịch sử giao dịch của tài khoản 2008698951018] - formatted_query: [Cho tôi xem lịch sử giao dịch của tài khoản 2008698951018] - normalized_query: [Cho tôi xem lịch sử giao dịch của tài khoản 2008698951018]
+2025-12-29 16:37:32 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.8559, max=14.6557
+2025-12-29 16:37:32 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Cho tôi xem lịch sử giao dịch ...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 16:37:32 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Cho tôi xem lịch sử giao dịch ...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-29 16:37:32 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:37:32 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8325, sem=0.8679, bm25=1.0000, boost=0.2500)
+2025-12-29 16:39:36 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-29 16:39:36 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-29 16:39:36 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:39:36 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:39:36 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-29 16:39:47 | INFO     | log:151 | [search_single] Searching: 'Tra cứu phỉ gỉao dịch chuyển khoản đến stk 2008698...' (top_k=10)
+2025-12-29 16:39:47 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:39:47 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:39:47 | DEBUG    | log:153 | [normalize_query] 'Tra cứu phỉ gỉao dịch chuyển khoản đến s...' -> 'Tra cứu phỉ gỉao dịch chuyển khoản đến s...'
+2025-12-29 16:39:47 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [Tra cứu phỉ gỉao dịch chuyển khoản đến stk 2008698951018 của tôi ngày 20/09/2018] - formatted_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến stk 2008698951018 của tôi ngày 20/09/2018] - normalized_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến stk 2008698951018 của tôi ngày 20/09/2018]
+2025-12-29 16:39:48 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=1.0050, max=12.5307
+2025-12-29 16:39:48 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.50 | Matched: ['tk', 'stk']
+2025-12-29 16:39:48 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['ngày']
+2025-12-29 16:39:48 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-29 16:39:48 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Tra cứu phỉ gỉao dịch chuyển k...' -> Tra cứu lịch sử giao dịch theo (score=2)
+2025-12-29 16:39:48 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:39:48 | DEBUG    | log:153 | [search_single] Top: Tra cứu giao dịch theo loại giao dịch... (score=0.8063, sem=0.8662, bm25=1.0000, boost=0.0000)
+2025-12-29 16:40:30 | INFO     | log:151 | [search_single] Searching: 'tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoả...' (top_k=10)
+2025-12-29 16:40:30 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:40:30 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:40:30 | DEBUG    | log:153 | [normalize_query] 'tra cứu phỉ gỉao dịch chuyển khoản đến s...' -> 'Tra cứu phỉ gỉao dịch chuyển khoản đến s...'
+2025-12-29 16:40:30 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018] - formatted_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018] - normalized_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018]
+2025-12-29 16:40:30 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=1.3589, max=12.9055
+2025-12-29 16:40:30 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 16:40:30 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['ngày']
+2025-12-29 16:40:30 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-29 16:40:30 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tra cứu phỉ gỉao dịch chuyển k...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu lịch sử giao dịch theo khoảng thời gian': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-29 16:40:30 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:40:30 | DEBUG    | log:153 | [search_single] Top: Tra cứu giao dịch theo loại giao dịch... (score=0.8013, sem=0.8590, bm25=1.0000, boost=0.0000)
+2025-12-29 16:41:22 | INFO     | log:151 | [search_single] Searching: 'tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoả...' (top_k=10)
+2025-12-29 16:41:22 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:41:22 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:41:22 | DEBUG    | log:153 | [normalize_query] 'tra cứu phỉ gỉao dịch chuyển khoản đến s...' -> 'Tra cứu phỉ gỉao dịch chuyển khoản đến s...'
+2025-12-29 16:41:22 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018] - formatted_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018] - normalized_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018]
+2025-12-29 16:41:22 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=1.3442, max=12.9055
+2025-12-29 16:41:22 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 16:41:22 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-29 16:41:22 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tra cứu phỉ gỉao dịch chuyển k...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-29 16:41:22 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:41:22 | DEBUG    | log:153 | [search_single] Top: Tra cứu giao dịch theo loại giao dịch... (score=0.7954, sem=0.8506, bm25=1.0000, boost=0.0000)
+2025-12-29 16:41:34 | INFO     | log:151 | [search_single] Searching: 'tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoả...' (top_k=10)
+2025-12-29 16:41:34 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:41:34 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:41:34 | DEBUG    | log:153 | [normalize_query] 'tra cứu phỉ gỉao dịch chuyển khoản đến s...' -> 'Tra cứu phỉ gỉao dịch chuyển khoản đến s...'
+2025-12-29 16:41:34 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018] - formatted_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018] - normalized_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018]
+2025-12-29 16:41:34 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=1.3442, max=12.9055
+2025-12-29 16:41:34 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 16:41:34 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-29 16:41:34 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tra cứu phỉ gỉao dịch chuyển k...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-29 16:41:34 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:41:34 | DEBUG    | log:153 | [search_single] Top: Tra cứu giao dịch theo loại giao dịch... (score=0.7954, sem=0.8506, bm25=1.0000, boost=0.0000)
+2025-12-29 16:41:59 | INFO     | log:151 | [search_single] Searching: 'tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoả...' (top_k=10)
+2025-12-29 16:41:59 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:41:59 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:41:59 | DEBUG    | log:153 | [normalize_query] 'tra cứu phỉ gỉao dịch chuyển khoản đến s...' -> 'Tra cứu phỉ gỉao dịch chuyển khoản đến s...'
+2025-12-29 16:41:59 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018] - formatted_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018] - normalized_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018]
+2025-12-29 16:42:00 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=1.3442, max=12.9055
+2025-12-29 16:42:00 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 16:42:00 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-29 16:42:00 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tra cứu phỉ gỉao dịch chuyển k...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-29 16:42:00 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:42:00 | DEBUG    | log:153 | [search_single] Top: Tra cứu giao dịch theo loại giao dịch... (score=0.7954, sem=0.8506, bm25=1.0000, boost=0.0000)
+2025-12-29 16:42:19 | INFO     | log:151 | [search_single] Searching: 'tra cứu phí gỉao dịch chuyển khoản đến số tài khoả...' (top_k=10)
+2025-12-29 16:42:19 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:42:19 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:42:19 | DEBUG    | log:153 | [normalize_query] 'tra cứu phí gỉao dịch chuyển khoản đến s...' -> 'Tra cứu phí gỉao dịch chuyển khoản đến s...'
+2025-12-29 16:42:19 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cứu phí gỉao dịch chuyển khoản đến số tài khoản 2008698951018] - formatted_query: [Tra cứu phí gỉao dịch chuyển khoản đến số tài khoản 2008698951018] - normalized_query: [Tra cứu phí gỉao dịch chuyển khoản đến số tài khoản 2008698951018]
+2025-12-29 16:42:19 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=1.3442, max=25.4538
+2025-12-29 16:42:19 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phí gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 16:42:19 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phí gỉao dịch chuyển k...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-29 16:42:19 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phí gỉao dịch chuyển k...' | Doc: Tra cứu phí giao dịc | Boost: 0.25 | Matched: ['phí']
+2025-12-29 16:42:19 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tra cứu phí gỉao dịch chuyển k...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch chuyển tiền': 1, 'Tra cứu phí giao dịch': 1}
+2025-12-29 16:42:19 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:42:19 | DEBUG    | log:153 | [search_single] Top: Tra cứu phí giao dịch... (score=0.8253, sem=0.8576, bm25=1.0000, boost=0.2500)
+2025-12-29 16:47:16 | INFO     | log:151 | [search_single] Searching: 'cho tôi xem lịch sử giao dịch của tài khoản 200869...' (top_k=10)
+2025-12-29 16:47:16 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:47:16 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:47:16 | DEBUG    | log:153 | [normalize_query] 'cho tôi xem lịch sử giao dịch của tài kh...' -> 'Cho tôi xem lịch sử giao dịch của tài kh...'
+2025-12-29 16:47:16 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [cho tôi xem lịch sử giao dịch của tài khoản 2008698951018] - formatted_query: [Cho tôi xem lịch sử giao dịch của tài khoản 2008698951018] - normalized_query: [Cho tôi xem lịch sử giao dịch của tài khoản 2008698951018]
+2025-12-29 16:47:16 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=0.8559, max=14.6557
+2025-12-29 16:47:16 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Cho tôi xem lịch sử giao dịch ...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 16:47:16 | DEBUG    | log:153 | [classify_query_intent] Classified: 'Cho tôi xem lịch sử giao dịch ...' -> Tra cứu lịch sử giao dịch theo (score=1)
+2025-12-29 16:47:16 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:47:16 | DEBUG    | log:153 | [search_single] Top: Tra cứu lịch sử giao dịch theo số tài khoản... (score=0.8325, sem=0.8679, bm25=1.0000, boost=0.2500)
+2025-12-29 16:47:58 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-29 16:47:58 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-29 16:47:58 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:47:58 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:47:58 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-29 16:48:00 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-29 16:48:00 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:48:00 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:48:00 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-29 16:50:20 | INFO     | log:151 | [search_single] Searching: 'tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoả...' (top_k=10)
+2025-12-29 16:50:20 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:50:20 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:50:20 | DEBUG    | log:153 | [normalize_query] 'tra cứu phỉ gỉao dịch chuyển khoản đến s...' -> 'Tra cứu phỉ gỉao dịch chuyển khoản đến s...'
+2025-12-29 16:50:20 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018] - formatted_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018] - normalized_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi ngày 20/09/2018]
+2025-12-29 16:50:20 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=1.3589, max=12.9055
+2025-12-29 16:50:20 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 16:50:20 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['ngày']
+2025-12-29 16:50:20 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-29 16:50:20 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tra cứu phỉ gỉao dịch chuyển k...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu lịch sử giao dịch theo khoảng thời gian': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-29 16:50:20 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:50:20 | DEBUG    | log:153 | [search_single] Top: Tra cứu giao dịch theo loại giao dịch... (score=0.8013, sem=0.8590, bm25=1.0000, boost=0.0000)
+2025-12-29 16:51:17 | DEBUG    | log:153 | [index] Serving web UI
+2025-12-29 16:51:17 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-29 16:51:17 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:51:17 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:51:17 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-29 16:51:19 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-29 16:51:19 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:51:19 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:51:19 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-29 16:51:21 | INFO     | log:151 | [export_all_documents] Exporting all documents...
+2025-12-29 16:51:21 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:51:21 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:51:21 | INFO     | log:151 | [export_all_documents] Exported 15 documents to kb_backup_all_20251229_165121.xlsx
+2025-12-29 16:55:23 | INFO     | log:151 | [update_document] Updating document doc_id=11
+2025-12-29 16:55:23 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:55:23 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:55:23 | DEBUG    | log:153 | [update_document] Deleted 19 old examples
+2025-12-29 16:55:23 | DEBUG    | log:153 | [update_document] Deleted old document
+2025-12-29 16:55:23 | DEBUG    | log:153 | [build_search_text] Built search_text (653 chars)
+2025-12-29 16:55:23 | DEBUG    | log:153 | [insert_document_with_examples] Inserting doc_id=11, search_text length=653
+2025-12-29 16:55:23 | INFO     | log:151 | [insert_document_with_examples] Starting doc_table.insert() for doc_id=11...
+2025-12-29 16:55:23 | INFO     | log:151 | [insert_document_with_examples] doc_table.insert() completed in 0.29s for doc_id=11
+2025-12-29 16:55:23 | DEBUG    | log:153 | [parse_examples_to_list] Parsed 19 examples
+2025-12-29 16:55:23 | DEBUG    | log:153 | [insert_document_with_examples] Inserted 19 examples for doc_id=11
+2025-12-29 16:55:23 | INFO     | log:151 | [update_document] Document updated with 19 examples
+2025-12-29 16:55:23 | DEBUG    | log:153 | [invalidate_embeddings_cache] Embeddings cache invalidated
+2025-12-29 16:55:23 | DEBUG    | log:153 | [reset_all_caches] All caches invalidated
+2025-12-29 16:55:23 | INFO     | log:151 | [build_embeddings_cache] Building embeddings cache...
+2025-12-29 16:55:24 | INFO     | log:151 | [build_embeddings_cache] Cache built in 0.50s: 251 examples, 15 docs on GPU (NVIDIA RTX A5000)
+2025-12-29 16:55:24 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-29 16:55:24 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:55:24 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:55:24 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-29 16:55:24 | DEBUG    | log:153 | [list_documents] Fetching all documents...
+2025-12-29 16:55:24 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:55:24 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:55:24 | INFO     | log:151 | [list_documents] Found 15 documents
+2025-12-29 16:55:43 | INFO     | log:151 | [search_single] Searching: 'tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoả...' (top_k=10)
+2025-12-29 16:55:43 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:55:43 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:55:43 | DEBUG    | log:153 | [normalize_query] 'tra cứu phỉ gỉao dịch chuyển khoản đến s...' -> 'Tra cứu phỉ gỉao dịch chuyển khoản đến s...'
+2025-12-29 16:55:43 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi] - formatted_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi] - normalized_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi]
+2025-12-29 16:55:43 | INFO     | log:151 | [get_corpus_stats] Rebuilding corpus stats cache...
+2025-12-29 16:55:43 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=1.3442, max=12.9055
+2025-12-29 16:55:43 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 16:55:43 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-29 16:55:43 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tra cứu phỉ gỉao dịch chuyển k...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-29 16:55:43 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:55:43 | DEBUG    | log:153 | [search_single] Top: Tra cứu giao dịch theo loại giao dịch... (score=0.8020, sem=0.8601, bm25=1.0000, boost=0.0000)
+2025-12-29 16:56:48 | INFO     | log:151 | [search_single] Searching: 'tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoả...' (top_k=10)
+2025-12-29 16:56:48 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:56:48 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:56:48 | DEBUG    | log:153 | [normalize_query] 'tra cứu phỉ gỉao dịch chuyển khoản đến s...' -> 'Tra cứu phỉ gỉao dịch chuyển khoản đến s...'
+2025-12-29 16:56:48 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi] - formatted_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi] - normalized_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi]
+2025-12-29 16:56:48 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=1.3442, max=12.9055
+2025-12-29 16:56:48 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 16:56:48 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-29 16:56:48 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tra cứu phỉ gỉao dịch chuyển k...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-29 16:56:48 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:56:48 | DEBUG    | log:153 | [search_single] Top: Tra cứu giao dịch theo loại giao dịch... (score=0.8020, sem=0.8601, bm25=1.0000, boost=0.0000)
+2025-12-29 16:57:17 | INFO     | log:151 | [search_single] Searching: 'tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoả...' (top_k=10)
+2025-12-29 16:57:17 | DEBUG    | log:153 | [get_tables] Getting tables...
+2025-12-29 16:57:17 | DEBUG    | log:153 | [get_tables] Returning cached tables
+2025-12-29 16:57:17 | DEBUG    | log:153 | [normalize_query] 'tra cứu phỉ gỉao dịch chuyển khoản đến s...' -> 'Tra cứu phỉ gỉao dịch chuyển khoản đến s...'
+2025-12-29 16:57:17 | DEBUG    | log:153 | [perform_hybrid_search] query_text: [tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi] - formatted_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi] - normalized_query: [Tra cứu phỉ gỉao dịch chuyển khoản đến số tài khoản 2008698951018 của tôi]
+2025-12-29 16:57:17 | DEBUG    | log:153 | [perform_hybrid_search] BM25 raw scores: min=1.3442, max=12.9055
+2025-12-29 16:57:17 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu lịch sử giao | Boost: 0.25 | Matched: ['tài khoản']
+2025-12-29 16:57:17 | DEBUG    | log:153 | [get_keyword_boost] Query: 'Tra cứu phỉ gỉao dịch chuyển k...' | Doc: Tra cứu giao dịch ch | Boost: 0.25 | Matched: ['chuyển khoản']
+2025-12-29 16:57:17 | DEBUG    | log:153 | [classify_query_intent] Ambiguous: 'Tra cứu phỉ gỉao dịch chuyển k...' | Scores: {'Tra cứu lịch sử giao dịch theo số tài khoản': 1, 'Tra cứu giao dịch chuyển tiền': 1}
+2025-12-29 16:57:17 | INFO     | log:151 | [search_single] Found 10 results
+2025-12-29 16:57:17 | DEBUG    | log:153 | [search_single] Top: Tra cứu giao dịch theo loại giao dịch... (score=0.8020, sem=0.8601, bm25=1.0000, boost=0.0000)

@@ -1,0 +1,117 @@
+01/05, 10:41:04 [ner_inference] [NER] [QUESTION]: tra cứu giao dịch từ 12 đến 13/12
+01/05, 10:41:04 [ner_inference] [NER] [RESULT]: [{'Ngày_giao_dịch': 'từ 12 đến 13/12'}]
+01/05, 10:41:38 [ner_inference] [NER] [QUESTION]: tra cứu giao dịch có số tiền 10 triệu
+01/05, 10:41:38 [ner_inference] [NER] [RESULT]: [{'số_tiền': '10 triệu'}]
+01/05, 10:42:05 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'cho tôi xem lịch sử giao dịch của tài khoản 020063...' -> 'cho tôi xem lịch sử giao dịch của tài khoản 020063...'
+01/05, 10:42:05 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 020063535533], score:[0.8321]
+01/05, 10:42:05 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 020063535533
+01/05, 10:42:05 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '020063535533'}]
+01/05, 10:42:38 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'cho tôi xem lịch sử giao dịch của tài khoản 020063...' -> 'cho tôi xem lịch sử giao dịch của tài khoản 020063...'
+01/05, 10:42:38 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 020063535533 ngân hàng vcb], score:[0.8321]
+01/05, 10:42:38 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 020063535533 ngân hàng vcb
+01/05, 10:42:38 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '020063535533'}, {'bank': 'ngân hàng vcb'}]
+01/05, 10:43:22 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'cho tôi xem giao dịch 10 nghìn đồng ngân hàng vcb...' -> 'cho tôi xem giao dịch 10 nghìn đồng ngân hàng vcb...'
+01/05, 10:43:22 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu giao dịch theo số tiền], intent: [Tra cứu giao dịch theo số tiền], question:[Cho tôi xem giao dịch 10 nghìn đồng ngân hàng vcb], score:[0.8066]
+01/05, 10:43:22 [ner_inference] [NER] [QUESTION]: cho tôi xem giao dịch 10 nghìn đồng ngân hàng vcb
+01/05, 10:43:22 [ner_inference] [NER] [RESULT]: [{'số_tiền': '10 nghìn'}, {'Loại_tiền_tệ': 'đồng'}, {'bank': 'vcb'}]
+01/05, 10:43:29 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'cho tôi xem giao dịch 10 nghìn đồng...' -> 'cho tôi xem giao dịch 10 nghìn đồng...'
+01/05, 10:43:29 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu giao dịch theo số tiền], intent: [Tra cứu giao dịch theo số tiền], question:[Cho tôi xem giao dịch 10 nghìn đồng], score:[0.8183]
+01/05, 10:43:29 [ner_inference] [NER] [QUESTION]: cho tôi xem giao dịch 10 nghìn đồng
+01/05, 10:43:29 [ner_inference] [NER] [RESULT]: [{'số_tiền': '10 nghìn'}, {'Loại_tiền_tệ': 'đồng'}]
+01/05, 15:00:41 [VietnameseNormalizer] [fix_Vietnamese_Errors] 'liệt kê các lần giao dịch của tài khoản 0123456789...' -> 'liệt kê các lần giao dịch của tài khoản 0123456789...'
+01/05, 15:00:41 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Liệt kê các lần giao dịch của tài khoản 0123456789], score:[0.8545]
+01/05, 15:00:41 [ner_inference] [NER] [QUESTION]: liệt kê các lần giao dịch của tài khoản 0123456789
+01/05, 15:00:41 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '0123456789'}]
+01/05, 17:13:59 [ner_inference] [NER] Initializing NER Service...
+01/05, 17:13:59 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 17:14:00 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 17:14:00 [ner_inference] [NER] NER Service ready!
+01/05, 17:17:01 [ner_inference] [NER] Initializing NER Service...
+01/05, 17:17:01 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 17:17:02 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 17:17:02 [ner_inference] [NER] NER Service ready!
+01/05, 17:17:31 [ner_inference] [NER] [QUESTION]: Giao dịch từ đầu tháng đến cuối tháng của tk 456789
+01/05, 17:17:31 [ner_inference] [NER] [RESULT]: [{'from_date': '2026-01-01'}, {'to_date': '2026-01-31'}, {'Số_tài_khoản': '456789'}]
+01/05, 17:17:56 [ner_inference] [NER] [QUESTION]: Giao dịch tháng trước của tk 456789
+01/05, 17:17:56 [ner_inference] [NER] [RESULT]: [{'from_date': '2025-12-01'}, {'to_date': '2025-12-31'}, {'Số_tài_khoản': '456789'}]
+01/05, 18:56:39 [ner_inference] [NER] Initializing NER Service...
+01/05, 18:56:39 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 18:56:39 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 18:56:39 [ner_inference] [NER] NER Service ready!
+01/05, 20:01:48 [ner_inference] [NER] Initializing NER Service...
+01/05, 20:01:48 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 20:01:50 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 20:01:50 [ner_inference] [NER] NER Service ready!
+01/05, 20:03:17 [ner_inference] [NER] Initializing NER Service...
+01/05, 20:03:17 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 20:03:18 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 20:03:18 [ner_inference] [NER] NER Service ready!
+01/05, 20:04:47 [ner_inference] [NER] Initializing NER Service...
+01/05, 20:04:47 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 20:04:48 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 20:04:48 [ner_inference] [NER] NER Service ready!
+01/05, 20:06:15 [ner_inference] [NER] Initializing NER Service...
+01/05, 20:06:15 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 20:06:16 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 20:06:16 [ner_inference] [NER] NER Service ready!
+01/05, 20:07:37 [ner_inference] [NER] Initializing NER Service...
+01/05, 20:07:37 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 20:07:37 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 20:07:37 [ner_inference] [NER] NER Service ready!
+01/05, 20:07:52 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử giao dịch của tài khoản 020063535533], score:[0.8484]
+01/05, 20:07:52 [ner_inference] [NER] [QUESTION]: Cho tôi xem lịch sử giao dịch của tài khoản 020063535533
+01/05, 20:07:52 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '020063535533'}]
+01/05, 20:08:18 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử gd của tk 020063535533], score:[0.8089]
+01/05, 20:08:18 [ner_inference] [NER] [QUESTION]: Cho tôi xem lịch sử gd của tk 020063535533
+01/05, 20:08:18 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '020063535533'}]
+01/05, 20:14:54 [ner_inference] [NER] Initializing NER Service...
+01/05, 20:14:54 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 20:14:54 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 20:14:54 [ner_inference] [NER] NER Service ready!
+01/05, 20:15:20 [ner_inference] [NER] Initializing NER Service...
+01/05, 20:15:20 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 20:15:21 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 20:15:21 [ner_inference] [NER] NER Service ready!
+01/05, 20:16:22 [ner_inference] [NER] Initializing NER Service...
+01/05, 20:16:22 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 20:16:23 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 20:16:23 [ner_inference] [NER] NER Service ready!
+01/05, 20:18:00 [ner_inference] [NER] Initializing NER Service...
+01/05, 20:18:00 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 20:18:01 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 20:18:01 [ner_inference] [NER] NER Service ready!
+01/05, 20:19:47 [ner_inference] [NER] Initializing NER Service...
+01/05, 20:19:47 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 20:19:48 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 20:19:48 [ner_inference] [NER] NER Service ready!
+01/05, 20:20:05 [ner_inference] [NER] Initializing NER Service...
+01/05, 20:20:05 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 20:20:06 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 20:20:06 [ner_inference] [NER] NER Service ready!
+01/05, 20:23:07 [ner_inference] [NER] Initializing NER Service...
+01/05, 20:23:07 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 20:23:07 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 20:23:07 [ner_inference] [NER] NER Service ready!
+01/05, 20:24:40 [ner_inference] [NER] Initializing NER Service...
+01/05, 20:24:40 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 20:24:41 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 20:24:41 [ner_inference] [NER] NER Service ready!
+01/05, 20:25:04 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[Cho tôi xem lịch sử gd của tk 020063535533], score:[0.8089]
+01/05, 20:25:04 [ner_inference] [NER] [QUESTION]: Cho tôi xem lịch sử gd của tk 020063535533
+01/05, 20:25:04 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '020063535533'}]
+01/05, 20:25:31 [VietnameseNormalizer] ======
+groupIntent:[Tra cứu lịch sử giao dịch theo số tài khoản], intent: [Tra cứu lịch sử giao dịch theo số tài khoản], question:[cho tôi xem lịch sử giao dịch của tài khoản 020063535533], score:[0.8484]
+01/05, 20:25:31 [ner_inference] [NER] [QUESTION]: cho tôi xem lịch sử giao dịch của tài khoản 020063535533
+01/05, 20:25:31 [ner_inference] [NER] [RESULT]: [{'Số_tài_khoản': '020063535533'}]
+01/05, 20:28:23 [ner_inference] [NER] Initializing NER Service...
+01/05, 20:28:23 [ner_inference] [NER] Loading model from /home/javis-ai/Javis_AI_UAT/Javis_AI_DEMO/6804_DDQ/data_models/ner_model/NER_New_Model_14_entities_running...
+01/05, 20:28:23 [ner_inference] [NER] Model loaded successfully on cuda
+01/05, 20:28:23 [ner_inference] [NER] NER Service ready!

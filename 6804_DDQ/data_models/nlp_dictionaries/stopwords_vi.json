@@ -1,0 +1,128 @@
+{
+  "_metadata": {
+    "version": "1.0",
+    "description": "Vietnamese stopwords list - comprehensive collection for BM25 optimization",
+    "source": "stopwords-iso + custom banking domain",
+    "last_updated": "2025-01-01",
+    "total_entries": 500
+  },
+  "categories": {
+    "question_words": [
+      "gì", "gì", "nào", "sao", "đâu", "ai", "mấy", "bao nhiêu", "bao lâu",
+      "khi nào", "ở đâu", "tại sao", "như thế nào", "làm sao", "thế nào",
+      "cái gì", "việc gì", "điều gì", "chuyện gì", "bằng cách nào"
+    ],
+
+    "pronouns": [
+      "tôi", "tao", "tớ", "mình", "ta", "chúng tôi", "chúng ta", "chúng tao", "chúng mình",
+      "bạn", "cậu", "mày", "ngươi", "các bạn", "các cậu",
+      "anh", "chị", "em", "ông", "bà", "cô", "chú", "dì", "cháu",
+      "nó", "họ", "người ta", "ai đó", "ai", "gì đó",
+      "này", "kia", "đó", "ấy", "nọ",
+      "đây", "đấy", "đằng ấy", "đằng kia"
+    ],
+
+    "prepositions": [
+      "của", "cho", "với", "về", "trong", "ngoài", "trên", "dưới",
+      "trước", "sau", "giữa", "bên", "cạnh", "gần", "xa",
+      "từ", "đến", "tới", "qua", "theo", "vì", "do", "bởi",
+      "bằng", "như", "hơn", "kém", "so với",
+      "vào", "ra", "lên", "xuống"
+    ],
+
+    "conjunctions": [
+      "và", "với", "cùng", "hoặc", "hay", "nhưng", "mà", "còn",
+      "tuy", "dù", "mặc dù", "tuy nhiên", "nhưng mà",
+      "nếu", "thì", "nên", "vì", "vì vậy", "do đó", "cho nên",
+      "khi", "lúc", "trong khi", "sau khi", "trước khi",
+      "để", "mà", "rằng", "là"
+    ],
+
+    "articles_determiners": [
+      "một", "các", "những", "mấy", "vài", "nhiều", "ít",
+      "mọi", "tất cả", "toàn bộ", "hết", "cả",
+      "này", "kia", "ấy", "đó", "nọ"
+    ],
+
+    "auxiliary_verbs": [
+      "là", "làm", "được", "bị", "phải", "nên", "cần", "có thể",
+      "muốn", "thích", "sẽ", "đã", "đang", "sắp", "vừa", "mới",
+      "chưa", "không", "chẳng", "chả", "đừng", "hãy", "thử"
+    ],
+
+    "adverbs": [
+      "rất", "lắm", "quá", "cực", "hơi", "khá", "tương đối",
+      "hoàn toàn", "tuyệt đối", "chắc chắn", "có lẽ", "chắc",
+      "thường", "hay", "luôn", "luôn luôn", "mãi", "suốt",
+      "đã", "rồi", "xong", "còn", "vẫn", "cũng", "cũng như",
+      "thật", "thật sự", "thực sự", "đúng", "đúng là",
+      "nữa", "thêm", "tiếp", "lại", "ngay", "liền",
+      "đâu", "đấy", "đây", "kia", "đó"
+    ],
+
+    "time_expressions": [
+      "hôm nay", "ngày mai", "hôm qua", "bây giờ", "hiện tại", "hiện nay",
+      "trước đây", "sau này", "lúc nào", "khi nào", "bao giờ",
+      "sáng", "trưa", "chiều", "tối", "đêm",
+      "ngày", "tuần", "tháng", "năm", "quý",
+      "đầu", "cuối", "giữa"
+    ],
+
+    "discourse_markers": [
+      "vâng", "dạ", "ừ", "ờ", "à", "ạ", "nhỉ", "nhé", "nha", "nào",
+      "thưa", "kính", "xin", "mong", "được",
+      "ơi", "hỡi", "này", "kìa", "ấy",
+      "thôi", "thế", "vậy", "đấy", "đó",
+      "ok", "okay", "được rồi", "vâng ạ"
+    ],
+
+    "common_verbs": [
+      "có", "làm", "đi", "đến", "về", "ở", "được", "bị",
+      "cho", "lấy", "đưa", "mang", "đem", "gửi", "nhận",
+      "nói", "bảo", "hỏi", "trả lời", "kể", "viết", "đọc",
+      "xem", "nhìn", "nghe", "thấy", "biết", "hiểu", "nghĩ",
+      "thích", "yêu", "ghét", "muốn", "cần", "phải"
+    ],
+
+    "filler_words": [
+      "thì", "mà", "là", "ấy", "này", "đấy", "kia",
+      "cái", "con", "chiếc", "bức", "quyển", "cuốn",
+      "việc", "điều", "chuyện", "vấn đề", "sự",
+      "cũng", "còn", "vẫn", "đều", "cả"
+    ],
+
+    "banking_stopwords": [
+      "xin", "cho", "hỏi", "về", "liên quan", "đến",
+      "muốn", "biết", "thông tin", "chi tiết",
+      "vui lòng", "giúp", "tư vấn", "hướng dẫn",
+      "làm ơn", "cảm ơn", "xin cảm ơn",
+      "ạ", "nhé", "nha", "vâng", "dạ"
+    ]
+  },
+
+  "stopwords": [
+    "à", "ạ", "ai", "ai đó", "ấy",
+    "bà", "bạn", "bằng", "bao giờ", "bao lâu", "bao nhiêu", "bây giờ", "bên", "bị", "bởi", "bức",
+    "cả", "các", "cái", "cạnh", "cần", "chả", "chẳng", "chắc", "chắc chắn", "chiều", "chiếc", "cho", "chú", "chưa", "chúng mình", "chúng ta", "chúng tao", "chúng tôi", "chuyện", "chuyện gì", "cô", "có", "có lẽ", "có thể", "con", "còn", "cuốn", "cuối", "cùng", "cũng", "cũng như", "cực",
+    "dạ", "đã", "đâu", "đầu", "đấy", "đằng ấy", "đằng kia", "đây", "đến", "đêm", "đều", "đi", "dì", "điều", "điều gì", "do", "đó", "đừng", "đúng", "đúng là", "được",
+    "em",
+    "gần", "gì", "giữa",
+    "hay", "hãy", "hết", "hiện nay", "hiện tại", "hỏi", "hôm nay", "hôm qua", "hơi", "hơn", "hỡi",
+    "kém", "khi", "khi nào", "khá", "kia", "kìa", "kính",
+    "là", "lại", "làm", "làm sao", "lắm", "lên", "liền", "lúc", "lúc nào", "luôn", "luôn luôn",
+    "mà", "mãi", "mang", "mấy", "mày", "mình", "mọi", "mới", "mong", "muốn",
+    "này", "nào", "nên", "nếu", "ngay", "ngày", "ngày mai", "ngoài", "người ta", "ngươi", "nhé", "nhỉ", "nhiều", "như", "như thế nào", "nhưng", "nhưng mà", "nọ", "nó", "nữa",
+    "ơi", "ờ", "ở",
+    "phải",
+    "qua", "quá", "quý", "quyển",
+    "ra", "rằng", "rất", "rồi",
+    "sáng", "sao", "sắp", "sau", "sau này", "sẽ", "so với", "sự", "suốt",
+    "ta", "tại", "tại sao", "tao", "tất cả", "thấy", "thật", "thật sự", "thế", "thế nào", "theo", "thêm", "thì", "thích", "thôi", "thử", "thưa", "thường", "tiếp", "tôi", "tối", "tớ", "tới", "toàn bộ", "trong", "trong khi", "trên", "trước", "trước đây", "trưa", "trung", "tuần", "tuy", "tuy nhiên", "tuyệt đối", "tương đối", "từ",
+    "ừ",
+    "và", "vài", "vâng", "vẫn", "vậy", "về", "việc", "việc gì", "vì", "vì vậy", "vơi", "với", "vừa",
+    "xa", "xem", "xin", "xong", "xuống",
+    "cảm ơn", "xin cảm ơn", "vui lòng", "làm ơn", "giúp", "cho hỏi", "xin hỏi",
+    "ok", "okay", "được rồi", "vâng ạ", "dạ vâng",
+    "năm", "tháng", "ngày", "giờ", "phút"
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "_metadata": {
+    "version": "1.0",
+    "description": "Vietnamese banking domain abbreviations",
+    "last_updated": "2025-01-01",
+    "domain": "banking_finance"
+  },
+  "mappings": {
+    "cctg": "chứng chỉ tiền gửi",
+    "tctd": "tổ chức tín dụng",
+    "tctn": "thể chất tài nguyên",    
+    "tktk": "tài khoản tiết kiệm",
+    "sgtk": "sổ gửi tiết kiệm",
+    "tkck": "tài khoản chứng khoán",
+    "tktt": "tài khoản thanh toán",
+
+    "ls": "lãi suất",
+    "lshđ": "lãi suất huy động",
+    "lscv": "lãi suất cho vay",
+    "lsck": "lãi suất chiết khấu",
+    "lskh": "lãi suất khách hàng",
+
+    "gtcg": "giấy tờ có giá",
+    "cccd": "căn cước công dân",
+    "cmnd": "chứng minh nhân dân",
+    "cmtnd": "chứng minh thư nhân dân",
+    "gpkd": "giấy phép kinh doanh",
+    "gcnđkkd": "giấy chứng nhận đăng ký kinh doanh",
+    "gđk": "giấy đăng ký",
+
+    "nh": "ngân hàng",
+    "nhnn": "ngân hàng nhà nước",
+    "nhtm": "ngân hàng thương mại",
+    "nhtw": "ngân hàng trung ương",
+    "nhct": "ngân hàng công thương",
+    "nhđt": "ngân hàng đầu tư",
+
+    "tcph": "tổ chức phát hành",
+    
+    "tckt": "tổ chức kinh tế",
+    "tcdn": "tài chính doanh nghiệp",
+    "tcnh": "tài chính ngân hàng",
+
+    "kh": "khách hàng",
+    "khcn": "khách hàng cá nhân",
+    "khdn": "khách hàng doanh nghiệp",
+    "khtn": "khách hàng tiềm năng",
+
+    "dn": "doanh nghiệp",
+    "dnvvn": "doanh nghiệp vừa và nhỏ",
+    "dnnvv": "doanh nghiệp nhỏ và vừa",
+    "dnnn": "doanh nghiệp nhà nước",
+    "dntn": "doanh nghiệp tư nhân",
+    "ctcp": "công ty cổ phần",
+    "tnhh": "trách nhiệm hữu hạn",
+    "cthd": "công ty hợp danh",
+
+    "gd": "giao dịch",
+    "gdv": "giao dịch viên",
+    "pgd": "phòng giao dịch",
+    "cn": "chi nhánh",
+    "hso": "hội sở",
+    "hscn": "hội sở chính",
+
+    "atm": "máy rút tiền tự động",
+    "pos": "máy chấp nhận thẻ",
+    "cdm": "máy nộp tiền tự động",
+
+    "tk": "tài khoản",
+    "stk": "số tài khoản",
+    "cktk": "chuyển khoản tài khoản",
+    "ck": "chuyển khoản",
+    "nt": "nộp tiền",
+    "rt": "rút tiền",
+
+    "cvtt": "cho vay tiêu tiền",
+    "cvtc": "cho vay thế chấp",
+    "cvtd": "cho vay tín dụng",
+    "cvmn": "cho vay mua nhà",
+    "cvkd": "cho vay kinh doanh",
+    "cvsx": "cho vay sản xuất",
+
+    "tsđb": "tài sản đảm bảo",
+    "tsbđ": "tài sản bảo đảm",
+    "htv": "hạn trả vay",
+    "kv": "khoản vay",
+    "dnqh": "dư nợ quá hạn",
+    "nqh": "nợ quá hạn",
+    "nx": "nợ xấu",
+
+    "hđtd": "hợp đồng tín dụng",
+    "hđtg": "hợp đồng tiền gửi",
+    "hđck": "hợp đồng chứng khoán",
+    "hđbh": "hợp đồng bảo hiểm",
+
+    "bh": "bảo hiểm",
+    "bhnt": "bảo hiểm nhân thọ",
+    "bhpnt": "bảo hiểm phi nhân thọ",
+    "bhyt": "bảo hiểm y tế",
+    "bhxh": "bảo hiểm xã hội",
+    "bhtn": "bảo hiểm thất nghiệp",
+
+    "ckhoan": "chứng khoán",
+    "cpny": "cổ phiếu niêm yết",
+    "cp": "cổ phiếu",
+    "tp": "trái phiếu",
+    "tpdn": "trái phiếu doanh nghiệp",
+    "tpcp": "trái phiếu chính phủ",
+
+    "ttqt": "thanh toán quốc tế",
+    "lc": "thư tín dụng",
+    "tt": "chuyển tiền điện",
+    "dp": "chứng từ nhờ thu",
+
+    "đtnn": "đầu tư nước ngoài",
+    "fdi": "đầu tư trực tiếp nước ngoài",
+    "oda": "viện trợ phát triển chính thức",
+
+    "đk": "đăng ký",
+    "ql": "quyền lợi",
+    "nv": "nghĩa vụ",
+    "đkđk": "điều kiện điều khoản",
+    "tl": "thể lệ",
+
+    "đvt": "đơn vị tính",
+    "vnd": "việt nam đồng",
+    "usd": "đô la mỹ",
+    "eur": "euro",
+
+    "kpt": "kỳ phiếu trả",
+    "sđt": "số điện thoại",    
+    "otp": "mã xác thực",
+
+    "ebanking": "ngân hàng điện tử",
+    "ibanking": "ngân hàng internet",
+    "mbanking": "ngân hàng di động",
+    "smsbanking": "ngân hàng tin nhắn",
+
+    "kyc": "xác minh khách hàng",
+    "aml": "chống rửa tiền",
+    "cic": "trung tâm thông tin tín dụng"
+  }
+}

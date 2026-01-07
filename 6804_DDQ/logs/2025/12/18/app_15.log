@@ -1,0 +1,29 @@
+2025-12-18 15:01:25 | INFO     | log:150 | [search_single] Searching: 'xem chi tiết tài khoản của tôi....' (top_k=10)
+2025-12-18 15:01:25 | DEBUG    | log:152 | [get_tables] Getting tables...
+2025-12-18 15:01:25 | DEBUG    | log:152 | [get_tables] Returning cached tables
+2025-12-18 15:01:25 | DEBUG    | log:152 | [normalize_query] 'xem chi tiết tài khoản của tôi....' -> 'Xem chi tiết tài khoản của tôi...'
+2025-12-18 15:01:25 | DEBUG    | log:152 | [perform_hybrid_search] query_text: [xem chi tiết tài khoản của tôi.] - formatted_query: [Xem chi tiết tài khoản của tôi] - normalized_query: [Xem chi tiết tài khoản của tôi]
+2025-12-18 15:01:25 | DEBUG    | log:152 | [perform_hybrid_search] BM25 raw scores: min=6.4339, max=6.4339
+2025-12-18 15:01:25 | DEBUG    | log:152 | [get_keyword_boost] Query: 'Xem chi tiết tài khoản của tôi...' | Doc: API getAccountDetail | Boost: 0.50 | Matched: ['tài khoản', 'chi tiết tài khoản']
+2025-12-18 15:01:25 | DEBUG    | log:152 | [classify_query_intent] Classified: 'Xem chi tiết tài khoản của tôi...' -> API getAccountDetail (score=2)
+2025-12-18 15:01:25 | INFO     | log:150 | [search_single] Found 1 results
+2025-12-18 15:01:25 | DEBUG    | log:152 | [search_single] Top: API getAccountDetail... (score=0.8685, sem=0.8835, bm25=1.0000, boost=0.5000)
+2025-12-18 15:24:11 | DEBUG    | log:152 | [index] Serving web UI
+2025-12-18 15:24:11 | DEBUG    | log:152 | [list_documents] Fetching all documents...
+2025-12-18 15:24:11 | DEBUG    | log:152 | [get_tables] Getting tables...
+2025-12-18 15:24:11 | DEBUG    | log:152 | [get_tables] Returning cached tables
+2025-12-18 15:24:12 | INFO     | log:150 | [list_documents] Found 1 documents
+2025-12-18 15:24:35 | DEBUG    | log:152 | [list_documents] Fetching all documents...
+2025-12-18 15:24:35 | DEBUG    | log:152 | [get_tables] Getting tables...
+2025-12-18 15:24:35 | DEBUG    | log:152 | [get_tables] Returning cached tables
+2025-12-18 15:24:35 | INFO     | log:150 | [list_documents] Found 1 documents
+2025-12-18 15:25:14 | INFO     | log:150 | [search_single] Searching: 'chi tiết tài khoản của tôi...' (top_k=10)
+2025-12-18 15:25:14 | DEBUG    | log:152 | [get_tables] Getting tables...
+2025-12-18 15:25:14 | DEBUG    | log:152 | [get_tables] Returning cached tables
+2025-12-18 15:25:14 | DEBUG    | log:152 | [normalize_query] 'chi tiết tài khoản của tôi...' -> 'Chi tiết tài khoản của tôi...'
+2025-12-18 15:25:14 | DEBUG    | log:152 | [perform_hybrid_search] query_text: [chi tiết tài khoản của tôi] - formatted_query: [Chi tiết tài khoản của tôi] - normalized_query: [Chi tiết tài khoản của tôi]
+2025-12-18 15:25:14 | DEBUG    | log:152 | [perform_hybrid_search] BM25 raw scores: min=5.5322, max=5.5322
+2025-12-18 15:25:14 | DEBUG    | log:152 | [get_keyword_boost] Query: 'Chi tiết tài khoản của tôi...' | Doc: API getAccountDetail | Boost: 0.50 | Matched: ['tài khoản', 'chi tiết tài khoản']
+2025-12-18 15:25:14 | DEBUG    | log:152 | [classify_query_intent] Classified: 'Chi tiết tài khoản của tôi...' -> API getAccountDetail (score=2)
+2025-12-18 15:25:14 | INFO     | log:150 | [search_single] Found 1 results
+2025-12-18 15:25:14 | DEBUG    | log:152 | [search_single] Top: API getAccountDetail... (score=0.8671, sem=0.8816, bm25=1.0000, boost=0.5000)

@@ -1,0 +1,501 @@
+question,base_question,api
+Vui lòng Được không nếu Địa chỉ,Địa chỉ của tôi,getUserProfile
+Làm ơn Xem thông tin user giùm,Xem thông tin user,getUserProfile
+Được không nếu Profile được không?,Profile của tôi,getUserProfile
+Giúp Xem thông tin user?,Xem thông tin user,getUserProfile
+Có thể Họ tên đăng ký của tui giùm,Họ tên đăng ký của tôi,getUserProfile
+Làm ơn Địa chỉ của tôi được không,Địa chỉ của tôi,getUserProfile
+Làm ơn Email đăng ký của em?,Email đăng ký của tôi,getUserProfile
+Giúp Xem thông tin user nhé,Xem thông tin user,getUserProfile
+Cho mình Cho mình Địa chỉ của mình,Địa chỉ của tôi,getUserProfile
+Giúp Được không nếu Địa chỉ của,Địa chỉ của tôi,getUserProfile
+Giúp tôi Được không nếu Hồ sơ người dùng,Hồ sơ người dùng của tôi,getUserProfile
+Làm ơn Địa chỉ giùm,Địa chỉ của tôi,getUserProfile
+Làm ơn Xem thông tin cá nhân của giúp với,Xem thông tin cá nhân của tôi,getUserProfile
+Vui lòng Thông tin KYC của tôi,Thông tin KYC của tôi,getUserProfile
+Được không nếu Làm ơn Thông tin KYC của em,Thông tin KYC của tôi,getUserProfile
+Tôi cần Họ tên đăng ký nhé,Họ tên đăng ký của tôi,getUserProfile
+Giúp tui Profile của tui ạ,Profile của tôi,getUserProfile
+Tôi cần Email đăng ký của tôi,Email đăng ký của tôi,getUserProfile
+Được không nếu Mình muốn Địa chỉ của,Địa chỉ của tôi,getUserProfile
+Vui lòng Số điện thoại đăng ký được không,Số điện thoại đăng ký,getUserProfile
+Giúp tôi Email đăng ký của mình nha,Email đăng ký của tôi,getUserProfile
+Làm ơn Địa chỉ của tui với,Địa chỉ của tôi,getUserProfile
+Cho tôi Xem thông tin cá nhân của tôi ạ,Xem thông tin cá nhân của tôi,getUserProfile
+Cho em Email đăng ký của em,Email đăng ký của tôi,getUserProfile
+Làm ơn Profile,Profile của tôi,getUserProfile
+Vui lòng Họ tên đăng ký của tui ạ,Họ tên đăng ký của tôi,getUserProfile
+Cho mình Xem thông tin cá nhân của tôi ạ,Xem thông tin cá nhân của tôi,getUserProfile
+Tôi cần Profile của tôi nhé,Profile của tôi,getUserProfile
+Profile của mình giúp với,Profile của tôi,getUserProfile
+Địa chỉ của tôi giùm giúp với,Địa chỉ của tôi,getUserProfile
+Có thể Profile của tôi giùm,Profile của tôi,getUserProfile
+Giúp em Số điện thoại đăng ký,Số điện thoại đăng ký,getUserProfile
+Làm ơn Email đăng ký của em giùm,Email đăng ký của tôi,getUserProfile
+Thông tin KYC của tôi giúp với được không,Thông tin KYC của tôi,getUserProfile
+Tôi cần Cho mình Họ tên đăng ký của em,Họ tên đăng ký của tôi,getUserProfile
+Được không nếu Email đăng ký của em,Email đăng ký của tôi,getUserProfile
+Thông tin KYC của tôi nha nha,Thông tin KYC của tôi,getUserProfile
+Làm ơn Email đăng ký của ?,Email đăng ký của tôi,getUserProfile
+Mình muốn Xem thông tin cá nhân của tôi được không,Xem thông tin cá nhân của tôi,getUserProfile
+Tôi muốn Profile của tôi,Profile của tôi,getUserProfile
+Có thể Hồ sơ người dùng của mình được không,Hồ sơ người dùng của tôi,getUserProfile
+Địa chỉ của mình được không,Địa chỉ của tôi,getUserProfile
+Giúp tôi Mình muốn Hồ sơ người dùng của mình,Hồ sơ người dùng của tôi,getUserProfile
+Mình muốn Họ tên đăng ký của tôi?,Họ tên đăng ký của tôi,getUserProfile
+Cho Email đăng ký của,Email đăng ký của tôi,getUserProfile
+Vui lòng Cho mình Địa chỉ,Địa chỉ của tôi,getUserProfile
+tui muốn Profile của,Profile của tôi,getUserProfile
+Giúp Xem thông tin cá nhân của giúp với,Xem thông tin cá nhân của tôi,getUserProfile
+Xem thông tin cá nhân của tôi giúp với?,Xem thông tin cá nhân của tôi,getUserProfile
+Giúp tui Được không nếu Xem thông tin user,Xem thông tin user,getUserProfile
+Mình muốn Profile nhé,Profile của tôi,getUserProfile
+Thông tin KYC của tôi giúp với nha,Thông tin KYC của tôi,getUserProfile
+Làm ơn Được không nếu Thông tin KYC của tôi,Thông tin KYC của tôi,getUserProfile
+Cho mình Xem thông tin cá nhân của mình nha,Xem thông tin cá nhân của tôi,getUserProfile
+Profile của giùm,Profile của tôi,getUserProfile
+Cho tôi Thông tin KYC của tui,Thông tin KYC của tôi,getUserProfile
+Vui lòng Mình muốn Email đăng ký của tui,Email đăng ký của tôi,getUserProfile
+Làm ơn Địa chỉ của nhé,Địa chỉ của tôi,getUserProfile
+Họ tên đăng ký của tôi nhé giúp với,Họ tên đăng ký của tôi,getUserProfile
+Có thể Cho mình Hồ sơ người dùng,Hồ sơ người dùng của tôi,getUserProfile
+Cho mình Profile của với,Profile của tôi,getUserProfile
+Vui lòng hiển thị thông tin cá nhân của mình,Xem thông tin cá nhân của tôi,getUserProfile
+Mình muốn Cho mình Profile của mình,Profile của tôi,getUserProfile
+Làm ơn Có thể Địa chỉ,Địa chỉ của tôi,getUserProfile
+Làm ơn Có thể Địa chỉ của mình,Địa chỉ của tôi,getUserProfile
+Vui lòng hiển thị thông tin cá nhân của tôi,Xem thông tin cá nhân của tôi,getUserProfile
+Mình muốn Địa chỉ của mình nhé,Địa chỉ của tôi,getUserProfile
+mình cần Được không nếu Xem thông tin cá nhân của mình,Xem thông tin cá nhân của tôi,getUserProfile
+Cho tôi Họ tên đăng ký của mình nha,Họ tên đăng ký của tôi,getUserProfile
+Họ tên đăng ký của em giúp với,Họ tên đăng ký của tôi,getUserProfile
+Giúp tui Xem thông tin user,Xem thông tin user,getUserProfile
+Được không nếu Hồ sơ người dùng,Hồ sơ người dùng của tôi,getUserProfile
+Giúp tôi Xem thông tin cá nhân được không,Xem thông tin cá nhân của tôi,getUserProfile
+Cho mình Họ tên đăng ký của tui?,Họ tên đăng ký của tôi,getUserProfile
+Giúp tôi Email đăng ký giùm,Email đăng ký của tôi,getUserProfile
+Xem thông tin cá nhân của tôi được không nhé,Xem thông tin cá nhân của tôi,getUserProfile
+Làm ơn Email đăng ký của mình được không,Email đăng ký của tôi,getUserProfile
+Làm ơn Hồ sơ người dùng giúp với,Hồ sơ người dùng của tôi,getUserProfile
+Vui lòng Xem thông tin cá nhân của tui nhé,Xem thông tin cá nhân của tôi,getUserProfile
+Có thể Hồ sơ người dùng nhé,Hồ sơ người dùng của tôi,getUserProfile
+Cho mình Xem thông tin cá nhân của em được không,Xem thông tin cá nhân của tôi,getUserProfile
+Mình muốn Họ tên đăng ký của giùm,Họ tên đăng ký của tôi,getUserProfile
+Được không nếu Xem thông tin cá nhân của em,Xem thông tin cá nhân của tôi,getUserProfile
+Profile của tôi nha nha,Profile của tôi,getUserProfile
+Làm ơn Thông tin KYC của tôi?,Thông tin KYC của tôi,getUserProfile
+tui muốn Email đăng ký của em,Email đăng ký của tôi,getUserProfile
+Làm ơn Họ tên đăng ký của tui với,Họ tên đăng ký của tôi,getUserProfile
+Mình muốn Email đăng ký của giùm,Email đăng ký của tôi,getUserProfile
+Mình muốn Có thể Profile của tui,Profile của tôi,getUserProfile
+Vui lòng Hồ sơ người dùng của tui được không?,Hồ sơ người dùng của tôi,getUserProfile
+Giúp tôi Địa chỉ của em giúp với,Địa chỉ của tôi,getUserProfile
+Được không nếu Có thể Profile,Profile của tôi,getUserProfile
+Giúp mình Xem thông tin user nhé,Xem thông tin user,getUserProfile
+Giúp Hồ sơ người dùng của mình,Hồ sơ người dùng của tôi,getUserProfile
+Làm ơn Địa chỉ với,Địa chỉ của tôi,getUserProfile
+Tôi muốn Họ tên đăng ký của tui giùm,Họ tên đăng ký của tôi,getUserProfile
+Mình muốn Hồ sơ người dùng của tôi được không,Hồ sơ người dùng của tôi,getUserProfile
+Mình muốn Mình muốn Họ tên đăng ký của,Họ tên đăng ký của tôi,getUserProfile
+Profile của tui với,Profile của tôi,getUserProfile
+Được không nếu Số điện thoại đăng ký ạ,Số điện thoại đăng ký,getUserProfile
+Giúp em kiểm tra thông tin user,Xem thông tin user,getUserProfile
+Có thể Email đăng ký của tôi giùm,Email đăng ký của tôi,getUserProfile
+Được không nếu Profile của mình nha,Profile của tôi,getUserProfile
+Mình muốn Email đăng ký giùm,Email đăng ký của tôi,getUserProfile
+Làm ơn Họ tên đăng ký của tôi được không?,Họ tên đăng ký của tôi,getUserProfile
+Tôi cần Có thể Hồ sơ người dùng,Hồ sơ người dùng của tôi,getUserProfile
+Giúp mình Thông tin KYC của em,Thông tin KYC của tôi,getUserProfile
+Hồ sơ người dùng được không?,Hồ sơ người dùng của tôi,getUserProfile
+Được không nếu Xem thông tin cá nhân của tôi với,Xem thông tin cá nhân của tôi,getUserProfile
+Cho mình Họ tên đăng ký,Họ tên đăng ký của tôi,getUserProfile
+Giúp tui Địa chỉ của tui,Địa chỉ của tôi,getUserProfile
+Tôi muốn Email đăng ký của,Email đăng ký của tôi,getUserProfile
+Cho tôi Profile của mình?,Profile của tôi,getUserProfile
+Giúp tui Xem thông tin user nhé,Xem thông tin user,getUserProfile
+Tôi muốn Email đăng ký của tôi,Email đăng ký của tôi,getUserProfile
+Vui lòng Profile của em nhé,Profile của tôi,getUserProfile
+Làm ơn Hồ sơ người dùng của tôi nha,Hồ sơ người dùng của tôi,getUserProfile
+Làm ơn Xem thông tin cá nhân của mình nhé,Xem thông tin cá nhân của tôi,getUserProfile
+muốn Hồ sơ người dùng của tui,Hồ sơ người dùng của tôi,getUserProfile
+Có thể cho biết thông tin cá nhân của tôi,Xem thông tin cá nhân của tôi,getUserProfile
+Làm ơn Có thể Email đăng ký của tui,Email đăng ký của tôi,getUserProfile
+mình cần Số điện thoại đăng ký?,Số điện thoại đăng ký,getUserProfile
+Được không nếu Được không nếu Xem thông tin cá nhân của tôi,Xem thông tin cá nhân của tôi,getUserProfile
+Có thể Họ tên đăng ký của tôi được không?,Họ tên đăng ký của tôi,getUserProfile
+Vui lòng Hồ sơ người dùng của tui giúp với,Hồ sơ người dùng của tôi,getUserProfile
+Tôi cần Địa chỉ của tôi,Địa chỉ của tôi,getUserProfile
+Làm ơn Họ tên đăng ký của mình nha,Họ tên đăng ký của tôi,getUserProfile
+Cho tôi Hồ sơ người dùng của em nhé,Hồ sơ người dùng của tôi,getUserProfile
+Làm ơn Profile của tôi giùm,Profile của tôi,getUserProfile
+Vui lòng Profile của mình nhé,Profile của tôi,getUserProfile
+Vui lòng Có thể Hồ sơ người dùng,Hồ sơ người dùng của tôi,getUserProfile
+Số điện thoại đăng ký,Số điện thoại đăng ký,getUserProfile
+mình cần Làm ơn Email đăng ký của mình,Email đăng ký của tôi,getUserProfile
+Tôi cần Có thể Hồ sơ người dùng của em,Hồ sơ người dùng của tôi,getUserProfile
+Họ tên đăng ký của em nhé,Họ tên đăng ký của tôi,getUserProfile
+Có thể Địa chỉ của em giúp với,Địa chỉ của tôi,getUserProfile
+Cho tôi Địa chỉ của tôi với,Địa chỉ của tôi,getUserProfile
+Làm ơn Email đăng ký của nhé,Email đăng ký của tôi,getUserProfile
+Được không nếu Hồ sơ người dùng với,Hồ sơ người dùng của tôi,getUserProfile
+Email đăng ký của tôi nhé,Email đăng ký của tôi,getUserProfile
+Cho tui Họ tên đăng ký của tui với,Họ tên đăng ký của tôi,getUserProfile
+Làm ơn Địa chỉ,Địa chỉ của tôi,getUserProfile
+Mình muốn Hồ sơ người dùng của tôi nhé,Hồ sơ người dùng của tôi,getUserProfile
+Vui lòng Xem thông tin user?,Xem thông tin user,getUserProfile
+Xem thông tin cá nhân của ạ,Xem thông tin cá nhân của tôi,getUserProfile
+muốn Số điện thoại đăng ký ạ,Số điện thoại đăng ký,getUserProfile
+Cho mình Làm ơn Họ tên đăng ký của,Họ tên đăng ký của tôi,getUserProfile
+Cho tôi Được không nếu Số điện thoại đăng ký,Số điện thoại đăng ký,getUserProfile
+Cho Được không nếu Số điện thoại đăng ký,Số điện thoại đăng ký,getUserProfile
+tui muốn Cho mình Profile của tui,Profile của tôi,getUserProfile
+Cho mình Cho mình Thông tin KYC,Thông tin KYC của tôi,getUserProfile
+Email đăng ký của em với,Email đăng ký của tôi,getUserProfile
+Được không nếu Địa chỉ của mình với,Địa chỉ của tôi,getUserProfile
+Tôi muốn Họ tên đăng ký của tui được không,Họ tên đăng ký của tôi,getUserProfile
+Cho em Làm ơn Thông tin KYC của em,Thông tin KYC của tôi,getUserProfile
+Giúp tôi Email đăng ký của tui với,Email đăng ký của tôi,getUserProfile
+em cần Thông tin KYC của tui,Thông tin KYC của tôi,getUserProfile
+Mình muốn Mình muốn Họ tên đăng ký của mình,Họ tên đăng ký của tôi,getUserProfile
+Cho tôi Địa chỉ của mình nhé,Địa chỉ của tôi,getUserProfile
+Làm ơn Hồ sơ người dùng của tôi giùm,Hồ sơ người dùng của tôi,getUserProfile
+Cho tôi Số điện thoại đăng ký với,Số điện thoại đăng ký,getUserProfile
+Cho mình Xem thông tin user giùm,Xem thông tin user,getUserProfile
+Cho mình Email đăng ký của tôi được không?,Email đăng ký của tôi,getUserProfile
+Có thể Được không nếu Xem thông tin cá nhân của tôi,Xem thông tin cá nhân của tôi,getUserProfile
+Giúp tôi Hồ sơ người dùng của tui,Hồ sơ người dùng của tôi,getUserProfile
+Có thể Hồ sơ người dùng của mình nhé,Hồ sơ người dùng của tôi,getUserProfile
+em muốn Số điện thoại đăng ký ạ,Số điện thoại đăng ký,getUserProfile
+Giúp tôi Xem thông tin user nha,Xem thông tin user,getUserProfile
+Số điện thoại đăng ký giùm được không?,Số điện thoại đăng ký,getUserProfile
+Số điện thoại đăng ký được không giùm,Số điện thoại đăng ký,getUserProfile
+cần Có thể Xem thông tin cá nhân của,Xem thông tin cá nhân của tôi,getUserProfile
+Mình muốn Profile của mình ạ,Profile của tôi,getUserProfile
+Cho mình Được không nếu Profile của tôi,Profile của tôi,getUserProfile
+Được không nếu Địa chỉ của em được không?,Địa chỉ của tôi,getUserProfile
+Profile của tui giúp với,Profile của tôi,getUserProfile
+Địa chỉ giùm,Địa chỉ của tôi,getUserProfile
+Hồ sơ người dùng của em với,Hồ sơ người dùng của tôi,getUserProfile
+Vui lòng Họ tên đăng ký của tôi,Họ tên đăng ký của tôi,getUserProfile
+Mình muốn Profile của,Profile của tôi,getUserProfile
+Mình muốn Email đăng ký được không?,Email đăng ký của tôi,getUserProfile
+Được không nếu Số điện thoại đăng ký,Số điện thoại đăng ký,getUserProfile
+Địa chỉ của tôi ạ nhé,Địa chỉ của tôi,getUserProfile
+Cho mình Mình muốn Xem thông tin user,Xem thông tin user,getUserProfile
+Tôi cần Email đăng ký của tôi ạ,Email đăng ký của tôi,getUserProfile
+Có thể hiển thị thông tin cá nhân,Xem thông tin cá nhân của tôi,getUserProfile
+Mình muốn Địa chỉ của em nhé,Địa chỉ của tôi,getUserProfile
+Xem thông tin cá nhân của tôi ạ?,Xem thông tin cá nhân của tôi,getUserProfile
+Cho mình Hồ sơ người dùng của tui ạ,Hồ sơ người dùng của tôi,getUserProfile
+Giúp Được không nếu Email đăng ký của,Email đăng ký của tôi,getUserProfile
+Giúp tui kiểm tra thông tin user,Xem thông tin user,getUserProfile
+Cho mình Được không nếu Profile của tui,Profile của tôi,getUserProfile
+Hồ sơ người dùng của mình với,Hồ sơ người dùng của tôi,getUserProfile
+Cho tôi Email đăng ký của tôi được không?,Email đăng ký của tôi,getUserProfile
+Cho tôi Hồ sơ người dùng của tôi được không,Hồ sơ người dùng của tôi,getUserProfile
+Họ tên đăng ký của với,Họ tên đăng ký của tôi,getUserProfile
+Mình muốn Profile của mình?,Profile của tôi,getUserProfile
+Mình muốn Hồ sơ người dùng của tôi được không?,Hồ sơ người dùng của tôi,getUserProfile
+tui muốn Số điện thoại đăng ký ạ,Số điện thoại đăng ký,getUserProfile
+Vui lòng Email đăng ký nha,Email đăng ký của tôi,getUserProfile
+Tôi muốn Họ tên đăng ký của tôi nha,Họ tên đăng ký của tôi,getUserProfile
+Có thể Họ tên đăng ký của em giúp với,Họ tên đăng ký của tôi,getUserProfile
+Mình muốn Email đăng ký của tôi,Email đăng ký của tôi,getUserProfile
+Cho em Cho mình Hồ sơ người dùng của em,Hồ sơ người dùng của tôi,getUserProfile
+Giúp tôi Họ tên đăng ký của tui,Họ tên đăng ký của tôi,getUserProfile
+Mình muốn Xem thông tin cá nhân của nha,Xem thông tin cá nhân của tôi,getUserProfile
+mình cần Profile của mình,Profile của tôi,getUserProfile
+tui muốn Hồ sơ người dùng của em,Hồ sơ người dùng của tôi,getUserProfile
+Cho mình Hồ sơ người dùng của mình,Hồ sơ người dùng của tôi,getUserProfile
+Tôi cần Được không nếu Xem thông tin cá nhân của mình,Xem thông tin cá nhân của tôi,getUserProfile
+Tôi muốn Email đăng ký của tui ạ,Email đăng ký của tôi,getUserProfile
+Cho mình hiển thị thông tin user,Xem thông tin user,getUserProfile
+Giúp mình Hồ sơ người dùng của tui,Hồ sơ người dùng của tôi,getUserProfile
+Tôi muốn kiểm tra thông tin user,Xem thông tin user,getUserProfile
+Có thể Email đăng ký của tui nhé,Email đăng ký của tôi,getUserProfile
+Vui lòng Thông tin KYC của mình được không?,Thông tin KYC của tôi,getUserProfile
+Có thể Số điện thoại đăng ký nha,Số điện thoại đăng ký,getUserProfile
+Profile của tôi nhé?,Profile của tôi,getUserProfile
+Họ tên đăng ký của tôi nhé?,Họ tên đăng ký của tôi,getUserProfile
+Tôi cần Làm ơn Xem thông tin user,Xem thông tin user,getUserProfile
+Có thể Có thể Địa chỉ của tôi,Địa chỉ của tôi,getUserProfile
+Mình muốn Email đăng ký của em giùm,Email đăng ký của tôi,getUserProfile
+Tôi cần Xem thông tin cá nhân của mình được không?,Xem thông tin cá nhân của tôi,getUserProfile
+Xem thông tin user ạ nha,Xem thông tin user,getUserProfile
+Giúp Mình muốn Số điện thoại đăng ký,Số điện thoại đăng ký,getUserProfile
+Mình muốn hiển thị thông tin cá nhân của tui,Xem thông tin cá nhân của tôi,getUserProfile
+Mình muốn Có thể Số điện thoại đăng ký,Số điện thoại đăng ký,getUserProfile
+Cho mình Thông tin KYC của em giùm,Thông tin KYC của tôi,getUserProfile
+tui muốn Địa chỉ,Địa chỉ của tôi,getUserProfile
+Có thể Có thể Xem thông tin cá nhân của mình,Xem thông tin cá nhân của tôi,getUserProfile
+Xem thông tin user nhé với,Xem thông tin user,getUserProfile
+em cần Làm ơn Email đăng ký của em,Email đăng ký của tôi,getUserProfile
+Cho mình Có thể Hồ sơ người dùng của,Hồ sơ người dùng của tôi,getUserProfile
+Có thể Mình muốn Profile của em,Profile của tôi,getUserProfile
+Vui lòng Xem thông tin cá nhân của với,Xem thông tin cá nhân của tôi,getUserProfile
+em muốn Địa chỉ của em,Địa chỉ của tôi,getUserProfile
+Được không nếu Cho mình Thông tin KYC của,Thông tin KYC của tôi,getUserProfile
+Tôi muốn Mình muốn Hồ sơ người dùng của em,Hồ sơ người dùng của tôi,getUserProfile
+Vui lòng Thông tin KYC của tôi nha,Thông tin KYC của tôi,getUserProfile
+Giúp tui Email đăng ký của tui với,Email đăng ký của tôi,getUserProfile
+Hồ sơ người dùng của tôi nhé giúp với,Hồ sơ người dùng của tôi,getUserProfile
+Xem thông tin cá nhân của tôi với?,Xem thông tin cá nhân của tôi,getUserProfile
+Tôi cần Cho mình Profile của mình,Profile của tôi,getUserProfile
+Giúp tui Có thể Thông tin KYC của tui,Thông tin KYC của tôi,getUserProfile
+hiển thị thông tin user được không?,Xem thông tin user,getUserProfile
+Làm ơn Có thể Email đăng ký của em,Email đăng ký của tôi,getUserProfile
+mình cần Profile của tui,Profile của tôi,getUserProfile
+Được không nếu Làm ơn Thông tin KYC,Thông tin KYC của tôi,getUserProfile
+Làm ơn Thông tin KYC của mình,Thông tin KYC của tôi,getUserProfile
+Vui lòng Email đăng ký của mình với,Email đăng ký của tôi,getUserProfile
+Tôi cần Địa chỉ của tôi giúp với,Địa chỉ của tôi,getUserProfile
+Giúp mình Cho mình Xem thông tin user,Xem thông tin user,getUserProfile
+em muốn Hồ sơ người dùng của em được không,Hồ sơ người dùng của tôi,getUserProfile
+Thông tin KYC của tôi nhé giùm,Thông tin KYC của tôi,getUserProfile
+Được không nếu Email đăng ký của mình nhé,Email đăng ký của tôi,getUserProfile
+cần Họ tên đăng ký của,Họ tên đăng ký của tôi,getUserProfile
+Tôi cần Họ tên đăng ký của em với,Họ tên đăng ký của tôi,getUserProfile
+Vui lòng Địa chỉ của mình,Địa chỉ của tôi,getUserProfile
+Được không nếu Có thể Địa chỉ,Địa chỉ của tôi,getUserProfile
+Vui lòng Email đăng ký của tôi nhé,Email đăng ký của tôi,getUserProfile
+Được không nếu Hồ sơ người dùng của em với,Hồ sơ người dùng của tôi,getUserProfile
+em cần Có thể Thông tin KYC của em,Thông tin KYC của tôi,getUserProfile
+Làm ơn Họ tên đăng ký của mình?,Họ tên đăng ký của tôi,getUserProfile
+Vui lòng Có thể Hồ sơ người dùng của em,Hồ sơ người dùng của tôi,getUserProfile
+Tôi cần Thông tin KYC được không?,Thông tin KYC của tôi,getUserProfile
+Cho mình kiểm tra thông tin cá nhân của mình,Xem thông tin cá nhân của tôi,getUserProfile
+Địa chỉ của tui giúp với,Địa chỉ của tôi,getUserProfile
+Được không nếu Xem thông tin user giùm,Xem thông tin user,getUserProfile
+Được không nếu Profile của em được không?,Profile của tôi,getUserProfile
+Tôi muốn Hồ sơ người dùng của em?,Hồ sơ người dùng của tôi,getUserProfile
+Mình muốn Mình muốn Hồ sơ người dùng của tôi,Hồ sơ người dùng của tôi,getUserProfile
+Làm ơn Hồ sơ người dùng giùm,Hồ sơ người dùng của tôi,getUserProfile
+Vui lòng Email đăng ký của tui với,Email đăng ký của tôi,getUserProfile
+Mình muốn Làm ơn Email đăng ký của em,Email đăng ký của tôi,getUserProfile
+Mình muốn Xem thông tin cá nhân nha,Xem thông tin cá nhân của tôi,getUserProfile
+Được không nếu Hồ sơ người dùng của với,Hồ sơ người dùng của tôi,getUserProfile
+Mình muốn Thông tin KYC của tôi nha,Thông tin KYC của tôi,getUserProfile
+Tôi muốn Mình muốn Hồ sơ người dùng,Hồ sơ người dùng của tôi,getUserProfile
+Họ tên đăng ký của tôi giúp với nhé,Họ tên đăng ký của tôi,getUserProfile
+Địa chỉ được không,Địa chỉ của tôi,getUserProfile
+Tôi cần Có thể Xem thông tin cá nhân của tui,Xem thông tin cá nhân của tôi,getUserProfile
+Profile của nha,Profile của tôi,getUserProfile
+Cho tui kiểm tra thông tin cá nhân của tui,Xem thông tin cá nhân của tôi,getUserProfile
+Mình muốn Làm ơn Họ tên đăng ký của mình,Họ tên đăng ký của tôi,getUserProfile
+Có thể Làm ơn Họ tên đăng ký của,Họ tên đăng ký của tôi,getUserProfile
+Có thể Mình muốn Họ tên đăng ký của tôi,Họ tên đăng ký của tôi,getUserProfile
+Cho mình Cho mình Email đăng ký,Email đăng ký của tôi,getUserProfile
+Mình muốn Cho mình Thông tin KYC của mình,Thông tin KYC của tôi,getUserProfile
+Có thể Họ tên đăng ký của với,Họ tên đăng ký của tôi,getUserProfile
+Tôi cần Profile của mình được không,Profile của tôi,getUserProfile
+Tôi cần Xem thông tin user với,Xem thông tin user,getUserProfile
+Giúp mình kiểm tra thông tin user,Xem thông tin user,getUserProfile
+cần Số điện thoại đăng ký?,Số điện thoại đăng ký,getUserProfile
+Có thể Xem thông tin cá nhân của giúp với,Xem thông tin cá nhân của tôi,getUserProfile
+Thông tin KYC của tôi nhé ạ,Thông tin KYC của tôi,getUserProfile
+Địa chỉ nhé,Địa chỉ của tôi,getUserProfile
+Có thể Thông tin KYC nha,Thông tin KYC của tôi,getUserProfile
+Cho Xem thông tin user?,Xem thông tin user,getUserProfile
+Giúp tui Profile của tui giùm,Profile của tôi,getUserProfile
+Thông tin KYC của em ạ,Thông tin KYC của tôi,getUserProfile
+Tôi cần Thông tin KYC của em nha,Thông tin KYC của tôi,getUserProfile
+Vui lòng Hồ sơ người dùng nhé,Hồ sơ người dùng của tôi,getUserProfile
+Tôi muốn Địa chỉ của em?,Địa chỉ của tôi,getUserProfile
+Tôi muốn Hồ sơ người dùng của tui giúp với,Hồ sơ người dùng của tôi,getUserProfile
+Giúp tôi Mình muốn Hồ sơ người dùng của em,Hồ sơ người dùng của tôi,getUserProfile
+Vui lòng Email đăng ký nhé,Email đăng ký của tôi,getUserProfile
+Cho em Xem thông tin cá nhân của,Xem thông tin cá nhân của tôi,getUserProfile
+Giúp tôi Profile của mình giùm,Profile của tôi,getUserProfile
+Cho mình Xem thông tin cá nhân của tôi,Xem thông tin cá nhân của tôi,getUserProfile
+Làm ơn Địa chỉ của tôi ạ,Địa chỉ của tôi,getUserProfile
+Mình muốn Có thể Profile của em,Profile của tôi,getUserProfile
+Có thể Email đăng ký của em,Email đăng ký của tôi,getUserProfile
+Cho mình Hồ sơ người dùng giúp với,Hồ sơ người dùng của tôi,getUserProfile
+Địa chỉ của ?,Địa chỉ của tôi,getUserProfile
+Cho Họ tên đăng ký của nhé,Họ tên đăng ký của tôi,getUserProfile
+Profile nha,Profile của tôi,getUserProfile
+Cho tôi Cho mình Hồ sơ người dùng của mình,Hồ sơ người dùng của tôi,getUserProfile
+Địa chỉ của em ạ,Địa chỉ của tôi,getUserProfile
+Vui lòng Thông tin KYC của tui với,Thông tin KYC của tôi,getUserProfile
+Cho mình Có thể Hồ sơ người dùng của tôi,Hồ sơ người dùng của tôi,getUserProfile
+Cho tôi Thông tin KYC của tôi,Thông tin KYC của tôi,getUserProfile
+Vui lòng Thông tin KYC được không,Thông tin KYC của tôi,getUserProfile
+Mình muốn Profile của tôi nha,Profile của tôi,getUserProfile
+Được không nếu Email đăng ký của em nha,Email đăng ký của tôi,getUserProfile
+Cho tôi Profile của mình giúp với,Profile của tôi,getUserProfile
+Cho em Số điện thoại đăng ký giúp với,Số điện thoại đăng ký,getUserProfile
+Cho em Họ tên đăng ký của,Họ tên đăng ký của tôi,getUserProfile
+Xem thông tin user giùm giúp với,Xem thông tin user,getUserProfile
+Mình muốn Làm ơn Họ tên đăng ký của,Họ tên đăng ký của tôi,getUserProfile
+Địa chỉ của tôi nhé giúp với,Địa chỉ của tôi,getUserProfile
+Xem thông tin cá nhân của được không,Xem thông tin cá nhân của tôi,getUserProfile
+Làm ơn Họ tên đăng ký của tôi với,Họ tên đăng ký của tôi,getUserProfile
+Tôi muốn Xem thông tin cá nhân,Xem thông tin cá nhân của tôi,getUserProfile
+Giúp tui Xem thông tin user nha,Xem thông tin user,getUserProfile
+Vui lòng Thông tin KYC của giùm,Thông tin KYC của tôi,getUserProfile
+Có thể hiển thị thông tin cá nhân của tôi,Xem thông tin cá nhân của tôi,getUserProfile
+Giúp tui Xem thông tin user được không?,Xem thông tin user,getUserProfile
+Có thể Địa chỉ của mình giúp với,Địa chỉ của tôi,getUserProfile
+Giúp em Họ tên đăng ký của tui,Họ tên đăng ký của tôi,getUserProfile
+Giúp tui Xem thông tin cá nhân của tui giúp với,Xem thông tin cá nhân của tôi,getUserProfile
+Có thể Xem thông tin cá nhân giúp với,Xem thông tin cá nhân của tôi,getUserProfile
+Giúp tôi Họ tên đăng ký của em?,Họ tên đăng ký của tôi,getUserProfile
+Cho tôi Cho mình Email đăng ký của tui,Email đăng ký của tôi,getUserProfile
+mình cần Thông tin KYC của mình được không?,Thông tin KYC của tôi,getUserProfile
+Cho tôi Profile của mình được không?,Profile của tôi,getUserProfile
+Vui lòng Cho mình Xem thông tin cá nhân của tui,Xem thông tin cá nhân của tôi,getUserProfile
+Làm ơn Có thể Họ tên đăng ký,Họ tên đăng ký của tôi,getUserProfile
+em muốn Mình muốn Profile của em,Profile của tôi,getUserProfile
+Địa chỉ của tôi nha nha,Địa chỉ của tôi,getUserProfile
+Vui lòng Làm ơn Địa chỉ của em,Địa chỉ của tôi,getUserProfile
+Vui lòng Có thể Họ tên đăng ký của em,Họ tên đăng ký của tôi,getUserProfile
+Vui lòng Profile của mình,Profile của tôi,getUserProfile
+Vui lòng Email đăng ký của tôi ạ,Email đăng ký của tôi,getUserProfile
+Được không nếu Profile của mình với,Profile của tôi,getUserProfile
+muốn Thông tin KYC của được không,Thông tin KYC của tôi,getUserProfile
+Giúp tôi Địa chỉ của tôi giúp với,Địa chỉ của tôi,getUserProfile
+Có thể Email đăng ký của được không,Email đăng ký của tôi,getUserProfile
+Làm ơn Hồ sơ người dùng của mình nha,Hồ sơ người dùng của tôi,getUserProfile
+Địa chỉ của,Địa chỉ của tôi,getUserProfile
+Có thể Làm ơn Xem thông tin cá nhân của tôi,Xem thông tin cá nhân của tôi,getUserProfile
+Mình muốn Profile của ạ,Profile của tôi,getUserProfile
+Giúp em Xem thông tin user,Xem thông tin user,getUserProfile
+Làm ơn Có thể Họ tên đăng ký của mình,Họ tên đăng ký của tôi,getUserProfile
+Thông tin KYC của tôi nha,Thông tin KYC của tôi,getUserProfile
+Có thể Mình muốn Họ tên đăng ký,Họ tên đăng ký của tôi,getUserProfile
+Có thể Có thể Xem thông tin cá nhân của tui,Xem thông tin cá nhân của tôi,getUserProfile
+Xem thông tin cá nhân của tôi với với,Xem thông tin cá nhân của tôi,getUserProfile
+Vui lòng Số điện thoại đăng ký giúp với,Số điện thoại đăng ký,getUserProfile
+Họ tên đăng ký của tôi ạ được không,Họ tên đăng ký của tôi,getUserProfile
+Giúp tôi Họ tên đăng ký của,Họ tên đăng ký của tôi,getUserProfile
+Làm ơn Có thể Xem thông tin cá nhân của,Xem thông tin cá nhân của tôi,getUserProfile
+Vui lòng Số điện thoại đăng ký nha,Số điện thoại đăng ký,getUserProfile
+Giúp Profile của với,Profile của tôi,getUserProfile
+Cho mình Profile của em nhé,Profile của tôi,getUserProfile
+Giúp kiểm tra thông tin user,Xem thông tin user,getUserProfile
+Mình muốn Mình muốn Địa chỉ của tôi,Địa chỉ của tôi,getUserProfile
+Giúp tôi Hồ sơ người dùng của tôi với,Hồ sơ người dùng của tôi,getUserProfile
+Được không nếu Họ tên đăng ký của mình ạ,Họ tên đăng ký của tôi,getUserProfile
+Cho mình Địa chỉ giùm,Địa chỉ của tôi,getUserProfile
+Giúp tôi cho biết thông tin cá nhân của tôi,Xem thông tin cá nhân của tôi,getUserProfile
+Có thể Địa chỉ của tôi với,Địa chỉ của tôi,getUserProfile
+Mình muốn Xem thông tin user nhé,Xem thông tin user,getUserProfile
+Số điện thoại đăng ký được không nhé,Số điện thoại đăng ký,getUserProfile
+Họ tên đăng ký của tui được không?,Họ tên đăng ký của tôi,getUserProfile
+Mình muốn Làm ơn Địa chỉ của mình,Địa chỉ của tôi,getUserProfile
+Mình muốn Họ tên đăng ký của tôi ạ,Họ tên đăng ký của tôi,getUserProfile
+Thông tin KYC của tôi giùm,Thông tin KYC của tôi,getUserProfile
+Cho mình Cho mình Địa chỉ của tui,Địa chỉ của tôi,getUserProfile
+Cho mình Xem thông tin cá nhân của em nha,Xem thông tin cá nhân của tôi,getUserProfile
+Tôi muốn Hồ sơ người dùng của tôi ạ,Hồ sơ người dùng của tôi,getUserProfile
+Được không nếu Hồ sơ người dùng được không?,Hồ sơ người dùng của tôi,getUserProfile
+Được không nếu Profile nha,Profile của tôi,getUserProfile
+Làm ơn Thông tin KYC nha,Thông tin KYC của tôi,getUserProfile
+Email đăng ký của tôi giùm,Email đăng ký của tôi,getUserProfile
+Tôi muốn Thông tin KYC của tui nhé,Thông tin KYC của tôi,getUserProfile
+Địa chỉ của em?,Địa chỉ của tôi,getUserProfile
+Giúp tôi Được không nếu Địa chỉ của tôi,Địa chỉ của tôi,getUserProfile
+Giúp tui Xem thông tin user với,Xem thông tin user,getUserProfile
+Được không nếu Địa chỉ của tui được không?,Địa chỉ của tôi,getUserProfile
+Vui lòng Hồ sơ người dùng của mình,Hồ sơ người dùng của tôi,getUserProfile
+Được không nếu Hồ sơ người dùng của ạ,Hồ sơ người dùng của tôi,getUserProfile
+Xem thông tin cá nhân của tôi giúp với nhé,Xem thông tin cá nhân của tôi,getUserProfile
+Mình muốn Địa chỉ của em được không?,Địa chỉ của tôi,getUserProfile
+Làm ơn Email đăng ký của tôi được không,Email đăng ký của tôi,getUserProfile
+muốn Hồ sơ người dùng của ?,Hồ sơ người dùng của tôi,getUserProfile
+Cho mình Email đăng ký giúp với,Email đăng ký của tôi,getUserProfile
+Xem thông tin cá nhân của giúp với,Xem thông tin cá nhân của tôi,getUserProfile
+em cần Có thể Họ tên đăng ký của em,Họ tên đăng ký của tôi,getUserProfile
+em cần Profile của em giùm,Profile của tôi,getUserProfile
+Mình muốn Xem thông tin cá nhân của tui,Xem thông tin cá nhân của tôi,getUserProfile
+Mình muốn Mình muốn Địa chỉ của em,Địa chỉ của tôi,getUserProfile
+Họ tên đăng ký của tôi ạ,Họ tên đăng ký của tôi,getUserProfile
+Có thể Xem thông tin cá nhân của mình được không,Xem thông tin cá nhân của tôi,getUserProfile
+Có thể kiểm tra thông tin cá nhân của mình,Xem thông tin cá nhân của tôi,getUserProfile
+Thông tin KYC của tui,Thông tin KYC của tôi,getUserProfile
+Làm ơn Địa chỉ của mình nha,Địa chỉ của tôi,getUserProfile
+Số điện thoại đăng ký với giúp với,Số điện thoại đăng ký,getUserProfile
+Cho mình Xem thông tin cá nhân của tôi nha,Xem thông tin cá nhân của tôi,getUserProfile
+Giúp mình Xem thông tin cá nhân của mình giùm,Xem thông tin cá nhân của tôi,getUserProfile
+Cho tôi Xem thông tin cá nhân của tôi?,Xem thông tin cá nhân của tôi,getUserProfile
+Địa chỉ của tui giùm,Địa chỉ của tôi,getUserProfile
+cần kiểm tra thông tin user,Xem thông tin user,getUserProfile
+Cho mình Thông tin KYC của nha,Thông tin KYC của tôi,getUserProfile
+Vui lòng Profile của tôi ạ,Profile của tôi,getUserProfile
+Được không nếu Họ tên đăng ký của em,Họ tên đăng ký của tôi,getUserProfile
+Cho mình Họ tên đăng ký của ?,Họ tên đăng ký của tôi,getUserProfile
+Mình muốn Địa chỉ của em với,Địa chỉ của tôi,getUserProfile
+Cho mình Họ tên đăng ký của tôi với,Họ tên đăng ký của tôi,getUserProfile
+Làm ơn Cho mình Thông tin KYC của em,Thông tin KYC của tôi,getUserProfile
+Cho mình Mình muốn Xem thông tin cá nhân,Xem thông tin cá nhân của tôi,getUserProfile
+Làm ơn kiểm tra thông tin cá nhân của mình,Xem thông tin cá nhân của tôi,getUserProfile
+mình muốn Xem thông tin user giùm,Xem thông tin user,getUserProfile
+Được không nếu Được không nếu Profile của,Profile của tôi,getUserProfile
+Cho mình Email đăng ký của em ạ,Email đăng ký của tôi,getUserProfile
+Thông tin KYC của tôi nhé được không?,Thông tin KYC của tôi,getUserProfile
+Xem thông tin cá nhân của tôi nha,Xem thông tin cá nhân của tôi,getUserProfile
+Email đăng ký của tôi giúp với giùm,Email đăng ký của tôi,getUserProfile
+tui muốn Email đăng ký của tui được không,Email đăng ký của tôi,getUserProfile
+Tôi muốn Xem thông tin cá nhân của tui nhé,Xem thông tin cá nhân của tôi,getUserProfile
+Có thể Mình muốn Profile của mình,Profile của tôi,getUserProfile
+Mình muốn Họ tên đăng ký của tôi được không,Họ tên đăng ký của tôi,getUserProfile
+Có thể kiểm tra thông tin cá nhân của em,Xem thông tin cá nhân của tôi,getUserProfile
+mình muốn hiển thị thông tin user,Xem thông tin user,getUserProfile
+Cho mình Có thể Email đăng ký của mình,Email đăng ký của tôi,getUserProfile
+Được không nếu Profile của tui nhé,Profile của tôi,getUserProfile
+mình cần Mình muốn Xem thông tin user,Xem thông tin user,getUserProfile
+Xem thông tin cá nhân của tui được không,Xem thông tin cá nhân của tôi,getUserProfile
+Tôi muốn Email đăng ký của tôi nha,Email đăng ký của tôi,getUserProfile
+Profile được không,Profile của tôi,getUserProfile
+Giúp tui Họ tên đăng ký của tui nha,Họ tên đăng ký của tôi,getUserProfile
+Làm ơn Xem thông tin cá nhân của tui,Xem thông tin cá nhân của tôi,getUserProfile
+Được không nếu Email đăng ký của tôi,Email đăng ký của tôi,getUserProfile
+Làm ơn Email đăng ký giúp với,Email đăng ký của tôi,getUserProfile
+Hồ sơ người dùng của tôi nha?,Hồ sơ người dùng của tôi,getUserProfile
+Cho tôi Họ tên đăng ký của tui với,Họ tên đăng ký của tôi,getUserProfile
+Giúp Xem thông tin user với,Xem thông tin user,getUserProfile
+Tôi cần Làm ơn Profile của tui,Profile của tôi,getUserProfile
+cần Làm ơn Email đăng ký của,Email đăng ký của tôi,getUserProfile
+Có thể Profile của em được không,Profile của tôi,getUserProfile
+Profile của tôi với giúp với,Profile của tôi,getUserProfile
+Làm ơn Hồ sơ người dùng của em nha,Hồ sơ người dùng của tôi,getUserProfile
+Có thể Xem thông tin cá nhân của em,Xem thông tin cá nhân của tôi,getUserProfile
+Tôi muốn Họ tên đăng ký của mình được không?,Họ tên đăng ký của tôi,getUserProfile
+Làm ơn Thông tin KYC của tôi,Thông tin KYC của tôi,getUserProfile
+Mình muốn Được không nếu Họ tên đăng ký của,Họ tên đăng ký của tôi,getUserProfile
+Thông tin KYC của tôi được không với,Thông tin KYC của tôi,getUserProfile
+Vui lòng Có thể Thông tin KYC,Thông tin KYC của tôi,getUserProfile
+Thông tin KYC của mình,Thông tin KYC của tôi,getUserProfile
+Tôi cần Email đăng ký của mình với,Email đăng ký của tôi,getUserProfile
+Có thể Thông tin KYC của tôi giùm,Thông tin KYC của tôi,getUserProfile
+Cho tôi Mình muốn Họ tên đăng ký của tui,Họ tên đăng ký của tôi,getUserProfile
+Được không nếu Thông tin KYC của em giùm,Thông tin KYC của tôi,getUserProfile
+Mình muốn Địa chỉ của nha,Địa chỉ của tôi,getUserProfile
+Làm ơn Họ tên đăng ký của giúp với,Họ tên đăng ký của tôi,getUserProfile
+Địa chỉ giúp với,Địa chỉ của tôi,getUserProfile
+Làm ơn Hồ sơ người dùng của tôi,Hồ sơ người dùng của tôi,getUserProfile
+Làm ơn Họ tên đăng ký giùm,Họ tên đăng ký của tôi,getUserProfile
+Làm ơn Mình muốn Email đăng ký của em,Email đăng ký của tôi,getUserProfile
+tui muốn Xem thông tin cá nhân của tui?,Xem thông tin cá nhân của tôi,getUserProfile
+Họ tên đăng ký của tôi được không?,Họ tên đăng ký của tôi,getUserProfile
+Giúp tôi Profile với,Profile của tôi,getUserProfile
+Xem thông tin user giùm được không,Xem thông tin user,getUserProfile
+Tôi muốn Được không nếu Xem thông tin cá nhân của mình,Xem thông tin cá nhân của tôi,getUserProfile
+Được không nếu Họ tên đăng ký được không,Họ tên đăng ký của tôi,getUserProfile
+Vui lòng Xem thông tin cá nhân ?,Xem thông tin cá nhân của tôi,getUserProfile
+Giúp tôi Thông tin KYC của tôi giúp với,Thông tin KYC của tôi,getUserProfile
+Tôi muốn Email đăng ký nhé,Email đăng ký của tôi,getUserProfile
+Cho tui Địa chỉ của mình,Địa chỉ của tôi,getUserProfile
+Cho mình Địa chỉ của tôi được không,Địa chỉ của tôi,getUserProfile
+Cho tôi Mình muốn Thông tin KYC,Thông tin KYC của tôi,getUserProfile
+Tôi cần cho biết thông tin user,Xem thông tin user,getUserProfile
+em muốn Xem thông tin user giúp với,Xem thông tin user,getUserProfile
+Mình muốn Xem thông tin user?,Xem thông tin user,getUserProfile
+Được không nếu Có thể Số điện thoại đăng ký,Số điện thoại đăng ký,getUserProfile
+Cho tôi Làm ơn Thông tin KYC của tôi,Thông tin KYC của tôi,getUserProfile
+Giúp tôi Thông tin KYC của tôi với,Thông tin KYC của tôi,getUserProfile
+Được không nếu Địa chỉ của em với,Địa chỉ của tôi,getUserProfile
+Cho tui Địa chỉ của tui giùm,Địa chỉ của tôi,getUserProfile
+Mình muốn Email đăng ký của được không?,Email đăng ký của tôi,getUserProfile
+Cho em Có thể Hồ sơ người dùng của em,Hồ sơ người dùng của tôi,getUserProfile
+Tôi muốn Họ tên đăng ký của tôi được không,Họ tên đăng ký của tôi,getUserProfile
