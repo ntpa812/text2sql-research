@@ -1,0 +1,370 @@
+{
+    "table_name": "customer",
+    "columns": [
+        {
+            "name": "id",
+            "role": "IDENTITY",
+            "description": "ID tự tăng, là khóa chính (Primary Key) của bản ghi này.",
+            "suggested_keywords": [
+                "id tự tăng, khóa chính",
+                "primary key"
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "cif_no",
+            "role": "IDENTITY",
+            "description": "Số CIF (Customer Information File) - Mã định danh duy nhất của khách hàng tại ngân hàng.",
+            "suggested_keywords": [
+                "số cif",
+                "customer information file"
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "customer_id",
+            "role": "IDENTITY",
+            "description": "ID định danh khách hàng trong hệ thống nội bộ.",
+            "suggested_keywords": [
+                "id định danh khách hàng nội bộ."
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "customer_no",
+            "role": "IDENTITY",
+            "description": "Mã số khách hàng (có thể khác với CIF tùy theo cấu trúc hệ thống).",
+            "suggested_keywords": [
+                "mã số khách hàng",
+                "có thể khác với cif tùy theo cấu trúc hệ thống"
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "customer_name",
+            "role": "ATTRIBUTE",
+            "description": "Họ và tên đầy đủ của khách hàng.",
+            "suggested_keywords": [
+                "họ và tên đầy đủ khách hàng."
+            ],
+            "sql_logic": ""
+        },
+        {
+            "name": "system_id",
+            "role": "IDENTITY",
+            "description": "ID của hệ thống nguồn (nếu dữ liệu được đẩy từ hệ thống khác sang).",
+            "suggested_keywords": [
+                "id nguồn",
+                "nếu dữ liệu được đẩy từ khác sang"
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "cif_branch",
+            "role": "IDENTITY",
+            "description": "Chi nhánh nơi mở/quản lý mã CIF này.",
+            "suggested_keywords": [
+                "chi nhánh nơi mở/quản lý mã cif này."
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "cif_type",
+            "role": "DIMENSION",
+            "description": "Loại CIF (Ví dụ: Cá nhân, Doanh nghiệp, Khách hàng ưu tiên...).",
+            "suggested_keywords": [
+                "loại cif",
+                "ví dụ: cá nhân, doanh nghiệp, khách hàng ưu tiên..."
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "address_line",
+            "role": "ATTRIBUTE",
+            "description": "Dòng địa chỉ chi tiết (Số nhà, tên đường).",
+            "suggested_keywords": [
+                "dòng địa chỉ chi tiết",
+                "số nhà, tên đường"
+            ],
+            "sql_logic": ""
+        },
+        {
+            "name": "full_address",
+            "role": "ATTRIBUTE",
+            "description": "Địa chỉ đầy đủ (bao gồm xã/phường, quận/huyện, tỉnh/thành).",
+            "suggested_keywords": [
+                "địa chỉ đầy đủ",
+                "bao gồm xã/phường, quận/huyện, tỉnh/thành"
+            ],
+            "sql_logic": ""
+        },
+        {
+            "name": "branch_code",
+            "role": "IDENTITY",
+            "description": "Mã chi nhánh quản lý trực tiếp khách hàng.",
+            "suggested_keywords": [
+                "mã chi nhánh quản lý trực tiếp khách hàng."
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "customer_class",
+            "role": "ATTRIBUTE",
+            "description": "Phân hạng khách hàng (Ví dụ: Đồng, Bạc, Vàng, Kim cương).",
+            "suggested_keywords": [
+                "phân hạng khách hàng",
+                "ví dụ: đồng, bạc, vàng, kim cương"
+            ],
+            "sql_logic": ""
+        },
+        {
+            "name": "customer_status",
+            "role": "DIMENSION",
+            "description": "Trạng thái hiện tại của khách hàng (Active, Inactive, Closed...).",
+            "suggested_keywords": [
+                "trạng thái hiện tại khách hàng",
+                "active, inactive, closed..."
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "date_of_issue",
+            "role": "IDENTITY",
+            "description": "Ngày cấp giấy tờ định danh (CMND/CCCD/Hộ chiếu).",
+            "suggested_keywords": [
+                "ngày cấp giấy tờ định danh",
+                "cmnd/cccd/hộ chiếu"
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "email",
+            "role": "ATTRIBUTE",
+            "description": "Địa chỉ thư điện tử của khách hàng.",
+            "suggested_keywords": [
+                "địa chỉ thư điện tử khách hàng."
+            ],
+            "sql_logic": ""
+        },
+        {
+            "name": "home_phone",
+            "role": "ATTRIBUTE",
+            "description": "Số điện thoại bàn/điện thoại cố định.",
+            "suggested_keywords": [
+                "số điện thoại bàn/điện thoại cố định."
+            ],
+            "sql_logic": ""
+        },
+        {
+            "name": "identify_id",
+            "role": "IDENTITY",
+            "description": "Số giấy tờ định danh (Số CMND, CCCD hoặc Hộ chiếu).",
+            "suggested_keywords": [
+                "số giấy tờ định danh",
+                "số cmnd, cccd hoặc hộ chiếu"
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "identify_level",
+            "role": "IDENTITY",
+            "description": "Cấp độ định danh (Ví dụ: Đã xác thực - EKYC, chưa xác thực). | 1 2 3",
+            "suggested_keywords": [
+                "cấp độ định danh",
+                "ví dụ: đã xác thực - ekyc, chưa xác thực"
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "identify_name",
+            "role": "IDENTITY",
+            "description": "Loại giấy tờ định danh (Ví dụ: \"Identity Card\", \"Passport\").",
+            "suggested_keywords": [
+                "loại giấy tờ định danh",
+                "ví dụ: \"identity card\", \"passport\""
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "init_date",
+            "role": "TEMPORAL",
+            "description": "Ngày khởi tạo thông tin khách hàng trên hệ thống.",
+            "suggested_keywords": [
+                "ngày khởi tạo thông tin khách hàng trên hệ thống."
+            ],
+            "sql_logic": "WHERE {col} BETWEEN '{start}' AND '{end}'"
+        },
+        {
+            "name": "is_fee_default",
+            "role": "METRIC",
+            "description": "Đánh dấu khách hàng có thuộc diện mặc định thu phí hay không.",
+            "suggested_keywords": [
+                "đánh dấu khách hàng có thuộc diện mặc định thu phí hay không."
+            ],
+            "sql_logic": "SUM({col})"
+        },
+        {
+            "name": "latitude",
+            "role": "ATTRIBUTE",
+            "description": "Vĩ độ (tọa độ vị trí nhà ở hoặc nơi đăng ký).",
+            "suggested_keywords": [
+                "vĩ độ",
+                "tọa độ vị trí nhà ở hoặc nơi đăng ký"
+            ],
+            "sql_logic": ""
+        },
+        {
+            "name": "longitude",
+            "role": "ATTRIBUTE",
+            "description": "Kinh độ (tọa độ vị trí).",
+            "suggested_keywords": [
+                "kinh độ",
+                "tọa độ vị trí"
+            ],
+            "sql_logic": ""
+        },
+        {
+            "name": "mobile_phone",
+            "role": "ATTRIBUTE",
+            "description": "Số điện thoại di động chính.",
+            "suggested_keywords": [
+                "số điện thoại di động chính."
+            ],
+            "sql_logic": ""
+        },
+        {
+            "name": "nationality_id",
+            "role": "IDENTITY",
+            "description": "Mã quốc tịch (Ví dụ: VN, US, JP).",
+            "suggested_keywords": [
+                "mã quốc tịch",
+                "ví dụ: vn, us, jp"
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "place_id",
+            "role": "IDENTITY",
+            "description": "Mã vùng/địa điểm cư trú.",
+            "suggested_keywords": [
+                "mã vùng/địa điểm cư trú."
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "place_of_issue",
+            "role": "IDENTITY",
+            "description": "Nơi cấp giấy tờ định danh (Ví dụ: CA TP. Hà Nội).",
+            "suggested_keywords": [
+                "nơi cấp giấy tờ định danh",
+                "ví dụ: ca tp. hà nội"
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "unique_id",
+            "role": "IDENTITY",
+            "description": "Mã định danh duy nhất (thường dùng để đối soát liên hệ thống).",
+            "suggested_keywords": [
+                "mã định danh duy nhất",
+                "thường đối soát liên hệ thống"
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "unique_value",
+            "role": "IDENTITY",
+            "description": "Giá trị đặc trưng dùng để định danh duy nhất khách hàng.",
+            "suggested_keywords": [
+                "giá trị đặc trưng định danh duy nhất khách hàng."
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "status",
+            "role": "DIMENSION",
+            "description": "Trạng thái bản ghi (Ví dụ: 1-Hiệu lực, 0-Hết hiệu lực).",
+            "suggested_keywords": [
+                "trạng thái bản ghi",
+                "ví dụ: 1-hiệu lực, 0-hết hiệu lực"
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "sign_1",
+            "role": "ATTRIBUTE",
+            "description": "Đường dẫn hoặc dữ liệu chữ ký mẫu số 1 của khách hàng.",
+            "suggested_keywords": [
+                "đường dẫn hoặc dữ liệu chữ ký mẫu số 1 khách hàng."
+            ],
+            "sql_logic": ""
+        },
+        {
+            "name": "sign_2",
+            "role": "ATTRIBUTE",
+            "description": "Đường dẫn hoặc dữ liệu chữ ký mẫu số 2.",
+            "suggested_keywords": [
+                "đường dẫn hoặc dữ liệu chữ ký mẫu số 2."
+            ],
+            "sql_logic": ""
+        },
+        {
+            "name": "sex",
+            "role": "ATTRIBUTE",
+            "description": "Giới tính (Male, Female, Unknown).",
+            "suggested_keywords": [
+                "giới tính",
+                "male, female, unknown"
+            ],
+            "sql_logic": ""
+        },
+        {
+            "name": "date_of_birth",
+            "role": "TEMPORAL",
+            "description": "Ngày tháng năm sinh.",
+            "suggested_keywords": [
+                "ngày tháng năm sinh."
+            ],
+            "sql_logic": "WHERE {col} BETWEEN '{start}' AND '{end}'"
+        },
+        {
+            "name": "old_customer_status",
+            "role": "DIMENSION",
+            "description": "Trạng thái cũ của khách hàng (trước khi thay đổi).",
+            "suggested_keywords": [
+                "trạng thái cũ khách hàng",
+                "trước khi thay đổi"
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "new_customer_status",
+            "role": "DIMENSION",
+            "description": "Trạng thái mới của khách hàng (sau khi cập nhật).",
+            "suggested_keywords": [
+                "trạng thái mới khách hàng",
+                "sau khi cập nhật"
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "unique_image_front",
+            "role": "IDENTITY",
+            "description": "Đường dẫn ảnh mặt trước giấy tờ định danh (CMND/CCCD).",
+            "suggested_keywords": [
+                "đường dẫn ảnh mặt trước giấy tờ định danh",
+                "cmnd/cccd"
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        },
+        {
+            "name": "unique_image_back",
+            "role": "IDENTITY",
+            "description": "Đường dẫn ảnh mặt sau giấy tờ định danh.",
+            "suggested_keywords": [
+                "đường dẫn ảnh mặt sau giấy tờ định danh."
+            ],
+            "sql_logic": "WHERE {col} = '{val}'"
+        }
+    ]
+}
