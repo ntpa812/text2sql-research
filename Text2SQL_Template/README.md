@@ -1,64 +1,116 @@
-# 📊 Text-to-SQL Rule-Based Engine
+# Template-based Text-to-SQL + Controlled Generation
 
-## 📂 Cấu trúc thư mục
+## 📂 Cấu trúc dự án
 
 ```text
-Text2SQL_Template/
-├── rule_engine/
-│   ├── data/                # Chứa file Excel đầu vào (transaction.xlsx, customer.xlsx...)
-│   ├── profiles/            # Chứa kết quả phân tích ngữ nghĩa (.json)
-│   ├── output/              # Chứa dataset cuối cùng (.xlsx)
-│   ├── profiler.py          # Module phân tích cấu trúc và vai trò của cột
-│   ├── generator.py         # Module sinh câu hỏi tự nhiên dựa trên luật (Rule-based)
-│   ├── run_profiler.py      # Script chạy riêng phần phân tích
-│   ├── run_pipeline.py      # Script chạy toàn bộ quy trình tự động
+Project_Root/
+├── configs/                   
+│   ├── dictionary.py           # Từ điển ngữ nghĩa & mapping từ vựng
 │   └── __init__.py
+│
+├── rule_engine/                # [MODULE 1] Generator
+│   ├── profiler.py             # Phân tích file Excel -> Semantic Profile
+│   ├── generator.py            # Logic sinh câu hỏi & SQL (Spot & Map)
+│   ├── faker_utils.py          # Sinh dữ liệu giả (Tên, ngày, số...)
+│   ├── grammar_templates.py    # Kho mẫu câu tự nhiên đa dạng
+│   └── __init__.py
+│
+├── sql_parser/                 # [MODULE 2] Parser
+│   ├── core.py                 # Logic dịch NLQ -> SQL
+│   ├── batch_worker.py         # Xử lý file Excel hàng loạt
+│   └── __init__.py
+│
+├── data/                       # [INPUT] Kho dữ liệu đầu vào
+│   ├── source_tables/          # Chứa file mô tả bảng (transaction.xlsx, customer.xlsx...)
+│   ├── semantic_profiles/      # Chứa file JSON (Sinh ra từ Profiler)
+│   └── parser_inputs/           # Chứa file Excel câu hỏi cần test (test_questions.xlsx)
+│
+├── outputs/                    # [OUTPUT] Kho dữ liệu đầu ra
+│   ├── generated_datasets/     # Dataset huấn luyện đã sinh (ddq_autogen_....xlsx)
+│   └── parser_outputs/         # Kết quả test parser kèm SQL
+│
+├── generate_data.py            # Script chạy Module 1 (Sinh dữ liệu)
+├── test_parser.py              # Script chạy Module 2 (Test Parser)
+└── requirements.txt            # Các thư viện cần thiết
 
 ```
+
+---
 
 ## ⚙️ Quy trình hoạt động
 
-Hệ thống hoạt động theo mô hình Pipeline 2 bước chính:
+Hệ thống bao gồm 2 luồng xử lý độc lập:
 
-### 1. Semantic Profiling
+### 1. Generator
 
-Module `profiler.py` sẽ đọc các file Excel trong thư mục `data/` để xác định vai trò của từng cột dữ liệu:
+* **Input:** File Excel mô tả bảng database (Tên cột, Mô tả).
+* **Bước 1 - Profiling:** Tự động gán nhãn vai trò cột (`IDENTITY`, `METRIC`, `DIMENSION`, `TEMPORAL`) dựa trên Regex.
+* **Bước 2 - Generation:** Sử dụng *Grammar Templates* và *Faker* để sinh ra hàng trăm cặp `(Câu hỏi tự nhiên, SQL query)` cho mỗi bảng.
+* **Output:** File Excel chứa dataset dùng để train AI hoặc làm tài liệu tra cứu.
 
-* **IDENTITY**: Các cột mã định danh (ID, mã giao dịch).
-* **METRIC**: Các cột định lượng có thể tính toán (Số tiền, phí).
-* **DIMENSION**: Các cột phân loại (Trạng thái, loại giao dịch).
-* **TEMPORAL**: Các cột thời gian (Ngày giao dịch).
+### 2. Parser
 
-### 2. Data Generation
+* **Input:** Câu hỏi tiếng Việt của người dùng (Ví dụ: "Tổng tiền giao dịch lỗi hôm qua").
+* **Logic:** Sử dụng chiến lược **"Spot & Map"**:
+* *Intent Detection:* Xác định ý định (Tra cứu/Tính tổng).
+* *Entity Extraction:* Trích xuất Ngày tháng, Con số.
+* *Column Mapping:* Ánh xạ từ khóa sang tên cột dựa trên `configs/dictionary.py`.
 
-Module `generator.py` sử dụng bộ từ điển nghiệp vụ ngân hàng (`dictionary.py`) để tổ hợp và tạo ra các câu hỏi mẫu.
+* **Output:** Câu lệnh SQL thực thi được.
 
-* **Tự động hóa từ đồng nghĩa**: Chuyển đổi "amount" thành "số tiền", "giá trị", "hạn mức"...
-* Các ví dụ câu hỏi trong cùng một ô Excel được tách biệt bằng ký tự xuống dòng (`\n`), giúp dễ dàng kiểm soát khi bật tính năng Wrap Text.
+---
 
 ## 🚀 Hướng dẫn sử dụng
 
-### Cài đặt môi trường
+### 1. Cài đặt môi trường
 
-Yêu cầu Python 3.10+ và các thư viện hỗ trợ:
+Yêu cầu Python 3.10+ và các thư viện:
 
 ```bash
-pip install pandas openpyxl
+pip install pandas openpyxl faker
 
 ```
 
-### Pipeline
+### 2. Chạy Module Generator
 
-Để xử lý file dữ liệu và xuất ra file Excel kết quả cuối cùng, đứng tại thư mục gốc (`Text2SQL_Template`) và chạy:
+Dùng để tạo dữ liệu training từ file mô tả bảng.
 
+1. Copy file Excel mô tả bảng (ví dụ `transaction.xlsx`) vào thư mục `data/source_tables/`
+   
+2. Chạy lệnh:
 ```bash
-python main.py
+python generate_data.py
 
 ```
 
-### Chạy riêng lẻ từng module
+3. Kết quả sẽ nằm tại `outputs/generated_datasets/`.
 
-* **Để cập nhật Profile:** `python -m rule_engine.run_profiler`
-* **Để sinh lại Dataset từ Profile có sẵn:** `python -m rule_engine.generator`
+### 3. Chạy Module Parser (Test Dịch NLQ -> SQL)
+
+Dùng để kiểm thử khả năng hiểu câu hỏi của hệ thống.
+
+1. **Chế độ Test nhanh (Interactive):**
+```bash
+python test_parser.py
+# Chọn option 1 -> Nhập câu hỏi trực tiếp trên màn hình
+
+```
+
+2. **Chế độ Batch (File Excel):**
+* Chuẩn bị file Excel chứa câu hỏi (header là `question`) tại `data/parser_tests/`.
+* Chạy lệnh:
+```bash
+python test_parser.py
+# Chọn option 2 -> Chọn file input -> Chọn ngữ cảnh bảng
+
+```
+
+* Kết quả kèm SQL sinh ra nằm tại `outputs/parser_results/`.
 
 ---
+
+## 🔧 Cấu hình hệ thống
+
+Mọi logic về từ điển đồng nghĩa và quy tắc ánh xạ được quản lý tập trung tại:
+
+* 📂 **`configs/dictionary.py`**
