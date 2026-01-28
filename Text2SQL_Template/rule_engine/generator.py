@@ -4,7 +4,7 @@ from typing import List, Dict, Any, Tuple
 from pathlib import Path
 import pandas as pd
 
-from .dictionary import COMMON_DICTIONARY
+from configs.dictionary import COMMON_DICTIONARY
 from .faker_utils import DataFaker
 from .grammar_templates import GrammarLibrary
 

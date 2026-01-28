@@ -6,9 +6,9 @@ from rule_engine.generator import RuleBasedGenerator
 def run_batch_pipeline():
     
     BASE_DIR = Path(__file__).resolve().parent
-    INPUT_DIR = BASE_DIR / "data"
-    PROFILE_DIR = BASE_DIR / "semantic_profiles"
-    OUTPUT_DIR = BASE_DIR / "output"
+    INPUT_DIR = BASE_DIR / "data" / "source_tables"      
+    PROFILE_DIR = BASE_DIR / "data" / "semantic_profiles" 
+    OUTPUT_DIR = BASE_DIR / "output" / "generated_datasets"
 
     for d in [PROFILE_DIR, OUTPUT_DIR]:
         d.mkdir(parents=True, exist_ok=True)
