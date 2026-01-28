@@ -107,7 +107,7 @@ class RuleBasedParser:
             end = d[1] if len(d) > 1 else start
             sql = f"SELECT * FROM {self.table_name} WHERE {col_name} BETWEEN '{start}' AND '{end}'"
             explanation = f"Lọc {col_name} từ {start} đến {end}"
-        else: # LOOKUP
+        else: 
             val = entities["NUMBER"][0] if entities["NUMBER"] else (entities["QUOTED"][0] if entities["QUOTED"] else "???")
             sql = f"SELECT * FROM {self.table_name} WHERE {col_name} = '{val}'"
             explanation = f"Tra cứu {col_name} = {val}"

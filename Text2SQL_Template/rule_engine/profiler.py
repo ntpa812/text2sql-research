@@ -3,10 +3,9 @@ import re
 import json
 import os
 from typing import Dict, List, Any
-
 class SemanticProfiler:
     def __init__(self):
-        # priority: IDENTITY > TIME > METRIC > DIMENSION
+
         self.rules = {
             "IDENTITY": {
                 "col_pattern": r"(_id|_code|_no|_key|_number|id)$",

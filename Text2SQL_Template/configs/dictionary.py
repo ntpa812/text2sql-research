@@ -5,8 +5,8 @@ COMMON_DICTIONARY = {
         "transaction": ["giao dịch", "lịch sử chuyển tiền", "sao kê", "biến động số dư"],
         "customer": ["khách hàng", "người dùng", "chủ tài khoản"],
         "customer_account": ["tài khoản", "số tài khoản"],
-        "credit_card": ["thẻ tín dụng", "thẻ visa", "thẻ mastercard"], #gia dinh
-        "savings": ["sổ tiết kiệm", "khoản tiết kiệm"] #gia dinh
+        "credit_card": ["thẻ tín dụng", "thẻ visa", "thẻ mastercard"], # chưa có trong db
+        "savings": ["sổ tiết kiệm", "khoản tiết kiệm"] # chưa có trong db
     },
 
     "suffixes": {
@@ -36,5 +36,30 @@ COMMON_DICTIONARY = {
         "trans_desc": ["nội dung chuyển tiền", "lời nhắn"],
         "effective_date": ["ngày hiệu lực"],
         "expire_date": ["ngày hết hạn", "ngày đáo hạn"]
-    }
+    },
+    
+    "verbs": {
+                "lookup": ["Tra cứu", "Tìm", "Hiển thị", "Cho tôi xem", "Xem chi tiết", "Kiểm tra", "Liệt kê", "Search"],
+                "agg": ["Tính tổng", "Tổng cộng", "Thống kê", "Cộng", "Xem tổng"],
+                "filter": ["Lọc các", "Danh sách", "Những", "Các"],
+            },
+    
+    "nouns": {
+                "table": ["giao dịch", "lệnh chuyển tiền", "biến động số dư", "history"],
+                "record": ["bản ghi", "thông tin", "dữ liệu"],
+            },
+    
+    "connectors": ["có", "theo", "với", "của", "tại", "mang"],
+    
+    "col_mapping": {
+                "amount": ["số tiền", "giá trị", "hạn mức", "tiền chuyển"],
+                "fee": ["phí", "tiền phí", "phí giao dịch"],
+                "status": ["trạng thái", "tình trạng", "kết quả"],
+                "type": ["loại", "hình thức", "phân loại"],
+                "channel": ["kênh", "nguồn", "phương thức"],
+                "time": ["thời gian", "ngày", "giờ", "thời điểm"],
+                "user": ["người dùng", "khách hàng", "chủ thẻ"],
+                "bank": ["ngân hàng", "tổ chức tín dụng"],
+                "id": ["mã", "số", "id", "số hiệu"]
+            }
 }

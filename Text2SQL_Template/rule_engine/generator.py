@@ -106,7 +106,7 @@ class RuleBasedGenerator:
             role = col["role"]
             col_raw = col["name"]
             col_syns = self._get_synonyms(col_raw, col["suggested_keywords"])
-            primary_col_name = col_syns[0] # Tên cột tiếng Việt (VD: "trạng thái")
+            primary_col_name = col_syns[0]
             
             record = None
             context = {
@@ -221,7 +221,7 @@ class RuleBasedGenerator:
             rows.append({
                 "document": item["document"],
                 "description": item["description"],
-                "examples": "\n".join(item["examples"]), # Xuống dòng trong ô
+                "examples": "\n".join(item["examples"]), 
                 "keyword": item["keyword"],
                 "metadata": json.dumps({"raw_text": item["sql"]}, ensure_ascii=False)
             })
