@@ -181,12 +181,13 @@ class RuleBasedGenerator:
             rows.append({
                 "document": item["document"],
                 "description": item["description"],
-                "examples": "|".join(item["examples"]), 
+                "examples": "\n".join(item["examples"]), 
                 "keyword": item["keyword"],
                 "metadata": json.dumps({"raw_text": item["sql"]}, ensure_ascii=False)
             })
             
         df = pd.DataFrame(rows)
+        
         df.to_excel(output_path, index=False)
         print(f"💾 Kết quả lưu tại: {output_path}")
 
