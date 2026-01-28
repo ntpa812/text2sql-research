@@ -1,207 +1,230 @@
 import json
-import pandas as pd
 import itertools
-import os
+from typing import List, Dict, Any, Tuple
 from pathlib import Path
-from typing import List, Dict, Any
+import pandas as pd
+
+from .dictionary import COMMON_DICTIONARY
+from .faker_utils import DataFaker
+from .grammar_templates import GrammarLibrary
 
 class RuleBasedGenerator:
-    
     def __init__(self):
-
-        self.vocab = {
-            "verbs": {
-                "lookup": ["Tra cứu", "Tìm", "Hiển thị", "Cho tôi xem", "Xem chi tiết", "Kiểm tra", "Liệt kê", "Search"],
-                "agg": ["Tính tổng", "Tổng cộng", "Thống kê", "Cộng", "Xem tổng"],
-                "filter": ["Lọc các", "Danh sách", "Những", "Các"],
-            },
-            "nouns": {
-                "table": ["giao dịch", "lệnh chuyển tiền", "biến động số dư", "history"],
-                "record": ["bản ghi", "thông tin", "dữ liệu"],
-            },
-            "connectors": ["có", "theo", "với", "của", "tại", "mang"],
-
-            "col_mapping": {
-                "amount": ["số tiền", "giá trị", "hạn mức"],
-                "fee": ["phí", "tiền phí"],
-                "status": ["trạng thái", "tình trạng", "kết quả"],
-                "type": ["loại", "hình thức"],
-                "channel": ["kênh", "nguồn"],
-                "time": ["thời gian", "ngày", "giờ"],
-                "user": ["người dùng", "khách hàng"],
-                "bank": ["ngân hàng"],
-                "id": ["mã", "số", "id"]
-            }
-        }
+        self.faker = DataFaker()
+        self.grammar = GrammarLibrary()
+        self.vocab = COMMON_DICTIONARY
 
         self.sql_templates = {
             "IDENTITY": "SELECT * FROM {table} WHERE {col} = '{{{{{col}}}}}'",
             "DIMENSION": "SELECT * FROM {table} WHERE {col} = '{{{{{col}}}}}'",
             "METRIC_SUM": "SELECT SUM({col}) FROM {table} WHERE {dim_col} = '{{{{{dim_col}}}}}'",
-            "TEMPORAL": "SELECT * FROM {table} WHERE {col} BETWEEN '{{{{start_date}}}}' AND '{{{{end_date}}}}' ORDER BY {col} DESC"
+            "TEMPORAL": "SELECT * FROM {table} WHERE {col} BETWEEN '{{{{start_date}}}}' AND '{{{{end_date}}}}' ORDER BY {col} DESC",
+            
+            "MULTI_DIM_TIME": "SELECT * FROM {table} WHERE {dim_col} = '{{{{{dim_col}}}}}' AND {time_col} BETWEEN '{{{{start_date}}}}' AND '{{{{end_date}}}}'"
         }
 
     def _get_synonyms(self, col_name: str, suggested: List[str]) -> List[str]:
-        """Lấy từ đồng nghĩa tiếng Việt cho tên cột"""
+
         synonyms = set(suggested)
-        
-        for key, vals in self.vocab["col_mapping"].items():
-            if key in col_name.lower():
-                synonyms.update(vals)
-        
+        col_lower = col_name.lower()
+
+        if col_lower in self.vocab.get("specific_columns", {}):
+            synonyms.update(self.vocab["specific_columns"][col_lower])
+            return list(synonyms)
+
+        for suffix, words in self.vocab.get("suffixes", {}).items():
+            if col_lower.endswith(suffix):
+                synonyms.update(words)
+
         if not synonyms:
             synonyms.add(col_name)
-            
         return list(synonyms)
 
-    def _generate_nlq(self, intent_type: str, col_synonyms: List[str], table_synonyms: List[str]) -> List[str]:
-        """
-        Thuật toán tổ hợp: Sinh ra tất cả các biến thể câu hỏi có thể.
-        Công thức: [Verb] + [Noun Table] + [Connector] + [Col Name] + {Entity}
-        """
-        questions = []
-        
-        verbs = self.vocab["verbs"].get(intent_type, ["Tra cứu"])
-        connectors = self.vocab["connectors"]
-        
-        combinations = itertools.product(verbs, table_synonyms, connectors, col_synonyms)
-        
-        for verb, table, conn, col in combinations:
+    def _get_table_synonyms(self, table_name: str) -> List[str]:
 
-            q1 = f"{verb} {table} {conn} {col} {{{{{{placeholder}}}}}}"
-            questions.append(q1)
-            
-            if intent_type == "lookup":
-                q2 = f"{col} {{{{{{placeholder}}}}}} là bao nhiêu"
-                questions.append(q2)
+        if table_name in self.vocab["tables"]:
+            return self.vocab["tables"][table_name]
+        
+        parts = table_name.split('_')
+        for part in parts:
+            if part in self.vocab["tables"]:
+                return self.vocab["tables"][part]
                 
-        return list(set(questions))[:15]
+        return [table_name] # Fallback
+
+    def _generate_examples(self, intent_code: str, context: Dict) -> List[str]:
+        
+        raw_templates = self.grammar.get_templates(intent_code)
+        examples = set()
+        
+        verbs = ["Tra cứu", "Tìm", "Xem"] # Default
+        if intent_code == "METRIC": verbs = ["Tính tổng", "Thống kê"]
+        
+        for tpl in raw_templates:
+
+            fake_val = self.faker.get_fake_value(context.get('col_raw', ''), context.get('role', 'ATTRIBUTE'))
+            fake_start = self.faker._generate_date(30) 
+            fake_end = "hôm nay"
+            
+            q_real = self.grammar.format_template(
+                tpl,
+                verb=verbs[0],
+                noun=context['noun'],
+                col_name=context['col_name'],
+                col_metric=context.get('col_metric', ''),
+                col_group=context.get('col_group', ''),
+                val=fake_val,
+                start=fake_start,
+                end=fake_end
+            )
+            examples.add(q_real)
+
+        return list(examples)
 
     def generate_dataset(self, profile_path: str) -> List[Dict]:
-
-        print(f"[*] Đang đọc profile từ: {profile_path}")
+        print(f"[*] Đang xử lý profile: {profile_path}")
         with open(profile_path, "r", encoding="utf-8") as f:
             profile = json.load(f)
             
-        table_name = Path(profile_path).stem
+        table_name = profile["table_name"]
         columns = profile["columns"]
         
         dataset = []
         
-        dimensions = [c for c in columns if c["role"] == "DIMENSION"]
-        
+        cols_by_role = {
+            "IDENTITY": [], "DIMENSION": [], "METRIC": [], "TEMPORAL": []
+        }
+        for col in columns:
+            if col["role"] in cols_by_role:
+                cols_by_role[col["role"]].append(col)
+
+        table_syns = self._get_table_synonyms(table_name)
+        main_noun = table_syns[0]
+
+        # SINGLE COLUMN LOGIC 
         for col in columns:
             role = col["role"]
-            col_name = col["name"]
-            col_syns = self._get_synonyms(col_name, col["suggested_keywords"])
-            table_syns = self.vocab["nouns"]["table"]
-
-            record = None
+            col_raw = col["name"]
+            col_syns = self._get_synonyms(col_raw, col["suggested_keywords"])
+            primary_col_name = col_syns[0] # Tên cột tiếng Việt (VD: "trạng thái")
             
+            record = None
+            context = {
+                "noun": main_noun,
+                "col_name": primary_col_name,
+                "col_raw": col_raw,
+                "role": role
+            }
+
             if role == "IDENTITY":
-                sql = self.sql_templates["IDENTITY"].format(table=table_name, col=col_name)
-                qs = self._generate_nlq("lookup", col_syns, table_syns)
-                
-                qs = [q.replace("{{placeholder}}", f"{{{{{col_name}}}}}") for q in qs]
+                sql = self.sql_templates["IDENTITY"].format(table=table_name, col=col_raw)
+                qs = self._generate_examples("IDENTITY", context)
                 
                 record = {
-                    "document": f"Tra cứu {table_name} theo {col_name}",
-                    "description": f"Tìm kiếm chính xác bản ghi dựa trên {col_name}",
+                    "document": f"{table_name} | Tra cứu theo {primary_col_name}", 
+                    "description": f"Tìm kiếm chính xác {main_noun} dựa trên {primary_col_name}",
                     "sql": sql,
                     "examples": qs,
-                    "keyword": f"{col_name}, tra cứu, tìm kiếm"
+                    "keyword": f"{col_raw}, {primary_col_name}, tìm kiếm"
                 }
 
             elif role == "DIMENSION":
-                sql = self.sql_templates["DIMENSION"].format(table=table_name, col=col_name)
-                qs = self._generate_nlq("filter", col_syns, table_syns)
-                qs = [q.replace("{{placeholder}}", f"{{{{{col_name}}}}}") for q in qs]
+                sql = self.sql_templates["DIMENSION"].format(table=table_name, col=col_raw)
+                qs = self._generate_examples("DIMENSION", context)
                 
                 record = {
-                    "document": f"Lọc {table_name} theo {col_name}",
-                    "description": f"Liệt kê danh sách theo tiêu chí {col_name}",
+                    "document": f"{table_name} | Lọc theo {primary_col_name}",
+                    "description": f"Liệt kê danh sách {main_noun} theo nhóm {primary_col_name}",
                     "sql": sql,
                     "examples": qs,
-                    "keyword": f"{col_name}, danh sách, lọc"
-                }
-
-            elif role == "METRIC":
-                
-                # Mặc định ghép với Dimension đầu tiên (ví dụ: trans_status)
-                dim_target = dimensions[0]["name"] if dimensions else "trans_status"
-                
-                sql = self.sql_templates["METRIC_SUM"].format(
-                    table=table_name, col=col_name, dim_col=dim_target
-                )
-                
-                qs = []
-                for v in self.vocab["verbs"]["agg"]:
-                    for s in col_syns:
-                        qs.append(f"{v} {s} của các giao dịch có {dim_target} là {{{{{dim_target}}}}}")
-                        qs.append(f"Xem tổng {s} theo {dim_target} {{{{{dim_target}}}}}")
-
-                record = {
-                    "document": f"Thống kê tổng {col_name} theo {dim_target}",
-                    "description": f"Tính tổng giá trị {col_name} được gom nhóm bởi {dim_target}",
-                    "sql": sql,
-                    "examples": qs,
-                    "keyword": f"tổng {col_name}, thống kê"
+                    "keyword": f"{col_raw}, {primary_col_name}, danh sách"
                 }
 
             elif role == "TEMPORAL":
-                sql = self.sql_templates["TEMPORAL"].format(table=table_name, col=col_name)
-                
-                qs = [
-                    f"Sao kê giao dịch từ ngày {{{{start_date}}}} đến {{{{end_date}}}}",
-                    f"Liệt kê lịch sử trong khoảng thời gian {{{{start_date}}}} - {{{{end_date}}}}",
-                    f"Kiểm tra giao dịch phát sinh từ {{{{start_date}}}} tới {{{{end_date}}}}",
-                    f"Cho tôi xem biến động số dư giữa {{{{start_date}}}} và {{{{end_date}}}}"
-                ]
+                sql = self.sql_templates["TEMPORAL"].format(table=table_name, col=col_raw)
+                qs = self._generate_examples("TEMPORAL", context)
                 
                 record = {
-                    "document": f"Tra cứu {table_name} theo khoảng thời gian ({col_name})",
-                    "description": f"Lọc dữ liệu phát sinh trong một khoảng ngày giờ",
+                    "document": f"{table_name} | Lọc theo thời gian ({primary_col_name})",
+                    "description": f"Sao kê lịch sử {main_noun} trong khoảng thời gian",
                     "sql": sql,
                     "examples": qs,
-                    "keyword": "thời gian, ngày tháng, sao kê"
+                    "keyword": f"{col_raw}, thời gian, ngày tháng"
+                }
+            
+            elif role == "METRIC":
+
+                target_dim = cols_by_role["DIMENSION"][0] if cols_by_role["DIMENSION"] else None
+                dim_col_raw = target_dim["name"] if target_dim else "status"
+                dim_col_vn = self._get_synonyms(dim_col_raw, [])[0]
+
+                sql = self.sql_templates["METRIC_SUM"].format(
+                    table=table_name, col=col_raw, dim_col=dim_col_raw
+                )
+                
+                metric_context = context.copy()
+                metric_context["col_metric"] = primary_col_name 
+                metric_context["col_group"] = dim_col_vn        
+                metric_context["col_raw"] = dim_col_raw        
+                
+                qs = self._generate_examples("METRIC", metric_context)
+                
+                record = {
+                    "document": f"{table_name} | Thống kê {primary_col_name} theo {dim_col_vn}",
+                    "description": f"Tính tổng {primary_col_name} được phân loại bởi {dim_col_vn}",
+                    "sql": sql,
+                    "examples": qs,
+                    "keyword": f"tổng {col_raw}, thống kê"
                 }
 
             if record:
                 dataset.append(record)
 
-        print(f"Đã sinh {len(dataset)} logic SQL dựa trên luật.")
+        # MULTI-COLUMN LOGIC: Kết hợp DIMENSION + TEMPORAL        
+        if cols_by_role["DIMENSION"] and cols_by_role["TEMPORAL"]:
+
+            dim_col = cols_by_role["DIMENSION"][0]
+            time_col = cols_by_role["TEMPORAL"][0]
+            
+            dim_name_vn = self._get_synonyms(dim_col["name"], [])[0]
+            
+            sql_multi = self.sql_templates["MULTI_DIM_TIME"].format(
+                table=table_name, 
+                dim_col=dim_col["name"], 
+                time_col=time_col["name"]
+            )
+            
+            multi_context = {
+                "noun": main_noun,
+                "col_name": dim_name_vn,
+                "col_raw": dim_col["name"], 
+                "role": "DIMENSION"
+            }
+            
+            qs_multi = self._generate_examples("MULTI_DIM_TIME", multi_context)
+            
+            dataset.append({
+                "document": f"{table_name} | Lọc {dim_name_vn} theo Thời gian",
+                "description": f"Kết hợp lọc theo {dim_name_vn} và khoảng ngày tháng",
+                "sql": sql_multi,
+                "examples": qs_multi,
+                "keyword": f"{dim_col['name']}, {time_col['name']}, lọc đa điều kiện"
+            })
+
+        print(f"Đã sinh {len(dataset)} logic truy vấn cho bảng {table_name}\n")
         return dataset
 
     def export_excel(self, dataset: List[Dict], output_path: str):
-
         Path(output_path).parent.mkdir(parents=True, exist_ok=True)
-        
         rows = []
         for item in dataset:
             rows.append({
                 "document": item["document"],
                 "description": item["description"],
-                "examples": "\n".join(item["examples"]), 
+                "examples": "\n".join(item["examples"]), # Xuống dòng trong ô
                 "keyword": item["keyword"],
                 "metadata": json.dumps({"raw_text": item["sql"]}, ensure_ascii=False)
             })
-            
         df = pd.DataFrame(rows)
-        
         df.to_excel(output_path, index=False)
         print(f"💾 Kết quả lưu tại: {output_path}")
-
-if __name__ == "__main__":
-
-    BASE_DIR = Path(__file__).resolve().parent
-    
-    INPUT_PROFILE = BASE_DIR / "profiles" / "semantic_profile_transaction.json"
-    
-    OUTPUT_EXCEL = BASE_DIR / "output" / "ddq_final_rule_based.xlsx"
-    
-    if not INPUT_PROFILE.exists():
-        print(f"❌ Không tìm thấy {INPUT_PROFILE}. Hãy chạy run_profiler.py trước!")
-    else:
-        gen = RuleBasedGenerator()
-        data = gen.generate_dataset(str(INPUT_PROFILE))
-        gen.export_excel(data, str(OUTPUT_EXCEL))
