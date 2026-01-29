@@ -17,106 +17,132 @@ class RuleBasedGenerator:
         self.vocab = COMMON_DICTIONARY
 
         self.sql_templates = {
-            
             "IDENTITY": "SELECT * FROM {table} WHERE {col} = '{{{{{col}}}}}'",
             "DIMENSION": "SELECT * FROM {table} WHERE {col} = '{{{{{col}}}}}'",
             "METRIC_SUM": "SELECT SUM({col}) FROM {table} WHERE {dim_col} = '{{{{{dim_col}}}}}'",
             "TEMPORAL": "SELECT * FROM {table} WHERE {col} BETWEEN '{{{{start_date}}}}' AND '{{{{end_date}}}}' ORDER BY {col} DESC",
-            "ATTRIBUTE": "SELECT * FROM {table} WHERE {col} LIKE '%{{{{{col}}}}}%'",
-            
-            # Complex Intents
-            "MULTI_DIM_TIME": "SELECT * FROM {table} WHERE {dim_col} = '{{{{{dim_col}}}}}' AND {time_col} BETWEEN '{{{{start_date}}}}' AND '{{{{end_date}}}}'",
             "MIX_TYPE_AMOUNT": "SELECT * FROM {table} WHERE {type_col} = '{{{{{type_col}}}}}' AND {amt_col} > {{{{{amt_col}}}}} AND {status_col} = 'SUCCESS'",
             "MIX_FULL": "SELECT * FROM {table} WHERE {type_col} = '{{{{{type_col}}}}}' AND {amt_col} > {{{{{amt_col}}}}} AND {time_col} BETWEEN '{{{{start_date}}}}' AND '{{{{end_date}}}}' AND {status_col} = 'SUCCESS'"
         }
 
+    def _classify_column(self, col_name: str) -> str:
+        col = col_name.lower()
+        
+        if col in ["trans_id", "id", "transaction_id"]: return "PRIMARY_ID"
+        if any(x in col for x in ["ref", "parent", "original"]): return "REF_ID"
+        if any(x in col for x in ["user_id", "node", "session", "maker", "checker", "trace"]): return "TECH_ID"
+        if any(x in col for x in ["cif", "cust", "user","cust_id", "customer_id"]): return "CUST_ID"
+        
+        return "OTHER"
+
     def _get_synonyms(self, col_name: str, suggested: List[str]) -> List[str]:
-        synonyms = set(suggested)
         col_lower = col_name.lower()
+        synonyms = set()
 
         if col_lower in self.vocab.get("specific_columns", {}):
-            synonyms.update(self.vocab["specific_columns"][col_lower])
-            return list(synonyms)
+            return self.vocab["specific_columns"][col_lower]
 
-        for suffix, words in self.vocab.get("suffixes", {}).items():
-            if col_lower.endswith(suffix):
-                synonyms.update(words)
+        parts = col_lower.split('_')
+        
+        suffix_match = None
+        suffix_meanings = []
+        
+        possible_suffix = "_" + parts[-1]
+        if possible_suffix in self.vocab.get("suffixes", {}):
+            suffix_match = possible_suffix
+            suffix_meanings = self.vocab["suffixes"][possible_suffix]
+            core_parts = parts[:-1] 
+        else:
+            core_parts = parts
+
+        translated_parts = []
+        col_mapping = self.vocab.get("col_mapping", {})
+        
+        for part in core_parts:
+            if part in col_mapping:
+                translated_parts.append(col_mapping[part][0]) 
+            elif part in self.vocab.get("tables", {}):
+                translated_parts.append(self.vocab["tables"][part][0])
+            else:
+                pass 
+
+        if suffix_meanings:
+            base_suffix = suffix_meanings[0] 
+            core_meaning = " ".join(translated_parts)
+            
+            synonyms.add(f"{base_suffix} {core_meaning}".strip()) 
+            synonyms.add(f"{core_meaning}".strip())
+        else:
+            full_meaning = " ".join(translated_parts).strip()
+            if full_meaning:
+                synonyms.add(full_meaning)
+
+        if suggested:
+            clean = [s for s in suggested if len(s.split()) < 6 and "khóa" not in s.lower()]
+            synonyms.update(clean)
 
         if not synonyms:
-            synonyms.add(col_name)
+            synonyms.add(col_lower.replace("_", " "))
+            
         return list(synonyms)
-
-    def _get_table_synonyms(self, table_name: str) -> List[str]:
-        if table_name in self.vocab["tables"]:
-            return self.vocab["tables"][table_name]
-        return [table_name]
     
-    def _is_person_related(self, col_name: str) -> bool:
-        keywords = ["user", "cust", "name", "author", "teller", "nhan_vien", "khach_hang"]
-        return any(k in col_name.lower() for k in keywords)
+    def _get_table_synonyms(self, table_name: str) -> List[str]:
+        return self.vocab["tables"].get(table_name, [table_name])
 
-    def _generate_examples(self, intent_code: str, context: Dict) -> List[str]:
+    def _generate_natural_queries(self, group_type: str, context: Dict) -> List[str]:
+        
+        noun = context.get('noun', 'giao dịch')
+        col_vn = context.get('col_name', '')
+        val = context.get('fake_val', '')
+        
+        queries = set()
+        
+        time_suffixes = [" hôm nay", " hôm qua", " tuần này", ""]
+        status_suffixes = [" xem thành công chưa", " đang ở trạng thái nào", " chi tiết", ""]
+        
+        if group_type == "PRIMARY_ID":
+            
+            suffix_t = random.choice(time_suffixes)
+            suffix_s = random.choice(status_suffixes)
+            
+            queries.add(f"Tra cứu {noun} {val}{suffix_t}")
+            queries.add(f"Kiểm tra lệnh {val}{suffix_s}")
+            queries.add(f"Xem chi tiết {noun} số {val}")
+            queries.add(f"Check giao dịch {val}")
+        
+        elif group_type == "REF_ID":
+            queries.add(f"Tìm {noun} có {col_vn} là {val}")
+            queries.add(f"Tra soát theo {col_vn} {val}")
+            queries.add(f"Check {col_vn} {val} giúp em")
+            
+        elif group_type == "CUST_ID":
+            queries.add(f"Liệt kê giao dịch của khách hàng {val}")
+            queries.add(f"Xem lịch sử của {col_vn} {val}")
+            queries.add(f"Sao kê cho {col_vn} {val}")
 
-        raw_templates = self.grammar.get_templates(intent_code)
-        examples = set()
-        
-        verbs = ["Tra cứu", "Tìm", "Xem", "Kiểm tra"]
-        if "METRIC" in intent_code: verbs = ["Tính tổng", "Thống kê", "Tổng hợp"]
-        
-        col_raw = context.get('col_raw', '').lower()
-        is_person = self._is_person_related(col_raw)
-        
-        for tpl in raw_templates:
-            
-            if "của ai" in tpl and not is_person:
-                continue
-            
-            if intent_code == "IDENTITY" and "danh sách" in tpl:
-                continue
-            
-            fake_val = self.faker.get_fake_value(context.get('col_raw', ''), context.get('role', 'ATTRIBUTE'))
-            fake_start = self.faker._generate_date(30)
-            fake_end = "hôm nay"
-            
-            noun_str = context.get('noun') or "giao dịch"
-            col_name_str = context.get('col_name') or "giá trị"
-            
-            q_std = self.grammar.format_template(
-                tpl,
-                verb=random.choice(verbs),
-                noun=noun_str,
-                col_name=col_name_str,
-                val=fake_val,
-                start=fake_start, end=fake_end,
-                amt_val=self.faker._generate_amount(),
-                type_val=self.faker.get_fake_value("trans_type", "DIMENSION")
-            )
-            examples.add(q_std)
-
-        if intent_code in ["DIMENSION", "MIX_TYPE_AMOUNT", "MIX_FULL"]:
-            col = context.get('col_raw', '').lower()
+        elif group_type == "DIMENSION":
+            col_raw = context.get('col_raw', '').lower()
             vocab_values = self.vocab.get("values", {})
             target_group = {}
+            
             if "status" in col_raw: target_group = vocab_values.get("STATUS", {})
             elif any(x in col_raw for x in ["channel", "kenh"]): target_group = vocab_values.get("CHANNEL", {})
             elif any(x in col_raw for x in ["type", "code", "service"]): target_group = vocab_values.get("TRANS_TYPE", {})
-            
-            if "MIX" in intent_code: target_group = vocab_values.get("TRANS_TYPE", {})
 
             if target_group:
-                random_key = random.choice(list(target_group.keys()))
-                adjectives = target_group[random_key]
-                if adjectives:
-                    adj = random.choice(adjectives)
-                    noun = context['noun']
-                    if intent_code == "DIMENSION":
-                        examples.add(f"{noun} {adj}") # "giao dịch thất bại"
-                        examples.add(f"liệt kê các {noun} {adj}")
-                    elif intent_code == "MIX_TYPE_AMOUNT":
-                        amt = self.faker._generate_amount()
-                        examples.add(f"{noun} {adj} trên {amt}")
+                keys = list(target_group.keys())
+                sampled_keys = random.sample(keys, min(3, len(keys)))
+                
+                for k in sampled_keys:
+                    adj = random.choice(target_group[k]) # VD: "thất bại"
+                    queries.add(f"{noun} {adj}")  # "giao dịch thất bại"
+                    queries.add(f"danh sách {noun} {adj}")
+                    queries.add(f"lọc các {noun} đang {adj}")
+            else:
+                queries.add(f"Lọc {noun} theo {col_vn} {val}")
+                queries.add(f"Danh sách {noun} có {col_vn} là {val}")
 
-        return list(examples)
+        return list(queries)
 
     def generate_dataset(self, profile_path: str) -> List[Dict]:
         print(f"[*] Đang xử lý profile: {profile_path}")
@@ -133,7 +159,6 @@ class RuleBasedGenerator:
         for col in columns:
             if col["role"] in cols_by_role:
                 cols_by_role[col["role"]].append(col)
-            
             c_name = col["name"].lower()
             if "amount" in c_name or "amt" in c_name: spec_cols["amount"] = col
             if "status" in c_name or "trang_thai" in c_name: spec_cols["status"] = col
@@ -147,93 +172,114 @@ class RuleBasedGenerator:
             role = col["role"]
             col_raw = col["name"]
             
+            group_type = "OTHER"
+            if role == "IDENTITY":
+                group_type = self._classify_column(col_raw)
+                if group_type == "TECH_ID": 
+                    continue 
+
+            elif role == "DIMENSION":
+                group_type = "DIMENSION"
+
             col_syns = self._get_synonyms(col_raw, col["suggested_keywords"])
             primary_col_name = col_syns[0]
             
+            fake_val = self.faker.get_fake_value(col_raw, role)
+            
             context = {
                 "noun": main_noun, "col_name": primary_col_name,
-                "col_raw": col_raw, "role": role
+                "col_raw": col_raw, "role": role,
+                "fake_val": fake_val
             }
             
-            record = None
+            qs = []
             
-            # Logic Default Status = SUCCESS
-            status_clause = ""
-            if spec_cols["status"] and col_raw != spec_cols["status"]["name"]:
-                status_clause = f" AND {spec_cols['status']['name']} = 'SUCCESS'"
-
             if role == "IDENTITY":
                 sql = self.sql_templates["IDENTITY"].format(table=table_name, col=col_raw)
-                qs = self._generate_examples("IDENTITY", context)
+                qs = self._generate_natural_queries(group_type, context)
                 
-                doc = f"{table_name} | Tra cứu {primary_col_name}" 
-                desc = f"Tìm kiếm giao dịch cụ thể theo {primary_col_name} ({col_raw})"
+                doc = f"{table_name} | Tra cứu {primary_col_name}"
+                desc = f"Tìm kiếm chính xác theo {primary_col_name}"
                 kw = ", ".join(col_syns)
                 
-                record = {"document": doc, "description": desc, "sql": sql, "examples": qs, "keyword": kw}
+                if qs: 
+                    dataset.append({"document": doc, "description": desc, "sql": sql, "examples": qs, "keyword": kw})
 
             elif role == "DIMENSION":
-                current_sql = self.sql_templates["DIMENSION"].format(table=table_name, col=col_raw)
-                if "status" not in col_raw.lower(): current_sql += status_clause
-
-                qs = self._generate_examples("DIMENSION", context)
+                status_clause = ""
+                if spec_cols["status"] and col_raw != spec_cols["status"]["name"] and "status" not in col_raw.lower():
+                    status_clause = f" AND {spec_cols['status']['name']} = 'SUCCESS'"
+                
+                sql = self.sql_templates["DIMENSION"].format(table=table_name, col=col_raw) + status_clause
+                
+                qs = self._generate_natural_queries("DIMENSION", context)
                 
                 doc = f"{table_name} | Lọc theo {primary_col_name}"
-                desc = f"Liệt kê các giao dịch thuộc nhóm {primary_col_name}"
-                kw = ", ".join(col_syns + ["lọc", "danh sách"])
+                desc = f"Phân nhóm giao dịch theo {primary_col_name}"
+                kw = ", ".join(col_syns)
                 
-                record = {"document": doc, "description": desc, "sql": current_sql, "examples": qs, "keyword": kw}
+                if qs:
+                    dataset.append({"document": doc, "description": desc, "sql": sql, "examples": qs, "keyword": kw})
 
             elif role == "METRIC":
                 sql = f"SELECT SUM({col_raw}) FROM {table_name}"
                 if spec_cols["status"]: sql += f" WHERE {spec_cols['status']['name']} = 'SUCCESS'"
-                qs = self._generate_examples("METRIC", context)
-                doc = f"{table_name} | Thống kê {primary_col_name}"
-                desc = f"Tính tổng {primary_col_name}"
-                kw = ", ".join(col_syns + ["tổng"])
-                record = {"document": doc, "description": desc, "sql": sql, "examples": qs, "keyword": kw}
+                
+                qs = [
+                    f"Tổng {primary_col_name} là bao nhiêu?",
+                    f"Tính tổng {primary_col_name} của các giao dịch thành công",
+                    f"Thống kê {primary_col_name} hôm nay"
+                ]
+                
+                dataset.append({
+                    "document": f"{table_name} | Thống kê {primary_col_name}", 
+                    "description": f"Tính tổng giá trị {primary_col_name}", 
+                    "sql": sql, "examples": qs, "keyword": "tổng, thống kê"
+                })
 
             elif role == "TEMPORAL":
                 sql = self.sql_templates["TEMPORAL"].format(table=table_name, col=col_raw)
-                qs = self._generate_examples("TEMPORAL", context)
-                doc = f"{table_name} | Lọc thời gian ({primary_col_name})"
-                desc = f"Xem lịch sử theo {primary_col_name}"
-                kw = ", ".join(col_syns + ["thời gian"])
-                record = {"document": doc, "description": desc, "sql": sql, "examples": qs, "keyword": kw}
+                
+                start_d = self.faker._generate_date(range_days=60) 
+                end_d = self.faker._generate_date(range_days=0)  
+                
+                qs = [
+                    f"Sao kê {main_noun} từ ngày {start_d} đến ngày {end_d}",
+                    f"Lịch sử {main_noun} trong khoảng {start_d} - {end_d}",
+                    f"Xem {main_noun} từ {start_d} tới {end_d}",
+                    f"Tra soát giao dịch ngày {start_d}",
+                    f"Xem {main_noun} 30 ngày gần đây"
+                ]
 
-            if record: dataset.append(record)
+                dataset.append({
+                    "document": f"{table_name} | Lọc thời gian", 
+                    "description": "Truy vấn lịch sử theo thời gian cụ thể", 
+                    "sql": sql, 
+                    "examples": qs, 
+                    "keyword": "thời gian, lịch sử, ngày tháng"
+                })
 
         if spec_cols["type"] and spec_cols["amount"] and spec_cols["status"]:
             type_c = spec_cols["type"]["name"]
             amt_c = spec_cols["amount"]["name"]
             stt_c = spec_cols["status"]["name"]
             sql_mix = self.sql_templates["MIX_TYPE_AMOUNT"].format(table=table_name, type_col=type_c, amt_col=amt_c, status_col=stt_c)
-            ctx_mix = {"noun": main_noun, "col_name": "loại và tiền", "col_raw": type_c, "role": "DIMENSION"}
-            qs_mix = self._generate_examples("MIX_TYPE_AMOUNT", ctx_mix)
+            
+            qs_mix = []
+            type_vals = self.faker.dict_type
+            if type_vals:
+                key = random.choice(list(type_vals.keys()))
+                adj = random.choice(type_vals[key])
+                amt = self.faker._generate_amount()
+                qs_mix.append(f"{main_noun} {adj} trên {amt}")
+                qs_mix.append(f"Tìm các {main_noun} {adj} > {amt}")
             
             dataset.append({
-                "document": f"{table_name} | Lọc giao dịch theo loại và số tiền",
-                "description": f"Tìm các {main_noun} thỏa mãn cùng lúc 2 điều kiện: Loại giao dịch cụ thể VÀ Số tiền lớn hơn mức X (Chỉ lấy trạng thái Success)",
+                "document": f"{table_name} | Lọc Loại + Số tiền",
+                "description": "Lọc nâng cao: Loại giao dịch + Số tiền tối thiểu",
                 "sql": sql_mix,
                 "examples": qs_mix,
-                "keyword": "loại và tiền, giao dịch lớn, chi tiết"
-            })
-
-        if spec_cols["type"] and spec_cols["amount"] and spec_cols["date"] and spec_cols["status"]:
-            type_c = spec_cols["type"]["name"]
-            amt_c = spec_cols["amount"]["name"]
-            time_c = spec_cols["date"]["name"]
-            stt_c = spec_cols["status"]["name"]
-            
-            sql_full = self.sql_templates["MIX_FULL"].format(table=table_name, type_col=type_c, amt_col=amt_c, time_col=time_c, status_col=stt_c)
-            qs_full = self._generate_examples("MIX_FULL", ctx_mix)
-            
-            dataset.append({
-                "document": f"{table_name} | Lọc theo Loại + Tiền + Thời gian",
-                "description": f"Truy vấn đa điều kiện: Kết hợp Loại giao dịch + Mức tiền tối thiểu + Khoảng thời gian. Dùng để báo cáo chi tiết.",
-                "sql": sql_full,
-                "examples": qs_full,
-                "keyword": "báo cáo chi tiết, tổng hợp"
+                "keyword": "lọc nâng cao"
             })
 
         print(f"Đã sinh {len(dataset)} logic truy vấn cho bảng {table_name}\n")
@@ -251,7 +297,6 @@ class RuleBasedGenerator:
                 "metadata": json.dumps({"raw_text": item["sql"]}, ensure_ascii=False)
             })
         df = pd.DataFrame(rows)
-        import time
         try:
             df.to_excel(output_path, index=False)
             print(f"💾 Kết quả lưu tại: {output_path}")

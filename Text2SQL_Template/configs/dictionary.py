@@ -29,7 +29,9 @@ COMMON_DICTIONARY = {
         "_desc": ["nội dung", "mô tả", "ghi chú"],
         "_branch": ["chi nhánh", "phòng giao dịch", "pgd", "nơi mở"],
         "_currency": ["loại tiền", "đơn vị", "nguyên tệ"],
-        "_fullname": ["tên đầy đủ", "họ và tên", "chủ tài khoản"]
+        "_fullname": ["tên đầy đủ", "họ và tên", "chủ tài khoản"],
+        "from_": ["từ", "bắt đầu", "khởi đầu"],
+        "to_": ["đến", "kết thúc", "tới"]
     },
 
     "specific_columns": {
@@ -50,8 +52,11 @@ COMMON_DICTIONARY = {
         "original_amount": ["số tiền gốc", "giá trị ban đầu"],
         "parent_id": ["giao dịch gốc", "mã lệnh cha", "giao dịch cha"],  
         "node_id": ["mã node", "id máy chủ", "phân vùng"],     
-        "trans_code": ["loại hình", "mã loại giao dịch"],   
-        "channel_id": ["kênh thực hiện"],     
+        "trans_code": ["loại hình", "mã loại giao dịch"],
+        "channel_receiver": ["kênh nhận", "nguồn nhận"],
+        "reference_number": ["số tham chiếu", "mã bút toán"],
+        "account_number": ["số tài khoản", "stk", "số tk"],
+        "digital_operation": ["giao dịch số", "giao dịch điện tử"],
     },
     
     "values": {
@@ -134,7 +139,29 @@ COMMON_DICTIONARY = {
         "from_account_fullname": ["người gửi", "người chuyển", "bên đi"],
         "to_account_fullname": ["người nhận", "người hưởng", "bên đến"],
         "fee_affect_object": ["người trả phí", "ai chịu phí"],
-        "bill_total_consumption": ["chỉ số điện", "số nước", "sản lượng tiêu thụ"]
+        "bill_total_consumption": ["chỉ số điện", "số nước", "sản lượng tiêu thụ"],
+        "request": ["yêu cầu"],
+        "original": ["gốc", "ban đầu"],
+        "customer": ["khách hàng", "người dùng"],
+        "class": ["loại", "hạng"],
+        "from": ["bắt đầu", "từ"],
+        "to": ["kết thúc", "đến"],
+        "commission": ["hoa hồng", "phí môi giới"],
+        "ref": ["tham chiếu", "mã tham chiếu"],
+        "reverted": ["hoàn trả", "được hoàn lại"],
+        "receiver": ["người nhận", "bên hưởng"],
+        "example": ["ví dụ", "mẫu", "dạng"],
+        "respone": ["phản hồi", "trả về"],
+        "approve": ["phê duyệt", "duyệt"],
+        "payment": ["thanh toán", "trả tiền"],
+        "bill": ["hóa đơn"],
+        "source": ["nguồn", "nguồn gốc"],
+        "method": ["phương thức", "cách thức", "hình thức"],
+        "cif": ["mã khách hàng", "số cif"],
+        "number": ["số"],
+        "reference": ["tham chiếu"],
+        "digital": ["số", "kỹ thuật số"],
+        "operation": ["hoạt động", "thao tác"],
     },
     
     "abbreviations": {

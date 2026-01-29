@@ -46,7 +46,7 @@ def run_batch_pipeline():
             print(f"\n❌ LỖI khi xử lý {table_name}: {e}")
 
     print("\n" + "="*50)
-    print(f"HOÀN TẤT QUY TRÌNH!")
+    print(f"HOÀN TẤT!")
     print(f"\nThư mục kết quả: {OUTPUT_DIR}")
     print("="*50)
 
