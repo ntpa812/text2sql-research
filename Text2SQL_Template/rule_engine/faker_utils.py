@@ -1,103 +1,83 @@
 import random
+import string
 from datetime import datetime, timedelta
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from configs.dictionary import COMMON_DICTIONARY
+COMMON_DICTIONARY = {}
+
 from faker import Faker
-
 faker = Faker('vi_VN')
-
 class DataFaker:
     def __init__(self):
-        
         self.use_faker = faker is not None
+        self.vocab = COMMON_DICTIONARY.get("values", {})
+        
+        self.dict_status = self.vocab.get("STATUS", {})
+        self.dict_type = self.vocab.get("TRANS_TYPE", {})
+        self.dict_channel = self.vocab.get("CHANNEL", {})
+        self.dict_currency = self.vocab.get("CURRENCY", {})
+
+    def _generate_random_code(self):
+        prefix = random.choice(["TYPE", "MODE", "CAT", "GRP"])
+        suffix = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
+        return f"{prefix}_{suffix}"
+    
+    def _get_random_synonym(self, dictionary_group):
+        if not dictionary_group: 
+            if self.use_faker:
+                return faker.word().upper()
+            return self._generate_random_code()
+                
+        key = random.choice(list(dictionary_group.keys()))
+
+        synonyms = dictionary_group[key]
+
+        return random.choice(synonyms)
 
     def _generate_date(self, range_days=365):
-
+        """Sinh ngày ngẫu nhiên trong khoảng range_days"""
         if self.use_faker:
-
-            return faker.date_between(start_date='-1y', end_date='today').strftime('%Y-%m-%d')
-        else:
-            # Fallback
-            start = datetime.now() - timedelta(days=range_days)
-            return (start + timedelta(days=random.randint(0, range_days))).strftime('%Y-%m-%d')
-
-    def _generate_name(self):
-
-        if self.use_faker:
-            return faker.name()
-        return f"Nguyễn Văn {random.choice(['A', 'B', 'Hùng', 'Dũng', 'Lan'])}"
+            start_str = f'-{range_days}d'
+            return faker.date_between(start_date=start_str, end_date='today').strftime('%Y-%m-%d')
+        
+        start = datetime.now() - timedelta(days=range_days)
+        return (start + timedelta(days=random.randint(0, range_days))).strftime('%Y-%m-%d')
 
     def _generate_id(self, col_name):
-
-        col_lower = col_name.lower()
-        
-        if "card" in col_lower:
-            # Sinh fake thẻ Visa/Master bắt đầu bằng 4 hoặc 5
-            prefix = random.choice(['4', '5'])
-            rest = ''.join([str(random.randint(0, 9)) for _ in range(15)])
-            return prefix + rest
-        
-        # 2. Số tài khoản 9-14 số
-        if "account" in col_lower or "acct" in col_lower or "stk" in col_lower:
-            return str(random.randint(1000000000, 9999999999999))
-            
-        # 3. CIF (Customer Info File) 6-8 số
-        if "cif" in col_lower:
-            return str(random.randint(100000, 99999999))
-
-        # 4. Mã giao dịch có chữ và số
-        if "ref" in col_lower or "trans" in col_lower:
-            prefix = "FT" # Funds Transfer
-            return prefix + str(random.randint(100000000, 999999999))
-            
-        # Mặc định ID số nguyên ngắn
-        return str(random.randint(1000, 99999))
+        return str(random.randint(100000, 999999))
 
     def _generate_amount(self):
-
-        base = random.randint(1, 500)
-        multiplier = random.choice([10000, 50000, 100000])
+        """Sinh số tiền ngẫu nhiên chẵn (ví dụ: 500000, 1000000)"""
+        base = random.randint(1, 100)
+        multiplier = random.choice([10000, 50000, 100000, 1000000])
         return str(base * multiplier)
 
-    def get_fake_value(self, col_name: str, role: str, enum_values: list = None) -> str:
+    def get_fake_value(self, col_name: str, role: str) -> str:
+        col = col_name.lower()
+
+        if any(x in col for x in ["status", "trang_thai", "tinh_trang"]):
+            return self._get_random_synonym(self.dict_status)
+        if any(x in col for x in ["curr", "ccy", "tien_te", "don_vi"]):
+            return self._get_random_synonym(self.dict_currency)
+        if any(x in col for x in ["channel", "kenh", "source", "receiver"]):
+            return self._get_random_synonym(self.dict_channel)
+        if any(x in col for x in ["trans_type", "trans_code", "service", "loai_gd", "hinh_thuc"]):
+            return self._get_random_synonym(self.dict_type)
         
-        col_lower = col_name.lower()
+        if "type" in col:
+            return self._get_random_synonym(self.dict_type)
 
-        # Ưu tiên lấy từ danh sách Enum (nếu có)
-        # Ví dụ: trans_status -> ['SUCCESS', 'FAIL']
-        if enum_values and len(enum_values) > 0:
-            return str(random.choice(enum_values))
-
-        # Dựa vào Suffix tên cột
-        if any(x in col_lower for x in ["_date", "_time", "dob", "created_at"]):
-            return self._generate_date()
+        if any(x in col for x in ["date", "time"]): return self._generate_date()
+        if any(x in col for x in ["amount", "bal", "fee", "limit"]): return self._generate_amount()
+        if any(x in col for x in ["id", "no", "code"]): return self._generate_id(col)
+        if any(x in col for x in ["channel", "kenh", "source", "receiver", "vi_du", "example"]):
+            return self._get_random_synonym(self.dict_channel)
+        if any(x in col for x in ["type", "loai", "code", "service", "hinh_thuc", "kieu"]):
+            return self._get_random_synonym(self.dict_type)
         
-        if any(x in col_lower for x in ["_name", "fullname", "customer_name"]):
-            return self._generate_name()
-            
-        if "_mail" in col_lower:
-            return faker.email() if self.use_faker else "user@example.com"
-            
-        if "_phone" in col_lower:
-            return faker.phone_number() if self.use_faker else "0901234567"
-
-        if any(x in col_lower for x in ["_addr", "address", "location"]):
-            return faker.address().replace('\n', ', ') if self.use_faker else "Hà Nội"
-
-        # Dựa vào Role của cột
-        if role == "METRIC" or any(x in col_lower for x in ["_amount", "_bal", "_limit", "_fee"]):
-            return self._generate_amount()
-
-        if role == "IDENTITY" or any(x in col_lower for x in ["_id", "_code", "_no"]):
-            return self._generate_id(col_name)
-
-        # Mặc định trả về giá trị giả
-        if self.use_faker:
-            return faker.word()
+        if self.use_faker: return faker.word()
         return "123"
-
-# quick test
-if __name__ == "__main__":
-    fake = DataFaker()
-    print("Test date:", fake.get_fake_value("create_date", "TEMPORAL"))
-    print("Test name:", fake.get_fake_value("full_name", "ATTRIBUTE"))
-    print("Test acc:", fake.get_fake_value("account_number", "IDENTITY"))
-    print("Test amt:", fake.get_fake_value("trans_amount", "METRIC"))

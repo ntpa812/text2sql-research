@@ -18,10 +18,6 @@ def run_batch_pipeline():
         return
 
     input_files = list(INPUT_DIR.glob("*.xlsx")) + list(INPUT_DIR.glob("*.csv"))
-    
-    if not input_files:
-        print(f"⚠ Thư mục '{INPUT_DIR}' đang trống. Hãy thêm file bảng dữ liệu vào.")
-        return
 
     profiler = SemanticProfiler()
     generator = RuleBasedGenerator()
