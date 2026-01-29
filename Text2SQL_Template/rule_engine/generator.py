@@ -37,54 +37,77 @@ class RuleBasedGenerator:
 
     def _get_synonyms(self, col_name: str, suggested: List[str]) -> List[str]:
         col_lower = col_name.lower()
-        synonyms = set()
+        # Use a list to preserve order (Priority: Specific -> Generated -> Suggested)
+        synonyms = [] 
+        seen = set() # To track duplicates
 
+        # 1. Specific Column (Highest Priority)
         if col_lower in self.vocab.get("specific_columns", {}):
-            return self.vocab["specific_columns"][col_lower]
+            for word in self.vocab["specific_columns"][col_lower]:
+                if word not in seen:
+                    synonyms.append(word)
+                    seen.add(word)
+            return synonyms # Return immediately if specific match found
 
+        # 2. Semantic Generation (Suffix + Prefix)
         parts = col_lower.split('_')
-        
         suffix_match = None
         suffix_meanings = []
-        
+
+        # logic to find suffix...
         possible_suffix = "_" + parts[-1]
         if possible_suffix in self.vocab.get("suffixes", {}):
             suffix_match = possible_suffix
             suffix_meanings = self.vocab["suffixes"][possible_suffix]
-            core_parts = parts[:-1] 
+            core_parts = parts[:-1]
         else:
             core_parts = parts
 
+        # logic to translate prefix...
         translated_parts = []
         col_mapping = self.vocab.get("col_mapping", {})
-        
+        tables = self.vocab.get("tables", {}) # Don't forget tables fallback
+
         for part in core_parts:
             if part in col_mapping:
-                translated_parts.append(col_mapping[part][0]) 
-            elif part in self.vocab.get("tables", {}):
-                translated_parts.append(self.vocab["tables"][part][0])
+                translated_parts.append(col_mapping[part][0])
+            elif part in tables:
+                translated_parts.append(tables[part][0])
             else:
-                pass 
+                pass # Or keep original part? pass is safer for pure translation
 
+        # Construct phrases
+        generated_phrases = []
         if suffix_meanings:
-            base_suffix = suffix_meanings[0] 
+            base_suffix = suffix_meanings[0]
             core_meaning = " ".join(translated_parts)
-            
-            synonyms.add(f"{base_suffix} {core_meaning}".strip()) 
-            synonyms.add(f"{core_meaning}".strip())
+            if core_meaning:
+                generated_phrases.append(f"{base_suffix} {core_meaning}".strip()) # "trạng thái giao dịch"
+                generated_phrases.append(f"{core_meaning}".strip()) # "giao dịch" (contextual)
         else:
             full_meaning = " ".join(translated_parts).strip()
             if full_meaning:
-                synonyms.add(full_meaning)
+                generated_phrases.append(full_meaning)
 
+        # Add generated phrases to main list
+        for phrase in generated_phrases:
+            if phrase and phrase not in seen:
+                synonyms.append(phrase)
+                seen.add(phrase)
+
+        # 3. Suggested Keywords (Lowest Priority - can contain garbage)
         if suggested:
             clean = [s for s in suggested if len(s.split()) < 6 and "khóa" not in s.lower()]
-            synonyms.update(clean)
+            for s in clean:
+                if s not in seen:
+                    synonyms.append(s)
+                    seen.add(s)
 
+        # Fallback
         if not synonyms:
-            synonyms.add(col_lower.replace("_", " "))
-            
-        return list(synonyms)
+            synonyms.append(col_lower.replace("_", " "))
+
+        return synonyms
     
     def _get_table_synonyms(self, table_name: str) -> List[str]:
         return self.vocab["tables"].get(table_name, [table_name])
@@ -240,23 +263,22 @@ class RuleBasedGenerator:
             elif role == "TEMPORAL":
                 sql = self.sql_templates["TEMPORAL"].format(table=table_name, col=col_raw)
                 
-                start_d = self.faker._generate_date(range_days=60) 
-                end_d = self.faker._generate_date(range_days=0)  
+                start_d = self.faker._generate_date(range_days=60)
+                end_d = self.faker._generate_date(range_days=0)
                 
                 qs = [
-                    f"Sao kê {main_noun} từ ngày {start_d} đến ngày {end_d}",
-                    f"Lịch sử {main_noun} trong khoảng {start_d} - {end_d}",
-                    f"Xem {main_noun} từ {start_d} tới {end_d}",
-                    f"Tra soát giao dịch ngày {start_d}",
-                    f"Xem {main_noun} 30 ngày gần đây"
+                    f"Sao kê {main_noun} theo {primary_col_name} từ ngày {start_d} đến ngày {end_d}",
+                    f"Lọc {main_noun} có {primary_col_name} trong khoảng {start_d} - {end_d}",
+                    f"Xem lịch sử {main_noun} dựa trên {primary_col_name} từ {start_d} tới {end_d}",
+                    f"Kiểm tra các {main_noun} với {primary_col_name} là ngày {start_d}"
                 ]
 
                 dataset.append({
-                    "document": f"{table_name} | Lọc thời gian", 
-                    "description": "Truy vấn lịch sử theo thời gian cụ thể", 
+                    "document": f"{table_name} | Lọc thời gian theo {primary_col_name}", 
+                    "description": f"Truy vấn lịch sử dựa trên cột {primary_col_name}", 
                     "sql": sql, 
                     "examples": qs, 
-                    "keyword": "thời gian, lịch sử, ngày tháng"
+                    "keyword": f"thời gian, lịch sử, {primary_col_name}"
                 })
 
         if spec_cols["type"] and spec_cols["amount"] and spec_cols["status"]:

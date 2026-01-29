@@ -30,8 +30,8 @@ COMMON_DICTIONARY = {
         "_branch": ["chi nhánh", "phòng giao dịch", "pgd", "nơi mở"],
         "_currency": ["loại tiền", "đơn vị", "nguyên tệ"],
         "_fullname": ["tên đầy đủ", "họ và tên", "chủ tài khoản"],
-        "from_": ["từ", "bắt đầu", "khởi đầu"],
-        "to_": ["đến", "kết thúc", "tới"]
+        "from_": ["từ"],
+        "to_": ["đến", "tới"]
     },
 
     "specific_columns": {
@@ -57,6 +57,12 @@ COMMON_DICTIONARY = {
         "reference_number": ["số tham chiếu", "mã bút toán"],
         "account_number": ["số tài khoản", "stk", "số tk"],
         "digital_operation": ["giao dịch số", "giao dịch điện tử"],
+        "respone_status": ["trạng thái phản hồi", "kết quả trả về"],
+        "approve_status": ["trạng thái phê duyệt", "kết quả duyệt"],
+        "bill_payment": ["thanh toán hóa đơn", "trả tiền bill"],
+        "bill_type": ["loại hóa đơn", "mã bill"],
+        "technical_timestamp": ["dấu thời gian", "thời điểm kỹ thuật"],
+        "finish_time": ["thời gian kết thúc", "giờ hoàn thành"]
     },
     
     "values": {
@@ -131,8 +137,8 @@ COMMON_DICTIONARY = {
         "account": ["tài khoản", "số tài khoản", "stk"],
         "request": ["yêu cầu", "đề nghị", "lệnh"],
         "cust": ["khách hàng", "người dùng", "chủ tk"],
-        "from": ["từ", "bắt đầu", "khởi đầu"],
-        "to": ["đến", "kết thúc", "tới"],
+        "from": ["từ"],
+        "to": ["đến", "tới"],
         "class": ["loại", "hạng", "phân loại"],
         "currency": ["tiền tệ", "đơn vị", "loại tiền"],
         "system": ["hệ thống", "nền tảng", "ứng dụng"],
@@ -144,8 +150,6 @@ COMMON_DICTIONARY = {
         "original": ["gốc", "ban đầu"],
         "customer": ["khách hàng", "người dùng"],
         "class": ["loại", "hạng"],
-        "from": ["bắt đầu", "từ"],
-        "to": ["kết thúc", "đến"],
         "commission": ["hoa hồng", "phí môi giới"],
         "ref": ["tham chiếu", "mã tham chiếu"],
         "reverted": ["hoàn trả", "được hoàn lại"],
