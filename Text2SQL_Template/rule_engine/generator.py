@@ -50,16 +50,30 @@ class RuleBasedGenerator:
         if table_name in self.vocab["tables"]:
             return self.vocab["tables"][table_name]
         return [table_name]
+    
+    def _is_person_related(self, col_name: str) -> bool:
+        keywords = ["user", "cust", "name", "author", "teller", "nhan_vien", "khach_hang"]
+        return any(k in col_name.lower() for k in keywords)
 
     def _generate_examples(self, intent_code: str, context: Dict) -> List[str]:
 
         raw_templates = self.grammar.get_templates(intent_code)
         examples = set()
         
-        verbs = ["Tra cứu", "Tìm", "Xem"]
+        verbs = ["Tra cứu", "Tìm", "Xem", "Kiểm tra"]
         if "METRIC" in intent_code: verbs = ["Tính tổng", "Thống kê", "Tổng hợp"]
         
+        col_raw = context.get('col_raw', '').lower()
+        is_person = self._is_person_related(col_raw)
+        
         for tpl in raw_templates:
+            
+            if "của ai" in tpl and not is_person:
+                continue
+            
+            if intent_code == "IDENTITY" and "danh sách" in tpl:
+                continue
+            
             fake_val = self.faker.get_fake_value(context.get('col_raw', ''), context.get('role', 'ATTRIBUTE'))
             fake_start = self.faker._generate_date(30)
             fake_end = "hôm nay"
@@ -70,15 +84,10 @@ class RuleBasedGenerator:
             q_std = self.grammar.format_template(
                 tpl,
                 verb=random.choice(verbs),
-                # noun=context.get('noun', 'bản ghi'),
-                # col_name=context.get('col_name', ''),
-                noun=noun_str,         
+                noun=noun_str,
                 col_name=col_name_str,
-                col_metric=context.get('col_metric', ''),
-                col_group=context.get('col_group', ''),
                 val=fake_val,
-                start=fake_start,
-                end=fake_end,
+                start=fake_start, end=fake_end,
                 amt_val=self.faker._generate_amount(),
                 type_val=self.faker.get_fake_value("trans_type", "DIMENSION")
             )
@@ -87,14 +96,12 @@ class RuleBasedGenerator:
         if intent_code in ["DIMENSION", "MIX_TYPE_AMOUNT", "MIX_FULL"]:
             col = context.get('col_raw', '').lower()
             vocab_values = self.vocab.get("values", {})
-            
             target_group = {}
-            if "status" in col: target_group = vocab_values.get("STATUS", {})
-            elif "channel" in col: target_group = vocab_values.get("CHANNEL", {})
-            elif any(x in col for x in ["type", "code", "service"]): target_group = vocab_values.get("TRANS_TYPE", {})
+            if "status" in col_raw: target_group = vocab_values.get("STATUS", {})
+            elif any(x in col_raw for x in ["channel", "kenh"]): target_group = vocab_values.get("CHANNEL", {})
+            elif any(x in col_raw for x in ["type", "code", "service"]): target_group = vocab_values.get("TRANS_TYPE", {})
             
-            if "MIX" in intent_code:
-                 target_group = vocab_values.get("TRANS_TYPE", {})
+            if "MIX" in intent_code: target_group = vocab_values.get("TRANS_TYPE", {})
 
             if target_group:
                 random_key = random.choice(list(target_group.keys()))
@@ -103,15 +110,11 @@ class RuleBasedGenerator:
                     adj = random.choice(adjectives)
                     noun = context['noun']
                     if intent_code == "DIMENSION":
-                        examples.add(f"{noun} {adj}")
-                        examples.add(f"danh sách {noun} {adj}")
+                        examples.add(f"{noun} {adj}") # "giao dịch thất bại"
+                        examples.add(f"liệt kê các {noun} {adj}")
                     elif intent_code == "MIX_TYPE_AMOUNT":
                         amt = self.faker._generate_amount()
                         examples.add(f"{noun} {adj} trên {amt}")
-                        examples.add(f"tìm {noun} {adj} > {amt}")
-                    elif intent_code == "MIX_FULL":
-                        amt = self.faker._generate_amount()
-                        examples.add(f"{noun} {adj} trên {amt} hôm qua")
 
         return list(examples)
 
@@ -143,6 +146,7 @@ class RuleBasedGenerator:
         for col in columns:
             role = col["role"]
             col_raw = col["name"]
+            
             col_syns = self._get_synonyms(col_raw, col["suggested_keywords"])
             primary_col_name = col_syns[0]
             
@@ -162,77 +166,53 @@ class RuleBasedGenerator:
                 sql = self.sql_templates["IDENTITY"].format(table=table_name, col=col_raw)
                 qs = self._generate_examples("IDENTITY", context)
                 
-                doc = f"{table_name} | Tra cứu theo {primary_col_name}"
-
-                desc = f"Tìm kiếm chính xác thông tin {main_noun} dựa trên {primary_col_name} ({col_raw})"
-
+                doc = f"{table_name} | Tra cứu {primary_col_name}" 
+                desc = f"Tìm kiếm giao dịch cụ thể theo {primary_col_name} ({col_raw})"
                 kw = ", ".join(col_syns)
                 
                 record = {"document": doc, "description": desc, "sql": sql, "examples": qs, "keyword": kw}
 
             elif role == "DIMENSION":
                 current_sql = self.sql_templates["DIMENSION"].format(table=table_name, col=col_raw)
-                if "status" not in col_raw.lower():
-                    current_sql += status_clause
+                if "status" not in col_raw.lower(): current_sql += status_clause
 
                 qs = self._generate_examples("DIMENSION", context)
                 
                 doc = f"{table_name} | Lọc theo {primary_col_name}"
-                desc = f"Liệt kê danh sách {main_noun} được phân nhóm bởi {primary_col_name}. Ví dụ: {primary_col_name} A, B..."
-                kw = ", ".join(col_syns)
+                desc = f"Liệt kê các giao dịch thuộc nhóm {primary_col_name}"
+                kw = ", ".join(col_syns + ["lọc", "danh sách"])
                 
                 record = {"document": doc, "description": desc, "sql": current_sql, "examples": qs, "keyword": kw}
 
             elif role == "METRIC":
                 sql = f"SELECT SUM({col_raw}) FROM {table_name}"
-                if spec_cols["status"]:
-                    sql += f" WHERE {spec_cols['status']['name']} = 'SUCCESS'"
-                
-                target_dim = cols_by_role["DIMENSION"][0]["name"] if cols_by_role["DIMENSION"] else "..."
-                
+                if spec_cols["status"]: sql += f" WHERE {spec_cols['status']['name']} = 'SUCCESS'"
                 qs = self._generate_examples("METRIC", context)
-                
                 doc = f"{table_name} | Thống kê {primary_col_name}"
-                desc = f"Tính tổng giá trị {primary_col_name} của {main_noun}. Có thể kết hợp điều kiện lọc (Mặc định chỉ tính giao dịch thành công)."
-                kw = ", ".join(col_syns)
-                
+                desc = f"Tính tổng {primary_col_name}"
+                kw = ", ".join(col_syns + ["tổng"])
                 record = {"document": doc, "description": desc, "sql": sql, "examples": qs, "keyword": kw}
 
             elif role == "TEMPORAL":
                 sql = self.sql_templates["TEMPORAL"].format(table=table_name, col=col_raw)
                 qs = self._generate_examples("TEMPORAL", context)
-                
-                doc = f"{table_name} | Lọc theo thời gian ({primary_col_name})"
-                desc = f"Truy vấn lịch sử {main_noun} trong một khoảng thời gian cụ thể (Từ ngày... đến ngày...)"
-                kw = ", ".join(col_syns + ["thời gian", "ngày tháng", "lịch sử", "gần đây"])
-                
+                doc = f"{table_name} | Lọc thời gian ({primary_col_name})"
+                desc = f"Xem lịch sử theo {primary_col_name}"
+                kw = ", ".join(col_syns + ["thời gian"])
                 record = {"document": doc, "description": desc, "sql": sql, "examples": qs, "keyword": kw}
-            
-            elif role == "ATTRIBUTE":
-                
-                sql = f"SELECT * FROM {table_name} WHERE {col_raw} LIKE '%{{{{{col_raw}}}}}%'"
-                
-                qs = self._generate_examples("IDENTITY", context) 
-                
-                doc = f"{table_name} | Tìm kiếm theo {primary_col_name}"
-                desc = f"Tìm kiếm các {main_noun} có chứa nội dung/từ khóa trong {primary_col_name}"
-                kw = ", ".join(col_syns)
-                
-                record = {"document": doc, "description": desc, "sql": sql, "examples": qs, "keyword": kw}
-                
+
             if record: dataset.append(record)
 
         if spec_cols["type"] and spec_cols["amount"] and spec_cols["status"]:
             type_c = spec_cols["type"]["name"]
             amt_c = spec_cols["amount"]["name"]
             stt_c = spec_cols["status"]["name"]
-            
             sql_mix = self.sql_templates["MIX_TYPE_AMOUNT"].format(table=table_name, type_col=type_c, amt_col=amt_c, status_col=stt_c)
             ctx_mix = {"noun": main_noun, "col_name": "loại và tiền", "col_raw": type_c, "role": "DIMENSION"}
             qs_mix = self._generate_examples("MIX_TYPE_AMOUNT", ctx_mix)
             
             dataset.append({
-                "document": f"{table_name} | Lọc Loại + Số tiền (Nâng cao)",
+                "document": f"{table_name} | Lọc giao dịch theo loại và số tiền",
                 "description": f"Tìm các {main_noun} thỏa mãn cùng lúc 2 điều kiện: Loại giao dịch cụ thể VÀ Số tiền lớn hơn mức X (Chỉ lấy trạng thái Success)",
                 "sql": sql_mix,
                 "examples": qs_mix,
@@ -249,8 +229,8 @@ class RuleBasedGenerator:
             qs_full = self._generate_examples("MIX_FULL", ctx_mix)
             
             dataset.append({
-                "document": f"{table_name} | Lọc Full: Loại + Tiền + Thời gian",
-                "description": f"Truy vấn phức tạp nhất: Kết hợp Loại giao dịch + Mức tiền tối thiểu + Khoảng thời gian. Dùng để báo cáo chi tiết.",
+                "document": f"{table_name} | Lọc theo Loại + Tiền + Thời gian",
+                "description": f"Truy vấn đa điều kiện: Kết hợp Loại giao dịch + Mức tiền tối thiểu + Khoảng thời gian. Dùng để báo cáo chi tiết.",
                 "sql": sql_full,
                 "examples": qs_full,
                 "keyword": "báo cáo chi tiết, tổng hợp"

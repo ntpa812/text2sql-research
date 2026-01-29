@@ -35,7 +35,7 @@ COMMON_DICTIONARY = {
     "specific_columns": {
         "cif_no": ["mã khách hàng", "số cif", "mã định danh khách hàng"],
         "trans_id": ["mã giao dịch", "số tham chiếu", "mã lệnh"],
-        "reference_id": ["mã tham chiếu", "số bút toán"],
+        "reference_id": ["mã tham chiếu", "số bút toán", "số ref"],
         "amount_transfer": ["số tiền giao dịch", "số tiền chuyển"],
         "trans_desc": ["nội dung chuyển tiền", "lời nhắn"],
         "effective_date": ["ngày hiệu lực"],
@@ -47,7 +47,11 @@ COMMON_DICTIONARY = {
         "to_amount": ["số tiền thực nhận", "tiền đến", "số tiền đích"],
         "block_amount": ["tiền phong tỏa", "tiền bị giữ", "số dư bị lock"],
         "fee_amount": ["phí dịch vụ", "tiền phí"],
-        "original_amount": ["số tiền gốc", "giá trị ban đầu"]
+        "original_amount": ["số tiền gốc", "giá trị ban đầu"],
+        "parent_id": ["giao dịch gốc", "mã lệnh cha", "giao dịch cha"],  
+        "node_id": ["mã node", "id máy chủ", "phân vùng"],     
+        "trans_code": ["loại hình", "mã loại giao dịch"],   
+        "channel_id": ["kênh thực hiện"],     
     },
     
     "values": {
