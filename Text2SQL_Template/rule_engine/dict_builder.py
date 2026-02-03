@@ -8,10 +8,7 @@ from typing import List, Dict, Any, Set
 project_root = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(project_root))
 
-try:
-    from configs.dictionary import COMMON_DICTIONARY
-except ImportError:
-    COMMON_DICTIONARY = {}
+from configs.dictionary import COMMON_DICTIONARY
 
 class DictionaryBuilder:
     def __init__(self):
@@ -20,7 +17,6 @@ class DictionaryBuilder:
         self._build_glossary()
 
     def _build_glossary(self):
-        """Xây dựng glossary từ config hiện tại"""
         for k, v in self.base_vocab.get("col_mapping", {}).items():
             self.glossary[k] = v[0]
         for k, v in self.base_vocab.get("suffixes", {}).items():
@@ -92,10 +88,7 @@ class DictionaryBuilder:
         return local_dict
 
     def save_as_python_file(self, data: Dict, output_path: Path):
-        """
-        Lưu dictionary dưới dạng file Python (.py)
-        để giống hệt format của dictionary.py gốc
-        """
+
         json_str = json.dumps(data, indent=4, ensure_ascii=False)
         
         py_str = json_str.replace("null", "None").replace("false", "False").replace("true", "True")
@@ -166,10 +159,11 @@ class DictionaryBuilder:
 
         self.save_as_python_file(final_dict, output_path)
 
-if __name__ == "__main__":
-    builder = DictionaryBuilder()
-    source_directory = project_root / "data" / "source_tables"
+# if __name__ == "__main__":
+#     builder = DictionaryBuilder()
     
-    output_file = project_root / "configs" / "dictionary_updated.py"
+#     source_directory = project_root / "data" / "source_tables"
+    
+#     output_file = project_root / "configs" / "dictionary_updated.py"
 
-    builder.build_full_dictionary(source_directory, output_file)
+#     builder.build_full_dictionary(source_directory, output_file)

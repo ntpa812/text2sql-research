@@ -2,9 +2,10 @@ import time
 import json
 from pathlib import Path
 
-from rule_engine.profiler import SemanticProfiler
+# from rule_engine.profiler import SemanticProfiler
+from rule_engine.profiler_enhanced import SemanticProfiler
 from rule_engine.generator import RuleBasedGenerator
-from rule_engine.auto_profiler.dict_builder import DictionaryBuilder # Import DictBuilder
+from rule_engine.dict_builder import DictionaryBuilder 
 
 from configs.dictionary import COMMON_DICTIONARY
 

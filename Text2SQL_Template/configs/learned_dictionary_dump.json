@@ -139,44 +139,48 @@
     },
     "specific_columns": {
         "cif_no": [
-            "số mã khách hàng",
             "mã khách hàng",
-            "customer information file",
-            "số cif mã định danh duy nhất khách hàng ngân hàng",
-            "mã định danh khách hàng",
+            "số số khách hàng",
             "số cif",
-            "số số khách hàng"
+            "số cif mã định danh duy nhất khách hàng ngân hàng",
+            "số mã khách hàng",
+            "customer information file",
+            "mã định danh khách hàng",
+            "số khách hàng"
         ],
         "trans_id": [
-            "mã định danh giao dịch theo nghiệp vụ phân biệt các giao dịch với nhau",
-            "có thể tra soát",
-            "số giao dịch",
-            "số tham chiếu",
-            "mã định danh giao dịch theo nghiệp vụ, phân biệt các giao dịch với nhau",
+            "phân biệt các giao dịch với nhau",
+            "mã định danh giao dịch theo nghiệp vụ",
+            "mã lệnh",
             "mã giao dịch",
-            "mã lệnh"
+            "số giao dịch",
+            "có thể dùng để tra soát",
+            "số tham chiếu",
+            "mã định danh giao dịch theo nghiệp vụ phân biệt các giao dịch với nhau"
         ],
         "reference_id": [
-            "khóa chính",
-            "khóa chính là mã định danh duy nhất mỗi bản ghi giao dịch trong này",
-            "số tham chiếu",
-            "primary key",
-            "số ref",
             "số bút toán",
-            "mã tham chiếu"
+            "mã tham chiếu",
+            "mã định danh duy nhất cho mỗi bản ghi giao dịch này",
+            "số ref",
+            "primary key",
+            "khóa chính là mã định danh duy nhất mỗi bản ghi giao dịch trong này",
+            "số tham chiếu"
         ],
         "amount_transfer": [
+            "số tiền chuyển",
+            "số tiền mã giao dịch",
             "số tiền giao dịch",
             "số tiền transfer",
             "số tiền giao dịch gốc",
-            "số tiền nhập chuyển",
-            "số tiền chuyển"
+            "số tiền người dùng nhập để chuyển"
         ],
         "trans_desc": [
-            "mô tả chi tiết giao dịch.",
+            "giao dịch nội dung",
             "lời nhắn",
-            "giao dịch",
+            "mô tả chi tiết giao dịch",
             "giao dịch mô tả",
+            "giao dịch",
             "nội dung chuyển tiền"
         ],
         "effective_date": [
@@ -191,89 +195,95 @@
             "giá trị giao dịch"
         ],
         "vat_amount": [
-            "thuế vat",
-            "giá trị thuế",
             "thường tính trên phí dịch vụ",
-            "tiền thuế",
             "số tiền thuế vat",
-            "vat số tiền"
+            "thuế vat",
+            "tiền thuế",
+            "vat số tiền",
+            "giá trị thuế",
+            "trạng thái số tiền"
         ],
         "discount_amount": [
-            "discount số tiền",
-            "thường thanh toán hóa đơn",
+            "khuyến mãi",
+            "phí số tiền",
             "tiền chiết khấu",
             "số tiền chiết khấu",
-            "khuyến mãi",
-            "số tiền được giảm"
+            "discount số tiền",
+            "số tiền được giảm",
+            "thường dùng trong thanh toán hóa đơn"
         ],
         "partner_discount_amount": [
-            "số tiền chiết khấu do đối tác tài trợ.",
-            "số tiền chiết khấu do đối tác tài trợ",
-            "tiền đối tác giảm",
+            "chiết khấu đối tác",
+            "nội dung phí số tiền",
             "partner discount số tiền",
-            "chiết khấu đối tác"
+            "tiền đối tác giảm",
+            "số tiền chiết khấu do đối tác tài trợ"
         ],
         "to_amount": [
-            "sau khi quy đổi tỷ giá nếu có",
-            "đến số tiền",
-            "số tiền thực nhận",
             "số tiền thực tế ghi có vào tài khoản nhận",
+            "sau khi quy đổi tỷ giá nếu có",
+            "số tiền đích",
             "tiền đến",
+            "đến số tiền",
             "số tiền thực tế ghi có vào tài khoản người nhận",
-            "số tiền đích"
+            "số tiền thực nhận"
         ],
         "block_amount": [
-            "tiền bị giữ",
-            "hold",
             "block số tiền",
+            "hold",
+            "tiền bị giữ",
+            "số tiền bị phong tỏa tạm thời trước khi hạch toán thực tế",
             "số dư bị lock",
             "tiền phong tỏa",
-            "số tiền bị phong tỏa tạm thời trước khi hạch toán thực tế",
-            "số tiền bị phong tỏa"
+            "trạng thái số tiền"
         ],
         "fee_amount": [
-            "phí dịch vụ",
+            "phí số tiền",
             "tổng số tiền phí dịch vụ",
-            "tổng số tiền phí dịch vụ.",
             "tiền phí",
-            "phí số tiền"
+            "phí dịch vụ"
         ],
         "original_amount": [
             "số tiền gốc",
             "giá trị ban đầu"
         ],
         "parent_id": [
+            "số parent",
             "mã lệnh cha",
             "giao dịch gốc",
-            "giao dịch cha",
-            "số parent",
-            "id giao dịch cha dùng trong trường hợp giao dịch này là giao dịch con hoặc một bước trong chuỗi giao dịch phức tạp",
             "mã parent",
-            "id giao dịch cha, trường hợp giao dịch này giao dịch con hoặc một bước chuỗi giao dịch phức tạp."
+            "id giao dịch cha dùng trong trường hợp giao dịch này là giao dịch con hoặc một bước trong chuỗi giao dịch phức tạp",
+            "hợp giao dịch này giao dịch con hoặc một bước chuỗi giao dịch phức tạp",
+            "giao dịch cha"
         ],
         "node_id": [
+            "số node",
+            "mã chi nhánh",
+            "mã định danh node nơi giao dịch xử lý",
             "id máy chủ",
             "mã node",
-            "máy chủ hoặc phân vùng dữ liệu",
-            "số node",
             "phân vùng",
-            "mã định danh node nơi giao dịch xử lý",
-            "mã định danh node"
+            "máy chủ hoặc phân vùng dữ liệu",
+            "số chi nhánh"
         ],
         "trans_code": [
-            "số giao dịch",
-            "ví dụ: ck_noi_bo - chuyển khoản nội bộ, thanh_toan_hoa_don",
-            "mã loại hình giao dịch",
             "mã loại giao dịch",
+            "ck_noi_bo - chuyển khoản nội bộ",
+            "thanh_toan_hoa_don",
+            "mã loại hình giao dịch",
+            "số giao dịch",
             "mã giao dịch",
             "loại hình"
         ],
         "channel_receiver": [
+            "kênh tiếp nhận giao dịch",
+            "mobile app",
+            "kênh nhận",
+            "internet banking",
             "nguồn nhận",
             "kênh người nhận",
-            "kênh nhận",
-            "kênh tiếp nhận giao dịch",
-            "ví dụ: mobile app, internet banking, atm, counter"
+            "atm",
+            "counter"
         ],
         "reference_number": [
             "số tham chiếu",
@@ -293,9 +303,12 @@
             "kết quả trả về"
         ],
         "approve_status": [
-            "trạng thái phê duyệt",
             "kết quả duyệt",
-            "ví dụ: a - approved, r - rejected, p - pending"
+            "p - pending",
+            "a - approved",
+            "trạng thái phê duyệt",
+            "phê duyệt trạng thái",
+            "r - rejected"
         ],
         "bill_payment": [
             "thanh toán hóa đơn",
@@ -303,423 +316,497 @@
         ],
         "bill_type": [
             "loại hóa đơn",
-            "mã bill",
-            "điện, nước, internet, truyền hình..."
+            "internet",
+            "truyền hình...",
+            "nước",
+            "điện",
+            "mã bill"
         ],
         "technical_timestamp": [
             "dấu thời gian",
             "thời điểm kỹ thuật"
         ],
         "finish_time": [
-            "finish thời gian",
+            "thời gian kết thúc",
             "thời gian giao dịch hoàn toàn kết thúc",
-            "thời gian giao dịch hoàn toàn kết thúc.",
             "giờ hoàn thành",
-            "thời gian kết thúc"
+            "finish thời gian",
+            "nội dung giờ"
         ],
         "id": [
-            "khóa chính",
+            "bản ghi này",
+            "mã",
+            "định danh duy nhất cho mỗi bản ghi tài khoản",
+            "khóa chính định danh duy nhất mỗi bản ghi tài khoản",
             "primary key",
             "số",
-            "mã",
-            "id tự tăng, khóa chính",
-            "khóa chính định danh duy nhất mỗi bản ghi tài khoản",
             "id tự tăng là khóa chính bản ghi này"
         ],
         "customer_id": [
+            "id định danh khách hàng trong nội bộ",
             "mã khách hàng",
-            "id định danh khách hàng nội bộ.",
             "số khách hàng",
-            "id định danh khách hàng trong nội bộ"
+            "định danh khách hàng nội bộ"
         ],
         "customer_no": [
-            "customer number",
-            "mã số khách hàng",
-            "số khách hàng",
             "có thể khác với cif tùy theo cấu trúc hệ thống",
-            "mã số khách hàng với tài khoản"
+            "mã số khách hàng với tài khoản",
+            "mã số khách hàng tương ứng với tài khoản",
+            "số khách hàng",
+            "customer number",
+            "mã số khách hàng"
         ],
         "customer_name": [
-            "tên khách hàng",
-            "họ và tên đầy đủ khách hàng.",
-            "họ và tên đầy đủ khách hàng"
+            "họ và tên đầy đủ khách hàng",
+            "tên khách hàng"
         ],
         "system_id": [
-            "nếu dữ liệu được đẩy từ khác sang",
+            "id nguồn",
             "mã nguồn cung cấp tài khoản này",
             "số hệ thống",
-            "id nguồn",
             "mã hệ thống",
-            "mã nguồn cung cấp dữ liệu tài khoản này."
+            "nguồn",
+            "nếu dữ liệu được đẩy từ hệ thống khác sang"
         ],
         "cif_branch": [
-            "chi nhánh nơi mở/quản lý mã cif này.",
-            "chi nhánh nơi mở/quản lý mã cif này",
+            "mã khách hàng chi nhánh",
+            "chi nhánh nơi mở",
+            "quản lý mã cif này",
             "số khách hàng chi nhánh",
-            "mã khách hàng chi nhánh"
+            "khách hàng chi nhánh",
+            "chi nhánh nơi mở/quản lý mã cif này"
         ],
         "cif_type": [
-            "loại cif",
+            "khách hàng ưu tiên...",
             "loại mã khách hàng",
+            "cá nhân",
             "loại số khách hàng",
-            "ví dụ: cá nhân, doanh nghiệp, khách hàng ưu tiên..."
+            "doanh nghiệp",
+            "loại khách hàng",
+            "loại cif"
         ],
         "address_line": [
+            "số nhà",
+            "số tài khoản trạng thái",
+            "address line",
+            "tên đường",
             "dòng địa chỉ",
-            "số nhà, tên đường",
-            "dòng địa chỉ chi tiết",
-            "address line"
+            "dòng địa chỉ chi tiết"
         ],
         "full_address": [
+            "quận/huyện",
+            "nội dung số tài khoản",
+            "tỉnh/thành",
             "full address",
-            "bao gồm xã/phường, quận/huyện, tỉnh/thành",
+            "bao gồm xã/phường",
             "địa chỉ đầy đủ"
         ],
         "branch_code": [
             "mã chi nhánh quản lý trực tiếp khách hàng",
-            "mã chi nhánh quản lý trực tiếp khách hàng.",
             "mã chi nhánh",
             "số chi nhánh"
         ],
         "customer_class": [
             "phân hạng khách hàng",
-            "ví dụ: đồng, bạc, vàng, kim cương",
+            "đồng",
+            "kim cương",
+            "vàng",
+            "bạc",
             "loại khách hàng"
         ],
         "customer_status": [
+            "khách hàng trạng thái",
+            "inactive",
+            "closed...",
+            "active",
             "trạng thái hiện khách hàng",
-            "active, inactive, closed...",
-            "trạng thái hiện tại khách hàng",
             "trạng thái khách hàng"
         ],
         "date_of_issue": [
-            "cmnd/cccd/hộ chiếu",
             "ngày of issue",
+            "ngày trạng thái trạng thái",
+            "cmnd/cccd/hộ chiếu",
             "ngày cấp giấy tờ định danh"
         ],
         "email": [
-            "email",
+            "nội dung",
             "địa chỉ thư điện tử khách hàng",
-            "địa chỉ thư điện tử khách hàng."
+            "email"
         ],
         "home_phone": [
-            "số điện thoại bàn/điện thoại cố định.",
             "home phone",
-            "số điện thoại bàn/điện thoại cố định"
+            "nội dung phone",
+            "số điện thoại bàn/điện thoại cố định",
+            "điện thoại cố định",
+            "số điện thoại bàn"
         ],
         "identify_id": [
-            "mã identify",
             "số identify",
-            "số cmnd, cccd hoặc hộ chiếu",
-            "số giấy tờ định danh"
+            "số cmnd",
+            "số giấy tờ định danh",
+            "mã identify",
+            "số trạng thái",
+            "mã trạng thái",
+            "cccd hoặc hộ chiếu"
         ],
         "identify_level": [
-            "ví dụ: đã xác thực - ekyc, chưa xác thực",
+            "cấp độ định danh",
             "identify level",
-            "cấp độ định danh"
+            "đã xác thực - ekyc",
+            "chưa xác thực",
+            "trạng thái trạng thái"
         ],
         "identify_name": [
-            "ví dụ: \"identity card\", \"passport\"",
+            "tên trạng thái",
+            "\"passport\"",
             "loại giấy tờ định danh",
-            "tên identify"
+            "tên identify",
+            "\"identity card\""
         ],
         "init_date": [
-            "ngày khởi tạo khách hàng trên",
-            "ngày khởi tạo thông tin khách hàng trên hệ thống.",
-            "ngày init"
+            "ngày khởi tạo khách hàng trên hệ thống",
+            "ngày init",
+            "ngày trạng thái",
+            "ngày khởi tạo khách hàng trên"
         ],
         "is_fee_default": [
-            "đánh dấu khách hàng có thuộc diện mặc định thu phí hay không",
-            "đánh dấu khách hàng có thuộc diện mặc định thu phí hay không.",
-            "is phí default"
+            "trạng thái phí trạng thái",
+            "is phí default",
+            "đánh dấu khách hàng có thuộc diện mặc định thu phí hay không"
         ],
         "latitude": [
-            "vĩ độ",
+            "tọa độ vị trí nhà ở hoặc nơi đăng ký",
             "latitude",
-            "tọa độ vị trí nhà ở hoặc nơi đăng ký"
+            "trạng thái",
+            "vĩ độ"
         ],
         "longitude": [
+            "longitude",
             "kinh độ",
-            "tọa độ vị trí",
-            "longitude"
+            "tọa độ vị trí"
         ],
         "mobile_phone": [
             "số điện thoại di động chính",
-            "số điện thoại di động chính.",
             "mobile phone"
         ],
         "nationality_id": [
             "số nationality",
+            "us",
+            "vn",
+            "mã nationality",
             "mã quốc tịch",
-            "ví dụ: vn, us, jp",
-            "mã nationality"
+            "jp"
         ],
         "place_id": [
-            "số place",
-            "mã vùng/địa điểm cư trú.",
             "mã vùng/địa điểm cư trú",
-            "mã place"
+            "mã place",
+            "địa điểm cư trú",
+            "số nội dung",
+            "mã nội dung",
+            "số place",
+            "mã vùng"
         ],
         "place_of_issue": [
+            "ca tp. hà nội",
+            "nội dung trạng thái trạng thái",
             "place of issue",
-            "nơi cấp giấy tờ định danh",
-            "ví dụ: ca tp. hà nội"
+            "nơi cấp giấy tờ định danh"
         ],
         "unique_id": [
+            "thường dùng để đối soát liên hệ thống",
             "mã định danh duy nhất",
-            "số unique",
             "mã unique",
-            "thường đối soát liên hệ thống"
+            "số trạng thái",
+            "mã trạng thái",
+            "số unique"
         ],
         "unique_value": [
             "unique value",
-            "giá trị đặc trưng định danh duy nhất khách hàng",
-            "giá trị đặc trưng định danh duy nhất khách hàng."
+            "trạng thái số tiền",
+            "giá trị đặc trưng định danh duy nhất khách hàng"
         ],
         "status": [
+            "a - active",
+            "i - inactive",
+            "0-hết hiệu lực",
             "trạng thái bản ghi",
-            "ví dụ: 1-hiệu lực, 0-hết hiệu lực",
-            "trạng thái",
+            "c - closed",
+            "1-hiệu lực",
             "trạng thái tài khoản",
-            "ví dụ: a - active, i - inactive, c - closed"
+            "trạng thái"
         ],
         "sign_1": [
+            "trạng thái trạng thái",
             "đường dẫn hoặc chữ ký mẫu số khách hàng",
-            "đường dẫn hoặc dữ liệu chữ ký mẫu số 1 khách hàng.",
             "sign 1"
         ],
         "sign_2": [
             "đường dẫn hoặc chữ ký mẫu số",
-            "sign 2",
-            "đường dẫn hoặc dữ liệu chữ ký mẫu số 2."
+            "trạng thái trạng thái",
+            "sign 2"
         ],
         "sex": [
-            "male, female, unknown",
             "giới tính",
-            "sex"
+            "female",
+            "nội dung",
+            "sex",
+            "unknown",
+            "male"
         ],
         "date_of_birth": [
-            "ngày tháng năm sinh.",
+            "ngày trạng thái trạng thái",
             "ngày of birth",
             "ngày tháng năm sinh"
         ],
         "old_customer_status": [
-            "trước khi thay đổi",
             "trạng thái old khách hàng",
-            "trạng thái cũ khách hàng"
+            "trạng thái cũ khách hàng",
+            "trước khi thay đổi",
+            "người thụ hưởng khách hàng trạng thái"
         ],
         "new_customer_status": [
-            "trạng thái mới khách hàng",
             "sau khi cập nhật",
+            "trạng thái mới khách hàng",
+            "nội dung khách hàng trạng thái",
             "trạng thái new khách hàng"
         ],
         "unique_image_front": [
-            "đường dẫn ảnh mặt trước giấy tờ định danh",
+            "unique image front",
             "cmnd/cccd",
-            "unique image front"
+            "đường dẫn ảnh mặt trước giấy tờ định danh",
+            "trạng thái nội dung trạng thái"
         ],
         "unique_image_back": [
-            "đường dẫn ảnh mặt sau giấy tờ định danh.",
-            "unique image back",
-            "đường dẫn ảnh mặt sau giấy tờ định danh"
+            "đường dẫn ảnh mặt sau giấy tờ định danh",
+            "trạng thái nội dung trạng thái",
+            "unique image back"
         ],
         "core_customer_id": [
-            "mã core khách hàng",
-            "số core khách hàng",
+            "mã nội dung khách hàng",
             "id khách hàng bên lõi map tài khoản với khách hàng",
-            "id khách hàng bên lõi",
-            "core banking"
+            "số nội dung khách hàng",
+            "core banking",
+            "khách hàng bên lõi map tài khoản với khách hàng",
+            "số core khách hàng",
+            "mã core khách hàng"
         ],
         "account_no": [
-            "số tài khoản",
-            "số tài khoản hoặc số thẻ. đây thông tin định danh tài khoản giao dịch.",
-            "số tài khoản hoặc số thẻ đây là định danh tài khoản để giao dịch"
+            "số tài khoản hoặc số thẻ đây là định danh tài khoản để giao dịch",
+            "số tài khoản hoặc số thẻ đây định danh tài khoản giao dịch",
+            "số tài khoản"
         ],
         "account_class": [
-            "ví dụ: tài khoản thanh toán, tài khoản tiết kiệm, thẻ tín dụng...",
+            "phân loại tài khoản",
+            "tài khoản tiết kiệm",
             "loại tài khoản",
-            "phân loại tài khoản"
+            "thẻ tín dụng...",
+            "tài khoản thanh toán"
         ],
         "primary_account": [
-            "đánh dấu tài khoản chính",
-            "y/n",
+            "primary tài khoản",
+            "đánh dấu tài khoản chính thường khi một khách hàng có nhiều tài khoản",
             "đánh dấu tài khoản chính thường dùng khi một khách hàng có nhiều tài khoản",
-            "primary tài khoản"
+            "y/n",
+            "trạng thái tài khoản"
         ],
         "order_no": [
             "số order",
             "app/web",
+            "số trạng thái",
             "số thứ tự hiển thị tài khoản trên giao diện"
         ],
         "verify_status": [
-            "trạng thái verify",
+            "trạng thái trạng thái",
             "đã xác minh thông tin hay chưa",
-            "trạng thái xác thực tài khoản"
+            "trạng thái xác thực tài khoản",
+            "trạng thái verify"
         ],
         "check_status": [
-            "trạng thái kiểm tra",
             "trạng thái check",
-            "mặc định 'u' - unknown hoặc unchecked"
+            "trạng thái kiểm tra",
+            "trạng thái trạng thái",
+            "mặc định là 'u' - unknown hoặc unchecked"
         ],
         "channel_id": [
-            "ví dụ: mobile, internet banking, quầy giao dịch",
-            "số kênh",
             "mã kênh",
-            "id kênh tạo tài khoản"
+            "quầy giao dịch",
+            "số kênh",
+            "internet banking",
+            "id kênh tạo tài khoản",
+            "mobile",
+            "kênh tạo tài khoản"
         ],
         "priority": [
+            "độ ưu tiên tài khoản khi thực hiện các giao dịch tự động",
             "priority",
-            "độ ưu tiên tài khoản khi thực hiện các giao dịch tự động.",
-            "độ ưu tiên tài khoản khi thực hiện các giao dịch tự động"
+            "trạng thái"
         ],
         "create_date": [
-            "ngày mở tài khoản hoặc ngày bản ghi được tạo.",
-            "ngày create",
-            "ngày mở tài khoản hoặc ngày bản ghi tạo"
+            "ngày mở tài khoản hoặc ngày bản ghi tạo",
+            "ngày nội dung",
+            "ngày create"
         ],
         "account_name": [
-            "thường tên chủ tài khoản hoặc tên gợi nhớ",
+            "thường là tên chủ tài khoản hoặc tên gợi nhớ",
             "tên tài khoản"
         ],
         "account_branch": [
             "mã chi nhánh nơi quản lý tài khoản này",
-            "mã chi nhánh nơi quản lý tài khoản này.",
             "tài khoản chi nhánh"
         ],
         "card_mask": [
             "card mask",
-            "ví dụ: 411122****1234",
-            "số thẻ được che bớt",
-            "số thẻ che bớt để đảm bảo bảo mật"
+            "số tài khoản mask",
+            "411122****1234",
+            "số thẻ che bớt để đảm bảo bảo mật",
+            "số thẻ che bớt đảm bảo bảo mật thông tin"
         ],
         "end_date": [
-            "ngày hết hạn tài khoản hoặc ngày đóng tài khoản.",
+            "ngày end",
             "ngày hết hạn tài khoản hoặc ngày đóng tài khoản",
-            "ngày end"
+            "ngày nội dung"
         ],
         "user_id": [
+            "thường là khóa ngoại trỏ sang bảng user",
+            "id",
             "mã định danh người dùng thực hiện giao dịch",
-            "số người dùng",
-            "thường khóa ngoại trỏ sang bảng user",
+            "mã định danh thực hiện giao dịch",
             "mã người dùng",
-            "mã định danh"
+            "số người dùng"
         ],
         "user_name": [
-            "tên người dùng",
-            "tên đăng nhập người dùng thực hiện giao dịch",
             "username",
-            "tên đăng nhập"
+            "tên người dùng",
+            "tên đăng nhập thực hiện giao dịch",
+            "tên đăng nhập người dùng thực hiện giao dịch"
         ],
         "session_id": [
-            "mã phiên",
-            "web/app session",
-            "mã phiên làm việc",
             "số phiên",
+            "mã phiên",
+            "mã phiên làm việc người dùng khi thực hiện giao dịch",
             "session",
-            "mã phiên làm việc người dùng khi thực hiện giao dịch"
+            "web/app session",
+            "mã phiên làm việc khi thực hiện giao dịch"
         ],
         "trans_time": [
-            "thời điểm chính xác giao dịch phát sinh.",
             "thời điểm chính xác giao dịch phát sinh",
-            "giao dịch thời gian"
+            "giao dịch thời gian",
+            "giao dịch giờ"
         ],
         "trans_type": [
+            "loại giao dịch chi tiết hoặc mô tả nhóm giao dịch",
             "loại giao dịch hoặc nhóm giao dịch",
-            "loại giao dịch",
-            "loại giao dịch chi tiết hoặc mô tả nhóm giao dịch."
+            "loại giao dịch"
         ],
         "action_id": [
-            "ví dụ: nút bấm \"xác nhận\", \"gửi otp\"",
+            "nút bấm \"xác nhận\"",
             "số hành động",
-            "mã hành động cụ thể mà người dùng thực hiện",
             "mã hành động cụ thể mà thực hiện",
-            "mã hành động"
+            "mã hành động",
+            "\"gửi otp\"",
+            "mã hành động cụ thể mà người dùng thực hiện"
         ],
         "stak_user_type_do": [
-            "stak người dùng loại do",
             "loại người dùng tác nghiệp",
-            "loại tác nghiệp",
-            "thường cho nhân viên vận hành/digital officer"
+            "thường dùng cho nhân viên vận hành/digital officer",
+            "trạng thái người dùng loại nội dung",
+            "stak người dùng loại do",
+            "loại tác nghiệp"
         ],
         "user_do": [
             "người dùng do",
+            "nếu có",
+            "tên hoặc mã nhân viên vận hành",
+            "người dùng nội dung",
             "tên hoặc mã nhân viên vận hành/hỗ trợ liên quan đến giao dịch này",
-            "nếu có"
+            "hỗ trợ liên quan đến giao dịch này"
         ],
         "branch_code_do": [
-            "chi nhánh số do",
-            "chi nhánh mã do",
+            "chi nhánh mã nội dung",
             "mã chi nhánh nhân viên vận hành/hỗ trợ",
-            "digital office branch"
+            "chi nhánh số do",
+            "digital office branch",
+            "hỗ trợ",
+            "chi nhánh mã do",
+            "mã chi nhánh nhân viên vận hành",
+            "chi nhánh số nội dung"
         ],
         "product_id": [
+            "số sản phẩm",
+            "gói vay",
+            "gói tài khoản",
             "mã sản phẩm",
-            "ví dụ: gói tài khoản, gói vay",
-            "mã sản phẩm hoặc dịch vụ liên quan đến giao dịch",
-            "số sản phẩm"
+            "mã sản phẩm hoặc dịch vụ liên quan đến giao dịch"
         ],
         "business_process": [
-            "tên quy trình nghiệp vụ",
-            "tên quy trình nghiệp vụ mà giao dịch này thuộc",
-            "business process"
+            "business process",
+            "tên quy trình nghiệp vụ mà giao dịch này thuộc về",
+            "sản phẩm trạng thái",
+            "tên quy trình nghiệp vụ mà giao dịch này thuộc"
         ],
         "request_id": [
-            "mã yêu cầu",
             "app/web",
+            "mã yêu cầu",
             "số yêu cầu",
-            "mã yêu cầu duy nhất được sinh ra từ phía client",
             "mã yêu cầu duy nhất sinh ra từ phía client gửi lên server"
         ],
         "original_request_id": [
             "mã yêu cầu gốc",
+            "dùng cho các giao dịch hoàn tiền",
             "mã gốc yêu cầu",
             "số gốc yêu cầu",
-            "dùng cho các giao dịch hoàn tiền, hủy hoặc đảo giao dịch tham chiếu lại giao dịch cũ"
+            "hủy hoặc đảo giao dịch để tham chiếu lại giao dịch cũ"
         ],
         "input_type": [
-            "loại đầu vào",
+            "contact - chọn từ danh bạ",
+            "qrcode - quét mã",
+            "manual - nhập tay",
             "loại input",
-            "ví dụ: manual - nhập tay, qrcode - quét mã, contact - chọn từ danh bạ",
-            "loại dữ liệu đầu vào"
+            "loại đầu vào",
+            "loại nội dung"
         ],
         "input_value": [
+            "nội dung số tiền",
+            "chuỗi mã qr",
+            "input value",
             "giá trị đầu vào",
             "giá trị đầu vào tương ứng",
-            "ví dụ: chuỗi mã qr, số điện thoại được chọn",
-            "input value"
+            "số điện thoại được chọn"
         ],
         "from_system_id": [
-            "nếu giao dịch đến từ đối tác hoặc vệ tinh",
             "mã từ hệ thống",
-            "số từ hệ thống",
-            "mã nguồn khởi tạo giao dịch"
+            "mã nguồn khởi tạo giao dịch",
+            "nếu giao dịch đến từ đối tác hoặc hệ thống vệ tinh",
+            "số từ hệ thống"
         ],
         "from_cust_id": [
-            "id khách hàng chuyển tiền/người thanh toán.",
-            "số từ khách hàng",
+            "khách hàng chuyển tiền",
             "mã từ khách hàng",
+            "thanh toán",
+            "số từ khách hàng",
             "id khách hàng người chuyển tiền/người thanh toán"
         ],
         "from_cust_no": [
-            "số từ khách hàng",
-            "mã cif",
+            "customer information file",
+            "mã cif hoặc mã khách hàng chuyển",
             "mã cif hoặc mã khách hàng người chuyển",
-            "customer information file"
+            "số từ khách hàng"
         ],
         "from_cust_branch": [
             "mã chi nhánh quản lý khách hàng người chuyển",
-            "mã chi nhánh quản lý khách hàng chuyển.",
+            "mã chi nhánh quản lý khách hàng chuyển",
             "từ khách hàng chi nhánh"
         ],
         "from_account_class": [
             "hạng hoặc nhóm tài khoản nguồn",
             "loại từ tài khoản",
-            "ví dụ: dda - thanh toán, fd - tiết kiệm"
+            "dda - thanh toán",
+            "fd - tiết kiệm"
         ],
         "from_account_type": [
-            "loại tài khoản nguồn",
             "loại từ tài khoản",
-            "loại tài khoản nguồn chi tiết."
+            "loại tài khoản nguồn",
+            "loại tài khoản nguồn chi tiết"
         ],
         "from_account_no": [
             "số tài khoản chuyển tiền",
@@ -729,442 +816,487 @@
         ],
         "from_account_branch": [
             "từ tài khoản chi nhánh",
-            "mã chi nhánh quản lý tài khoản nguồn.",
             "mã chi nhánh quản lý tài khoản nguồn"
         ],
         "from_account_currency": [
-            "vnd, usd, eur...",
+            "từ tài khoản loại tiền",
             "loại tiền tệ tài khoản nguồn",
-            "từ tài khoản loại tiền"
+            "eur...",
+            "usd",
+            "vnd"
         ],
         "from_account_fullname": [
             "từ tài khoản tên đầy đủ",
-            "tên đầy đủ chủ tài khoản nguồn.",
             "tên đầy đủ chủ tài khoản nguồn"
         ],
         "from_message": [
-            "nội dung hoặc lời nhắn từ người chuyển tiền",
-            "nội dung hoặc lời nhắn từ chuyển tiền.",
-            "từ message"
+            "từ nội dung",
+            "từ message",
+            "nội dung hoặc lời nhắn từ chuyển tiền",
+            "nội dung hoặc lời nhắn từ người chuyển tiền"
         ],
         "to_system_id": [
-            "số đến hệ thống",
+            "mã đích",
+            "citad",
+            "ví dụ napas",
             "mã đến hệ thống",
             "mã đích ví dụ napas citad core banking",
+            "core banking",
             "nơi nhận tiền/giao dịch",
-            "mã đích"
+            "số đến hệ thống"
         ],
         "to_cust_no": [
-            "số đến khách hàng",
+            "nếu là chuyển khoản nội bộ",
             "mã khách hàng thụ hưởng",
-            "nếu chuyển khoản nội bộ",
-            "mã khách hàng người thụ hưởng"
+            "mã khách hàng người thụ hưởng",
+            "số đến khách hàng"
         ],
         "to_cust_branch": [
-            "mã chi nhánh quản lý khách hàng thụ hưởng.",
             "đến khách hàng chi nhánh",
             "mã chi nhánh quản lý khách hàng thụ hưởng"
         ],
         "to_account_no": [
+            "số đến tài khoản",
             "số tài khoản người nhận tiền",
             "tài khoản đích",
-            "số tài khoản nhận tiền",
-            "số đến tài khoản"
+            "số tài khoản nhận tiền"
         ],
         "to_account_branch": [
-            "đến tài khoản chi nhánh",
-            "mã chi nhánh quản lý tài khoản đích.",
-            "mã chi nhánh quản lý tài khoản đích"
+            "mã chi nhánh quản lý tài khoản đích",
+            "đến tài khoản chi nhánh"
         ],
         "to_account_currency": [
             "đến tài khoản loại tiền",
-            "loại tiền tệ tài khoản đích.",
             "loại tiền tệ tài khoản đích"
         ],
         "to_account_fullname": [
-            "tên đầy đủ chủ tài khoản đích",
+            "đến tài khoản tên đầy đủ",
             "người nhận",
-            "đến tài khoản tên đầy đủ"
+            "tên đầy đủ chủ tài khoản đích"
         ],
         "to_message": [
-            "nội dung tin nhắn hiển thị cho nhận.",
+            "đến nội dung",
             "đến message",
-            "nội dung tin nhắn hiển thị người nhận"
+            "nội dung tin nhắn hiển thị người nhận",
+            "nội dung tin nhắn hiển thị cho nhận"
         ],
         "to_user_name": [
-            "tên đến người dùng",
             "tên đăng nhập người nhận",
-            "nếu nhận cũng chung hệ thống",
-            "tên đăng nhập nhận"
+            "tên đăng nhập nhận",
+            "nếu người nhận cũng dùng chung hệ thống",
+            "tên đến người dùng"
         ],
         "amount_currency": [
             "số tiền loại tiền",
-            "loại tiền tệ số tiền giao dịch.",
             "loại tiền tệ số tiền giao dịch"
         ],
         "amount_rate": [
-            "số tiền lãi suất",
+            "tỷ giá quy đổi áp dụng cho giao dịch",
+            "nếu chuyển đổi tiền tệ",
             "tỷ giá quy đổi áp dụng giao dịch",
-            "tỷ giá quy đổi được áp dụng cho giao dịch",
-            "nếu chuyển đổi tiền tệ"
+            "số tiền lãi suất"
         ],
         "block_amount_ref_no": [
+            "số trạng thái số tiền tham chiếu",
             "mã tham chiếu lệnh phong tỏa tiền",
-            "mã tham chiếu lệnh phong tỏa tiền.",
             "số block số tiền tham chiếu"
         ],
         "fee_affect_object": [
             "phí affect object",
-            "đối tượng chịu phí",
-            "người chuyển trả sender hay nhận trả receiver"
+            "người chuyển trả sender hay người nhận trả receiver",
+            "phí nội dung sản phẩm",
+            "đối tượng chịu phí"
         ],
         "fee_currency": [
-            "loại tiền tệ phí.",
             "phí loại tiền",
             "loại tiền tệ phí"
         ],
         "fee_amount_rate": [
+            "phí số tiền lãi suất",
             "nếu loại tiền phí khác loại tiền tài khoản",
-            "tỷ giá quy đổi phí",
-            "phí số tiền lãi suất"
+            "tỷ giá quy đổi phí"
         ],
         "fee_ind": [
-            "chỉ số hoặc mã loại phí",
-            "chỉ số hoặc mã loại phí.",
-            "phí ind"
+            "phí ind",
+            "phí trạng thái",
+            "chỉ số hoặc mã loại phí"
         ],
         "commission_amount": [
-            "số tiền hoa hồng trả cho đại lý/đối tác",
-            "số tiền hoa hồng trả đại lý/đối tác",
             "nếu có",
-            "hoa hồng số tiền"
+            "số tiền hoa hồng trả đại lý/đối tác",
+            "số tiền hoa hồng trả cho đại lý",
+            "hoa hồng số tiền",
+            "đối tác"
         ],
         "commission_currency": [
-            "hoa hồng loại tiền",
-            "loại tiền tệ hoa hồng.",
-            "loại tiền tệ hoa hồng"
+            "loại tiền tệ hoa hồng",
+            "hoa hồng loại tiền"
         ],
         "commission_rate": [
-            "tỷ lệ hoa hồng được hưởng.",
-            "hoa hồng lãi suất",
-            "tỷ lệ hoa hồng hưởng"
+            "tỷ lệ hoa hồng hưởng",
+            "hoa hồng lãi suất"
         ],
         "commission_ind": [
-            "hoa hồng ind",
+            "hoa hồng trạng thái",
             "chỉ số hoặc mã loại hoa hồng",
-            "chỉ số hoặc mã loại hoa hồng."
+            "hoa hồng ind"
         ],
         "promotion_amount": [
-            "số tiền được khuyến mãi/giảm giá trực tiếp.",
+            "promotion số tiền",
+            "nội dung số tiền",
             "số tiền khuyến mãi/giảm giá trực tiếp",
-            "promotion số tiền"
+            "giảm giá trực tiếp",
+            "số tiền khuyến mãi"
         ],
         "promotion_currency": [
-            "loại tiền tệ khuyến mãi.",
             "promotion loại tiền",
-            "loại tiền tệ khuyến mãi"
+            "loại tiền tệ khuyến mãi",
+            "nội dung loại tiền"
         ],
         "promotion_rate": [
             "tỷ lệ khuyến mãi",
-            "tỷ lệ khuyến mãi.",
-            "promotion lãi suất"
+            "promotion lãi suất",
+            "nội dung lãi suất"
         ],
         "promotion_ind": [
-            "promotion ind",
             "chỉ số hoặc mã chương trình khuyến mãi",
-            "chỉ số hoặc mã chương trình khuyến mãi."
+            "promotion ind",
+            "nội dung trạng thái"
         ],
         "trans_ref_no": [
-            "reference number",
+            "số giao dịch tham chiếu",
             "số tham chiếu giao dịch",
             "số tham chiếu giao dịch thường in lên biên lai hoặc tra cứu",
-            "số giao dịch tham chiếu"
+            "thường in lên biên lai hoặc tra cứu",
+            "reference number"
         ],
         "trans_name": [
             "tên giao dịch",
             "tên hiển thị giao dịch",
-            "ví dụ: \"chuyển tiền nhanh 24/7\""
+            "\"chuyển tiền nhanh 24/7\""
         ],
         "trans_info": [
-            "metadata mở rộng",
+            "giao dịch nội dung",
+            "bổ sung dạng text/json",
             "giao dịch info",
-            "thông tin bổ sung dạng text/json",
-            "bổ sung dạng text/json"
+            "json",
+            "metadata mở rộng",
+            "bổ sung dạng text"
         ],
         "trans_progress": [
             "giao dịch progress",
-            "dùng debug xem giao dịch đang ở bước nào",
-            "log tiến trình thực hiện giao dịch"
+            "log tiến trình thực hiện giao dịch",
+            "dùng để debug xem giao dịch đang ở bước nào",
+            "giao dịch nội dung"
         ],
         "request_time": [
             "yêu cầu thời gian",
-            "thời gian nhận được yêu cầu từ client.",
-            "thời gian nhận yêu cầu từ client"
+            "thời gian nhận yêu cầu từ client",
+            "yêu cầu giờ"
         ],
         "request_channel": [
-            "yêu cầu kênh",
+            "tương tự channel_receiver",
             "kênh gửi yêu cầu",
-            "tương tự channel_receiver"
+            "yêu cầu kênh"
         ],
         "trans_request": [
-            "lưu toàn bộ nội dung gói tin yêu cầu",
-            "thường json/xml",
+            "audit",
+            "thường là json/xml",
             "request body",
+            "lưu toàn bộ nội dung gói tin yêu cầu để phục vụ tra soát/audit",
             "giao dịch yêu cầu",
-            "lưu toàn bộ nội dung gói tin yêu cầu để phục vụ tra soát/audit"
+            "toàn bộ nội dung gói tin yêu cầu phục vụ tra soát"
         ],
         "trans_revert_ref_no": [
             "số giao dịch revert tham chiếu",
+            "số tham chiếu giao dịch hoàn tiền",
             "số tham chiếu giao dịch hoàn tiền/đảo ngược",
-            "nếu giao dịch này giao dịch hoàn"
+            "đảo ngược",
+            "số giao dịch trạng thái tham chiếu",
+            "nếu giao dịch này là giao dịch hoàn"
         ],
         "partner_code": [
             "số partner",
-            "ví dụ: vnpay, momo, zalopay",
+            "số nội dung",
+            "momo",
+            "zalopay",
+            "mã đối tác tích hợp nếu thanh toán dịch vụ",
+            "mã nội dung",
+            "mã đối tác tích hợp nếu là thanh toán dịch vụ",
             "mã partner",
-            "mã đối tác tích hợp",
-            "mã đối tác tích hợp nếu là thanh toán dịch vụ"
+            "vnpay"
         ],
         "response_time": [
-            "response thời gian",
-            "thời gian phản hồi kết quả về cho client.",
-            "thời gian phản hồi kết quả client"
+            "trạng thái giờ",
+            "thời gian phản hồi kết quả về cho client",
+            "thời gian phản hồi kết quả client",
+            "response thời gian"
         ],
         "response_code": [
             "mã phản hồi từ",
             "mã response",
-            "ví dụ: 00 - thành công, 01 - lỗi chung",
-            "số response"
+            "số trạng thái",
+            "mã trạng thái",
+            "số response",
+            "00 - thành công",
+            "01 - lỗi chung"
         ],
         "response_message": [
             "response message",
-            "thông báo phản hồi",
-            "ví dụ: \"giao dịch thành công\", \"số dư không đủ\"",
-            "thông báo phản hồi chi tiết"
+            "\"giao dịch thành công\"",
+            "trạng thái nội dung",
+            "\"số dư không đủ\"",
+            "thông báo phản hồi chi tiết",
+            "thông báo phản hồi"
         ],
         "response_status": [
-            "trạng thái response",
+            "s - success",
+            "f - fail",
             "trạng thái phản hồi ngắn gọn",
-            "ví dụ: s - success, f - fail"
+            "trạng thái response",
+            "trạng thái trạng thái"
         ],
         "error_code": [
             "số error",
-            "mã error",
             "mã lỗi kỹ thuật chi tiết",
+            "số trạng thái",
             "dùng cho đội kỹ thuật tra cứu lỗi",
+            "mã trạng thái",
+            "mã error",
             "mã lỗi kỹ thuật"
         ],
         "trans_response": [
-            "lưu toàn bộ nội dung gói tin phản hồi để phục vụ tra soát/audit",
+            "audit",
+            "giao dịch response",
             "response body",
-            "lưu toàn bộ nội dung gói tin phản hồi",
-            "giao dịch response"
+            "lưu toàn bộ nội dung gói tin phản hồi để phục vụ tra soát/audit",
+            "toàn bộ nội dung gói tin phản hồi phục vụ tra soát",
+            "giao dịch trạng thái"
         ],
         "checker_id": [
-            "mã checker",
+            "số checker",
             "kiểm soát viên",
+            "duyệt giao dịch mô hình maker",
+            "mã checker",
             "id người duyệt giao dịch dùng trong mô hình maker/checker",
-            "id duyệt giao dịch",
-            "số checker"
+            "checker"
         ],
         "checker_date": [
             "thời gian duyệt giao dịch",
-            "thời gian duyệt giao dịch.",
             "ngày checker"
         ],
         "maker_id": [
-            "số maker",
-            "giao dịch viên",
-            "id tạo lệnh giao dịch",
+            "số sản phẩm",
             "mã maker",
-            "id người tạo lệnh giao dịch dùng trong mô hình maker/checker"
+            "checker",
+            "giao dịch viên",
+            "id người tạo lệnh giao dịch dùng trong mô hình maker/checker",
+            "số maker",
+            "mã sản phẩm",
+            "tạo lệnh giao dịch mô hình maker"
         ],
         "maker_date": [
-            "thời gian tạo lệnh.",
-            "ngày maker",
-            "thời gian tạo lệnh"
+            "ngày sản phẩm",
+            "thời gian tạo lệnh",
+            "ngày maker"
         ],
         "trans_status": [
             "trạng thái cuối cùng giao dịch",
+            "trạng thái giao dịch",
             "thành công/thất bại/chờ xử lý/timeout",
-            "trạng thái giao dịch"
+            "giao dịch trạng thái"
         ],
         "core_system": [
-            "tên core banking xử lý hạch toán",
-            "ví dụ: t24, flexcube",
-            "core hệ thống"
+            "t24",
+            "core hệ thống",
+            "nội dung hệ thống",
+            "flexcube",
+            "tên core banking xử lý hạch toán"
         ],
         "core_ref_no": [
-            "ft id",
-            "số bút toán",
+            "số nội dung tham chiếu",
             "số bút toán sinh ra trong core banking",
-            "số core tham chiếu"
+            "số bút toán sinh ra core banking",
+            "số core tham chiếu",
+            "ft id"
         ],
         "core_revert_ref_no": [
+            "số nội dung trạng thái tham chiếu",
+            "số bút toán đảo core banking",
             "số core revert tham chiếu",
-            "số bút toán đảo trong core banking",
             "nếu có",
-            "số bút toán đảo core banking"
+            "số bút toán đảo trong core banking"
         ],
         "payment_system": [
-            "tên cổng thanh toán trung gian",
             "thanh toán hệ thống",
-            "tên cổng thanh toán trung gian."
+            "tên cổng thanh toán trung gian"
         ],
         "payment_ref_no": [
-            "mã giao dịch tham chiếu tại cổng thanh toán.",
             "mã giao dịch tham chiếu cổng thanh toán",
             "số thanh toán tham chiếu"
         ],
         "payment_status": [
+            "trạng thái trả về từ cổng thanh toán",
             "trạng thái trả từ cổng thanh toán",
-            "trạng thái trả về từ cổng thanh toán.",
+            "thanh toán trạng thái",
             "trạng thái thanh toán"
         ],
         "bill_customer_code": [
-            "mã hóa đơn khách hàng",
             "số hóa đơn khách hàng",
-            "ví dụ: mã danh bộ nước, mã khách hàng điện lực",
-            "mã khách hàng trên hóa đơn"
+            "mã danh bộ nước",
+            "mã khách hàng trên hóa đơn",
+            "mã hóa đơn khách hàng",
+            "mã khách hàng điện lực"
         ],
         "bill_customer_name": [
-            "tên hóa đơn khách hàng",
             "tên khách hàng đứng tên trên hóa đơn dịch vụ",
-            "tên khách hàng đứng tên trên hóa đơn dịch vụ."
+            "tên hóa đơn khách hàng"
         ],
         "bill_customer_address": [
-            "địa chỉ khách hàng trên hóa đơn.",
             "địa chỉ khách hàng trên hóa đơn",
+            "hóa đơn khách hàng số tài khoản",
             "hóa đơn khách hàng address"
         ],
         "bill_customer_phone": [
-            "số điện thoại liên hệ khách hàng trên hóa đơn.",
-            "hóa đơn khách hàng phone",
-            "số điện thoại liên hệ khách hàng trên hóa đơn"
+            "số điện thoại liên hệ khách hàng trên hóa đơn",
+            "hóa đơn khách hàng phone"
         ],
         "bill_id": [
+            "mã định danh hóa đơn hệ thống",
             "mã định danh hóa đơn trong",
             "số hóa đơn",
-            "mã định danh hóa đơn hệ thống.",
             "mã hóa đơn"
         ],
         "bill_code": [
-            "mã tra cứu hóa đơn.",
             "số hóa đơn",
             "mã tra cứu hóa đơn",
             "mã hóa đơn"
         ],
         "bill_currency": [
             "loại tiền tệ hóa đơn",
-            "hóa đơn loại tiền",
-            "loại tiền tệ hóa đơn."
+            "hóa đơn loại tiền"
         ],
         "bill_from_date": [
-            "ngày hóa đơn từ",
             "ngày bắt đầu kỳ cước hóa đơn",
-            "ngày bắt đầu kỳ cước hóa đơn."
+            "ngày hóa đơn từ"
         ],
         "bill_to_date": [
             "ngày hóa đơn đến",
-            "ngày kết thúc kỳ cước hóa đơn.",
             "ngày kết thúc kỳ cước hóa đơn"
         ],
         "bill_cycle": [
+            "\"10/2025\"",
             "kỳ thanh toán",
-            "ví dụ: \"10/2025\"",
             "hóa đơn cycle"
         ],
         "bill_total_consumption": [
+            "số khối nước",
             "tổng sản lượng tiêu thụ ghi trên hóa đơn",
+            "số điện",
             "hóa đơn total consumption",
-            "số điện, số khối nước"
+            "hóa đơn phí khách hàng"
         ],
         "bill_desc": [
             "hóa đơn",
+            "mô tả chi tiết về hóa đơn",
             "hóa đơn mô tả",
-            "mô tả chi tiết về hóa đơn."
+            "hóa đơn nội dung"
         ],
         "bill_other_info": [
-            "metadata mở rộng",
-            "khác hóa đơn",
+            "khác về hóa đơn",
             "hóa đơn other info",
-            "thông tin khác về hóa đơn"
+            "khác hóa đơn",
+            "hóa đơn nội dung nội dung",
+            "metadata mở rộng"
         ],
         "number_of_bills": [
+            "số trạng thái tiền tệ",
             "số of bills",
+            "số lượng hóa đơn thanh toán giao dịch này",
             "nếu thanh toán gộp",
-            "số lượng hóa đơn thanh toán trong giao dịch này",
-            "số lượng hóa đơn được thanh toán giao dịch này"
+            "số lượng hóa đơn thanh toán trong giao dịch này"
         ],
         "insert_time": [
-            "thời gian bản ghi chèn vào cơ sở",
             "insert thời gian",
-            "thời gian bản ghi được chèn vào cơ sở dữ liệu",
-            "technical timestamp"
+            "thời gian bản ghi chèn vào cơ sở",
+            "technical timestamp",
+            "nội dung giờ"
         ],
         "input_amount": [
-            "số tiền người dùng nhập vào ban đầu",
-            "trước khi tính phí/thuế",
+            "nội dung số tiền",
             "số tiền nhập vào ban đầu",
-            "input số tiền"
+            "input số tiền",
+            "số tiền người dùng nhập vào ban đầu",
+            "trước khi tính phí/thuế"
         ],
         "receive_time": [
-            "thời gian tiền về",
             "receive thời gian",
+            "nội dung giờ",
+            "thời gian tiền",
             "đối với giao dịch nhận tiền",
-            "thời gian tiền"
+            "thời gian tiền về"
         ],
         "accounting_online": [
             "cờ đánh dấu xem giao dịch đã hạch toán online vào core banking chưa",
             "accounting online",
-            "cờ đánh dấu",
+            "ngân hàng nội dung",
             "yes/no"
         ],
         "server_session_id": [
-            "số server phiên",
             "mã phiên làm việc phía server",
-            "mã server phiên",
-            "backend session"
+            "backend session",
+            "mã khách hàng phiên",
+            "số khách hàng phiên",
+            "số server phiên",
+            "mã server phiên"
         ],
         "source_type": [
+            "ewallet - ví",
+            "loại nguồn",
+            "card - thẻ",
             "loại nguồn tiền",
-            "ví dụ: account - tài khoản thanh toán, card - thẻ, ewallet - ví",
-            "loại nguồn"
+            "account - tài khoản thanh toán"
         ],
         "card_number": [
+            "số thẻ nếu nguồn tiền thẻ",
+            "số số tài khoản",
+            "số card",
             "thường được mã hóa hoặc che bớt số",
-            "số thẻ",
-            "số thẻ nếu nguồn tiền là thẻ",
-            "số card"
+            "số thẻ nếu nguồn tiền là thẻ"
         ],
         "cust_no_do": [
-            "mã khách hàng tác nghiệp số",
             "khách hàng số do",
+            "mã khách hàng tác nghiệp số",
+            "khách hàng số nội dung",
             "digital operation"
         ],
         "bill_amount": [
-            "giá trị tiền ghi trên hóa đơn cần thanh toán.",
             "giá trị tiền ghi trên hóa đơn cần thanh toán",
             "hóa đơn số tiền"
         ],
         "category_code": [
-            "dùng phân loại chi tiêu, ví dụ: \"ăn uống\", \"đi lại\"",
-            "mã category",
+            "số nội dung",
             "mã danh mục giao dịch",
-            "số category"
+            "dùng để phân loại chi tiêu",
+            "mã category",
+            "số category",
+            "mã nội dung",
+            "ví dụ: \"ăn uống\"",
+            "\"đi lại\""
         ],
         "app_version": [
             "app version",
             "phiên bản ứng dụng mobile mà khách hàng đang sử dụng để giao dịch",
-            "phiên bản ứng dụng mobile mà khách hàng đang sử dụng giao dịch."
+            "phiên bản ứng dụng mobile mà khách hàng đang sử dụng giao dịch"
         ],
         "from_cif_no": [
-            "tương tự from_cust_no nhưng thường định danh core banking",
-            "mã cif người chuyển",
             "số từ mã khách hàng",
-            "mã cif",
+            "số từ số khách hàng",
+            "số từ khách hàng",
             "customer information file",
-            "số từ số khách hàng"
+            "mã cif người chuyển",
+            "tương tự from_cust_no nhưng thường dùng định danh core banking",
+            "mã cif chuyển"
         ]
     },
     "values": {
