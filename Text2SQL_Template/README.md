@@ -30,7 +30,7 @@ Project_Root/
 │   ├── generated_datasets/     # Dataset huấn luyện đã sinh
 │   └── parser_outputs/         # Kết quả test parser
 │
-├── generate_data.py            # [UPDATE] Orchestrator: Chạy luồng Profiler -> Builder -> Generator
+├── generate_data.py            # Script chạy Module 1: Profiler -> Builder -> Generator
 ├── test_parser.py              # Script chạy Module 2
 └── requirements.txt            # Các thư viện cần thiết
 
