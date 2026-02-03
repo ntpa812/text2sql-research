@@ -2,8 +2,7 @@ import time
 import json
 from pathlib import Path
 
-# from rule_engine.profiler import SemanticProfiler
-from rule_engine.profiler_enhanced import SemanticProfiler
+from rule_engine.profiler import SemanticProfiler
 from rule_engine.generator import RuleBasedGenerator
 from rule_engine.dict_builder import DictionaryBuilder 
 
