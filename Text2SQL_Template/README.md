@@ -40,9 +40,9 @@ Project_Root/
 
 ## ⚙️ Quy trình hoạt động
 
-Hệ thống bao gồm 2 luồng xử lý:
+Hệ thống bao gồm 2 luồng xử lý riêng biệt:
 
-### 1. Generator (Pipeline)
+### 1. Generator
 
 Quy trình sinh dữ liệu chạy qua 3 bước liên tiếp cho mỗi file schema database đầu vào:
 
