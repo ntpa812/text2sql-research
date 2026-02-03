@@ -72,6 +72,13 @@ COMMON_DICTIONARY = {
                 "PENDING": ["đang chờ", "treo", "xử lý"],
                 "TIMEOUT": ["quá giờ", "hết hạn"]
             },
+            
+            "ACCOUNT_TYPE": {
+                "PAYMENT": ["tài khoản thanh toán", "tktt", "tài khoản thường"],
+                "SAVING": ["tài khoản tiết kiệm", "sổ tiết kiệm"],
+                "LOAN": ["tài khoản vay", "khoản vay"],
+                "CREDIT": ["thẻ tín dụng", "tài khoản thẻ"]
+            },
 
             "TRANS_TYPE": {
                 "CK_NOI_BO": ["chuyển nội bộ", "chuyển cùng ngân hàng"],
@@ -93,7 +100,10 @@ COMMON_DICTIONARY = {
             "CURRENCY": {
                 "VND": ["đồng", "việt nam đồng", "vnđ"],
                 "USD": ["đô", "đô la", "usd"]
-            }
+            },
+            "LOAN_PROD": {"MORTGAGE": ["vay mua nhà", "vay thế chấp"], "CAR": ["vay mua xe"]},
+            
+            "BRANCH": {"HN": ["chi nhánh hà nội", "cn hoàn kiếm"], "HCM": ["cn sài gòn"]}
         },
     
     "time_phrases": {
@@ -181,5 +191,28 @@ COMMON_DICTIONARY = {
         "cif": "mã khách hàng",
         "dv": "dịch vụ",
         "tn": "tin nhắn" # Ví dụ: biến động số dư qua tin nhắn
-    }
+    },
+    
+    "category_mapping": {
+
+        "status": "STATUS",
+        "trang_thai": "STATUS",
+        "tinh_trang": "STATUS",
+
+        "account_type": "ACCOUNT_TYPE",
+        "loai_tk": "ACCOUNT_TYPE",
+        "acct_type": "ACCOUNT_TYPE",
+
+        "channel": "CHANNEL",
+        "kenh": "CHANNEL",
+        "source": "CHANNEL",
+
+        "trans_type": "TRANS_TYPE",
+        "service": "TRANS_TYPE",
+        "loai_gd": "TRANS_TYPE",
+
+        "loan_product": "LOAN_PROD", 
+        "term": "TERM",              
+        "branch": "BRANCH"           
+    },
 }

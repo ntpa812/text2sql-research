@@ -23,7 +23,6 @@ class RuleBasedGenerator:
                 self.vocab = COMMON_DICTIONARY
             except ImportError:
                 self.vocab = {}
-                print("⚠️ Cảnh báo: Không load được Dictionary mặc định.")
 
         self.sql_templates = {
             "IDENTITY": "SELECT * FROM {table} WHERE {col} = '{{{{{col}}}}}'",
@@ -46,9 +45,8 @@ class RuleBasedGenerator:
 
     def _get_synonyms(self, col_name: str, suggested: List[str]) -> List[str]:
         col_lower = col_name.lower()
-        # Use a list to preserve order (Priority: Specific -> Generated -> Suggested)
         synonyms = [] 
-        seen = set() # To track duplicates
+        seen = set()
 
         # 1. Specific Column (Highest Priority)
         if col_lower in self.vocab.get("specific_columns", {}):
@@ -56,14 +54,12 @@ class RuleBasedGenerator:
                 if word not in seen:
                     synonyms.append(word)
                     seen.add(word)
-            return synonyms # Return immediately if specific match found
+            return synonyms
 
-        # 2. Semantic Generation (Suffix + Prefix)
         parts = col_lower.split('_')
         suffix_match = None
         suffix_meanings = []
 
-        # logic to find suffix...
         possible_suffix = "_" + parts[-1]
         if possible_suffix in self.vocab.get("suffixes", {}):
             suffix_match = possible_suffix
@@ -72,10 +68,9 @@ class RuleBasedGenerator:
         else:
             core_parts = parts
 
-        # logic to translate prefix...
         translated_parts = []
         col_mapping = self.vocab.get("col_mapping", {})
-        tables = self.vocab.get("tables", {}) # Don't forget tables fallback
+        tables = self.vocab.get("tables", {}) 
 
         for part in core_parts:
             if part in col_mapping:
@@ -83,9 +78,8 @@ class RuleBasedGenerator:
             elif part in tables:
                 translated_parts.append(tables[part][0])
             else:
-                pass # Or keep original part? pass is safer for pure translation
+                pass 
 
-        # Construct phrases
         generated_phrases = []
         if suffix_meanings:
             base_suffix = suffix_meanings[0]
@@ -98,13 +92,11 @@ class RuleBasedGenerator:
             if full_meaning:
                 generated_phrases.append(full_meaning)
 
-        # Add generated phrases to main list
         for phrase in generated_phrases:
             if phrase and phrase not in seen:
                 synonyms.append(phrase)
                 seen.add(phrase)
 
-        # 3. Suggested Keywords (Lowest Priority - can contain garbage)
         if suggested:
             clean = [s for s in suggested if len(s.split()) < 6 and "khóa" not in s.lower()]
             for s in clean:
@@ -112,7 +104,6 @@ class RuleBasedGenerator:
                     synonyms.append(s)
                     seen.add(s)
 
-        # Fallback
         if not synonyms:
             synonyms.append(col_lower.replace("_", " "))
 
@@ -132,47 +123,61 @@ class RuleBasedGenerator:
         time_suffixes = [" hôm nay", " hôm qua", " tuần này", ""]
         status_suffixes = [" xem thành công chưa", " đang ở trạng thái nào", " chi tiết", ""]
         
-        if group_type == "PRIMARY_ID":
-            
+        verbs = self.vocab.get("verbs", {}).get("lookup", ["Tìm", "Tra cứu", "Hiển thị"])
+        filters = self.vocab.get("verbs", {}).get("filter", ["Lọc", "Liệt kê"])
+        
+        all_action_verbs = verbs + filters
+
+        if group_type == "PRIMARY_ID": 
+            v = random.choice(verbs) 
             suffix_t = random.choice(time_suffixes)
             suffix_s = random.choice(status_suffixes)
             
-            queries.add(f"Tra cứu {noun} {val}{suffix_t}")
+            queries.add(f"{v} {noun} {val}{suffix_t}")
             queries.add(f"Kiểm tra lệnh {val}{suffix_s}")
-            queries.add(f"Xem chi tiết {noun} số {val}")
+            queries.add(f"{v} chi tiết {noun} số {val}") 
             queries.add(f"Check giao dịch {val}")
         
-        elif group_type == "REF_ID":
-            queries.add(f"Tìm {noun} có {col_vn} là {val}")
+        elif group_type == "REF_ID": 
+            v = random.choice(verbs)
+            queries.add(f"{v} {noun} có {col_vn} là {val}")
             queries.add(f"Tra soát theo {col_vn} {val}")
             queries.add(f"Check {col_vn} {val} giúp em")
             
-        elif group_type == "CUST_ID":
-            queries.add(f"Liệt kê giao dịch của khách hàng {val}")
+        elif group_type == "CUST_ID": 
+            v = random.choice(filters) 
+            queries.add(f"{v} giao dịch của khách hàng {val}")
             queries.add(f"Xem lịch sử của {col_vn} {val}")
             queries.add(f"Sao kê cho {col_vn} {val}")
 
-        elif group_type == "DIMENSION":
-            col_raw = context.get('col_raw', '').lower()
+        elif group_type == "DIMENSION": 
+            
+            val_ref = context.get('value_ref') 
             vocab_values = self.vocab.get("values", {})
             target_group = {}
-            
-            if "status" in col_raw: target_group = vocab_values.get("STATUS", {})
-            elif any(x in col_raw for x in ["channel", "kenh"]): target_group = vocab_values.get("CHANNEL", {})
-            elif any(x in col_raw for x in ["type", "code", "service"]): target_group = vocab_values.get("TRANS_TYPE", {})
 
+            if val_ref and val_ref in vocab_values:
+                target_group = vocab_values[val_ref]
+            
             if target_group:
+
                 keys = list(target_group.keys())
                 sampled_keys = random.sample(keys, min(3, len(keys)))
                 
                 for k in sampled_keys:
-                    adj = random.choice(target_group[k]) # VD: "thất bại"
-                    queries.add(f"{noun} {adj}")  # "giao dịch thất bại"
-                    queries.add(f"danh sách {noun} {adj}")
-                    queries.add(f"lọc các {noun} đang {adj}")
+                    adj_list = target_group[k]
+                    if not adj_list: continue
+                    adj = random.choice(adj_list)
+                    
+                    v = random.choice(all_action_verbs)
+                    queries.add(f"{noun} {adj}")
+                    queries.add(f"{v} các {noun} {adj}")
+                    queries.add(f"{v} danh sách {noun} là {adj}")
             else:
-                queries.add(f"Lọc {noun} theo {col_vn} {val}")
-                queries.add(f"Danh sách {noun} có {col_vn} là {val}")
+
+                v = random.choice(all_action_verbs)
+                queries.add(f"{v} {noun} theo {col_vn} {val}")
+                queries.add(f"{v} những {noun} có {col_vn} là {val}")
 
         return list(queries)
 
@@ -221,7 +226,8 @@ class RuleBasedGenerator:
             context = {
                 "noun": main_noun, "col_name": primary_col_name,
                 "col_raw": col_raw, "role": role,
-                "fake_val": fake_val
+                "fake_val": fake_val,
+                "value_ref": col.get("value_ref")
             }
             
             qs = []
@@ -266,7 +272,7 @@ class RuleBasedGenerator:
                 dataset.append({
                     "document": f"{table_name} | Thống kê {primary_col_name}", 
                     "description": f"Tính tổng giá trị {primary_col_name}", 
-                    "sql": sql, "examples": qs, "keyword": "tổng, thống kê"
+                    "sql": sql, "examples": qs, "keyword": f"tổng, thống kê, theo {primary_col_name}"
                 })
 
             elif role == "TEMPORAL":

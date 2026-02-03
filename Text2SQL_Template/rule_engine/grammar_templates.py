@@ -27,8 +27,8 @@ class GrammarLibrary:
                 "Check {col_name} {val}",
 
                 "Thông tin về {noun} số {val}",
-                "{col_name} {val} là của ai?",
-                "{noun} {val}",
+                "{verb} {col_name} {val} là của ai?",
+                "{verb} {noun} {val}",
                 "Xem chi tiết {val}"
             ],
 
@@ -85,7 +85,6 @@ class GrammarLibrary:
         except KeyError as e:
             return template_str 
 
-# quick test
 if __name__ == "__main__":
     lib = GrammarLibrary()
     

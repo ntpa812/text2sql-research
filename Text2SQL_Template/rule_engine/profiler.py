@@ -147,17 +147,20 @@ class SemanticProfiler:
             
             for w in stopwords:
                 phrase = phrase.replace(f" {w} ", " ")
-
                 if phrase.startswith(f"{w} "): phrase = phrase[len(w)+1:]
                 if phrase.endswith(f" {w}"): phrase = phrase[:-len(w)-1]
 
-            # c. Bỏ ký tự đặc biệt & số
             phrase = re.sub(r'[0-9|.,\-_:]+', ' ', phrase)
             
             clean_phrase = " ".join(phrase.split())
 
-            if len(clean_phrase) > 1:
+            word_count = len(clean_phrase.split())
+            
+            if 1 < len(clean_phrase) and word_count <= 6:
                 keywords.insert(0, clean_phrase)
+            else:
+                if len(clean_phrase) > 1:
+                    print(f"   [FILTERED] Đã loại bỏ cụm từ quá dài ({word_count} từ): '{clean_phrase}'")
 
         return list(set([k.strip() for k in keywords]))[:6]
 
@@ -170,6 +173,15 @@ class SemanticProfiler:
             if re.search(rule["desc_pattern"], description):
                 return role
         return "ATTRIBUTE"
+    
+    def _detect_value_group(self, col_name: str) -> str:
+        mapping = self.vocab.get("category_mapping", {})
+        col_lower = col_name.lower()
+        
+        for keyword, group_code in mapping.items():
+            if keyword in col_lower:
+                return group_code # VD: Trả về "ACCOUNT_TYPE"
+        return None
 
     def analyze_file(self, file_path: str, table_name: str = "auto_detect") -> Dict[str, Any]:
         print(f"[*] Đang phân tích file: {file_path}")
@@ -218,6 +230,20 @@ class SemanticProfiler:
                 "description": desc_raw,
                 "suggested_keywords": list(final_keywords),
                 "sql_logic": self.rules.get(role, {}).get("sql_op", "")
+            })
+            
+            value_ref = None
+            if role == "DIMENSION":
+                value_ref = self._detect_value_group(col_raw)
+
+            profile["columns"].append({
+                "name": col_raw,
+                "role": role,
+                "description": desc_raw,
+                "suggested_keywords": list(final_keywords),
+                "sql_logic": self.rules.get(role, {}).get("sql_op", ""),
+                
+                "value_ref": value_ref 
             })
 
         print(f"Hoàn tất! Table '{table_name}' Stats: {stats}")
