@@ -11,10 +11,19 @@ from .faker_utils import DataFaker
 from .grammar_templates import GrammarLibrary
 
 class RuleBasedGenerator:
-    def __init__(self):
+    def __init__(self, vocab=None):
         self.faker = DataFaker()
         self.grammar = GrammarLibrary()
-        self.vocab = COMMON_DICTIONARY
+        
+        if vocab:
+            self.vocab = vocab
+        else:
+            try:
+                from configs.dictionary import COMMON_DICTIONARY
+                self.vocab = COMMON_DICTIONARY
+            except ImportError:
+                self.vocab = {}
+                print("⚠️ Cảnh báo: Không load được Dictionary mặc định.")
 
         self.sql_templates = {
             "IDENTITY": "SELECT * FROM {table} WHERE {col} = '{{{{{col}}}}}'",

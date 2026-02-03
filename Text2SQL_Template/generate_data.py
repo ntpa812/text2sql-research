@@ -1,7 +1,12 @@
 import time
+import json
 from pathlib import Path
+
 from rule_engine.profiler import SemanticProfiler
 from rule_engine.generator import RuleBasedGenerator
+from rule_engine.auto_profiler.dict_builder import DictionaryBuilder # Import DictBuilder
+
+from configs.dictionary import COMMON_DICTIONARY
 
 def run_batch_pipeline():
     
@@ -20,19 +25,43 @@ def run_batch_pipeline():
     input_files = list(INPUT_DIR.glob("*.xlsx")) + list(INPUT_DIR.glob("*.csv"))
 
     profiler = SemanticProfiler()
-    generator = RuleBasedGenerator()
+    dict_builder = DictionaryBuilder()
+    
+    runtime_dictionary = COMMON_DICTIONARY.copy()
+    
+    if "specific_columns" not in runtime_dictionary:
+        runtime_dictionary["specific_columns"] = {}
+
+    print(f"Dictionary gốc có {len(runtime_dictionary['specific_columns'])} định nghĩa cột thủ công.")
+    print("-" * 50)
 
     for file_path in input_files:
         table_name = file_path.stem  
         start_time = time.time()
         
-        print(f"* Đang xử lý: {file_path.name}...", end=" ", flush=True)
+        print(f"[*] Xử lý bảng: {table_name}")
 
         try:
             profile_json_path = PROFILE_DIR / f"{table_name}.json"
             
             profile_data = profiler.analyze_file(str(file_path), table_name=table_name)
             profiler.save_profile(profile_data, str(profile_json_path))
+            print("Done.")
+
+            
+            new_specifics = dict_builder.build_from_profile_data(profile_data)
+            
+            for col, keywords in new_specifics.items():
+                if col in runtime_dictionary["specific_columns"]:
+                    existing = set(runtime_dictionary["specific_columns"][col])
+                    existing.update(keywords)
+                    runtime_dictionary["specific_columns"][col] = list(existing)
+                else:
+                    runtime_dictionary["specific_columns"][col] = keywords
+            
+            print(f"Done. (Biết thêm {len(new_specifics)} cột)")
+
+            generator = RuleBasedGenerator(vocab=runtime_dictionary) 
 
             dataset = generator.generate_dataset(str(profile_json_path))
 
@@ -40,14 +69,21 @@ def run_batch_pipeline():
             generator.export_excel(dataset, str(output_excel_path))
 
             elapsed = time.time() - start_time
-            print(f"Xong! ({len(dataset)} logic) -> Lưu tại: output/{output_excel_path.name}")
+            print(f"Done! ({len(dataset)} intents)")
 
         except Exception as e:
             print(f"\n❌ LỖI khi xử lý {table_name}: {e}")
+            import traceback
+            traceback.print_exc()
 
+        print("-" * 30)
+
+    with open(BASE_DIR / "configs" / "learned_dictionary_dump.json", "w", encoding="utf-8") as f:
+        json.dump(runtime_dictionary, f, ensure_ascii=False, indent=4)
+    
     print("\n" + "="*50)
-    print(f"HOÀN TẤT!")
-    print(f"\nThư mục kết quả: {OUTPUT_DIR}")
+    print(f"HOÀN TẤT! Đã lưu dictionary học được tại configs/learned_dictionary_dump.json")
+    print(f"Thư mục kết quả: {OUTPUT_DIR}")
     print("="*50)
 
 if __name__ == "__main__":
