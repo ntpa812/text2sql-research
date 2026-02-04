@@ -8,6 +8,57 @@ from typing import Dict, List, Any
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 from configs.dictionary import COMMON_DICTIONARY
 
+class SchemaRouter:
+    def __init__(self, profile_dir: Path):
+        self.parsers: Dict[str, RuleBasedParser] = {}
+        self.table_keywords = COMMON_DICTIONARY.get("tables", {})
+        self._load_all_profiles(profile_dir)
+
+    def _load_all_profiles(self, profile_dir: Path):
+        """Load toàn bộ file json trong thư mục profile"""
+        profile_files = list(profile_dir.glob("*.json"))
+        if not profile_files:
+            print(f"⚠️ Cảnh báo: Không tìm thấy profile nào trong {profile_dir}")
+            return
+
+        print(f"[*] Đang tải {len(profile_files)} profile bảng...")
+        for p_path in profile_files:
+            try:
+                parser = RuleBasedParser(str(p_path))
+                table_name = parser.table_name.lower()
+                self.parsers[table_name] = parser
+                print(f"   + Đã load bảng: {table_name}")
+            except Exception as e:
+                print(f"   ❌ Lỗi load {p_path.name}: {e}")
+
+    def _detect_table(self, query: str) -> str:
+
+        q_lower = query.lower()
+        
+        for table_key, keywords in self.table_keywords.items():
+            for kw in keywords:
+                if kw in q_lower:
+                    if table_key in self.parsers:
+                        return table_key
+        
+        return None
+
+    def parse(self, query: str):
+
+        target_table = self._detect_table(query)
+        
+        if not target_table:
+            return {
+                "error": "Không xác định được đối tượng (bảng) trong câu hỏi. Hãy thêm từ khóa (ví dụ: 'giao dịch', 'khách hàng').",
+                "sql": ""
+            }
+
+        parser = self.parsers[target_table]
+        result = parser.parse(query)
+        
+        result["detected_table"] = target_table
+        return result
+
 class RuleBasedParser:
     def __init__(self, profile_path: str):
         self.profile = self._load_profile(profile_path)

@@ -1,10 +1,11 @@
 import pandas as pd
 from pathlib import Path
-from .core import RuleBasedParser
+# from .core import RuleBasedParser
+from .core import SchemaRouter 
 
 def process_excel_file(input_path: Path, output_path: Path, profile_path: Path):
     print(f"[*] Đang khởi tạo Parser với profile: {profile_path.name}")
-    parser = RuleBasedParser(str(profile_path))
+    parser = SchemaRouter(profile_path)
     
     print(f"[*] Đang đọc file câu hỏi: {input_path.name}")
     try:
@@ -13,7 +14,6 @@ def process_excel_file(input_path: Path, output_path: Path, profile_path: Path):
         print(f"❌ Lỗi đọc file Excel: {e}")
         return
 
-    # Giả định cột chứa câu hỏi tên là "question" hoặc cột đầu tiên
     question_col = "question"
     if "question" not in df.columns:
         question_col = df.columns[0] 
@@ -24,6 +24,7 @@ def process_excel_file(input_path: Path, output_path: Path, profile_path: Path):
     
     for idx, row in df.iterrows():
         q = str(row[question_col])
+        
         res = parser.parse(q)
         
         row_data = row.to_dict()
