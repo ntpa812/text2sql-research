@@ -1,4 +1,7 @@
+dateparser==1.2.2
 Faker==40.1.2
 pandas==2.0.3
+python_dateutil==2.9.0.post0
 sentence_transformers==5.2.2
 torch==2.5.1+cu121
+transformers==4.57.3

@@ -1,61 +1,55 @@
 import re
 import json
 import sys
-from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Any
 
+# Setup path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
+
 from configs.dictionary import COMMON_DICTIONARY
+from configs.settings import NER_MODEL_PATH
+from .ner_engine.ner import NER 
+from .ner_engine.vietnamese_time_parser import VietnameseTimeParser
 
 class SchemaRouter:
-    def __init__(self, profile_dir: Path):
+    # ... (Giữ nguyên phần Router như cũ không thay đổi) ...
+    def __init__(self, profile_dir):
+        if isinstance(profile_dir, str): profile_dir = Path(profile_dir)
         self.parsers: Dict[str, RuleBasedParser] = {}
         self.table_keywords = COMMON_DICTIONARY.get("tables", {})
         self._load_all_profiles(profile_dir)
 
     def _load_all_profiles(self, profile_dir: Path):
-        """Load toàn bộ file json trong thư mục profile"""
         profile_files = list(profile_dir.glob("*.json"))
-        if not profile_files:
-            print(f"⚠️ Cảnh báo: Không tìm thấy profile nào trong {profile_dir}")
-            return
-
+        if not profile_files: return
         print(f"[*] Đang tải {len(profile_files)} profile bảng...")
         for p_path in profile_files:
             try:
                 parser = RuleBasedParser(str(p_path))
-                table_name = parser.table_name.lower()
-                self.parsers[table_name] = parser
-                print(f"   + Đã load bảng: {table_name}")
+                self.parsers[parser.table_name.lower()] = parser
+                print(f"   + Đã load bảng: {parser.table_name.lower()}")
             except Exception as e:
                 print(f"   ❌ Lỗi load {p_path.name}: {e}")
 
     def _detect_table(self, query: str) -> str:
-
         q_lower = query.lower()
-        
         for table_key, keywords in self.table_keywords.items():
             for kw in keywords:
                 if kw in q_lower:
                     if table_key in self.parsers:
                         return table_key
-        
         return None
 
     def parse(self, query: str):
-
         target_table = self._detect_table(query)
-        
-        if not target_table:
-            return {
-                "error": "Không xác định được đối tượng (bảng) trong câu hỏi. Hãy thêm từ khóa (ví dụ: 'giao dịch', 'khách hàng').",
-                "sql": ""
-            }
+        if not target_table and "transaction" in self.parsers:
+            target_table = "transaction" # Default
 
-        parser = self.parsers[target_table]
-        result = parser.parse(query)
-        
+        if not target_table:
+            return {"error": "Không xác định được bảng", "sql": "", "intent": "UNKNOWN", "detected_table": "N/A"}
+
+        result = self.parsers[target_table].parse(query)
         result["detected_table"] = target_table
         return result
 
@@ -63,111 +57,141 @@ class RuleBasedParser:
     def __init__(self, profile_path: str):
         self.profile = self._load_profile(profile_path)
         self.table_name = self.profile["table_name"]
-        self.reverse_index = self._build_reverse_index()
         
-        # Regex Patterns
+        print(f"   > Init NER cho bảng {self.table_name}...")
+        try: self.time_parser = VietnameseTimeParser()
+        except: self.time_parser = None
+        try: self.ner_engine = NER(model_path=str(NER_MODEL_PATH))
+        except: self.ner_engine = None
+        
+        # Regex cơ bản
         self.regex_patterns = {
-            "DATE": r"(\d{1,2}[/-]\d{1,2}[/-]\d{4}|\d{4}[/-]\d{1,2}[/-]\d{1,2}|hôm nay|hôm qua)",
             "NUMBER": r"\b\d+\b",
             "QUOTED": r"['\"](.*?)['\"]"
         }
 
     def _load_profile(self, path):
-        with open(path, 'r', encoding='utf-8') as f:
-            return json.load(f)
+        with open(path, 'r', encoding='utf-8') as f: return json.load(f)
 
-    def _build_reverse_index(self) -> Dict[str, str]:
-        index = {}
-        # Profile 
-        for col in self.profile["columns"]:
-            col_name = col["name"]
-            index[col_name.lower()] = col_name
-            for kw in col.get("suggested_keywords", []):
-                if len(kw) > 2: index[kw.lower()] = col_name
+    # --- HÀM MỚI: CHUẨN HÓA TIỀN TỆ (Gánh cho model dởm) ---
+    def _normalize_money(self, text: str) -> str:
+        """Biến đổi 5 củ, 10k, 1 triệu thành số nguyên"""
+        text = text.lower().replace(",", "").replace(".", "")
+        multiplier = 1
+        
+        if any(w in text for w in ['củ', 'tr', 'triệu', 'm']):
+            multiplier = 1_000_000
+        elif any(w in text for w in ['k', 'nghìn', 'ngàn']):
+            multiplier = 1_000
+        elif any(w in text for w in ['tỷ', 'b']):
+            multiplier = 1_000_000_000
+        elif any(w in text for w in ['lít']): # Tiếng lóng: 1 lít = 100k
+            multiplier = 100_000
+            
+        # Lấy số đầu tiên tìm thấy
+        nums = re.findall(r"\d+", text)
+        if nums:
+            val = float(nums[0]) * multiplier
+            return str(int(val))
+        return None
 
-        # Dictionary 
-        for col in self.profile["columns"]:
-            col_name = col["name"].lower()
-            if col_name in COMMON_DICTIONARY.get("specific_columns", {}):
-                for vn in COMMON_DICTIONARY["specific_columns"][col_name]:
-                    index[vn.lower()] = col["name"]
-            for suffix, words in COMMON_DICTIONARY.get("suffixes", {}).items():
-                if col_name.endswith(suffix):
-                    for word in words:
-                        if word not in index: index[word.lower()] = col["name"]
-        return index
+    def _extract_entities_advanced(self, query: str) -> Dict[str, Any]:
+        entities = {
+            "DATE_RANGE": None, "MONEY": [], "ACCOUNT": [], 
+            "BANK": [], "RAW_NUMBERS": [], "QUOTED": []
+        }
 
-    def _extract_entities(self, text: str) -> Dict[str, List[str]]:
-        entities = {"DATE": [], "NUMBER": [], "QUOTED": []}
-        for key, pattern in self.regex_patterns.items():
-            entities[key] = re.findall(pattern, text, re.IGNORECASE)
+        # 1. Time Parser
+        if self.time_parser:
+            try:
+                time_res = self.time_parser.parse(query)
+                if time_res and time_res[0] and time_res[1]: 
+                    entities["DATE_RANGE"] = time_res 
+            except: pass
+
+        # 2. NER Model (Vẫn chạy để bắt các case chuẩn)
+        if self.ner_engine:
+            try:
+                ner_res = self.ner_engine.run(query)
+                for item in ner_res:
+                    label = item['label'] 
+                    val = str(item['entity'])
+                    
+                    # Bộ lọc rác
+                    if "ACCN" in label or "MONEY" in label:
+                        if not any(char.isdigit() for char in val): continue
+
+                    if "MONEY" in label: entities["MONEY"].append(val)
+                    elif "ACCN" in label: entities["ACCOUNT"].append(val)
+                    elif "BANK" in label: entities["BANK"].append(val)
+            except: pass
+
+        # 3. MANUAL REGEX FOR SLANG (Cứu cánh khi Model trượt)
+        # Tìm các pattern kiểu: 5 củ, 10k, 500 nghìn...
+        slang_pattern = r"(\d+\s*(?:củ|tr|triệu|k|nghìn|ngàn|lít|tỷ))"
+        slangs = re.findall(slang_pattern, query.lower())
+        for s in slangs:
+            money_val = self._normalize_money(s)
+            if money_val:
+                # Thêm vào danh sách MONEY và không coi là RAW_NUMBER nữa
+                entities["MONEY"].append(money_val)
+
+        # 4. Fallback Regex (Chỉ lấy số trơ trọi còn lại làm Account/ID)
+        if not entities["ACCOUNT"]:
+            # Logic: Tìm số, nhưng loại bỏ những số đã được nhận diện là Tiền ở bước 3
+            all_nums = re.findall(r"\b\d+\b", query)
+            for num in all_nums:
+                # Nếu số này chưa nằm trong danh sách tiền đã xử lý
+                if not any(num in m for m in entities["MONEY"]): 
+                     entities["RAW_NUMBERS"].append(num)
+
+        entities["QUOTED"] = re.findall(self.regex_patterns["QUOTED"], query)
         return entities
 
-    def _match_column(self, text: str) -> Dict:
-        text_lower = text.lower()
-        best_match = None
-        max_len = 0
-        for keyword, col_name in self.reverse_index.items():
-            if keyword in text_lower:
-                if len(keyword) > max_len:
-                    max_len = len(keyword)
-                    best_match = next((c for c in self.profile["columns"] if c["name"] == col_name), None)
-        return best_match
-
-    def _detect_intent(self, text: str, entities: Dict) -> str:
-        text_lower = text.lower()
-        if any(k in text_lower for k in ["tổng", "cộng", "thống kê", "bao nhiêu tiền"]):
-            return "METRIC"
-        if any(k in text_lower for k in ["từ ngày", "đến ngày", "khoảng", "sao kê"]) and entities["DATE"]:
-            return "TEMPORAL"
-        return "LOOKUP"
-
     def parse(self, question: str) -> Dict[str, Any]:
-        """Core Function: NLQ -> SQL"""
-        entities = self._extract_entities(question)
-        intent = self._detect_intent(question, entities)
+        intent = "LOOKUP"
+        if any(w in question.lower() for w in ["tổng", "số lượng", "bao nhiêu", "thống kê"]):
+            intent = "METRIC"
         
-        # Clean text 
-        clean_text = question
-        for key in entities:
-            for val in entities[key]:
-                clean_text = clean_text.replace(val, "")
+        entities = self._extract_entities_advanced(question)
+        where_clause = []
         
-        target_col = self._match_column(clean_text)
-        
-        if not target_col:
-            if entities["NUMBER"]:
-                target_col = next((c for c in self.profile["columns"] if c["role"] == "IDENTITY"), None)
-            elif entities["DATE"]:
-                target_col = next((c for c in self.profile["columns"] if c["role"] == "TEMPORAL"), None)
-        
-        if not target_col:
-            return {"error": "Không xác định được cột", "sql": ""}
+        # --- Mapping ---
+        if entities["DATE_RANGE"]:
+            temp_col = next((c for c in self.profile["columns"] if c["role"] == "TEMPORAL"), None)
+            if temp_col:
+                start, end = entities["DATE_RANGE"]
+                where_clause.append(f"{temp_col['name']} BETWEEN '{start}' AND '{end}'")
 
-        # Assembly SQL
-        sql = ""
-        explanation = ""
-        col_name = target_col['name']
+        if entities["ACCOUNT"]:
+            acc_col = next((c for c in self.profile["columns"] if c["role"] == "IDENTITY"), None)
+            if acc_col: where_clause.append(f"{acc_col['name']} = '{entities['ACCOUNT'][0]}'")
 
+        if entities["MONEY"]:
+            amt_col = next((c for c in self.profile["columns"] if c["role"] == "METRIC"), None)
+            if amt_col: where_clause.append(f"{amt_col['name']} = {entities['MONEY'][0]}")
+
+        # Fallback: Nếu có RAW_NUMBER mà chưa map vào Account (ưu tiên gán số dài vào Account)
+        if not where_clause and entities["RAW_NUMBERS"]:
+            # Lấy số đầu tiên làm account
+            acc_col = next((c for c in self.profile["columns"] if c["role"] == "IDENTITY"), None)
+            if acc_col: where_clause.append(f"{acc_col['name']} = '{entities['RAW_NUMBERS'][0]}'")
+
+        if not where_clause:
+             return {
+                "sql": "", "error": "Không tìm thấy điều kiện lọc",
+                "explanation": str(entities), "intent": intent, 
+                "detected_table": self.table_name
+            }
+
+        select_clause = "*"
         if intent == "METRIC":
-            sql = f"SELECT SUM({col_name}) FROM {self.table_name}"
-            explanation = f"Tính tổng {col_name}"
-        elif intent == "TEMPORAL":
-            d = entities["DATE"]
-            start = d[0]
-            end = d[1] if len(d) > 1 else start
-            sql = f"SELECT * FROM {self.table_name} WHERE {col_name} BETWEEN '{start}' AND '{end}'"
-            explanation = f"Lọc {col_name} từ {start} đến {end}"
-        else: 
-            val = entities["NUMBER"][0] if entities["NUMBER"] else (entities["QUOTED"][0] if entities["QUOTED"] else "???")
-            sql = f"SELECT * FROM {self.table_name} WHERE {col_name} = '{val}'"
-            explanation = f"Tra cứu {col_name} = {val}"
+            metric_col = next((c for c in self.profile["columns"] if c["role"] == "METRIC"), {"name": "*"})
+            select_clause = f"SUM({metric_col['name']})"
 
+        sql = f"SELECT {select_clause} FROM {self.table_name} WHERE {' AND '.join(where_clause)}"
+        
         return {
-            "question": question,
-            "sql": sql,
-            "intent": intent,
-            "entities": str(entities),
-            "target_column": col_name,
-            "explanation": explanation
+            "sql": sql, "explanation": f"Entities: {entities}",
+            "detected_table": self.table_name, "intent": intent, "error": None
         }
