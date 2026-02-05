@@ -8,11 +8,21 @@ from configs.dictionary import COMMON_DICTIONARY
 from .faker_utils import DataFaker
 from .grammar_templates import GrammarLibrary
 
+try:
+    from .dl_utils import LocalParaphraser
+except ImportError:
+    LocalParaphraser = None
+    
 class RuleBasedGenerator:
-    def __init__(self, vocab=None):
+    def __init__(self, vocab=None, use_ai=False):
         self.faker = DataFaker()
         self.grammar = GrammarLibrary()
         self.NUM_EXAMPLES = 10
+        self.use_ai = use_ai
+        
+        self.paraphraser = None
+        if self.use_ai and LocalParaphraser:
+            self.paraphraser = LocalParaphraser()
         
         if vocab:
             self.vocab = vocab
@@ -428,6 +438,26 @@ class RuleBasedGenerator:
                     "keyword": "loại giao dịch theo số tiền"
                 })
 
+        if self.use_ai and self.paraphraser and self.paraphraser.is_ready:
+            print(f"> Đang dùng AI ({self.paraphraser.device}) để viết lại câu...")
+            
+            for item in dataset:
+                original = item["examples"]
+                if not original: continue
+                
+                sample_inputs = original[:3]
+                new_variants = []
+                
+                for ex in sample_inputs:
+                    variants = self.paraphraser.paraphrase(ex, num_return_sequences=2)
+                    new_variants.extend(variants)
+                
+                combined = list(set(original + new_variants))
+                if len(combined) > self.NUM_EXAMPLES:
+                    item["examples"] = random.sample(combined, self.NUM_EXAMPLES)
+                else:
+                    item["examples"] = combined
+        
         return dataset
 
     def export_excel(self, dataset: List[Dict], output_path: str):

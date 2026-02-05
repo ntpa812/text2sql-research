@@ -1,3 +1,7 @@
+import os
+os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE" 
+import torch
+
 import time
 import json
 from pathlib import Path
@@ -61,7 +65,7 @@ def run_batch_pipeline():
             
             print(f"Done. (Biết thêm {len(new_specifics)} cột)")
 
-            generator = RuleBasedGenerator(vocab=runtime_dictionary) 
+            generator = RuleBasedGenerator(vocab=runtime_dictionary, use_ai=True)
 
             dataset = generator.generate_dataset(str(profile_json_path))
 
