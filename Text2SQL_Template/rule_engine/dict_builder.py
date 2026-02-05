@@ -94,7 +94,7 @@ class DictionaryBuilder:
         py_str = json_str.replace("null", "None").replace("false", "False").replace("true", "True")
         
         try:
-            print(f"✅ Đã lưu file Python tại: {output_path}")
+            print(f"Đã lưu file Python tại: {output_path}")
         except Exception as e:
             print(f"❌ Lỗi lưu file: {e}")
 

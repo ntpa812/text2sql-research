@@ -13,18 +13,14 @@ from configs.dictionary import COMMON_DICTIONARY
 from sentence_transformers import SentenceTransformer, util
 import torch
 
-class SemanticProfiler: 
+class SemanticProfiler:
     def __init__(self):
-
         self.vocab = COMMON_DICTIONARY
         self.glossary = {}
         self._build_glossary()
         
         self.model = None
-
-        print("[*] Đang tải AI Model...")
         self.model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
-        
         self.concepts = [
             "số tiền", "mã giao dịch", "ngày giao dịch", "trạng thái",
             "số tài khoản", "khách hàng", "kênh", "nội dung",
@@ -32,11 +28,10 @@ class SemanticProfiler:
             "chi nhánh", "sản phẩm", "tiền tệ"
         ]
         self.concept_embeddings = self.model.encode(self.concepts, convert_to_tensor=True)
-        print("[*] AI Model đã sẵn sàng!")
 
         self.rules = {
             "IDENTITY": {
-                "col_pattern": r"(_id|_code|_no|_key|_number|id)$",
+                "col_pattern": r"(_id|_code|_no|_key|_number|id|user_name)$",
                 "desc_pattern": r"(mã|khóa|định danh|số thẻ|số tài khoản|duy nhất|user_name)",
                 "sql_op": "WHERE {col} = '{val}'"
             },
@@ -45,15 +40,15 @@ class SemanticProfiler:
                 "desc_pattern": r"(thời gian|ngày|giờ|thời điểm|năm|tháng)",
                 "sql_op": "WHERE {col} BETWEEN '{start}' AND '{end}'"
             },
+            "DIMENSION": {
+                "col_pattern": r"(_type|_status|_channel|_mode|_currency|_state|_method|_name|_fullname|source_type)$",
+                "desc_pattern": r"(loại|trạng thái|kênh|tiền tệ|phương thức|nguồn|tên|người nhận|người gửi)",
+                "sql_op": "WHERE {col} = '{val}'"
+            },
             "METRIC": {
                 "col_pattern": r"(_amount|_fee|_val|_balance|_cost|_price|_tax|_limit)$",
                 "desc_pattern": r"(số tiền|giá trị|phí|thuế|hạn mức|dư nợ|chiết khấu)",
                 "sql_op": "SUM({col})"
-            },
-            "DIMENSION": {
-                "col_pattern": r"(_type|_status|_channel|_mode|_currency|_state|_method|source_type)$",
-                "desc_pattern": r"(loại|trạng thái|kênh|tiền tệ|phương thức|nguồn)",
-                "sql_op": "WHERE {col} = '{val}'"
             }
         }
 
@@ -71,23 +66,20 @@ class SemanticProfiler:
             "dt": "ngày", "tm": "giờ", "cd": "mã",
             "no": "số", "id": "mã", "desc": "nội dung",
             "cif": "khách hàng", "cust": "khách hàng",
-            "trans": "giao dịch",
+            "trans": "giao dịch"
         }
         self.glossary.update(extras)
 
     def _ai_guess(self, text: str) -> str:
         if not self.model: return text
-        
         embedding = self.model.encode(text, convert_to_tensor=True)
         scores = util.cos_sim(embedding, self.concept_embeddings)[0]
         best_idx = torch.argmax(scores).item()
-        
         if scores[best_idx].item() > 0.45:
             return self.concepts[best_idx]
         return text
 
     def _translate_col_name(self, col_name: str) -> str:
-
         parts = col_name.lower().split('_')
         translated_parts = []
         for p in parts:
@@ -106,10 +98,8 @@ class SemanticProfiler:
                 words.insert(0, last)
         return " ".join(words)
 
-    def _clean_keywords_from_desc(self, text: str) -> List[str]:
-
+    def _clean_keywords(self, text: str) -> List[str]:
         if not isinstance(text, str): return []
-        
         text = text.lower()
         keywords = []
 
@@ -123,19 +113,19 @@ class SemanticProfiler:
                 if clean_m: keywords.append(clean_m)
 
         main_text_raw = re.sub(r"\(.*?\)", "", text).strip()
-
-        raw_phrases = re.split(r'[/,]', main_text_raw)
+        raw_phrases = re.split(r'[/,;\.\-]', main_text_raw)
 
         db_jargon = [
             "primary key", "khóa chính", "foreign key", "khóa ngoại",
             "not null", "nullable", "unique", "constraint", "ràng buộc",
             "auto increment", "tự tăng", "index", "chỉ mục",
-            "tham chiếu đến", "quan hệ với", "bảng", "table", "column"
+            "tham chiếu đến", "quan hệ với", "bảng", "table", "column", "bản ghi"
         ]
 
         stopwords = [
             "là", "của", "người", "dùng", "hệ thống", "ví dụ", "trong", "để", 
-            "trường", "cột", "thông tin", "dữ liệu", "chứa", "lưu", "được", "tại", "id"
+            "trường", "cột", "thông tin", "dữ liệu", "chứa", "lưu", "được", "tại", 
+            "id", "hợp", "này", "các", "những", "cái", "hoặc", "nếu", "khi", "thì"
         ]
 
         for phrase in raw_phrases:
@@ -151,16 +141,11 @@ class SemanticProfiler:
                 if phrase.endswith(f" {w}"): phrase = phrase[:-len(w)-1]
 
             phrase = re.sub(r'[0-9|.,\-_:]+', ' ', phrase)
-            
             clean_phrase = " ".join(phrase.split())
 
             word_count = len(clean_phrase.split())
-            
-            if 1 < len(clean_phrase) and word_count <= 6:
+            if 1 < len(clean_phrase) and word_count <= 5:
                 keywords.insert(0, clean_phrase)
-            else:
-                if len(clean_phrase) > 1:
-                    print(f"   [FILTERED] Đã loại bỏ cụm từ quá dài ({word_count} từ): '{clean_phrase}'")
 
         return list(set([k.strip() for k in keywords]))[:6]
 
@@ -180,11 +165,14 @@ class SemanticProfiler:
         
         for keyword, group_code in mapping.items():
             if keyword in col_lower:
-                return group_code # VD: Trả về "ACCOUNT_TYPE"
+                return group_code
+            
+        if "currency" in col_lower or "ccy" in col_lower:
+            return "CURRENCY"    
+            
         return None
 
     def analyze_file(self, file_path: str, table_name: str = "auto_detect") -> Dict[str, Any]:
-        print(f"[*] Đang phân tích file: {file_path}")
         if file_path.endswith(".csv"):
             df = pd.read_csv(file_path)
         else:
@@ -202,7 +190,6 @@ class SemanticProfiler:
             table_name = os.path.splitext(os.path.basename(file_path))[0].split(" - ")[0]
 
         profile = {"table_name": table_name, "columns": []}
-        stats = {"IDENTITY": 0, "METRIC": 0, "DIMENSION": 0, "TEMPORAL": 0, "ATTRIBUTE": 0}
 
         for _, row in df.iterrows():
             col_raw = str(row[col_name_key]).strip()
@@ -212,10 +199,8 @@ class SemanticProfiler:
                 continue
 
             role = self._detect_role(col_raw, desc_raw)
-            stats[role] += 1
-
             translated_name = self._translate_col_name(col_raw)
-            desc_keywords = self._clean_keywords_from_desc(desc_raw)
+            desc_keywords = self._clean_keywords(desc_raw)
             
             final_keywords = set()
             final_keywords.add(translated_name)
@@ -224,32 +209,23 @@ class SemanticProfiler:
             if role == "IDENTITY" and "mã" in translated_name:
                 final_keywords.add(translated_name.replace("mã", "số"))
             
-            profile["columns"].append({
-                "name": col_raw,
-                "role": role,
-                "description": desc_raw,
-                "suggested_keywords": list(final_keywords),
-                "sql_logic": self.rules.get(role, {}).get("sql_op", "")
-            })
-            
             value_ref = None
-            if role == "DIMENSION":
+            if role in ["DIMENSION", "ATTRIBUTE"]:
                 value_ref = self._detect_value_group(col_raw)
-
+                if value_ref and role == "ATTRIBUTE":
+                    role = "DIMENSION"
+            
             profile["columns"].append({
                 "name": col_raw,
                 "role": role,
                 "description": desc_raw,
                 "suggested_keywords": list(final_keywords),
                 "sql_logic": self.rules.get(role, {}).get("sql_op", ""),
-                
-                "value_ref": value_ref 
+                "value_ref": value_ref
             })
 
-        print(f"Hoàn tất! Table '{table_name}' Stats: {stats}")
         return profile
 
     def save_profile(self, profile: Dict, output_path: str):
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(profile, f, ensure_ascii=False, indent=4)
-        print(f"💾 Đã lưu Profile tại: {output_path}")

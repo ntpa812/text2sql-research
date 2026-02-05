@@ -31,7 +31,8 @@ COMMON_DICTIONARY = {
         "_currency": ["loại tiền", "đơn vị", "nguyên tệ"],
         "_fullname": ["tên đầy đủ", "họ và tên", "chủ tài khoản"],
         "from_": ["từ"],
-        "to_": ["đến", "tới"]
+        "to_": ["đến", "tới"],
+        "_do:" : ["thực hiện"],
     },
 
     "specific_columns": {
@@ -176,6 +177,7 @@ COMMON_DICTIONARY = {
         "reference": ["tham chiếu"],
         "digital": ["số", "kỹ thuật số"],
         "operation": ["hoạt động", "thao tác"],
+        "do:": ["thực hiện"],
     },
     
     "abbreviations": {
