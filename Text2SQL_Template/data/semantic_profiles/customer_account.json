@@ -6,9 +6,10 @@
             "role": "IDENTITY",
             "description": "Khóa chính (Primary Key), định danh duy nhất cho mỗi bản ghi tài khoản.",
             "suggested_keywords": [
+                "khóa chính",
                 "mã",
-                "số",
-                "primary key"
+                "primary key",
+                "số"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -18,10 +19,11 @@
             "role": "IDENTITY",
             "description": "ID của khách hàng bên hệ thống lõi (Core Banking). Dùng để map tài khoản với thông tin khách hàng.",
             "suggested_keywords": [
-                "số nội dung khách hàng",
+                "id của khách hàng bên hệ thống lõi",
+                "mã nội dung khách hàng",
                 "core banking",
                 "khách hàng bên lõi",
-                "mã nội dung khách hàng"
+                "số nội dung khách hàng"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -31,6 +33,7 @@
             "role": "IDENTITY",
             "description": "Số tài khoản hoặc số thẻ. Đây là thông tin định danh tài khoản để giao dịch.",
             "suggested_keywords": [
+                "số tài khoản hoặc số thẻ",
                 "số tài khoản",
                 "số tài khoản số thẻ"
             ],
@@ -42,11 +45,11 @@
             "role": "DIMENSION",
             "description": "Phân loại tài khoản (Ví dụ: Tài khoản thanh toán, tài khoản tiết kiệm, thẻ tín dụng...).",
             "suggested_keywords": [
-                "tài khoản tiết kiệm",
-                "tài khoản thanh toán",
+                "phân loại tài khoản",
                 "loại tài khoản",
-                "thẻ tín dụng...",
-                "phân loại tài khoản"
+                "tài khoản thanh toán",
+                "tài khoản tiết kiệm",
+                "thẻ tín dụng..."
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -56,9 +59,9 @@
             "role": "ATTRIBUTE",
             "description": "Đánh dấu tài khoản chính (Y/N). Thường dùng khi một khách hàng có nhiều tài khoản.",
             "suggested_keywords": [
-                "y/n",
+                "đánh dấu tài khoản chính",
                 "trạng thái tài khoản",
-                "đánh dấu tài khoản chính"
+                "y/n"
             ],
             "sql_logic": "",
             "value_ref": null
@@ -68,6 +71,7 @@
             "role": "IDENTITY",
             "description": "Số thứ tự hiển thị của tài khoản trên giao diện (App/Web).",
             "suggested_keywords": [
+                "số thứ tự hiển thị của tài khoản trên giao diện",
                 "số trạng thái",
                 "app/web"
             ],
@@ -80,10 +84,10 @@
             "description": "Trạng thái tài khoản (Ví dụ: A - Active, I - Inactive, C - Closed).",
             "suggested_keywords": [
                 "trạng thái tài khoản",
+                "trạng thái",
                 "a - active",
                 "i - inactive",
-                "c - closed",
-                "trạng thái"
+                "c - closed"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": "STATUS"
@@ -93,6 +97,7 @@
             "role": "DIMENSION",
             "description": "Trạng thái xác thực tài khoản (Đã xác minh thông tin hay chưa).",
             "suggested_keywords": [
+                "trạng thái xác thực tài khoản",
                 "trạng thái trạng thái",
                 "đã xác minh thông tin hay chưa"
             ],
@@ -104,9 +109,9 @@
             "role": "DIMENSION",
             "description": "Trạng thái kiểm tra (Mặc định là 'U' - Unknown hoặc Unchecked).",
             "suggested_keywords": [
+                "trạng thái kiểm tra",
                 "trạng thái trạng thái",
-                "mặc định là 'u' - unknown hoặc unchecked",
-                "trạng thái kiểm tra"
+                "mặc định là 'u' - unknown hoặc unchecked"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": "STATUS"
@@ -116,12 +121,13 @@
             "role": "IDENTITY",
             "description": "ID kênh tạo tài khoản (Ví dụ: Mobile, Internet Banking, Quầy giao dịch).",
             "suggested_keywords": [
-                "số kênh",
-                "kênh tạo tài khoản",
-                "internet banking",
+                "id kênh tạo tài khoản",
+                "mã kênh",
                 "mobile",
+                "internet banking",
                 "quầy giao dịch",
-                "mã kênh"
+                "kênh tạo tài khoản",
+                "số kênh"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -131,6 +137,7 @@
             "role": "ATTRIBUTE",
             "description": "Độ ưu tiên của tài khoản khi thực hiện các giao dịch tự động.",
             "suggested_keywords": [
+                "độ ưu tiên của tài khoản khi thực hiện các giao dịch tự động",
                 "trạng thái"
             ],
             "sql_logic": "",
@@ -141,6 +148,7 @@
             "role": "TEMPORAL",
             "description": "Ngày mở tài khoản hoặc ngày bản ghi được tạo.",
             "suggested_keywords": [
+                "ngày mở tài khoản hoặc ngày bản ghi được tạo",
                 "ngày nội dung"
             ],
             "sql_logic": "WHERE {col} BETWEEN '{start}' AND '{end}'",
@@ -151,8 +159,8 @@
             "role": "DIMENSION",
             "description": "Tên tài khoản (thường là tên chủ tài khoản hoặc tên gợi nhớ).",
             "suggested_keywords": [
-                "thường là tên chủ tài khoản hoặc tên gợi nhớ",
-                "tên tài khoản"
+                "tên tài khoản",
+                "thường là tên chủ tài khoản hoặc tên gợi nhớ"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -162,6 +170,7 @@
             "role": "IDENTITY",
             "description": "Mã chi nhánh nơi quản lý tài khoản này.",
             "suggested_keywords": [
+                "mã chi nhánh nơi quản lý tài khoản này",
                 "tài khoản chi nhánh"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
@@ -172,8 +181,9 @@
             "role": "IDENTITY",
             "description": "Số thẻ được che bớt (Ví dụ: 411122****1234) để đảm bảo bảo mật thông tin.",
             "suggested_keywords": [
-                "411122****1234",
-                "số tài khoản mask"
+                "số thẻ được che bớt",
+                "số tài khoản mask",
+                "411122****1234"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -183,6 +193,7 @@
             "role": "IDENTITY",
             "description": "Mã số khách hàng (Customer Number) tương ứng với tài khoản.",
             "suggested_keywords": [
+                "mã số khách hàng",
                 "số khách hàng",
                 "customer number"
             ],
@@ -194,6 +205,7 @@
             "role": "IDENTITY",
             "description": "Mã hệ thống nguồn cung cấp dữ liệu tài khoản này.",
             "suggested_keywords": [
+                "mã hệ thống nguồn cung cấp dữ liệu tài khoản này",
                 "mã hệ thống",
                 "số hệ thống"
             ],
@@ -205,6 +217,7 @@
             "role": "TEMPORAL",
             "description": "Ngày hết hạn của tài khoản hoặc ngày đóng tài khoản.",
             "suggested_keywords": [
+                "ngày hết hạn của tài khoản hoặc ngày đóng tài khoản",
                 "ngày nội dung"
             ],
             "sql_logic": "WHERE {col} BETWEEN '{start}' AND '{end}'",

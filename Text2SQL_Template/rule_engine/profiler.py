@@ -20,14 +20,22 @@ class SemanticProfiler:
         self._build_glossary()
         
         self.model = None
-        self.model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+        try:
+            self.model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+        except:
+            print("Warning: Could not load SentenceTransformer model. AI guessing will be disabled.")
+
         self.concepts = [
             "số tiền", "mã giao dịch", "ngày giao dịch", "trạng thái",
             "số tài khoản", "khách hàng", "kênh", "nội dung",
             "phí", "người thụ hưởng", "ngân hàng", "lãi suất",
             "chi nhánh", "sản phẩm", "tiền tệ"
         ]
-        self.concept_embeddings = self.model.encode(self.concepts, convert_to_tensor=True)
+        
+        if self.model:
+            self.concept_embeddings = self.model.encode(self.concepts, convert_to_tensor=True)
+        else:
+            self.concept_embeddings = None
 
         self.rules = {
             "IDENTITY": {
@@ -70,8 +78,35 @@ class SemanticProfiler:
         }
         self.glossary.update(extras)
 
+    def _extract_primary_definition(self, desc: str) -> str:
+        """
+        Extracts the main definition from the beginning of the description string.
+        Splits by separators like (, -, :, etc.
+        """
+        if not desc: return ""
+        
+        clean_desc = desc.strip()
+        
+        separators = r"[\(\:\-\,\.]"
+        parts = re.split(separators, clean_desc)
+        
+        primary = parts[0].strip()
+        
+        stopwords_prefix = [
+            "là trường", "là cột", "trường này là", "cột này là", 
+            "dùng để", "lưu trữ", "biểu thị", "chứa thông tin", "thông tin về"
+        ]
+        
+        lower_primary = primary.lower()
+        for prefix in stopwords_prefix:
+            if lower_primary.startswith(prefix):
+                primary = primary[len(prefix):].strip()
+                break
+                
+        return primary.lower()
+    
     def _ai_guess(self, text: str) -> str:
-        if not self.model: return text
+        if not self.model or self.concept_embeddings is None: return text
         embedding = self.model.encode(text, convert_to_tensor=True)
         scores = util.cos_sim(embedding, self.concept_embeddings)[0]
         best_idx = torch.argmax(scores).item()
@@ -145,9 +180,17 @@ class SemanticProfiler:
 
             word_count = len(clean_phrase.split())
             if 1 < len(clean_phrase) and word_count <= 5:
-                keywords.insert(0, clean_phrase)
+                keywords.append(clean_phrase)
 
-        return list(set([k.strip() for k in keywords]))[:6]
+        seen = set()
+        deduped = []
+        for k in keywords:
+            k = k.strip()
+            if k and k not in seen:
+                seen.add(k)
+                deduped.append(k)
+                
+        return deduped[:6]
 
     def _detect_role(self, col_name: str, description: str) -> str:
         col_name = col_name.lower()
@@ -199,15 +242,28 @@ class SemanticProfiler:
                 continue
 
             role = self._detect_role(col_raw, desc_raw)
-            translated_name = self._translate_col_name(col_raw)
-            desc_keywords = self._clean_keywords(desc_raw)
             
-            final_keywords = set()
-            final_keywords.add(translated_name)
-            final_keywords.update(desc_keywords)
+            
+            keyword_list = []
+            
+            primary_def = self._extract_primary_definition(desc_raw)
+            if primary_def:
+                keyword_list.append(primary_def)
+                
+            translated_name = self._translate_col_name(col_raw)
+            if translated_name:
+                keyword_list.append(translated_name)
+                
+            desc_keywords = self._clean_keywords(desc_raw)
+            keyword_list.extend(desc_keywords)
             
             if role == "IDENTITY" and "mã" in translated_name:
-                final_keywords.add(translated_name.replace("mã", "số"))
+                keyword_list.append(translated_name.replace("mã", "số"))
+            
+            final_keywords = list(dict.fromkeys([k for k in keyword_list if k]))
+            
+            if not final_keywords:
+                final_keywords = [translated_name if translated_name else col_raw]
             
             value_ref = None
             if role in ["DIMENSION", "ATTRIBUTE"]:
@@ -219,7 +275,7 @@ class SemanticProfiler:
                 "name": col_raw,
                 "role": role,
                 "description": desc_raw,
-                "suggested_keywords": list(final_keywords),
+                "suggested_keywords": final_keywords, 
                 "sql_logic": self.rules.get(role, {}).get("sql_op", ""),
                 "value_ref": value_ref
             })
