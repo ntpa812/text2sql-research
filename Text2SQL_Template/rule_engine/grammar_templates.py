@@ -73,6 +73,37 @@ class GrammarLibrary:
                 "Liệt kê {noun} {val} phát sinh ngày {start}",
                 "Tìm {noun} {val} hôm {start}",
                 "Sao kê {noun} loại {val} từ ngày {start} tới {end}"
+            ],
+            
+            "COMPARISON": [
+                "Tìm các {noun} có {col_metric} lớn hơn {val}",
+                "Liệt kê {noun} với {col_metric} trên {val}",
+                "Danh sách {noun} có {col_metric} nhỏ hơn {val}",
+                "Lọc những {noun} có {col_metric} thấp hơn {val}"
+            ],
+            "RANKING": [
+                "Top {k} {noun} có {col_metric} cao nhất",
+                "Liệt kê {k} {noun} có {col_metric} lớn nhất",
+                "Xem {k} {noun} có {col_metric} thấp nhất",
+                "Những {noun} nào có {col_metric} cao nhất?"
+            ],
+            "AGGREGATION": [
+                "Thống kê tổng {col_metric} theo từng {col_group}",
+                "Tính tổng {col_metric} cho mỗi {col_group}",
+                "Báo cáo {col_metric} phân theo {col_group}",
+                "Xem doanh số {col_metric} dựa trên {col_group}"
+            ],
+            
+            "FILTER_AND_GT": [ 
+                "Tìm những {noun} có {dim_col} là {dim_val} và {met_col} lớn hơn {met_val}",
+                "Liệt kê {noun} thuộc {dim_col} {dim_val} với {met_col} trên {met_val}",
+                "Lọc {noun} {dim_val} có {met_col} > {met_val}",
+                "Danh sách {noun} ({dim_col}: {dim_val}) có {met_col} cao hơn {met_val}"
+            ],
+            "FILTER_AND_LT": [ 
+                "Tìm {noun} có {dim_col} {dim_val} và {met_col} dưới {met_val}",
+                "Liệt kê {noun} {dim_val} nhưng {met_col} nhỏ hơn {met_val}",
+                "Xem {noun} trạng thái {dim_val} có {met_col} thấp hơn {met_val}"
             ]
         }
 

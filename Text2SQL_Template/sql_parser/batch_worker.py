@@ -4,16 +4,11 @@ from .core import SchemaRouter
 
 def process_excel_file(input_path: Path, output_path: Path, profile_dir: Path):
     print(f"[*] Đang khởi tạo Router với thư mục profile: {profile_dir}")
-    # Truyền Path object vào Router
     router = SchemaRouter(profile_dir)
     
     print(f"[*] Đang đọc file câu hỏi: {input_path.name}")
-    try:
-        df = pd.read_excel(input_path)
-    except Exception as e:
-        print(f"❌ Lỗi đọc file Excel: {e}")
-        return
-
+    df = pd.read_excel(input_path)
+    
     question_col = "question"
     if "question" not in df.columns:
         if len(df.columns) > 0:
@@ -49,6 +44,6 @@ def process_excel_file(input_path: Path, output_path: Path, profile_dir: Path):
     try:
         result_df = pd.DataFrame(results)
         result_df.to_excel(output_path, index=False)
-        print(f"✅ Đã xuất kết quả ra: {output_path}")
+        print(f"Đã xuất kết quả ra: {output_path}")
     except Exception as e:
         print(f"❌ Lỗi khi ghi file output: {e}")

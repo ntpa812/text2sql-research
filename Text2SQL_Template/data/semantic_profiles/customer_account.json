@@ -6,9 +6,9 @@
             "role": "IDENTITY",
             "description": "Khóa chính (Primary Key), định danh duy nhất cho mỗi bản ghi tài khoản.",
             "suggested_keywords": [
+                "mã",
                 "số",
-                "primary key",
-                "mã"
+                "primary key"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -18,8 +18,8 @@
             "role": "IDENTITY",
             "description": "ID của khách hàng bên hệ thống lõi (Core Banking). Dùng để map tài khoản với thông tin khách hàng.",
             "suggested_keywords": [
-                "core banking",
                 "số nội dung khách hàng",
+                "core banking",
                 "khách hàng bên lõi",
                 "mã nội dung khách hàng"
             ],
@@ -31,8 +31,8 @@
             "role": "IDENTITY",
             "description": "Số tài khoản hoặc số thẻ. Đây là thông tin định danh tài khoản để giao dịch.",
             "suggested_keywords": [
-                "số tài khoản số thẻ",
-                "số tài khoản"
+                "số tài khoản",
+                "số tài khoản số thẻ"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -42,11 +42,11 @@
             "role": "DIMENSION",
             "description": "Phân loại tài khoản (Ví dụ: Tài khoản thanh toán, tài khoản tiết kiệm, thẻ tín dụng...).",
             "suggested_keywords": [
-                "phân loại tài khoản",
-                "tài khoản thanh toán",
                 "tài khoản tiết kiệm",
+                "tài khoản thanh toán",
+                "loại tài khoản",
                 "thẻ tín dụng...",
-                "loại tài khoản"
+                "phân loại tài khoản"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -56,9 +56,9 @@
             "role": "ATTRIBUTE",
             "description": "Đánh dấu tài khoản chính (Y/N). Thường dùng khi một khách hàng có nhiều tài khoản.",
             "suggested_keywords": [
-                "đánh dấu tài khoản chính",
+                "y/n",
                 "trạng thái tài khoản",
-                "y/n"
+                "đánh dấu tài khoản chính"
             ],
             "sql_logic": "",
             "value_ref": null
@@ -79,10 +79,10 @@
             "role": "DIMENSION",
             "description": "Trạng thái tài khoản (Ví dụ: A - Active, I - Inactive, C - Closed).",
             "suggested_keywords": [
+                "trạng thái tài khoản",
                 "a - active",
                 "i - inactive",
                 "c - closed",
-                "trạng thái tài khoản",
                 "trạng thái"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
@@ -116,12 +116,12 @@
             "role": "IDENTITY",
             "description": "ID kênh tạo tài khoản (Ví dụ: Mobile, Internet Banking, Quầy giao dịch).",
             "suggested_keywords": [
+                "số kênh",
                 "kênh tạo tài khoản",
-                "mã kênh",
                 "internet banking",
                 "mobile",
-                "số kênh",
-                "quầy giao dịch"
+                "quầy giao dịch",
+                "mã kênh"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -151,8 +151,8 @@
             "role": "DIMENSION",
             "description": "Tên tài khoản (thường là tên chủ tài khoản hoặc tên gợi nhớ).",
             "suggested_keywords": [
-                "tên tài khoản",
-                "thường là tên chủ tài khoản hoặc tên gợi nhớ"
+                "thường là tên chủ tài khoản hoặc tên gợi nhớ",
+                "tên tài khoản"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -194,8 +194,8 @@
             "role": "IDENTITY",
             "description": "Mã hệ thống nguồn cung cấp dữ liệu tài khoản này.",
             "suggested_keywords": [
-                "số hệ thống",
-                "mã hệ thống"
+                "mã hệ thống",
+                "số hệ thống"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null

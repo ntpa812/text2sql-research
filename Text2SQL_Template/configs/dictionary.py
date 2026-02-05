@@ -192,7 +192,7 @@ COMMON_DICTIONARY = {
         "ls": "lịch sử",
         "cif": "mã khách hàng",
         "dv": "dịch vụ",
-        "tn": "tin nhắn" # Ví dụ: biến động số dư qua tin nhắn
+        "tn": "tin nhắn"
     },
     
     "category_mapping": {

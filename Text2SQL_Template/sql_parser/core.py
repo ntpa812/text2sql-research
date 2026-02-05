@@ -81,7 +81,7 @@ class RuleBasedParser:
             multiplier = 1_000
         elif any(w in text for w in ['tỷ', 'b']):
             multiplier = 1_000_000_000
-        elif any(w in text for w in ['lít']): # Tiếng lóng: 1 lít = 100k
+        elif any(w in text for w in ['lít']): 
             multiplier = 100_000
             
         nums = re.findall(r"\d+", text)

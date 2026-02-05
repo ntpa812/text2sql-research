@@ -6,9 +6,9 @@
             "role": "IDENTITY",
             "description": "Khóa chính (Primary Key) của bảng, là mã định danh duy nhất cho mỗi bản ghi giao dịch trong hệ thống này.",
             "suggested_keywords": [
-                "primary key",
+                "mã tham chiếu",
                 "số tham chiếu",
-                "mã tham chiếu"
+                "primary key"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -18,9 +18,9 @@
             "role": "IDENTITY",
             "description": "Mã định danh giao dịch theo nghiệp vụ, dùng để phân biệt các giao dịch với nhau (có thể dùng để tra soát).",
             "suggested_keywords": [
-                "mã giao dịch",
+                "số giao dịch",
                 "có thể dùng để tra soát",
-                "số giao dịch"
+                "mã giao dịch"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -30,11 +30,11 @@
             "role": "IDENTITY",
             "description": "Mã loại hình giao dịch (ví dụ: CK_NOI_BO - Chuyển khoản nội bộ, THANH_TOAN_HOA_DON).",
             "suggested_keywords": [
-                "mã loại hình giao dịch",
+                "thanh_toan_hoa_don",
                 "số giao dịch",
-                "ck_noi_bo - chuyển khoản nội bộ",
                 "mã giao dịch",
-                "thanh_toan_hoa_don"
+                "ck_noi_bo - chuyển khoản nội bộ",
+                "mã loại hình giao dịch"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -44,8 +44,8 @@
             "role": "IDENTITY",
             "description": "ID của giao dịch cha, dùng trong trường hợp giao dịch này là giao dịch con hoặc một bước trong chuỗi giao dịch phức tạp.",
             "suggested_keywords": [
-                "số parent",
                 "mã parent",
+                "số parent",
                 "giao dịch cha"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
@@ -56,9 +56,9 @@
             "role": "IDENTITY",
             "description": "Mã định danh của node (máy chủ hoặc phân vùng dữ liệu) nơi giao dịch được xử lý.",
             "suggested_keywords": [
+                "mã chi nhánh",
                 "máy chủ hoặc phân vùng dữ liệu",
-                "số chi nhánh",
-                "mã chi nhánh"
+                "số chi nhánh"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -68,9 +68,9 @@
             "role": "IDENTITY",
             "description": "Mã định danh (ID) của người dùng thực hiện giao dịch (thường là khóa ngoại trỏ sang bảng User).",
             "suggested_keywords": [
+                "số người dùng",
                 "mã người dùng",
                 "id",
-                "số người dùng",
                 "thường là khóa ngoại trỏ sang bảng user"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
@@ -81,8 +81,8 @@
             "role": "IDENTITY",
             "description": "Tên đăng nhập (username) của người dùng thực hiện giao dịch.",
             "suggested_keywords": [
-                "tên người dùng",
-                "username"
+                "username",
+                "tên người dùng"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -92,10 +92,10 @@
             "role": "IDENTITY",
             "description": "Mã phiên làm việc (Session) của người dùng khi thực hiện giao dịch (Web/App session).",
             "suggested_keywords": [
-                "session",
                 "mã phiên",
+                "web/app session",
                 "số phiên",
-                "web/app session"
+                "session"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -126,9 +126,9 @@
             "description": "Mã hành động cụ thể mà người dùng thực hiện (ví dụ: nút bấm \"Xác nhận\", \"Gửi OTP\").",
             "suggested_keywords": [
                 "\"gửi otp\"",
-                "nút bấm \"xác nhận\"",
+                "số hành động",
                 "mã hành động",
-                "số hành động"
+                "nút bấm \"xác nhận\""
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -139,11 +139,11 @@
             "description": "Kênh tiếp nhận giao dịch (ví dụ: Mobile App, Internet Banking, ATM, Counter).",
             "suggested_keywords": [
                 "mobile app",
-                "internet banking",
-                "kênh người nhận",
-                "counter",
                 "atm",
-                "kênh tiếp nhận giao dịch"
+                "internet banking",
+                "counter",
+                "kênh tiếp nhận giao dịch",
+                "kênh người nhận"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": "CHANNEL"
@@ -153,8 +153,8 @@
             "role": "DIMENSION",
             "description": "Loại người dùng tác nghiệp (thường dùng cho nhân viên vận hành/Digital Officer).",
             "suggested_keywords": [
-                "thường dùng cho nhân viên vận hành/digital officer",
                 "loại tác nghiệp",
+                "thường dùng cho nhân viên vận hành/digital officer",
                 "trạng thái người dùng loại nội dung"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
@@ -165,8 +165,8 @@
             "role": "IDENTITY",
             "description": "Tên hoặc mã của nhân viên vận hành/hỗ trợ liên quan đến giao dịch này (nếu có).",
             "suggested_keywords": [
-                "nếu có",
-                "người dùng nội dung"
+                "người dùng nội dung",
+                "nếu có"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -178,8 +178,8 @@
             "suggested_keywords": [
                 "digital office branch",
                 "chi nhánh mã nội dung",
-                "hỗ trợ",
-                "chi nhánh số nội dung"
+                "chi nhánh số nội dung",
+                "hỗ trợ"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -189,10 +189,10 @@
             "role": "IDENTITY",
             "description": "Mã sản phẩm hoặc dịch vụ liên quan đến giao dịch (ví dụ: Gói tài khoản, Gói vay).",
             "suggested_keywords": [
-                "mã sản phẩm",
                 "gói tài khoản",
-                "gói vay",
-                "số sản phẩm"
+                "mã sản phẩm",
+                "số sản phẩm",
+                "gói vay"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -202,8 +202,8 @@
             "role": "DIMENSION",
             "description": "Tên quy trình nghiệp vụ (Business Process) mà giao dịch này thuộc về.",
             "suggested_keywords": [
-                "business process",
-                "sản phẩm trạng thái"
+                "sản phẩm trạng thái",
+                "business process"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -213,9 +213,9 @@
             "role": "IDENTITY",
             "description": "Mã yêu cầu duy nhất được sinh ra từ phía Client (App/Web) gửi lên Server.",
             "suggested_keywords": [
-                "app/web",
                 "số yêu cầu",
-                "mã yêu cầu"
+                "mã yêu cầu",
+                "app/web"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -225,11 +225,11 @@
             "role": "IDENTITY",
             "description": "Mã yêu cầu gốc (dùng cho các giao dịch hoàn tiền, hủy hoặc đảo giao dịch để tham chiếu lại giao dịch cũ).",
             "suggested_keywords": [
-                "dùng cho các giao dịch hoàn tiền",
                 "hủy hoặc đảo giao dịch để tham chiếu lại giao dịch cũ",
-                "số gốc yêu cầu",
+                "dùng cho các giao dịch hoàn tiền",
                 "mã gốc yêu cầu",
-                "mã yêu cầu gốc"
+                "mã yêu cầu gốc",
+                "số gốc yêu cầu"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -239,11 +239,11 @@
             "role": "IDENTITY",
             "description": "Loại dữ liệu đầu vào (ví dụ: MANUAL - nhập tay, QRCODE - quét mã, CONTACT - chọn từ danh bạ).",
             "suggested_keywords": [
+                "loại nội dung",
                 "contact - chọn từ danh bạ",
                 "loại đầu vào",
-                "loại nội dung",
-                "qrcode - quét mã",
-                "manual - nhập tay"
+                "manual - nhập tay",
+                "qrcode - quét mã"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -253,9 +253,9 @@
             "role": "IDENTITY",
             "description": "Giá trị đầu vào tương ứng (ví dụ: chuỗi mã QR, số điện thoại được chọn).",
             "suggested_keywords": [
-                "số điện thoại được chọn",
                 "chuỗi mã qr",
-                "nội dung số tiền"
+                "nội dung số tiền",
+                "số điện thoại được chọn"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -265,9 +265,9 @@
             "role": "IDENTITY",
             "description": "Mã hệ thống nguồn khởi tạo giao dịch (nếu giao dịch đến từ đối tác hoặc hệ thống vệ tinh).",
             "suggested_keywords": [
+                "số từ hệ thống",
                 "nếu giao dịch đến từ đối tác hoặc hệ thống vệ tinh",
-                "mã từ hệ thống",
-                "số từ hệ thống"
+                "mã từ hệ thống"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -277,10 +277,10 @@
             "role": "IDENTITY",
             "description": "ID khách hàng của người chuyển tiền/người thanh toán.",
             "suggested_keywords": [
+                "thanh toán",
                 "số từ khách hàng",
                 "mã từ khách hàng",
-                "khách hàng chuyển tiền",
-                "thanh toán"
+                "khách hàng chuyển tiền"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -290,8 +290,8 @@
             "role": "IDENTITY",
             "description": "Mã CIF (Customer Information File) hoặc mã khách hàng của người chuyển.",
             "suggested_keywords": [
-                "customer information file",
-                "số từ khách hàng"
+                "số từ khách hàng",
+                "customer information file"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -311,10 +311,10 @@
             "role": "DIMENSION",
             "description": "Hạng hoặc nhóm tài khoản nguồn (ví dụ: DDA - thanh toán, FD - tiết kiệm).",
             "suggested_keywords": [
-                "fd - tiết kiệm",
                 "loại từ tài khoản",
+                "hạng nhóm tài khoản nguồn",
                 "dda - thanh toán",
-                "hạng nhóm tài khoản nguồn"
+                "fd - tiết kiệm"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -334,9 +334,9 @@
             "role": "IDENTITY",
             "description": "Số tài khoản của người chuyển tiền (tài khoản nguồn).",
             "suggested_keywords": [
+                "tài khoản nguồn",
                 "số từ tài khoản",
-                "số tài khoản chuyển tiền",
-                "tài khoản nguồn"
+                "số tài khoản chuyển tiền"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -386,13 +386,13 @@
             "role": "IDENTITY",
             "description": "Mã hệ thống đích (nơi nhận tiền/giao dịch), ví dụ: NAPAS, CITAD, CORE_BANKING.",
             "suggested_keywords": [
-                "mã đến hệ thống",
-                "nơi nhận tiền/giao dịch",
                 "core banking",
-                "mã đích",
+                "mã đến hệ thống",
+                "citad",
                 "số đến hệ thống",
-                "ví dụ napas",
-                "citad"
+                "mã đích",
+                "nơi nhận tiền/giao dịch",
+                "ví dụ napas"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -403,8 +403,8 @@
             "description": "Mã khách hàng của người thụ hưởng (nếu là chuyển khoản nội bộ).",
             "suggested_keywords": [
                 "mã khách hàng thụ hưởng",
-                "nếu là chuyển khoản nội bộ",
-                "số đến khách hàng"
+                "số đến khách hàng",
+                "nếu là chuyển khoản nội bộ"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -424,9 +424,9 @@
             "role": "IDENTITY",
             "description": "Số tài khoản của người nhận tiền (tài khoản đích).",
             "suggested_keywords": [
-                "số tài khoản nhận tiền",
+                "số đến tài khoản",
                 "tài khoản đích",
-                "số đến tài khoản"
+                "số tài khoản nhận tiền"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -467,8 +467,8 @@
             "role": "DIMENSION",
             "description": "Tên đầy đủ của chủ tài khoản đích (người nhận).",
             "suggested_keywords": [
-                "đến tài khoản tên đầy đủ",
-                "người nhận"
+                "người nhận",
+                "đến tài khoản tên đầy đủ"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -489,8 +489,8 @@
             "description": "Tên đăng nhập của người nhận (nếu người nhận cũng dùng chung hệ thống).",
             "suggested_keywords": [
                 "nếu người nhận cũng dùng chung hệ thống",
-                "tên đến người dùng",
-                "tên đăng nhập nhận"
+                "tên đăng nhập nhận",
+                "tên đến người dùng"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -500,9 +500,9 @@
             "role": "METRIC",
             "description": "Số tiền giao dịch gốc (số tiền người dùng nhập để chuyển).",
             "suggested_keywords": [
-                "số tiền người dùng nhập để chuyển",
                 "số tiền mã giao dịch",
-                "số tiền giao dịch gốc"
+                "số tiền giao dịch gốc",
+                "số tiền người dùng nhập để chuyển"
             ],
             "sql_logic": "SUM({col})",
             "value_ref": null
@@ -533,8 +533,8 @@
             "role": "METRIC",
             "description": "Số tiền bị phong tỏa (hold) tạm thời trước khi hạch toán thực tế.",
             "suggested_keywords": [
-                "trạng thái số tiền",
-                "hold"
+                "hold",
+                "trạng thái số tiền"
             ],
             "sql_logic": "SUM({col})",
             "value_ref": null
@@ -554,9 +554,9 @@
             "role": "DIMENSION",
             "description": "Đối tượng chịu phí (Người chuyển trả SENDER hay Người nhận trả RECEIVER).",
             "suggested_keywords": [
+                "phí nội dung sản phẩm",
                 "người chuyển trả sender hay người nhận trả receiver",
-                "đối tượng chịu phí",
-                "phí nội dung sản phẩm"
+                "đối tượng chịu phí"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -576,8 +576,8 @@
             "role": "DIMENSION",
             "description": "Loại tiền tệ của phí.",
             "suggested_keywords": [
-                "phí loại tiền",
-                "loại tiền tệ phí"
+                "loại tiền tệ phí",
+                "phí loại tiền"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": "CURRENCY"
@@ -587,9 +587,9 @@
             "role": "DIMENSION",
             "description": "Tỷ giá quy đổi phí (nếu loại tiền phí khác loại tiền tài khoản).",
             "suggested_keywords": [
+                "phí số tiền lãi suất",
                 "tỷ giá quy đổi phí",
-                "nếu loại tiền phí khác loại tiền tài khoản",
-                "phí số tiền lãi suất"
+                "nếu loại tiền phí khác loại tiền tài khoản"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -610,9 +610,9 @@
             "role": "METRIC",
             "description": "Số tiền hoa hồng trả cho đại lý/đối tác (nếu có).",
             "suggested_keywords": [
+                "đối tác",
                 "nếu có",
-                "hoa hồng số tiền",
-                "đối tác"
+                "hoa hồng số tiền"
             ],
             "sql_logic": "SUM({col})",
             "value_ref": null
@@ -622,8 +622,8 @@
             "role": "DIMENSION",
             "description": "Loại tiền tệ hoa hồng.",
             "suggested_keywords": [
-                "hoa hồng loại tiền",
-                "loại tiền tệ hoa hồng"
+                "loại tiền tệ hoa hồng",
+                "hoa hồng loại tiền"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": "CURRENCY"
@@ -633,8 +633,8 @@
             "role": "ATTRIBUTE",
             "description": "Tỷ lệ hoa hồng được hưởng.",
             "suggested_keywords": [
-                "hoa hồng lãi suất",
-                "tỷ lệ hoa hồng hưởng"
+                "tỷ lệ hoa hồng hưởng",
+                "hoa hồng lãi suất"
             ],
             "sql_logic": "",
             "value_ref": null
@@ -654,9 +654,9 @@
             "role": "IDENTITY",
             "description": "Số tiền được khuyến mãi/giảm giá trực tiếp.",
             "suggested_keywords": [
-                "giảm giá trực tiếp",
+                "nội dung số tiền",
                 "số tiền khuyến mãi",
-                "nội dung số tiền"
+                "giảm giá trực tiếp"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -666,8 +666,8 @@
             "role": "IDENTITY",
             "description": "Loại tiền tệ khuyến mãi.",
             "suggested_keywords": [
-                "loại tiền tệ khuyến mãi",
-                "nội dung loại tiền"
+                "nội dung loại tiền",
+                "loại tiền tệ khuyến mãi"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -677,8 +677,8 @@
             "role": "IDENTITY",
             "description": "Tỷ lệ khuyến mãi.",
             "suggested_keywords": [
-                "tỷ lệ khuyến mãi",
-                "nội dung lãi suất"
+                "nội dung lãi suất",
+                "tỷ lệ khuyến mãi"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -698,9 +698,9 @@
             "role": "IDENTITY",
             "description": "Số tham chiếu giao dịch (Reference Number), thường dùng để in lên biên lai hoặc tra cứu.",
             "suggested_keywords": [
-                "số giao dịch tham chiếu",
+                "reference number",
                 "số tham chiếu giao dịch",
-                "reference number"
+                "số giao dịch tham chiếu"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -711,8 +711,8 @@
             "description": "Tên hiển thị của giao dịch (ví dụ: \"Chuyển tiền nhanh 24/7\").",
             "suggested_keywords": [
                 "tên giao dịch",
-                "tên hiển thị giao dịch",
-                "\"chuyển tiền nhanh 24/7\""
+                "\"chuyển tiền nhanh 24/7\"",
+                "tên hiển thị giao dịch"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -732,10 +732,10 @@
             "role": "ATTRIBUTE",
             "description": "Thông tin bổ sung dạng text/JSON (metadata mở rộng).",
             "suggested_keywords": [
-                "json",
                 "giao dịch nội dung",
+                "bổ sung dạng text",
                 "metadata mở rộng",
-                "bổ sung dạng text"
+                "json"
             ],
             "sql_logic": "",
             "value_ref": null
@@ -766,9 +766,9 @@
             "role": "DIMENSION",
             "description": "Kênh gửi yêu cầu (tương tự channel_receiver).",
             "suggested_keywords": [
-                "yêu cầu kênh",
                 "tương tự channel_receiver",
-                "kênh gửi yêu cầu"
+                "kênh gửi yêu cầu",
+                "yêu cầu kênh"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": "CHANNEL"
@@ -792,8 +792,8 @@
             "description": "Số tham chiếu của giao dịch hoàn tiền/đảo ngược (nếu giao dịch này là giao dịch hoàn).",
             "suggested_keywords": [
                 "số giao dịch trạng thái tham chiếu",
-                "nếu giao dịch này là giao dịch hoàn",
-                "đảo ngược"
+                "đảo ngược",
+                "nếu giao dịch này là giao dịch hoàn"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -803,11 +803,11 @@
             "role": "IDENTITY",
             "description": "Mã đối tác tích hợp (ví dụ: VNPAY, MOMO, ZALOPAY) nếu là thanh toán dịch vụ.",
             "suggested_keywords": [
+                "momo",
                 "vnpay",
-                "số nội dung",
                 "mã nội dung",
                 "zalopay",
-                "momo"
+                "số nội dung"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -827,11 +827,11 @@
             "role": "IDENTITY",
             "description": "Mã phản hồi từ hệ thống (ví dụ: 00 - Thành công, 01 - Lỗi chung).",
             "suggested_keywords": [
-                "01 - lỗi chung",
-                "mã trạng thái",
                 "số trạng thái",
+                "mã trạng thái",
+                "mã phản hồi từ",
                 "00 - thành công",
-                "mã phản hồi từ"
+                "01 - lỗi chung"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -841,8 +841,8 @@
             "role": "ATTRIBUTE",
             "description": "Thông báo phản hồi chi tiết (ví dụ: \"Giao dịch thành công\", \"Số dư không đủ\").",
             "suggested_keywords": [
-                "trạng thái nội dung",
                 "\"giao dịch thành công\"",
+                "trạng thái nội dung",
                 "\"số dư không đủ\""
             ],
             "sql_logic": "",
@@ -866,8 +866,8 @@
             "description": "Mã lỗi kỹ thuật chi tiết (dùng cho đội kỹ thuật tra cứu lỗi).",
             "suggested_keywords": [
                 "số trạng thái",
-                "mã trạng thái",
-                "dùng cho đội kỹ thuật tra cứu lỗi"
+                "dùng cho đội kỹ thuật tra cứu lỗi",
+                "mã trạng thái"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -877,9 +877,9 @@
             "role": "ATTRIBUTE",
             "description": "Lưu toàn bộ nội dung gói tin phản hồi (Response Body) để phục vụ tra soát/Audit.",
             "suggested_keywords": [
-                "response body",
                 "audit",
-                "giao dịch trạng thái"
+                "giao dịch trạng thái",
+                "response body"
             ],
             "sql_logic": "",
             "value_ref": null
@@ -890,11 +890,11 @@
             "description": "ID của người duyệt giao dịch (Kiểm soát viên) - dùng trong mô hình Maker/Checker.",
             "suggested_keywords": [
                 "duyệt giao dịch",
-                "checker",
+                "mô hình maker",
                 "mã checker",
-                "kiểm soát viên",
+                "checker",
                 "số checker",
-                "mô hình maker"
+                "kiểm soát viên"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -904,8 +904,8 @@
             "role": "TEMPORAL",
             "description": "Thời gian duyệt giao dịch.",
             "suggested_keywords": [
-                "ngày checker",
-                "thời gian duyệt giao dịch"
+                "thời gian duyệt giao dịch",
+                "ngày checker"
             ],
             "sql_logic": "WHERE {col} BETWEEN '{start}' AND '{end}'",
             "value_ref": null
@@ -915,12 +915,12 @@
             "role": "IDENTITY",
             "description": "ID của người tạo lệnh giao dịch (Giao dịch viên) - dùng trong mô hình Maker/Checker.",
             "suggested_keywords": [
+                "số sản phẩm",
                 "mã sản phẩm",
-                "checker",
                 "giao dịch viên",
                 "mô hình maker",
                 "tạo lệnh giao dịch",
-                "số sản phẩm"
+                "checker"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -941,11 +941,11 @@
             "role": "DIMENSION",
             "description": "Trạng thái phê duyệt (ví dụ: A - Approved, R - Rejected, P - Pending).",
             "suggested_keywords": [
-                "a - approved",
-                "phê duyệt trạng thái",
-                "trạng thái phê duyệt",
                 "r - rejected",
-                "p - pending"
+                "phê duyệt trạng thái",
+                "p - pending",
+                "a - approved",
+                "trạng thái phê duyệt"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": "STATUS"
@@ -955,8 +955,8 @@
             "role": "DIMENSION",
             "description": "Trạng thái cuối cùng của giao dịch (Thành công/Thất bại/Chờ xử lý/Timeout).",
             "suggested_keywords": [
-                "thành công/thất bại/chờ xử lý/timeout",
-                "giao dịch trạng thái"
+                "giao dịch trạng thái",
+                "thành công/thất bại/chờ xử lý/timeout"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": "STATUS"
@@ -966,9 +966,9 @@
             "role": "DIMENSION",
             "description": "Tên hệ thống Core Banking xử lý hạch toán (ví dụ: T24, FLEXCUBE).",
             "suggested_keywords": [
-                "nội dung hệ thống",
+                "t24",
                 "flexcube",
-                "t24"
+                "nội dung hệ thống"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -978,8 +978,8 @@
             "role": "IDENTITY",
             "description": "Số bút toán (FT ID) được sinh ra trong Core Banking.",
             "suggested_keywords": [
-                "số nội dung tham chiếu",
-                "ft id"
+                "ft id",
+                "số nội dung tham chiếu"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -989,8 +989,8 @@
             "role": "IDENTITY",
             "description": "Số bút toán đảo trong Core Banking (nếu có).",
             "suggested_keywords": [
-                "nếu có",
-                "số nội dung trạng thái tham chiếu"
+                "số nội dung trạng thái tham chiếu",
+                "nếu có"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -1030,9 +1030,9 @@
             "role": "IDENTITY",
             "description": "Mã khách hàng trên hóa đơn (ví dụ: Mã danh bộ nước, Mã khách hàng điện lực).",
             "suggested_keywords": [
-                "mã danh bộ nước",
-                "số hóa đơn khách hàng",
                 "mã hóa đơn khách hàng",
+                "số hóa đơn khách hàng",
+                "mã danh bộ nước",
                 "mã khách hàng điện lực"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
@@ -1073,9 +1073,9 @@
             "role": "IDENTITY",
             "description": "Mã định danh của hóa đơn trong hệ thống.",
             "suggested_keywords": [
-                "mã định danh hóa đơn",
                 "số hóa đơn",
-                "mã hóa đơn"
+                "mã hóa đơn",
+                "mã định danh hóa đơn"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -1086,10 +1086,10 @@
             "description": "Loại hóa đơn (Điện, Nước, Internet, Truyền hình).",
             "suggested_keywords": [
                 "nước",
+                "điện",
                 "truyền hình",
-                "loại hóa đơn",
                 "internet",
-                "điện"
+                "loại hóa đơn"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -1099,8 +1099,8 @@
             "role": "IDENTITY",
             "description": "Mã tra cứu hóa đơn.",
             "suggested_keywords": [
-                "mã tra cứu hóa đơn",
                 "số hóa đơn",
+                "mã tra cứu hóa đơn",
                 "mã hóa đơn"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
@@ -1111,8 +1111,8 @@
             "role": "DIMENSION",
             "description": "Loại tiền tệ của hóa đơn.",
             "suggested_keywords": [
-                "loại tiền tệ hóa đơn",
-                "hóa đơn loại tiền"
+                "hóa đơn loại tiền",
+                "loại tiền tệ hóa đơn"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": "CURRENCY"
@@ -1142,9 +1142,9 @@
             "role": "ATTRIBUTE",
             "description": "Kỳ thanh toán (ví dụ: \"10/2025\").",
             "suggested_keywords": [
-                "\"10/2025\"",
                 "kỳ thanh toán",
-                "hóa đơn cycle"
+                "hóa đơn cycle",
+                "\"10/2025\""
             ],
             "sql_logic": "",
             "value_ref": null
@@ -1154,8 +1154,8 @@
             "role": "ATTRIBUTE",
             "description": "Tổng sản lượng tiêu thụ ghi trên hóa đơn (số điện, số khối nước).",
             "suggested_keywords": [
-                "hóa đơn phí khách hàng",
                 "số khối nước",
+                "hóa đơn phí khách hàng",
                 "số điện"
             ],
             "sql_logic": "",
@@ -1176,9 +1176,9 @@
             "role": "ATTRIBUTE",
             "description": "Thông tin khác về hóa đơn (metadata mở rộng).",
             "suggested_keywords": [
-                "hóa đơn nội dung nội dung",
+                "metadata mở rộng",
                 "khác về hóa đơn",
-                "metadata mở rộng"
+                "hóa đơn nội dung nội dung"
             ],
             "sql_logic": "",
             "value_ref": null
@@ -1188,8 +1188,8 @@
             "role": "ATTRIBUTE",
             "description": "Số lượng hóa đơn được thanh toán trong giao dịch này (nếu thanh toán gộp).",
             "suggested_keywords": [
-                "số trạng thái tiền tệ",
-                "nếu thanh toán gộp"
+                "nếu thanh toán gộp",
+                "số trạng thái tiền tệ"
             ],
             "sql_logic": "",
             "value_ref": null
@@ -1221,8 +1221,8 @@
             "description": "Số tiền chiết khấu (thường dùng trong thanh toán hóa đơn).",
             "suggested_keywords": [
                 "số tiền chiết khấu",
-                "phí số tiền",
-                "thường dùng trong thanh toán hóa đơn"
+                "thường dùng trong thanh toán hóa đơn",
+                "phí số tiền"
             ],
             "sql_logic": "SUM({col})",
             "value_ref": null
@@ -1232,8 +1232,8 @@
             "role": "METRIC",
             "description": "Số tiền người dùng nhập vào ban đầu (trước khi tính phí/thuế).",
             "suggested_keywords": [
-                "trước khi tính phí/thuế",
-                "nội dung số tiền"
+                "nội dung số tiền",
+                "trước khi tính phí/thuế"
             ],
             "sql_logic": "SUM({col})",
             "value_ref": null
@@ -1243,9 +1243,9 @@
             "role": "TEMPORAL",
             "description": "Thời gian tiền về (đối với giao dịch nhận tiền).",
             "suggested_keywords": [
-                "đối với giao dịch nhận tiền",
+                "thời gian tiền về",
                 "nội dung giờ",
-                "thời gian tiền về"
+                "đối với giao dịch nhận tiền"
             ],
             "sql_logic": "WHERE {col} BETWEEN '{start}' AND '{end}'",
             "value_ref": null
@@ -1255,9 +1255,9 @@
             "role": "METRIC",
             "description": "Số tiền thuế VAT (thường tính trên phí dịch vụ).",
             "suggested_keywords": [
-                "trạng thái số tiền",
+                "số tiền thuế vat",
                 "thường tính trên phí dịch vụ",
-                "số tiền thuế vat"
+                "trạng thái số tiền"
             ],
             "sql_logic": "SUM({col})",
             "value_ref": null
@@ -1277,8 +1277,8 @@
             "role": "ATTRIBUTE",
             "description": "Cờ đánh dấu (YES/NO) xem giao dịch đã được hạch toán online vào Core Banking chưa.",
             "suggested_keywords": [
-                "yes/no",
-                "ngân hàng nội dung"
+                "ngân hàng nội dung",
+                "yes/no"
             ],
             "sql_logic": "",
             "value_ref": null
@@ -1300,11 +1300,11 @@
             "role": "DIMENSION",
             "description": "Loại nguồn tiền (ví dụ: ACCOUNT - Tài khoản thanh toán, CARD - Thẻ, EWALLET - Ví).",
             "suggested_keywords": [
-                "loại nguồn",
-                "loại nguồn tiền",
                 "card - thẻ",
                 "account - tài khoản thanh toán",
-                "ewallet - ví"
+                "loại nguồn tiền",
+                "ewallet - ví",
+                "loại nguồn"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": "CHANNEL"
@@ -1314,9 +1314,9 @@
             "role": "IDENTITY",
             "description": "Số thẻ (thường được mã hóa hoặc che bớt số) nếu nguồn tiền là thẻ.",
             "suggested_keywords": [
+                "số số tài khoản",
                 "số thẻ nguồn tiền thẻ",
-                "thường được mã hóa hoặc che bớt số",
-                "số số tài khoản"
+                "thường được mã hóa hoặc che bớt số"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -1347,12 +1347,12 @@
             "role": "IDENTITY",
             "description": "Mã danh mục giao dịch (dùng để phân loại chi tiêu, ví dụ: \"Ăn uống\", \"Đi lại\").",
             "suggested_keywords": [
-                "\"đi lại\"",
-                "số nội dung",
-                "mã nội dung",
                 "dùng để phân loại chi tiêu",
+                "mã nội dung",
                 "mã danh mục giao dịch",
-                "ví dụ: \"ăn uống\""
+                "ví dụ: \"ăn uống\"",
+                "\"đi lại\"",
+                "số nội dung"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
@@ -1372,10 +1372,10 @@
             "role": "IDENTITY",
             "description": "Mã CIF (Customer Information File) của người chuyển (tương tự from_cust_no nhưng thường dùng định danh Core Banking).",
             "suggested_keywords": [
-                "tương tự from_cust_no nhưng thường dùng định danh core banking",
-                "customer information file",
+                "số từ khách hàng",
                 "mã cif chuyển",
-                "số từ khách hàng"
+                "tương tự from_cust_no nhưng thường dùng định danh core banking",
+                "customer information file"
             ],
             "sql_logic": "WHERE {col} = '{val}'",
             "value_ref": null
