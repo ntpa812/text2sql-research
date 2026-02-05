@@ -1,7 +1,6 @@
 import os
-os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE" 
+os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 import torch
-
 import time
 import json
 from pathlib import Path
@@ -11,6 +10,11 @@ from rule_engine.generator import RuleBasedGenerator
 from rule_engine.dict_builder import DictionaryBuilder 
 
 from configs.dictionary import COMMON_DICTIONARY
+
+try:
+    from rule_engine.dl_utils import LocalParaphraser
+except ImportError:
+    LocalParaphraser = None
 
 def run_batch_pipeline():
     
@@ -28,6 +32,11 @@ def run_batch_pipeline():
 
     input_files = list(INPUT_DIR.glob("*.xlsx")) + list(INPUT_DIR.glob("*.csv"))
 
+    ai_model = None
+    if LocalParaphraser:
+        print("Đang khởi động AI Engine...")
+        ai_model = LocalParaphraser() 
+
     profiler = SemanticProfiler()
     dict_builder = DictionaryBuilder()
     
@@ -40,21 +49,20 @@ def run_batch_pipeline():
     print("-" * 50)
 
     for file_path in input_files:
-        table_name = file_path.stem  
-        start_time = time.time()
-        
+        table_name = file_path.stem.split(' - ')[0] 
         print(f"[*] Xử lý bảng: {table_name}")
-
+        
         try:
-            profile_json_path = PROFILE_DIR / f"{table_name}.json"
-            
-            profile_data = profiler.analyze_file(str(file_path), table_name=table_name)
-            profiler.save_profile(profile_data, str(profile_json_path))
-            print("Done.")
+            start_time = time.time()
 
-            
-            new_specifics = dict_builder.build_from_profile_data(profile_data)
-            
+            profile = profiler.analyze_file(str(file_path), table_name)
+            profile_json_path = PROFILE_DIR / f"{table_name}.json"
+            profiler.save_profile(profile, str(profile_json_path))
+
+            new_specifics = dict_builder.process_file(file_path)
+            print(f"Done. (Profile xong)")
+
+            print(f"[*] DictBuilder đang học từ {len(new_specifics)} cột của bảng {table_name}...")
             for col, keywords in new_specifics.items():
                 if col in runtime_dictionary["specific_columns"]:
                     existing = set(runtime_dictionary["specific_columns"][col])
@@ -65,7 +73,7 @@ def run_batch_pipeline():
             
             print(f"Done. (Biết thêm {len(new_specifics)} cột)")
 
-            generator = RuleBasedGenerator(vocab=runtime_dictionary, use_ai=True)
+            generator = RuleBasedGenerator(vocab=runtime_dictionary, ai_model=ai_model) 
 
             dataset = generator.generate_dataset(str(profile_json_path))
 
@@ -73,7 +81,7 @@ def run_batch_pipeline():
             generator.export_excel(dataset, str(output_excel_path))
 
             elapsed = time.time() - start_time
-            print(f"Done! ({len(dataset)} intents)")
+            print(f"Xong bảng {table_name} trong {elapsed:.2f}s ({len(dataset)} intents)")
 
         except Exception as e:
             print(f"\n❌ LỖI khi xử lý {table_name}: {e}")
@@ -88,7 +96,6 @@ def run_batch_pipeline():
     print("\n" + "="*50)
     print(f"HOÀN TẤT! Đã lưu dictionary học được tại configs/learned_dictionary_dump.json")
     print(f"Thư mục kết quả: {OUTPUT_DIR}")
-    print("="*50)
 
 if __name__ == "__main__":
     run_batch_pipeline()

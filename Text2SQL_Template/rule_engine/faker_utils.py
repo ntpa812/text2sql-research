@@ -22,10 +22,14 @@ class DataFaker:
         self.dict_currency = self.vocab.get("CURRENCY", {})
 
     def _generate_random_code(self):
-        """Sinh mã ngẫu nhiên: CODE_ABC12"""
         prefix = random.choice(["TYPE", "MODE", "CAT", "GRP"])
         suffix = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
         return f"{prefix}_{suffix}"
+    
+    def _generate_person_name(self):
+        if self.use_faker:
+            return faker.name()
+        return "Nguyễn Văn A"
     
     def _get_random_synonym(self, dictionary_group):
         if not dictionary_group: 
@@ -38,7 +42,6 @@ class DataFaker:
         return random.choice(synonyms)
 
     def _generate_date(self, range_days=365):
-        """Sinh ngày ngẫu nhiên trong khoảng range_days"""
         if self.use_faker:
             start_str = f'-{range_days}d'
             return faker.date_between(start_date=start_str, end_date='today').strftime('%Y-%m-%d')
@@ -59,7 +62,6 @@ class DataFaker:
         return str(random.randint(100, 999))
     
     def _generate_amount(self):
-        """Sinh số tiền ngẫu nhiên chẵn"""
         base = random.randint(1, 100)
         multiplier = random.choice([10000, 50000, 100000, 1000000])
         return str(base * multiplier)
@@ -78,12 +80,23 @@ class DataFaker:
         if any(x in col for x in ["curr", "ccy", "tien_te", "don_vi"]):
             return self._get_random_synonym(self.dict_currency)
         
+        if any(x in col for x in ["name", "ten", "fullname", "nguoi", "chu_tk", "khach_hang"]):
+            if not any(exclude in col for exclude in ["user", "file", "img", "anh", "id", "code"]):
+                return self._generate_person_name()
+            
         if "type" in col:
             return self._get_random_synonym(self.dict_type)
 
         if any(x in col for x in ["date", "time"]): return self._generate_date()
         if any(x in col for x in ["amount", "bal", "fee", "limit", "gia_tri"]): return self._generate_amount()
         if any(x in col for x in ["id", "no", "code"]): return self._generate_id(col)
-        
-        if self.use_faker: return self._generate_random_code()
-        return "123"
+    
+        if role == "IDENTITY" or any(x in col for x in ["id", "ma", "no", "number", "key"]):
+            if any(x in col for x in ["account", "card", "tk", "the", "cif"]):
+                return "".join(random.choices(string.digits, k=random.randint(9, 14)))
+            return str(random.randint(100, 999999))
+            
+        return str(random.randint(100, 999))
+    
+        # if self.use_faker: return self._generate_random_code()
+        # return "123"

@@ -14,14 +14,14 @@ except ImportError:
     LocalParaphraser = None
     
 class RuleBasedGenerator:
-    def __init__(self, vocab=None, use_ai=False):
+    def __init__(self, vocab=None, ai_model=None):
         self.faker = DataFaker()
         self.grammar = GrammarLibrary()
         self.NUM_EXAMPLES = 10
-        self.use_ai = use_ai
-        
+        self.ai_model = ai_model
         self.paraphraser = None
-        if self.use_ai and LocalParaphraser:
+        
+        if self.ai_model and LocalParaphraser:
             self.paraphraser = LocalParaphraser()
         
         if vocab:
@@ -316,6 +316,8 @@ class RuleBasedGenerator:
 
         table_syns = self._get_table_synonyms(table_name)
         main_noun = table_syns[0]
+        
+        OVERSAMPLING_FACTOR = 3
 
         for col in columns:
             role = col["role"]
@@ -330,7 +332,7 @@ class RuleBasedGenerator:
             
             all_examples = []
             
-            for _ in range(5):
+            for _ in range(OVERSAMPLING_FACTOR):
                 val = self.faker.get_fake_value(col_raw, role)
                 
                 for syn in synonyms:
@@ -438,14 +440,14 @@ class RuleBasedGenerator:
                     "keyword": "loại giao dịch theo số tiền"
                 })
 
-        if self.use_ai and self.paraphraser and self.paraphraser.is_ready:
+        if self.ai_model and self.paraphraser and self.paraphraser.is_ready:
             print(f"> Đang dùng AI ({self.paraphraser.device}) để viết lại câu...")
             
             for item in dataset:
                 original = item["examples"]
                 if not original: continue
                 
-                sample_inputs = original[:3]
+                sample_inputs = original[:1]
                 new_variants = []
                 
                 for ex in sample_inputs:
