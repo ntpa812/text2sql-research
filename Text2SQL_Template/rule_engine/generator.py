@@ -22,7 +22,8 @@ class RuleBasedGenerator:
         self.paraphraser = None
         
         if self.ai_model and LocalParaphraser:
-            self.paraphraser = LocalParaphraser()
+            model_path = ai_model if isinstance(ai_model, str) else "models/my_banking_ai"
+            self.paraphraser = LocalParaphraser(model_path=model_path)
         
         if vocab:
             self.vocab = vocab
@@ -63,13 +64,10 @@ class RuleBasedGenerator:
         suggested_synonyms = suggested if suggested else []
         final_synonyms = set(dict_synonyms)
         final_synonyms.update(suggested_synonyms)
-        
         final_synonyms.add(col_name)
-        
         return list(final_synonyms)
     
     def _get_canonical_name(self, col_name: str, suggested: List[str] = None) -> str:
-
         specific_cols = self.vocab.get("specific_columns", {})
         if col_name in specific_cols and specific_cols[col_name]:
             return specific_cols[col_name][0] 
@@ -81,11 +79,6 @@ class RuleBasedGenerator:
             return mapping[col_name][0]
         if clean_col in mapping:
             return mapping[clean_col][0]
-
-        # if suggested:
-        #     valid_suggests = [s for s in suggested if len(s) > 1]
-        #     if valid_suggests:
-        #         return min(valid_suggests, key=len)
 
         return col_name
 
@@ -441,24 +434,31 @@ class RuleBasedGenerator:
                 })
 
         if self.ai_model and self.paraphraser and self.paraphraser.is_ready:
-            print(f"> Đang dùng AI ({self.paraphraser.device}) để viết lại câu...")
+            print(f"> Đang dùng AI ({self.paraphraser.device}) để chau chuốt lại {len(dataset)} nhóm câu hỏi...")
             
-            for item in dataset:
-                original = item["examples"]
-                if not original: continue
+            for idx, item in enumerate(dataset):
+                original_examples = item.get("examples", [])
+                if not original_examples: continue
                 
-                sample_inputs = original[:1]
-                new_variants = []
+                seed_samples = original_examples[:2]
+                ai_generated = []
                 
-                for ex in sample_inputs:
-                    variants = self.paraphraser.paraphrase(ex, num_return_sequences=2)
-                    new_variants.extend(variants)
+                for seed in seed_samples:
+                    try:
+                        variants = self.paraphraser.paraphrase(seed, num_return=2)
+                        ai_generated.extend(variants)
+                    except Exception:
+                        continue
                 
-                combined = list(set(original + new_variants))
+                combined = list(set(original_examples + ai_generated))
+                
                 if len(combined) > self.NUM_EXAMPLES:
                     item["examples"] = random.sample(combined, self.NUM_EXAMPLES)
                 else:
                     item["examples"] = combined
+                
+                if idx > 0 and idx % 5 == 0:
+                    print(f"  - Đã xử lý xong {idx}/{len(dataset)} intents")
         
         return dataset
 

@@ -1501,3 +1501,104 @@
 {"input": "paraphrase: Xem chi tiết giao dịch ngoại tệ theo mã FX404040.", "target": "Người dùng muốn tra cứu một giao dịch ngoại tệ cụ thể dựa trên mã giao dịch."}
 {"input": "paraphrase: Tra cứu giao dịch ngoại tệ theo số giao dịch FX505050.", "target": "Người dùng muốn tra cứu một giao dịch ngoại tệ cụ thể dựa trên mã giao dịch."}
 {"input": "paraphrase: Cho tôi xem giao dịch ngoại tệ ứng với mã giao dịch FX606060.", "target": "Người dùng muốn tra cứu một giao dịch ngoại tệ cụ thể dựa trên mã giao dịch."}
+{"input": "paraphrase: Xem thông tin cá nhân cơ bản của tôi", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Cho tôi biết thông tin cá nhân của mình", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Tôi muốn xem hồ sơ cá nhân của tôi", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Họ tên và ngày sinh của tôi là gì?", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Kiểm tra thông tin cá nhân đã đăng ký", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Tôi đã đăng ký thông tin cá nhân như thế nào?", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Xem profile cá nhân của tôi", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Thông tin người dùng của tôi gồm những gì?", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Cho tôi xem thông tin hồ sơ cá nhân", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Tôi muốn kiểm tra thông tin cá nhân trong hệ thống", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Quốc tịch của tôi đang được lưu là gì?", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Cho biết thông tin cá nhân cơ bản của tôi", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Hồ sơ cá nhân của tôi hiện tại gồm những thông tin nào?", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Thông tin user của tôi", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Xem thông tin cá nhân trong hồ sơ khách hàng", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Tôi muốn xác nhận thông tin cá nhân của mình", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Thông tin cơ bản của tôi là gì?", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Hệ thống đang ghi nhận giới tính của tôi là gì?", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Hiển thị chi tiết họ tên", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: ngày sinh và quốc tịch của tôi", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Cho tôi xem lại các thông tin cơ bản đã khai báo với ngân hàng", "target": "Người dùng muốn xem thông tin cá nhân cơ bản của mình"}
+{"input": "paraphrase: Tôi đã định danh tài khoản chưa?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Tài khoản của tôi đã xác thực danh tính chưa?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Tôi đang ở cấp độ định danh nào?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Hồ sơ của tôi đã hoàn tất KYC chưa?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Tôi đã eKYC thành công chưa?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Trạng thái định danh của tôi hiện tại là gì?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Tài khoản của tôi đang ở mức KYC mấy?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Tôi đã xác minh thông tin cá nhân chưa?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Tình trạng định danh tài khoản của tôi như thế nào?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Tôi có cần thực hiện định danh bổ sung không?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Hồ sơ định danh của tôi đã hợp lệ chưa?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Tài khoản của tôi đã được xác thực chưa?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Tôi đã hoàn tất xác minh danh tính chưa?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Trạng thái KYC hiện tại của tôi là gì?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Tôi đã xác thực thông tin định danh chưa?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Hồ sơ khách hàng của tôi đã được định danh chưa?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Tôi có bị hạn chế do chưa định danh không?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Tài khoản của tôi đã đủ điều kiện định danh chưa?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Tôi đang ở mức xác thực nào?", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Kiểm tra trạng thái định danh tài khoản của tôi", "target": "Người dùng muốn xem thông tin định danh và mức độ xác thực tài khoản nhằm xác định quyền hạn giao dịch"}
+{"input": "paraphrase: Kiểm tra trạng thái hồ sơ khách hàng của tôi", "target": "Người dùng muốn kiểm tra trạng thái hiện tại của hồ sơ khách hàng để kiểm soát quyền truy cập ứng dụng"}
+{"input": "paraphrase: Tình trạng khách hàng của tôi hiện nay là gì?", "target": "Người dùng muốn kiểm tra trạng thái hiện tại của hồ sơ khách hàng để kiểm soát quyền truy cập ứng dụng"}
+{"input": "paraphrase: Hồ sơ khách hàng của tôi đang active hay inactive?", "target": "Người dùng muốn kiểm tra trạng thái hiện tại của hồ sơ khách hàng để kiểm soát quyền truy cập ứng dụng"}
+{"input": "paraphrase: Tôi có còn được ngân hàng ghi nhận là khách hàng không?", "target": "Người dùng muốn kiểm tra trạng thái hiện tại của hồ sơ khách hàng để kiểm soát quyền truy cập ứng dụng"}
+{"input": "paraphrase: Hồ sơ của tôi có đang bị tạm ngưng không?", "target": "Người dùng muốn kiểm tra trạng thái hiện tại của hồ sơ khách hàng để kiểm soát quyền truy cập ứng dụng"}
+{"input": "paraphrase: Trạng thái hiện tại của hồ sơ của tôi là gì?", "target": "Người dùng muốn kiểm tra trạng thái hiện tại của hồ sơ khách hàng để kiểm soát quyền truy cập ứng dụng"}
+{"input": "paraphrase: Hồ sơ của tôi đang ở trạng thái nào?", "target": "Người dùng muốn kiểm tra trạng thái hiện tại của hồ sơ khách hàng để kiểm soát quyền truy cập ứng dụng"}
+{"input": "paraphrase: Hồ sơ khách hàng của tôi có bị thay đổi trạng thái không?", "target": "Người dùng muốn kiểm tra trạng thái hiện tại của hồ sơ khách hàng để kiểm soát quyền truy cập ứng dụng"}
+{"input": "paraphrase: Tình trạng hồ sơ của tôi có bị cập nhật gần đây không?", "target": "Người dùng muốn kiểm tra trạng thái hiện tại của hồ sơ khách hàng để kiểm soát quyền truy cập ứng dụng"}
+{"input": "paraphrase: Kiểm tra hồ sơ khách hàng hiện tại của tôi", "target": "Người dùng muốn kiểm tra trạng thái hiện tại của hồ sơ khách hàng để kiểm soát quyền truy cập ứng dụng"}
+{"input": "paraphrase: Tôi đang thuộc hạng khách hàng nào?", "target": "Người dùng muốn xem phân hạng và loại khách hàng của mình để áp dụng chính sách ưu đãi hoặc đặc quyền tương ứng."}
+{"input": "paraphrase: Phân loại khách hàng của tôi là gì?", "target": "Người dùng muốn xem phân hạng và loại khách hàng của mình để áp dụng chính sách ưu đãi hoặc đặc quyền tương ứng."}
+{"input": "paraphrase: Xem phân hạng khách hàng hiện tại", "target": "Người dùng muốn xem phân hạng và loại khách hàng của mình để áp dụng chính sách ưu đãi hoặc đặc quyền tương ứng."}
+{"input": "paraphrase: Tôi thuộc nhóm khách hàng nào của ngân hàng?", "target": "Người dùng muốn xem phân hạng và loại khách hàng của mình để áp dụng chính sách ưu đãi hoặc đặc quyền tương ứng."}
+{"input": "paraphrase: Ngân hàng đang xếp tôi vào hạng khách hàng nào?", "target": "Người dùng muốn xem phân hạng và loại khách hàng của mình để áp dụng chính sách ưu đãi hoặc đặc quyền tương ứng."}
+{"input": "paraphrase: Tôi có phải là khách hàng ưu tiên không?", "target": "Người dùng muốn xem phân hạng và loại khách hàng của mình để áp dụng chính sách ưu đãi hoặc đặc quyền tương ứng."}
+{"input": "paraphrase: Hạng khách hàng hiện tại của tôi là gì?", "target": "Người dùng muốn xem phân hạng và loại khách hàng của mình để áp dụng chính sách ưu đãi hoặc đặc quyền tương ứng."}
+{"input": "paraphrase: Phân hạng khách hàng của tôi hiện tại", "target": "Người dùng muốn xem phân hạng và loại khách hàng của mình để áp dụng chính sách ưu đãi hoặc đặc quyền tương ứng."}
+{"input": "paraphrase: Tôi có phải là khách hàng VIP không?", "target": "Người dùng muốn xem phân hạng và loại khách hàng của mình để áp dụng chính sách ưu đãi hoặc đặc quyền tương ứng."}
+{"input": "paraphrase: Tôi đang ở nhóm khách hàng nào?", "target": "Người dùng muốn xem phân hạng và loại khách hàng của mình để áp dụng chính sách ưu đãi hoặc đặc quyền tương ứng."}
+{"input": "paraphrase: Hồ sơ khách hàng của tôi đang được quản lý tại chi nhánh nào?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Chi nhánh nào đang quản lý hồ sơ của tôi?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Hồ sơ khách hàng của tôi thuộc chi nhánh nào?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Hồ sơ của tôi được mở tại chi nhánh nào?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Hồ sơ của tôi được tạo từ khi nào?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Thông tin khách hàng của tôi được khởi tạo vào ngày nào?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Hồ sơ khách hàng của tôi được tạo trên hệ thống nào?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Hệ thống nào đang quản lý thông tin khách hàng của tôi?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Thông tin quản lý hồ sơ khách hàng của tôi gồm những gì?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Hồ sơ của tôi hiện do đơn vị nào quản lý?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Chi nhánh nào đang phụ trách hồ sơ khách hàng của tôi?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Hồ sơ khách hàng của tôi được tạo ở hệ thống nào?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Hồ sơ của tôi đang được quản lý ra sao?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Kiểm tra thông tin hồ sơ khách hàng của tôi", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Hồ sơ của tôi được đăng ký tại chi nhánh nào?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Thời điểm tạo hồ sơ khách hàng của tôi là khi nào?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Đơn vị quản lý hồ sơ khách hàng hiện tại của tôi là gì?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Thông tin chi nhánh quản lý hồ sơ của tôi", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Kiểm tra nơi quản lý hồ sơ khách hàng của tôi", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Hồ sơ khách hàng của tôi hiện do chi nhánh nào phụ trách?", "target": "Người dùng muốn xem thông tin CIF và chi nhánh đang quản lý hồ sơ, với điều kiện hồ sơ để điều hướng hỗ trợ theo khu vực hoặc đơn vị nghiệp vụ"}
+{"input": "paraphrase: Email tôi đăng ký là gì?", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Số điện thoại của tôi đang lưu trong hệ thống là số nào?", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Tôi đã đăng ký số điện thoại nào?", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Kiểm tra thông tin liên hệ của tôi", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Cho tôi xem email và số điện thoại đã đăng ký", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Địa chỉ liên hệ hiện tại của tôi là gì?", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Tôi muốn xem thông tin liên lạc của mình", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Email và số điện thoại của tôi có đúng không?", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Xem thông tin liên hệ trong hồ sơ khách hàng", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Tôi đang dùng email nào để đăng ký?", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Số điện thoại chính của tôi là gì?", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Kiểm tra địa chỉ tôi đã cung cấp cho ngân hàng", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Thông tin liên hệ của tôi gồm những gì?", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Cho tôi biết địa chỉ đã đăng ký", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Xem thông tin email trong hồ sơ người dùng", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Tôi muốn xác nhận lại thông tin liên hệ", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Ngân hàng đang lưu địa chỉ của tôi như thế nào?", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Xem thông tin liên lạc đã đăng ký của tôi", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Kiểm tra email trong hồ sơ cá nhân", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
+{"input": "paraphrase: Thông tin liên hệ của tôi hiện tại là gì?", "target": "Người dùng muốn xem các thông tin liên hệ đã đăng ký nhằm xác thực hoặc nhận thông báo từ hệ thống"}
