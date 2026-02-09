@@ -1,8 +1,14 @@
+from zipfile import Path
 import torch
 from transformers import AutoTokenizer, AutoModelForTokenClassification
+import os
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+NER_MODEL_PATH = BASE_DIR / "weights" / "ner_ver2"
 
 class NER:
-    def __init__(self, model_path='/home/javis-ai/project/llms/weights/NER/ver2'):
+    def __init__(self, model_path=NER_MODEL_PATH):
         self.model_path = model_path
         self.model = None
         self.tokenizer = None

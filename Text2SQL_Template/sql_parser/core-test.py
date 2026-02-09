@@ -8,8 +8,8 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from configs.dictionary import COMMON_DICTIONARY
 from configs.settings import NER_MODEL_PATH
-# from .ner_engine.ner import NER 
-# from .ner_engine.vietnamese_time_parser import VietnameseTimeParser
+from .ner_engine.ner import NER 
+from .ner_engine.vietnamese_time_parser import VietnameseTimeParser
 
 class SchemaRouter:
     def __init__(self, profile_dir):
@@ -57,10 +57,10 @@ class RuleBasedParser:
         self.table_name = self.profile["table_name"]
         
         print(f"   > Init NER cho bảng {self.table_name}...")
-        # try: self.time_parser = VietnameseTimeParser()
-        # except: self.time_parser = None
-        # try: self.ner_engine = NER(model_path=str(NER_MODEL_PATH))
-        # except: self.ner_engine = None
+        try: self.time_parser = VietnameseTimeParser()
+        except: self.time_parser = None
+        try: self.ner_engine = NER(model_path=str(NER_MODEL_PATH))
+        except: self.ner_engine = None
         
         self.regex_patterns = {
             "NUMBER": r"\b\d+\b",
@@ -178,55 +178,3 @@ class RuleBasedParser:
             "sql": sql, "explanation": f"Entities: {entities}",
             "detected_table": self.table_name, "intent": intent, "error": None
         }
-
-import requests
-import json
-
-class LlamaSQLEngine:
-    def __init__(self, model_name="llama3", base_url="http://localhost:11434/api/generate"):
-        self.model_name = model_name
-        self.base_url = base_url
-
-    def generate_sql(self, user_query, schema_info, entities):
-        # Tạo prompt tối ưu theo kỹ thuật Chain-of-Thought (CoT) trong đặc tả
-        prompt = f"""
-        Bạn là một AI chuyên gia về SQL. Hãy thực hiện các bước sau:
-        1. Phân tích thực thể: {entities}
-        2. Dựa trên Schema: {schema_info}
-        3. Tạo câu lệnh SQL PostgreSQL cho câu hỏi: "{user_query}"
-        
-        Lưu ý: Chỉ trả về mã SQL trong khối ```sql ... ```.
-        """
-        
-        payload = {
-            "model": self.model_name,
-            "prompt": prompt,
-            "stream": False
-        }
-        
-        try:
-            response = requests.post(self.base_url, json=payload)
-            result = response.json()
-            return result.get("response", "")
-        except Exception as e:
-            return f"Error connecting to Llama: {e}"
-
-if __name__ == "__main__":
-    # llama_engine = LlamaSQLEngine()
-    # query = "Lấy tất cả các khách hàng đã đặt hàng trong tháng trước."
-    # schema_context = "Bảng Customers (CustomerID, Name, Email), Bảng Orders (OrderID, CustomerID, OrderDate)"
-    # entities = ["Customers", "Orders"]
-    
-    # sql_result = llama_engine.generate_sql(query, schema_context, entities)
-    # print(sql_result)
-    
-    router = SchemaRouter(profile_dir="../data/schema_profiles/")
-    
-    query = "Tổng số tiền giao dịch của tài khoản 123456 trong hôm nay"
-    result = router.parse(query)
-
-    print("--- KẾT QUẢ OUTPUT ---")
-    print(f"1. Intent: {result['intent']}")
-    print(f"2. Table: {result['detected_table']}")
-    print(f"3. Entities: {result['explanation']}")
-    print(f"4. SQL generated: {result['sql']}")

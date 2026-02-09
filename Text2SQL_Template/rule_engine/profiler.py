@@ -293,3 +293,18 @@ class SemanticProfiler:
     def save_profile(self, profile: Dict, output_path: str):
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(profile, f, ensure_ascii=False, indent=4)
+            
+            
+# if __name__ == "__main__":
+#     current_file_path = Path(__file__).resolve()
+#     project_root = current_file_path.parent.parent  
+    
+#     input_path = project_root / "data" / "source_tables" / "customer.xlsx"
+    
+#     output_path = project_root / "data" / "semantic_profiles" / "customer.json"
+
+#     profiler = SemanticProfiler()
+#     profile = profiler.analyze_file(str(input_path))
+            
+#     profiler.save_profile(profile, str(output_path))
+#     print(f"Thành công! Profile đã được lưu tại: {output_path}")
