@@ -8,3 +8,4 @@ download.py
 .gitignore
 **/fine_tuned_banking_ai/
 **/checkpoints/
+**/my_banking_lora_adapter/
