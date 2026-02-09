@@ -6,3 +6,5 @@ weights/
 *.pt
 download.py
 .gitignore
+**/fine_tuned_banking_ai/
+**/checkpoints/

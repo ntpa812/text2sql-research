@@ -216,11 +216,19 @@ class SemanticProfiler:
         return None
 
     def analyze_file(self, file_path: str, table_name: str = "auto_detect") -> Dict[str, Any]:
-        if file_path.endswith(".csv"):
-            df = pd.read_csv(file_path)
-        else:
-            df = pd.read_excel(file_path)
+        
+        path_obj = Path(file_path)
+        
+        df = pd.read_excel(path_obj) if path_obj.suffix == '.xlsx' else pd.read_csv(path_obj)
 
+        table_name = path_obj.stem.lower().split(" - ")[0]
+        
+        profile = {
+            "table_name": table_name, 
+            "version": "1.0",
+            "columns": []
+        }
+        
         df.columns = [c.strip().lower() for c in df.columns]
         
         col_name_key = next((c for c in df.columns if any(x in c for x in ["tên", "name", "field", "cột"])), None)
