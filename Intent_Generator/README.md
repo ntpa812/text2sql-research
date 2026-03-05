@@ -4,35 +4,35 @@
 
 ```text
 Project_Root/
-├── configs/                   
-│   ├── dictionary.py           # Từ điển thủ công (Kiến thức nền tảng)
-│   └── __init__.py
+├── configs/                   
+│   ├── dictionary.py           # Từ điển thủ công (Kiến thức nền tảng)
+│   └── __init__.py
 │
-├── rule_engine/                # [MODULE 1] Generator & Profiling
-│   ├── dict_builder.py         # Logic hợp nhất từ điển 
-│   ├── profiler.py             # Phân tích file schema (Regex + AI Suggestion)
-│   ├── generator.py            # Logic sinh câu hỏi (nhận Runtime Vocab)
-│   ├── faker_utils.py          # Sinh dữ liệu giả
-│   ├── grammar_templates.py    # Kho mẫu câu
-│   └── __init__.py
+├── rule_engine/                # [MODULE 1] Generator & Profiling
+│   ├── dict_builder.py         # Logic hợp nhất từ điển 
+│   ├── profiler.py             # Phân tích file schema (Regex + AI Suggestion)
+│   ├── generator.py            # Logic sinh câu hỏi (nhận Runtime Vocab)
+│   ├── faker_utils.py          # Sinh dữ liệu giả
+│   ├── grammar_templates.py    # Kho mẫu câu
+│   └── __init__.py
 │
-├── sql_parser/                 # [MODULE 2] Parser
-│   ├── core.py                 # Logic dịch NLQ -> SQL
-│   ├── batch_worker.py         # Xử lý file Excel hàng loạt
-│   └── __init__.py
+├── sql_parser/                 # [MODULE 2] Parser
+│   ├── core.py                 # Logic dịch NLQ -> SQL
+│   ├── batch_worker.py         # Xử lý file Excel hàng loạt
+│   └── __init__.py
 │
-├── data/                       # [INPUT] Kho dữ liệu đầu vào
-│   ├── source_tables/          # Chứa file mô tả bảng (transaction.xlsx...)
-│   ├── semantic_profiles/      # Chứa file JSON (Sinh ra từ Profiler)
-│   └── parser_inputs/          # File test câu hỏi
+├── data/                       # [INPUT] Kho dữ liệu đầu vào
+│   ├── source_tables/          # Chứa file mô tả bảng (transaction.xlsx...)
+│   ├── semantic_profiles/      # Chứa file JSON (Sinh ra từ Profiler)
+│   └── parser_inputs/          # File test câu hỏi
 │
-├── outputs/                    # [OUTPUT] Kho dữ liệu đầu ra
-│   ├── generated_datasets/     # Dataset huấn luyện đã sinh
-│   └── parser_outputs/         # Kết quả test parser
+├── outputs/                    # [OUTPUT] Kho dữ liệu đầu ra
+│   ├── generated_datasets/     # Dataset huấn luyện đã sinh
+│   └── parser_outputs/         # Kết quả test parser
 │
-├── generate_data.py            # Script chạy Module 1: Profiler -> Builder -> Generator
-├── test_parser.py              # Script chạy Module 2
-└── requirements.txt            # Các thư viện cần thiết
+├── generate_data.py            # Script chạy Module 1: Profiler -> Builder -> Generator
+├── test_parser.py              # Script chạy Module 2
+└── requirements.txt            # Các thư viện cần thiết
 
 ```
 
