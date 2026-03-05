@@ -1,4 +1,5 @@
-Pipeline
+# Pipeline
+
 ```
 User Question (VI)
         │
@@ -22,7 +23,7 @@ Execute on DB
 Result + Explain
 ```
 
-Cấu trúc thư mục
+# Cấu trúc thư mục
 
 ```
 text2sql_template/
