@@ -1,6 +1,5 @@
 import mysql.connector
 
-
 class DBSchemaLoader:
 
     def __init__(self):
