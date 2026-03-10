@@ -15,9 +15,12 @@ INTENT_DATASET_PATH = os.path.join(BASE_DIR, "data", "user_intent", "ddq_documen
 APPROVED_TEMPLATES_DIR = os.path.join(BASE_DIR, "template_store", "approved_templates")
 LOGS_DIR = os.path.join(BASE_DIR, "logs")
 
-# ─── LLM ────────────────────────────────────────────────────
-LLM_MODEL_PATH = os.path.join(BASE_DIR, "models", "mars-sql", "mars-sql_qwen_sql_7b")
-LLM_MAX_NEW_TOKENS = 256
+# ─── LLM (Llama 3 via Ollama) ───────────────────────────────
+LLM_BACKEND = "ollama"          # "ollama" | "transformers"
+LLM_OLLAMA_BASE_URL = "http://localhost:11434"
+LLM_OLLAMA_MODEL = "llama3:8b"  # ollama model name
+LLM_MODEL_PATH = ""             # HF path (only for transformers backend)
+LLM_MAX_NEW_TOKENS = 512
 LLM_TEMPERATURE = 0.1
 
 # ─── NER (in 6804_DDQ) ─────────────────────────────────────
