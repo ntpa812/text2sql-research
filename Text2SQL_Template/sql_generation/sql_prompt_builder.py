@@ -1,6 +1,5 @@
 """
 SQL Generation – SQL Prompt Builder
-Build prompt chuẩn 6-block cho LLM sinh SQL.
 """
 
 import json

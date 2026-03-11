@@ -13,6 +13,7 @@ DB_NAME = "ai_bank_gateway"
 SEMANTIC_PROFILES_DIR = os.path.join(BASE_DIR, "data", "semantic_profiles")
 INTENT_DATASET_PATH = os.path.join(BASE_DIR, "data", "user_intent", "ddq_document_v2.json")
 APPROVED_TEMPLATES_DIR = os.path.join(BASE_DIR, "template_store", "approved_templates")
+USER_QUESTIONS_DIR = os.path.join(BASE_DIR, "data", "user_questions")
 LOGS_DIR = os.path.join(BASE_DIR, "logs")
 
 # ─── LLM (Llama 3 via Ollama) ───────────────────────────────

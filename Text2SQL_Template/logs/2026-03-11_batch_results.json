@@ -1,0 +1,191 @@
+[
+  {
+    "question": "Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "amount": "123000000"
+    },
+    "sql": "SELECT \n  trans_id, \n  trans_time, \n  trans_type, \n  trans_name, \n  from_account_no, \n  to_account_no, \n  amount_transfer, \n  amount_currency, \n  trans_status, \n  trans_desc\nFROM \n  transaction\nWHERE \n  (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\n  AND (from_account_no = '123')\n  AND (to_account_no = '123')\nORDER BY \n  trans_time DESC\nLIMIT 100;",
+    "validator": null,
+    "rows": 0
+  },
+  {
+    "question": "Cho tôi xem giao dịch nhận tiền hôm qua",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_kênh_giao_dịch",
+    "entities": {},
+    "sql": "SELECT \n  reference_id,\n  trans_id,\n  from_account_no,\n  to_account_no,\n  amount_transfer,\n  amount_currency,\n  channel_receiver,\n  category_code,\n  trans_time\nFROM transactions\nWHERE category_code LIKE 'EWALLET%'\n  AND channel_receiver = 'RECEIVE'\n  AND from_account_no = 'your_account_number';",
+    "validator": null,
+    "rows": 0
+  },
+  {
+    "question": "Tổng tiền chuyển đi của tài khoản 789 trong quý 1",
+    "tables": [
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "amount": "789000000"
+    },
+    "sql": "SELECT \n  trans_id, \n  trans_time, \n  trans_type, \n  trans_name, \n  from_account_no, \n  to_account_no, \n  amount_transfer, \n  amount_currency, \n  trans_status, \n  trans_desc\nFROM \n  transaction\nWHERE \n  (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND \n  from_account_no = '789'\nORDER BY \n  trans_time DESC\nLIMIT \n  100;",
+    "validator": null,
+    "rows": 0
+  },
+  {
+    "question": "Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_danh_sách_giao_dịch_nạp_hoặc_rút_tiền_theo_trạng_thái",
+    "entities": {},
+    "sql": "SELECT \n  reference_id,\n  trans_id,\n  from_account_no,\n  to_account_no,\n  amount_transfer,\n  amount_currency,\n  trans_status,\n  category_code,\n  trans_time\nFROM transactions\nWHERE category_code LIKE 'EWALLET%'\n  AND trans_status = 'SUCCESS'\n  AND from_account_no = 1001;",
+    "validator": null,
+    "rows": 0
+  },
+  {
+    "question": "Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 1",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {
+      "amount": "5000000"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE trans_type = 'TRANSFER'\nAND trans_time >= '2021-01-01' AND trans_time < '2021-02-01'\nAND amount_transfer >= 5000000\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": null,
+    "rows": 0
+  },
+  {
+    "question": "Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "amount": "123000000"
+    },
+    "sql": "SELECT \n  trans_id, \n  trans_time, \n  trans_type, \n  trans_name, \n  from_account_no, \n  to_account_no, \n  amount_transfer, \n  amount_currency, \n  trans_status, \n  trans_desc\nFROM \n  transaction\nWHERE \n  (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND \n  (from_account_no = '123')\nAND \n  (to_account_no = '123')\nORDER BY \n  trans_time DESC\nLIMIT 100;",
+    "validator": null,
+    "rows": 0
+  },
+  {
+    "question": "Cho tôi xem giao dịch nhận tiền hôm qua",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_kênh_giao_dịch",
+    "entities": {},
+    "sql": "SELECT \n  reference_id,\n  trans_id,\n  from_account_no,\n  to_account_no,\n  amount_transfer,\n  amount_currency,\n  channel_receiver,\n  category_code,\n  trans_time\nFROM transactions\nWHERE category_code LIKE 'EWALLET%'\n  AND channel_receiver = 'RECEIVE'\n  AND from_account_no = 'your_account_number';",
+    "validator": null,
+    "rows": 0
+  },
+  {
+    "question": "Tổng tiền chuyển đi của tài khoản 789 trong quý 1",
+    "tables": [
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "amount": "789000000"
+    },
+    "sql": "SELECT \n  trans_id, \n  trans_time, \n  trans_type, \n  trans_name, \n  from_account_no, \n  to_account_no, \n  amount_transfer, \n  amount_currency, \n  trans_status, \n  trans_desc\nFROM \n  transaction\nWHERE \n  (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND \n  (from_account_no = '789000000')\nAND \n  (EXTRACT(MONTH FROM trans_time) BETWEEN 1 AND 3)\nORDER BY \n  trans_time DESC\nLIMIT 100;",
+    "validator": null,
+    "rows": 0
+  },
+  {
+    "question": "Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_danh_sách_giao_dịch_nạp_hoặc_rút_tiền_theo_trạng_thái",
+    "entities": {},
+    "sql": "SELECT \n  reference_id,\n  trans_id,\n  from_account_no,\n  to_account_no,\n  amount_transfer,\n  amount_currency,\n  trans_status,\n  category_code,\n  trans_time\nFROM \n  transaction\nWHERE \n  category_code LIKE 'EWALLET%'\n  AND trans_status = 'SUCCESS'\n  AND from_account_no = 1001\nLIMIT 100;",
+    "validator": null,
+    "rows": 0
+  },
+  {
+    "question": "Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 1",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {
+      "amount": "5000000"
+    },
+    "sql": "SELECT \n  trans_id, \n  trans_time, \n  trans_type, \n  trans_name, \n  from_account_no, \n  to_account_no, \n  amount_transfer, \n  amount_currency, \n  trans_status, \n  trans_desc\nFROM \n  transaction\nWHERE \n  trans_type = 'TRANSFER'\nAND \n  amount_transfer >= 5000000\nAND \n  EXTRACT(MONTH FROM trans_time) = 1\nORDER BY \n  trans_time DESC\nLIMIT 100;",
+    "validator": null,
+    "rows": 0
+  },
+  {
+    "question": "Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "amount": "123000000"
+    },
+    "sql": "SELECT \n  trans_id, \n  trans_time, \n  trans_type, \n  trans_name, \n  from_account_no, \n  to_account_no, \n  amount_transfer, \n  amount_currency, \n  trans_status, \n  trans_desc\nFROM \n  transaction\nWHERE \n  (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND \n  (from_account_no = '123')\nAND \n  (to_account_no = '123')\nORDER BY \n  trans_time DESC\nLIMIT 100;",
+    "validator": null,
+    "rows": 0
+  },
+  {
+    "question": "Cho tôi xem giao dịch nhận tiền hôm qua",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_kênh_giao_dịch",
+    "entities": {},
+    "sql": "SELECT \n  reference_id,\n  trans_id,\n  from_account_no,\n  to_account_no,\n  amount_transfer,\n  amount_currency,\n  channel_receiver,\n  category_code,\n  trans_time\nFROM transactions\nWHERE category_code LIKE 'EWALLET%'\n  AND channel_receiver = 'RECEIVE'\n  AND from_account_no = 'your_account_number';",
+    "validator": null,
+    "rows": 0
+  },
+  {
+    "question": "Tổng tiền chuyển đi của tài khoản 789 trong quý 1",
+    "tables": [
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "amount": "789000000"
+    },
+    "sql": "SELECT \n  trans_id, \n  trans_time, \n  trans_type, \n  trans_name, \n  from_account_no, \n  to_account_no, \n  amount_transfer, \n  amount_currency, \n  trans_status, \n  trans_desc\nFROM \n  transaction\nWHERE \n  (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND \n  (from_account_no = '789000000')\nAND \n  (EXTRACT(MONTH FROM trans_time) BETWEEN 1 AND 3)\nORDER BY \n  trans_time DESC\nLIMIT 100;",
+    "validator": null,
+    "rows": 0
+  },
+  {
+    "question": "Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_danh_sách_giao_dịch_nạp_hoặc_rút_tiền_theo_trạng_thái",
+    "entities": {},
+    "sql": "SELECT \n  reference_id,\n  trans_id,\n  from_account_no,\n  to_account_no,\n  amount_transfer,\n  amount_currency,\n  trans_status,\n  category_code,\n  trans_time\nFROM transactions\nWHERE category_code LIKE 'EWALLET%'\n  AND trans_status = 'SUCCESS'\n  AND from_account_no = '1001';",
+    "validator": null,
+    "rows": 0
+  },
+  {
+    "question": "Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 1",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {
+      "amount": "5000000"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE trans_type = 'TRANSFER'\nAND trans_time >= '2021-01-01' AND trans_time < '2021-02-01'\nAND amount_transfer >= 5000000\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": null,
+    "rows": 0
+  }
+]

@@ -1,0 +1,16 @@
+id,question,expected_intent
+1,Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1,transfer_lookup
+2,Cho tôi xem giao dịch nhận tiền hôm qua,receive_lookup
+3,Tổng tiền chuyển đi của tài khoản 789 trong quý 1,total_transfer
+4,Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua,transaction_status_check
+5,Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 1  ,high_value_transfers
+6,Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1,transfer_lookup
+7,Cho tôi xem giao dịch nhận tiền hôm qua,receive_lookup
+8,Tổng tiền chuyển đi của tài khoản 789 trong quý 1,total_transfer
+9,Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua,transaction_status_check
+10,Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 1  ,high_value_transfers
+11, Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1,transfer_lookup
+12, Cho tôi xem giao dịch nhận tiền hôm qua,receive_lookup
+13, Tổng tiền chuyển đi của tài khoản 789 trong quý 1,total_transfer
+14, Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua,transaction_status_check
+15, Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 1  ,high_value_transfers      

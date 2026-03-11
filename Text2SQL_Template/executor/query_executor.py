@@ -7,7 +7,10 @@ import logging
 import time
 from typing import Dict, List, Any, Tuple, Optional
 
-import mysql.connector
+try:
+    import mysql.connector
+except ImportError:
+    mysql = None
 
 from config.settings import (
     DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME,
@@ -29,6 +32,10 @@ def execute_query(
     """
     # Inject LIMIT nếu chưa có
     sql = _ensure_limit(sql, row_limit)
+
+    if mysql is None:
+        logger.warning("[Executor] mysql-connector-python not installed, skipping DB execution")
+        return False, None, "mysql-connector-python not installed"
 
     logger.info(f"[Executor] Executing SQL: {sql[:300]}...")
     start_time = time.time()
@@ -58,7 +65,7 @@ def execute_query(
         cursor.close()
         return True, rows, ""
 
-    except mysql.connector.Error as e:
+    except Exception as e:
         elapsed = time.time() - start_time
         error_msg = str(e)
         logger.error(f"[Executor] DB error after {elapsed:.2f}s: {error_msg}")

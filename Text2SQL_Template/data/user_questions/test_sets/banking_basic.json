@@ -1,0 +1,45 @@
+[
+  {
+    "id": "q001",
+    "question": "Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1",
+    "expected_intent": "tra_cu_giao_dich_chuyen_tien_theo_so_tai_khoan_nguoi_nhan",
+    "expected_entities": {
+      "to_account_no": "123",
+      "start_date": "2026-01-01",
+      "end_date": "2026-01-31"
+    }
+  },
+  {
+    "id": "q002",
+    "question": "Cho tôi xem các giao dịch nhận tiền của tài khoản 456 trong tuần này",
+    "expected_intent": "tra_cu_giao_dich_nhan_tien",
+    "expected_entities": {
+      "account_no": "456"
+    }
+  },
+  {
+    "id": "q003",
+    "question": "Tổng tiền chuyển đi của tài khoản 789 trong quý 1",
+    "expected_intent": "tra_cu_giao_dich_chuyen_tien",
+    "expected_entities": {
+      "account_no": "789"
+    }
+  },
+  {
+    "id": "q004",
+    "question": "Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua",
+    "expected_intent": "tra_cu_giao_dich_theo_trang_thai",
+    "expected_entities": {
+      "account_no": "1001",
+      "status": "SUCCESS"
+    }
+  },
+  {
+    "id": "q005",
+    "question": "Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 3",
+    "expected_intent": "tra_cu_giao_dich_chuyen_tien_theo_so_tien",
+    "expected_entities": {
+      "amount": "5000000"
+    }
+  }
+]

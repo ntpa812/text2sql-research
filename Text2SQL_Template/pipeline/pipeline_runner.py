@@ -85,16 +85,17 @@ def run_pipeline(question: str, use_embedding: bool = False) -> Dict[str, Any]:
 
     log_entry = {
         "question": question,
+        "tables": [],
         "intent": None,
         "intent_name": None,
         "intent_description": None,
         "intent_sql_template": None,
         "entities": {},
-        "sql_generated": None,
-        "validator_status": None,
+        "sql": None,
+        "validator": None,
         "retry_count": 0,
+        "rows": 0,
         "execution_time": 0,
-        "result_count": 0,
         "explain": "",
         "error": None,
     }
@@ -105,6 +106,7 @@ def run_pipeline(question: str, use_embedding: bool = False) -> Dict[str, Any]:
         logger.info(f"[Step 1] Schema Router")
         tables = select_tables(question, _profiles, use_embedding=use_embedding)
         schema_desc = get_schema_description(_profiles, tables)
+        log_entry["tables"] = tables
         logger.info(f"[Step 1] Selected tables: {tables}")
 
         # ─── Step 2: Intent Detection ───────────────────────
@@ -152,14 +154,14 @@ def run_pipeline(question: str, use_embedding: bool = False) -> Dict[str, Any]:
         )
 
         sql = generate_sql(prompt)
-        log_entry["sql_generated"] = sql
+        log_entry["sql"] = sql
 
         # ─── Step 6: Validation + Retry ─────────────────────
         logger.info(f"[Step 6] Validation")
         retry = RetryHandler(max_retries=MAX_RETRY_ATTEMPTS)
 
         is_valid, error_msg, error_type = validate_all(sql, _profiles)
-        log_entry["validator_status"] = "PASS" if is_valid else "FAIL"
+        log_entry["validator"] = "PASS" if is_valid else "FAIL"
 
         while not is_valid and retry.should_retry():
             retry.record_attempt(sql, error_msg, error_type)
@@ -174,10 +176,10 @@ def run_pipeline(question: str, use_embedding: bool = False) -> Dict[str, Any]:
                 question=question,
             )
             sql = generate_sql(retry_prompt)
-            log_entry["sql_generated"] = sql
+            log_entry["sql"] = sql
 
             is_valid, error_msg, error_type = validate_all(sql, _profiles)
-            log_entry["validator_status"] = "PASS" if is_valid else "FAIL"
+            log_entry["validator"] = "PASS" if is_valid else "FAIL"
 
         log_entry["retry_count"] = retry.retry_count
 
@@ -203,7 +205,7 @@ def run_pipeline(question: str, use_embedding: bool = False) -> Dict[str, Any]:
                     question=question,
                 )
                 sql = generate_sql(retry_prompt)
-                log_entry["sql_generated"] = sql
+                log_entry["sql"] = sql
                 log_entry["retry_count"] = retry.retry_count
 
                 is_valid, _, _ = validate_all(sql, _profiles)
@@ -216,7 +218,7 @@ def run_pipeline(question: str, use_embedding: bool = False) -> Dict[str, Any]:
                 _log_query(log_entry)
                 return log_entry
 
-        log_entry["result_count"] = len(rows) if rows else 0
+        log_entry["rows"] = len(rows) if rows else 0
 
         # Save successful SQL as approved template
         if intent and rows:
@@ -254,16 +256,26 @@ def run_pipeline(question: str, use_embedding: bool = False) -> Dict[str, Any]:
 
 
 def _log_query(entry: Dict[str, Any]):
-    """Log query entry sang file JSON."""
+    """Log query entry sang file JSONL theo format chuẩn."""
     import os
     from datetime import datetime
     from config.settings import LOGS_DIR
 
     os.makedirs(LOGS_DIR, exist_ok=True)
-    log_file = os.path.join(LOGS_DIR, f"{datetime.now().strftime('%Y-%m-%d')}.jsonl")
+    log_file = os.path.join(LOGS_DIR, f"{datetime.now().strftime('%Y-%m-%d')}_queries.jsonl")
 
-    # Tạo bản log không chứa result_data (quá lớn)
-    log_safe = {k: v for k, v in entry.items() if k not in ("result_data", "result_table")}
+    # Format chuẩn cho log: chỉ giữ các field chính
+    log_record = {
+        "question": entry.get("question"),
+        "tables": entry.get("tables", []),
+        "intent": entry.get("intent"),
+        "entities": entry.get("entities", {}),
+        "sql": entry.get("sql"),
+        "validator": entry.get("validator"),
+        "rows": entry.get("rows", 0),
+    }
+    if entry.get("error"):
+        log_record["error"] = entry["error"]
 
     with open(log_file, "a", encoding="utf-8") as f:
-        f.write(json.dumps(log_safe, ensure_ascii=False, default=str) + "\n")
+        f.write(json.dumps(log_record, ensure_ascii=False, default=str) + "\n")
