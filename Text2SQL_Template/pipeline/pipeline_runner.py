@@ -307,16 +307,29 @@ def _print_timing(timing: Dict[str, float]):
     logger.info(f"  {'TOTAL':20s} {total:6.3f}s")
 
 
+# ─── Per-run log file (set once per app.py invocation) ──────
+_queries_log_file = None
+
+
+def _get_queries_log_file() -> str:
+    """Trả về path log file cho lần chạy hiện tại (tạo 1 lần duy nhất)."""
+    global _queries_log_file
+    if _queries_log_file is None:
+        import os
+        from datetime import datetime
+        from config.settings import LOGS_DIR
+
+        queries_dir = os.path.join(LOGS_DIR, "queries")
+        os.makedirs(queries_dir, exist_ok=True)
+        ts = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        _queries_log_file = os.path.join(queries_dir, f"{ts}.jsonl")
+    return _queries_log_file
+
+
 def _log_query(entry: Dict[str, Any]):
     """Log query entry sang file JSONL theo format chuẩn."""
-    import os
-    from datetime import datetime
-    from config.settings import LOGS_DIR
+    log_file = _get_queries_log_file()
 
-    os.makedirs(LOGS_DIR, exist_ok=True)
-    log_file = os.path.join(LOGS_DIR, f"{datetime.now().strftime('%Y-%m-%d')}_queries.jsonl")
-
-    # Format chuẩn cho log: chỉ giữ các field chính
     log_record = {
         "question": entry.get("question"),
         "tables": entry.get("tables", []),

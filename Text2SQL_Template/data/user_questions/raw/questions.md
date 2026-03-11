@@ -1,5 +1,0 @@
-- Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1
-- Cho tôi xem các giao dịch nhận tiền của tài khoản 456 trong tuần này
-- Tổng tiền chuyển đi của tài khoản 789 trong quý 1
-- Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua
-- Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 3

@@ -99,11 +99,12 @@ def run_batch(file_path: str, no_explain: bool = False, parallel: int = 1):
     print(f"{'='*60}")
 
     # Save batch results to JSON
-    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs")
-    os.makedirs(output_dir, exist_ok=True)
-
     from datetime import datetime
-    batch_file = os.path.join(output_dir, f"{datetime.now().strftime('%Y-%m-%d')}_batch_results.json")
+    batch_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs", "batch_result")
+    os.makedirs(batch_dir, exist_ok=True)
+
+    ts = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    batch_file = os.path.join(batch_dir, f"{ts}.json")
 
     batch_output = []
     for r in all_results:
