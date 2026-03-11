@@ -1,10 +1,7 @@
 [
   {
     "question": "Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1",
-    "tables": [
-      "customer_account",
-      "transaction"
-    ],
+    "tables": ["customer_account", "transaction"],
     "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
     "entities": {
       "amount": "123000000"
@@ -24,10 +21,7 @@
   },
   {
     "question": "Tìm giao dịch nhận tiền của tài khoản 456 hôm qua",
-    "tables": [
-      "customer_account",
-      "transaction"
-    ],
+    "tables": ["customer_account", "transaction"],
     "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_tài_khoản_nhận",
     "entities": {},
     "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE 'SAVING_%'\n  AND to_account_no = '456'\n  AND trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)\nORDER BY trans_time DESC\nLIMIT 100;",
@@ -45,9 +39,7 @@
   },
   {
     "question": "Tổng tiền chuyển đi của tài khoản 789 trong quý 1",
-    "tables": [
-      "customer_account"
-    ],
+    "tables": ["customer_account"],
     "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
     "entities": {
       "amount": "789000000"
