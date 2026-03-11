@@ -1,77 +1,14 @@
 [
   {
-    "id": "1",
-    "question": "Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1",
-    "expected_intent": "transfer_lookup"
+    "id": "q001",
+    "question": "Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1"
   },
   {
-    "id": "2",
-    "question": "Cho tôi xem giao dịch nhận tiền hôm qua",
-    "expected_intent": "receive_lookup"
+    "id": "q002",
+    "question": "Tìm giao dịch nhận tiền của tài khoản 456 hôm qua"
   },
   {
-    "id": "3",
-    "question": "Tổng tiền chuyển đi của tài khoản 789 trong quý 1",
-    "expected_intent": "total_transfer"
-  },
-  {
-    "id": "4",
-    "question": "Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua",
-    "expected_intent": "transaction_status_check"
-  },
-  {
-    "id": "5",
-    "question": "Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 1",
-    "expected_intent": "high_value_transfers"
-  },
-  {
-    "id": "6",
-    "question": "Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1",
-    "expected_intent": "transfer_lookup"
-  },
-  {
-    "id": "7",
-    "question": "Cho tôi xem giao dịch nhận tiền hôm qua",
-    "expected_intent": "receive_lookup"
-  },
-  {
-    "id": "8",
-    "question": "Tổng tiền chuyển đi của tài khoản 789 trong quý 1",
-    "expected_intent": "total_transfer"
-  },
-  {
-    "id": "9",
-    "question": "Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua",
-    "expected_intent": "transaction_status_check"
-  },
-  {
-    "id": "10",
-    "question": "Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 1",
-    "expected_intent": "high_value_transfers"
-  },
-  {
-    "id": "11",
-    "question": "Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1",
-    "expected_intent": "transfer_lookup"
-  },
-  {
-    "id": "12",
-    "question": "Cho tôi xem giao dịch nhận tiền hôm qua",
-    "expected_intent": "receive_lookup"
-  },
-  {
-    "id": "13",
-    "question": "Tổng tiền chuyển đi của tài khoản 789 trong quý 1",
-    "expected_intent": "total_transfer"
-  },
-  {
-    "id": "14",
-    "question": "Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua",
-    "expected_intent": "transaction_status_check"
-  },
-  {
-    "id": "15",
-    "question": "Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 1",
-    "expected_intent": "high_value_transfers"
+    "id": "q003",
+    "question": "Tổng tiền chuyển đi của tài khoản 789 trong quý 1"
   }
 ]

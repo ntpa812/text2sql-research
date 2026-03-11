@@ -3,10 +3,19 @@ Intent Detection – Intent Ranker
 Nhận diện intent từ câu hỏi user bằng keyword matching + embedding similarity.
 """
 
+import os
 import re
+import pickle
+import logging
 from typing import Dict, List, Any, Optional
 
-from config.settings import EMBEDDING_MODEL_NAME
+from config.settings import EMBEDDING_MODEL_NAME, EMBEDDING_CACHE_DIR
+
+logger = logging.getLogger(__name__)
+
+# ─── Cached embedding model (singleton) ─────────────────────
+_embed_model = None
+_intent_embeddings_cache: Dict[str, Any] = {}
 
 
 def rank_by_keyword(question: str, intent_index: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -42,6 +51,64 @@ def rank_by_keyword(question: str, intent_index: List[Dict[str, Any]]) -> List[D
     return scored
 
 
+def _get_embed_model():
+    """Singleton embedding model."""
+    global _embed_model
+    if _embed_model is None:
+        from sentence_transformers import SentenceTransformer
+        logger.info("[Intent] Loading embedding model (one-time)...")
+        _embed_model = SentenceTransformer(EMBEDDING_MODEL_NAME)
+        logger.info("[Intent] Embedding model loaded.")
+    return _embed_model
+
+
+def _get_intent_embeddings(intent_index: List[Dict[str, Any]]):
+    """Cache intent embeddings: compute once, save to disk."""
+    global _intent_embeddings_cache
+
+    cache_key = f"intent_emb_{len(intent_index)}"
+    if cache_key in _intent_embeddings_cache:
+        return _intent_embeddings_cache[cache_key]
+
+    # Try load from disk
+    os.makedirs(EMBEDDING_CACHE_DIR, exist_ok=True)
+    cache_file = os.path.join(EMBEDDING_CACHE_DIR, "intent_embeddings.pkl")
+
+    if os.path.isfile(cache_file):
+        try:
+            with open(cache_file, "rb") as f:
+                data = pickle.load(f)
+            if data.get("count") == len(intent_index):
+                logger.info(f"[Intent] Loaded cached intent embeddings ({len(intent_index)} intents)")
+                _intent_embeddings_cache[cache_key] = data["embeddings"]
+                return data["embeddings"]
+        except Exception:
+            pass
+
+    # Compute embeddings
+    model = _get_embed_model()
+    passages = []
+    for intent in intent_index:
+        texts = [intent.get("description", "")]
+        texts.extend(intent.get("keywords", []))
+        texts.extend(intent.get("examples", [])[:3])
+        passages.append("passage: " + " ".join(texts))
+
+    logger.info(f"[Intent] Computing embeddings for {len(passages)} intents...")
+    embeddings = model.encode(passages, convert_to_tensor=True, show_progress_bar=False)
+
+    # Save to disk
+    try:
+        with open(cache_file, "wb") as f:
+            pickle.dump({"count": len(intent_index), "embeddings": embeddings}, f)
+        logger.info(f"[Intent] Saved intent embeddings to cache.")
+    except Exception as e:
+        logger.warning(f"[Intent] Could not save embeddings cache: {e}")
+
+    _intent_embeddings_cache[cache_key] = embeddings
+    return embeddings
+
+
 def rank_by_embedding(
     question: str,
     intent_index: List[Dict[str, Any]],
@@ -49,25 +116,21 @@ def rank_by_embedding(
 ) -> List[Dict[str, Any]]:
     """
     Rank intents bằng embedding similarity (sentence-transformers).
+    Sử dụng cached embeddings (compute 1 lần duy nhất).
     Fallback sang keyword nếu không có model.
     """
     try:
-        from sentence_transformers import SentenceTransformer, util
+        from sentence_transformers import util
 
-        model = SentenceTransformer(EMBEDDING_MODEL_NAME)
+        model = _get_embed_model()
         q_emb = model.encode(f"query: {question}", convert_to_tensor=True)
+        intent_embs = _get_intent_embeddings(intent_index)
+
+        scores = util.cos_sim(q_emb, intent_embs)[0]
 
         scored: List[Dict[str, Any]] = []
-        for intent in intent_index:
-            # Combine description + keywords + first few examples
-            texts = [intent.get("description", "")]
-            texts.extend(intent.get("keywords", []))
-            texts.extend(intent.get("examples", [])[:3])
-            passage = "passage: " + " ".join(texts)
-
-            p_emb = model.encode(passage, convert_to_tensor=True)
-            score = util.cos_sim(q_emb, p_emb).item()
-            scored.append({**intent, "_score": score})
+        for i, intent in enumerate(intent_index):
+            scored.append({**intent, "_score": scores[i].item()})
 
         scored.sort(key=lambda x: x["_score"], reverse=True)
         return scored[:top_k]

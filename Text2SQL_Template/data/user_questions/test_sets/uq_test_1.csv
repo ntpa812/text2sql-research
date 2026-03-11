@@ -1,16 +1,36 @@
-id,question,expected_intent
-1,Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1,transfer_lookup
-2,Cho tôi xem giao dịch nhận tiền hôm qua,receive_lookup
-3,Tổng tiền chuyển đi của tài khoản 789 trong quý 1,total_transfer
-4,Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua,transaction_status_check
-5,Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 1  ,high_value_transfers
-6,Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1,transfer_lookup
-7,Cho tôi xem giao dịch nhận tiền hôm qua,receive_lookup
-8,Tổng tiền chuyển đi của tài khoản 789 trong quý 1,total_transfer
-9,Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua,transaction_status_check
-10,Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 1  ,high_value_transfers
-11, Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1,transfer_lookup
-12, Cho tôi xem giao dịch nhận tiền hôm qua,receive_lookup
-13, Tổng tiền chuyển đi của tài khoản 789 trong quý 1,total_transfer
-14, Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua,transaction_status_check
-15, Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 1  ,high_value_transfers      
+id,question
+1,Xem tất cả giao dịch của tài khoản 123456 trong tháng 1 năm 2024
+2,Tổng số tiền tôi đã chuyển đi trong tháng 2
+3,Tôi đã nhận bao nhiêu tiền vào ngày 15/03/2024
+4,Liệt kê các giao dịch chuyển khoản của tài khoản 987654 trong tuần này
+5,Cho tôi xem lịch sử giao dịch từ ngày 01/01/2024 đến 31/01/2024
+6,Có bao nhiêu giao dịch trên 10 triệu trong tháng này
+7,Giao dịch gần nhất của tài khoản 123456 là gì
+8,Liệt kê các giao dịch nạp tiền vào tài khoản của tôi
+9,Tổng số giao dịch trong ngày hôm qua
+10,Xem các giao dịch chuyển tiền trên 5 triệu trong tháng 3
+11,Tài khoản 456789 đã chuyển bao nhiêu tiền trong tuần qua
+12,Những giao dịch nào diễn ra vào ngày 20/02/2024
+13,Liệt kê 10 giao dịch gần nhất của tài khoản 111222
+14,Tổng số tiền đã nhận trong tháng 4
+15,Xem lịch sử giao dịch của tài khoản 333444 trong 7 ngày qua
+16,Các giao dịch có giá trị dưới 1 triệu trong tháng này
+17,Tôi đã thực hiện bao nhiêu giao dịch trong tháng 6
+18,Xem các giao dịch chuyển khoản ra ngoài ngân hàng
+19,Có giao dịch nào trên 50 triệu trong năm 2024 không
+20,Liệt kê các giao dịch vào ngày hôm nay
+21,Tổng số tiền giao dịch của tài khoản 888999 trong tháng này
+22,Các giao dịch chuyển tiền vào tài khoản 123456 trong tháng trước
+23,Xem các giao dịch từ ngày 10/02/2024 đến 20/02/2024
+24,Có bao nhiêu giao dịch chuyển khoản trong tuần này
+25,Giao dịch có giá trị lớn nhất trong tháng 5 là gì
+26,Cho tôi danh sách giao dịch của tài khoản 555666
+27,Các giao dịch rút tiền trong tháng này
+28,Xem lịch sử chuyển tiền của tài khoản 222333
+29,Tổng tiền đã chuyển trong ngày hôm nay
+30,Liệt kê các giao dịch có số tiền từ 2 triệu đến 10 triệu
+31,Có bao nhiêu giao dịch trong ngày 01/03/2024
+32,Xem các giao dịch nhận tiền từ tài khoản 777888
+33,Giao dịch đầu tiên trong tháng này là gì
+34,Những giao dịch nào có số tiền trên 20 triệu
+35,Xem lịch sử giao dịch của tôi trong 30 ngày gần nhất

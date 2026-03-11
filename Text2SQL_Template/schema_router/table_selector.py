@@ -3,10 +3,16 @@ Schema Router – Table Selector
 Chọn bảng liên quan đến câu hỏi user bằng keyword matching + embedding similarity.
 """
 
+import logging
 import re
 from typing import List, Dict, Any
 
 from config.settings import EMBEDDING_MODEL_NAME
+
+logger = logging.getLogger(__name__)
+
+# ─── Cached embedding model (singleton) ─────────────────────
+_embed_model = None
 
 
 # ─── Keyword-based table routing ────────────────────────────
@@ -85,9 +91,12 @@ def _refine_with_embedding(
     try:
         from sentence_transformers import SentenceTransformer, util
 
-        model = SentenceTransformer(EMBEDDING_MODEL_NAME)
+        global _embed_model
+        if _embed_model is None:
+            logger.info("[Schema] Loading embedding model (one-time)...")
+            _embed_model = SentenceTransformer(EMBEDDING_MODEL_NAME)
 
-        q_emb = model.encode(f"query: {question}", convert_to_tensor=True)
+        q_emb = _embed_model.encode(f"query: {question}", convert_to_tensor=True)
 
         scored: List[tuple] = []
         for tname in candidate_tables:
@@ -98,7 +107,7 @@ def _refine_with_embedding(
                 for c in profile.get("columns", [])
             ]
             table_text = f"passage: {tname}: " + " ".join(col_texts[:20])
-            t_emb = model.encode(table_text, convert_to_tensor=True)
+            t_emb = _embed_model.encode(table_text, convert_to_tensor=True)
             score = util.cos_sim(q_emb, t_emb).item()
             scored.append((tname, score))
 

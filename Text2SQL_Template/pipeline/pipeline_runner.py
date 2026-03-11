@@ -75,13 +75,15 @@ def _ensure_loaded():
         _approved_templates = load_approved_templates()
 
 
-def run_pipeline(question: str, use_embedding: bool = False) -> Dict[str, Any]:
+def run_pipeline(question: str, use_embedding: bool = False, explain: bool = True) -> Dict[str, Any]:
     """
     Orchestrator chính.
     Chạy toàn bộ pipeline từ câu hỏi → kết quả + giải thích.
     """
     start_time = time.time()
     _ensure_loaded()
+
+    timing: Dict[str, float] = {}
 
     log_entry = {
         "question": question,
@@ -96,20 +98,24 @@ def run_pipeline(question: str, use_embedding: bool = False) -> Dict[str, Any]:
         "retry_count": 0,
         "rows": 0,
         "execution_time": 0,
+        "timing": {},
         "explain": "",
         "error": None,
     }
 
     try:
         # ─── Step 1: Schema Router ──────────────────────────
+        t0 = time.time()
         logger.info(f"\n{'='*60}")
         logger.info(f"[Step 1] Schema Router")
         tables = select_tables(question, _profiles, use_embedding=use_embedding)
         schema_desc = get_schema_description(_profiles, tables)
         log_entry["tables"] = tables
-        logger.info(f"[Step 1] Selected tables: {tables}")
+        timing["schema_router"] = round(time.time() - t0, 3)
+        logger.info(f"[Step 1] Selected tables: {tables} ({timing['schema_router']}s)")
 
         # ─── Step 2: Intent Detection ───────────────────────
+        t0 = time.time()
         logger.info(f"[Step 2] Intent Detection")
         intent = detect_intent(question, _intent_index, use_embedding=use_embedding)
 
@@ -119,44 +125,65 @@ def run_pipeline(question: str, use_embedding: bool = False) -> Dict[str, Any]:
             log_entry["intent_description"] = intent.get("description", "")
             log_entry["intent_sql_template"] = intent.get("sql_template", "")
             logger.info(f"[Step 2] Detected intent: {intent.get('intent_id')}")
-            logger.info(f"[Step 2] Intent name: {intent.get('intent_name', '')}")
         else:
             logger.warning("[Step 2] No intent detected, proceeding without template hint")
+        timing["intent_detection"] = round(time.time() - t0, 3)
+        logger.info(f"[Step 2] ({timing['intent_detection']}s)")
 
         # ─── Step 3: Entity Extraction ──────────────────────
+        t0 = time.time()
         logger.info(f"[Step 3] Entity Extraction")
         raw_entities = extract_entities_local(question)
         entities = normalize_entities(raw_entities)
         log_entry["entities"] = entities
-        logger.info(f"[Step 3] Entities: {entities}")
+        timing["entity_extraction"] = round(time.time() - t0, 3)
+        logger.info(f"[Step 3] Entities: {entities} ({timing['entity_extraction']}s)")
 
-        # ─── Step 4: Template Retrieval ─────────────────────
+        # ─── Step 4: Template Retrieval + Slot Filling ──────
+        t0 = time.time()
         logger.info(f"[Step 4] Template Retrieval")
         template_sql = ""
+        filled_template = ""
+        unfilled = {}
+        template_complete = False
+
         if intent:
             template_sql = get_template_for_intent(intent, _approved_templates) or ""
             if template_sql and entities:
                 filled_template, unfilled = fill_template(template_sql, entities)
-                logger.info(f"[Step 4] Filled template (unfilled: {list(unfilled.keys())})")
+                template_complete = len(unfilled) == 0
+                logger.info(f"[Step 4] Template complete: {template_complete} (unfilled: {list(unfilled.keys())})")
             else:
                 filled_template = template_sql
 
-        # ─── Step 5: SQL Generation ─────────────────────────
-        logger.info(f"[Step 5] SQL Generation")
-        prompt = build_sql_prompt(
-            question=question,
-            schema_description=schema_desc,
-            intent_name=intent.get("intent_id", "") if intent else "",
-            intent_description=intent.get("description", "") if intent else "",
-            entities=entities,
-            template_sql=template_sql,
-            row_limit=QUERY_ROW_LIMIT,
-        )
+        timing["template_fill"] = round(time.time() - t0, 3)
+        logger.info(f"[Step 4] ({timing['template_fill']}s)")
 
-        sql = generate_sql(prompt)
+        # ─── Step 5: SQL Generation ─────────────────────────
+        # Template-first: skip LLM if template fills completely
+        t0 = time.time()
+        if template_complete and filled_template:
+            logger.info(f"[Step 5] Template-fill complete → skip LLM")
+            sql = filled_template
+        else:
+            logger.info(f"[Step 5] SQL Generation (LLM)")
+            prompt = build_sql_prompt(
+                question=question,
+                schema_description=schema_desc,
+                intent_name=intent.get("intent_id", "") if intent else "",
+                intent_description=intent.get("description", "") if intent else "",
+                entities=entities,
+                template_sql=template_sql,
+                row_limit=QUERY_ROW_LIMIT,
+            )
+            sql = generate_sql(prompt)
+
         log_entry["sql"] = sql
+        timing["sql_generation"] = round(time.time() - t0, 3)
+        logger.info(f"[Step 5] ({timing['sql_generation']}s)")
 
         # ─── Step 6: Validation + Retry ─────────────────────
+        t0 = time.time()
         logger.info(f"[Step 6] Validation")
         retry = RetryHandler(max_retries=MAX_RETRY_ATTEMPTS)
 
@@ -182,14 +209,18 @@ def run_pipeline(question: str, use_embedding: bool = False) -> Dict[str, Any]:
             log_entry["validator"] = "PASS" if is_valid else "FAIL"
 
         log_entry["retry_count"] = retry.retry_count
+        timing["validation"] = round(time.time() - t0, 3)
+        logger.info(f"[Step 6] ({timing['validation']}s)")
 
         if not is_valid:
             log_entry["error"] = f"Validation failed after {retry.retry_count} retries: {error_msg}"
             log_entry["execution_time"] = time.time() - start_time
+            log_entry["timing"] = timing
             _log_query(log_entry)
             return log_entry
 
         # ─── Step 7: Execute on DB ──────────────────────────
+        t0 = time.time()
         logger.info(f"[Step 7] Execute on DB")
         success, rows, db_error = execute_query(sql)
 
@@ -215,10 +246,13 @@ def run_pipeline(question: str, use_embedding: bool = False) -> Dict[str, Any]:
             if not success:
                 log_entry["error"] = f"DB execution failed: {db_error}"
                 log_entry["execution_time"] = time.time() - start_time
+                log_entry["timing"] = timing
                 _log_query(log_entry)
                 return log_entry
 
         log_entry["rows"] = len(rows) if rows else 0
+        timing["execution"] = round(time.time() - t0, 3)
+        logger.info(f"[Step 7] ({timing['execution']}s)")
 
         # Save successful SQL as approved template
         if intent and rows:
@@ -227,32 +261,50 @@ def run_pipeline(question: str, use_embedding: bool = False) -> Dict[str, Any]:
                 save_approved_template(intent_id, sql)
 
         # ─── Step 8: Result Formatting + Explain ────────────
-        logger.info(f"[Step 8] Explain & Format")
-        explain_text = generate_explain(
-            question=question,
-            sql=sql,
-            entities=entities,
-            result_rows=rows,
-            intent_name=intent.get("intent_name", "") if intent else "",
-        )
-        log_entry["explain"] = explain_text
+        if explain:
+            t0 = time.time()
+            logger.info(f"[Step 8] Explain & Format")
+            explain_text = generate_explain(
+                question=question,
+                sql=sql,
+                entities=entities,
+                result_rows=rows,
+                intent_name=intent.get("intent_name", "") if intent else "",
+            )
+            log_entry["explain"] = explain_text
+            timing["explain"] = round(time.time() - t0, 3)
+            logger.info(f"[Step 8] ({timing['explain']}s)")
+        else:
+            logger.info(f"[Step 8] Explain skipped (--no-explain)")
 
         if rows:
             log_entry["result_table"] = format_result_table(rows)
             log_entry["result_data"] = rows
 
-        log_entry["execution_time"] = time.time() - start_time
+        log_entry["execution_time"] = round(time.time() - start_time, 3)
+        log_entry["timing"] = timing
         _log_query(log_entry)
 
-        logger.info(f"[Pipeline] Completed in {log_entry['execution_time']:.2f}s")
+        logger.info(f"[Pipeline] Completed in {log_entry['execution_time']}s")
+        _print_timing(timing)
         return log_entry
 
     except Exception as e:
         log_entry["error"] = str(e)
-        log_entry["execution_time"] = time.time() - start_time
+        log_entry["execution_time"] = round(time.time() - start_time, 3)
+        log_entry["timing"] = timing
         logger.error(f"[Pipeline] Error: {e}", exc_info=True)
         _log_query(log_entry)
         return log_entry
+
+
+def _print_timing(timing: Dict[str, float]):
+    """Print timing breakdown cho mỗi step."""
+    logger.info("[Timing] ─── Step Breakdown ───")
+    for step, elapsed in timing.items():
+        logger.info(f"  {step:20s} {elapsed:6.3f}s")
+    total = sum(timing.values())
+    logger.info(f"  {'TOTAL':20s} {total:6.3f}s")
 
 
 def _log_query(entry: Dict[str, Any]):
@@ -273,6 +325,7 @@ def _log_query(entry: Dict[str, Any]):
         "sql": entry.get("sql"),
         "validator": entry.get("validator"),
         "rows": entry.get("rows", 0),
+        "timing": entry.get("timing", {}),
     }
     if entry.get("error"):
         log_record["error"] = entry["error"]

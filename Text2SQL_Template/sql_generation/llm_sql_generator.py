@@ -27,6 +27,18 @@ _model = None
 _tokenizer = None
 
 
+def warm_ollama():
+    """Warm up Ollama model để tránh cold start (~5-10s)."""
+    if LLM_BACKEND != "ollama":
+        return
+    try:
+        logger.info("[LLM] Warming up Ollama model...")
+        _generate_ollama("SELECT 1;", max_tokens=8, temperature=0)
+        logger.info("[LLM] Ollama warm-up done.")
+    except Exception as e:
+        logger.warning(f"[LLM] Ollama warm-up failed: {e}")
+
+
 # ════════════════════════════════════════════════════════════
 #  Ollama Backend (recommended)
 # ════════════════════════════════════════════════════════════
