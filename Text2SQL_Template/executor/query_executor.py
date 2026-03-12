@@ -82,3 +82,37 @@ def _ensure_limit(sql: str, row_limit: int) -> str:
         sql = sql.rstrip(";").strip()
         sql = f"{sql}\nLIMIT {row_limit};"
     return sql
+
+
+def explain_query(sql: str) -> Tuple[bool, str]:
+    """
+    Chạy EXPLAIN trước khi execute thật.
+    Nếu EXPLAIN fail → SQL có syntax error, tránh chạy full query.
+    Returns: (is_valid, error_message)
+    """
+    if mysql is None:
+        return True, ""  # Không có DB → skip check
+
+    conn = None
+    try:
+        conn = mysql.connector.connect(
+            host=DB_HOST,
+            port=DB_PORT,
+            user=DB_USER,
+            password=DB_PASSWORD,
+            database=DB_NAME,
+            connection_timeout=5,
+        )
+        cursor = conn.cursor()
+        explain_sql = f"EXPLAIN {sql.rstrip(';')}"
+        cursor.execute(explain_sql)
+        cursor.fetchall()
+        cursor.close()
+        return True, ""
+    except Exception as e:
+        error_msg = str(e)
+        logger.warning(f"[Executor] EXPLAIN failed: {error_msg}")
+        return False, error_msg
+    finally:
+        if conn and conn.is_connected():
+            conn.close()

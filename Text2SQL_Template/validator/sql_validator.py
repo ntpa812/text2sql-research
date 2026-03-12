@@ -25,6 +25,7 @@ def validate_syntax(sql: str) -> Tuple[bool, str]:
 
     try:
         import sqlparse
+        
         parsed = sqlparse.parse(sql)
         if not parsed:
             return False, "Failed to parse SQL"

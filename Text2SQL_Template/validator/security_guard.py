@@ -49,7 +49,7 @@ def validate_all(
     profiles=None,
 ) -> Tuple[bool, str, str]:
     """
-    Chạy tất cả 3 validators.
+    Chạy tất cả 3 validators (pre-execution).
     Returns: (is_valid, error_message, error_type)
     error_type: "security" | "syntax" | "schema" | ""
     """
@@ -73,3 +73,41 @@ def validate_all(
             return False, error, "schema"
 
     return True, "", ""
+
+
+def classify_execution_error(error_msg: str) -> str:
+    """
+    Phân loại lỗi DB execution thành 3 nhóm:
+    - "syntax": column does not exist, syntax error near ...
+    - "runtime": division by zero, invalid cast, timeout
+    - "connection": connection refused, access denied
+    """
+    err = error_msg.lower()
+
+    syntax_indicators = [
+        "syntax error", "unknown column", "does not exist",
+        "no such column", "ambiguous column", "you have an error in your sql",
+        "near \"", "at line", "unrecognized token",
+    ]
+    for indicator in syntax_indicators:
+        if indicator in err:
+            return "syntax"
+
+    runtime_indicators = [
+        "division by zero", "divide by zero", "invalid cast",
+        "data truncated", "out of range", "incorrect",
+        "deadlock", "lock wait timeout",
+    ]
+    for indicator in runtime_indicators:
+        if indicator in err:
+            return "runtime"
+
+    connection_indicators = [
+        "connection refused", "access denied", "not installed",
+        "can't connect", "lost connection", "gone away",
+    ]
+    for indicator in connection_indicators:
+        if indicator in err:
+            return "connection"
+
+    return "runtime"

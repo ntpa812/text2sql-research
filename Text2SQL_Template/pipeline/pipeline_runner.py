@@ -37,10 +37,13 @@ from sql_generation.sql_prompt_builder import build_sql_prompt
 from sql_generation.llm_sql_generator import generate_sql
 
 # Validator
-from validator.security_guard import validate_all
+from validator.security_guard import validate_all, classify_execution_error
+from validator.semantic_validator import validate_semantic
+from validator.data_validator import validate_empty_result
+from validator.confidence_scorer import compute_confidence
 
 # Executor
-from executor.query_executor import execute_query
+from executor.query_executor import execute_query, explain_query
 
 # Explain
 from explain.explain_engine import generate_explain, format_result_table
@@ -99,6 +102,9 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
         "rows": 0,
         "execution_time": 0,
         "timing": {},
+        "confidence": {},
+        "semantic_warnings": [],
+        "data_validation": None,
         "explain": "",
         "error": None,
     }
@@ -182,15 +188,16 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
         timing["sql_generation"] = round(time.time() - t0, 3)
         logger.info(f"[Step 5] ({timing['sql_generation']}s)")
 
-        # ─── Step 6: Validation + Retry ─────────────────────
+        # ─── Step 6: Validation + Semantic Check + Retry ────────
         t0 = time.time()
         logger.info(f"[Step 6] Validation")
         retry = RetryHandler(max_retries=MAX_RETRY_ATTEMPTS)
 
+        # 6a. Pre-execution validation (security + syntax + schema)
         is_valid, error_msg, error_type = validate_all(sql, _profiles)
         log_entry["validator"] = "PASS" if is_valid else "FAIL"
 
-        while not is_valid and retry.should_retry():
+        while not is_valid and retry.should_retry(error_type):
             retry.record_attempt(sql, error_msg, error_type)
             logger.warning(f"[Step 6] Validation failed ({error_type}): {error_msg}")
             logger.info(f"[Step 6] Retry #{retry.retry_count}")
@@ -208,28 +215,97 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
             is_valid, error_msg, error_type = validate_all(sql, _profiles)
             log_entry["validator"] = "PASS" if is_valid else "FAIL"
 
+        if not is_valid:
+            log_entry["error"] = f"Validation failed after {retry.retry_count} retries: {error_msg}"
+            log_entry["retry_count"] = retry.retry_count
+            log_entry["execution_time"] = time.time() - start_time
+            log_entry["timing"] = timing
+            # Confidence: SQL không chạy được
+            log_entry["confidence"] = compute_confidence(
+                sql_executed=False, entity_valid=True, schema_valid=False,
+                row_count=0, semantic_ok=False,
+            )
+            _log_query(log_entry)
+            return log_entry
+
+        # 6b. Semantic validation (keyword check question vs SQL)
+        semantic_ok, semantic_warnings = validate_semantic(question, sql)
+        log_entry["semantic_warnings"] = semantic_warnings
+
+        if not semantic_ok and retry.should_retry("semantic"):
+            logger.warning(f"[Step 6] Semantic issues: {semantic_warnings}")
+            retry.record_attempt(sql, "; ".join(semantic_warnings), "semantic")
+            retry_prompt = retry.get_retry_prompt(
+                error_type="semantic",
+                sql=sql,
+                error_message="; ".join(semantic_warnings),
+                schema=schema_desc,
+                question=question,
+                semantic_warnings=semantic_warnings,
+            )
+            sql = generate_sql(retry_prompt)
+            log_entry["sql"] = sql
+            # Re-validate after semantic retry
+            is_valid, error_msg, error_type = validate_all(sql, _profiles)
+            if not is_valid:
+                log_entry["validator"] = "FAIL"
+                log_entry["error"] = f"Post-semantic-retry validation failed: {error_msg}"
+                log_entry["retry_count"] = retry.retry_count
+                log_entry["execution_time"] = time.time() - start_time
+                log_entry["timing"] = timing
+                _log_query(log_entry)
+                return log_entry
+            # Re-check semantic
+            semantic_ok, semantic_warnings = validate_semantic(question, sql)
+            log_entry["semantic_warnings"] = semantic_warnings
+
+        # 6c. EXPLAIN pre-check (check syntax on DB without running full query)
+        explain_ok, explain_err = explain_query(sql)
+        if not explain_ok and retry.should_retry("syntax"):
+            logger.warning(f"[Step 6] EXPLAIN failed: {explain_err}")
+            retry.record_attempt(sql, explain_err, "syntax")
+            retry_prompt = retry.get_retry_prompt(
+                error_type="syntax",
+                sql=sql,
+                error_message=f"EXPLAIN failed: {explain_err}",
+                schema=schema_desc,
+                question=question,
+            )
+            sql = generate_sql(retry_prompt)
+            log_entry["sql"] = sql
+            explain_ok, explain_err = explain_query(sql)
+
+        if not explain_ok:
+            log_entry["error"] = f"EXPLAIN failed: {explain_err}"
+            log_entry["validator"] = "FAIL"
+            log_entry["retry_count"] = retry.retry_count
+            log_entry["execution_time"] = time.time() - start_time
+            log_entry["timing"] = timing
+            log_entry["confidence"] = compute_confidence(
+                sql_executed=False, entity_valid=True, schema_valid=True,
+                row_count=0, semantic_ok=semantic_ok,
+            )
+            _log_query(log_entry)
+            return log_entry
+
         log_entry["retry_count"] = retry.retry_count
         timing["validation"] = round(time.time() - t0, 3)
         logger.info(f"[Step 6] ({timing['validation']}s)")
 
-        if not is_valid:
-            log_entry["error"] = f"Validation failed after {retry.retry_count} retries: {error_msg}"
-            log_entry["execution_time"] = time.time() - start_time
-            log_entry["timing"] = timing
-            _log_query(log_entry)
-            return log_entry
-
-        # ─── Step 7: Execute on DB ──────────────────────────
+        # ─── Step 7: Execute on DB + Smart Result Handling ──
         t0 = time.time()
         logger.info(f"[Step 7] Execute on DB")
         success, rows, db_error = execute_query(sql)
 
         if not success:
-            # DB error → retry
-            if retry.should_retry():
-                retry.record_attempt(sql, db_error, "execution")
+            # Phân loại lỗi DB
+            exec_error_type = classify_execution_error(db_error)
+            logger.warning(f"[Step 7] DB error ({exec_error_type}): {db_error}")
+
+            if exec_error_type in ("syntax", "runtime") and retry.should_retry(exec_error_type):
+                retry.record_attempt(sql, db_error, exec_error_type)
                 retry_prompt = retry.get_retry_prompt(
-                    error_type="syntax",
+                    error_type=exec_error_type,
                     sql=sql,
                     error_message=db_error,
                     schema=schema_desc,
@@ -244,18 +320,55 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
                     success, rows, db_error = execute_query(sql)
 
             if not success:
-                log_entry["error"] = f"DB execution failed: {db_error}"
+                log_entry["error"] = f"DB execution failed ({exec_error_type}): {db_error}"
                 log_entry["execution_time"] = time.time() - start_time
                 log_entry["timing"] = timing
+                log_entry["confidence"] = compute_confidence(
+                    sql_executed=False, entity_valid=True, schema_valid=True,
+                    row_count=0, semantic_ok=semantic_ok,
+                )
                 _log_query(log_entry)
                 return log_entry
 
-        log_entry["rows"] = len(rows) if rows else 0
+        row_count = len(rows) if rows else 0
+        log_entry["rows"] = row_count
+
+        # ─── Step 7b: Handle row = 0 (data validation, NOT fail) ──
+        entity_valid = True
+        if row_count == 0 and success:
+            logger.info("[Step 7] row=0 → running data validation...")
+            data_result = validate_empty_result(
+                sql=sql,
+                entities=entities,
+                profiles=_profiles,
+                executor_fn=execute_query,
+            )
+            log_entry["data_validation"] = data_result
+
+            if data_result["status"] == "DATA_ERROR":
+                log_entry["validator"] = "DATA_ERROR"
+                log_entry["error"] = data_result["message"]
+                entity_valid = False
+                logger.warning(f"[Step 7] DATA_ERROR: {data_result['message']}")
+            else:
+                # PASS_EMPTY: SQL đúng nhưng không có data
+                log_entry["validator"] = "PASS_EMPTY"
+                logger.info(f"[Step 7] PASS_EMPTY: {data_result['message']}")
+
+        # ─── Confidence scoring ─────────────────────────────
+        log_entry["confidence"] = compute_confidence(
+            sql_executed=success,
+            entity_valid=entity_valid,
+            schema_valid=True,  # passed Step 6a
+            row_count=row_count,
+            semantic_ok=semantic_ok,
+        )
+
         timing["execution"] = round(time.time() - t0, 3)
         logger.info(f"[Step 7] ({timing['execution']}s)")
 
-        # Save successful SQL as approved template
-        if intent and rows:
+        # Save successful SQL as approved template (only when rows > 0)
+        if intent and rows and row_count > 0:
             intent_id = intent.get("intent_id", "")
             if intent_id:
                 save_approved_template(intent_id, sql)
@@ -338,10 +451,15 @@ def _log_query(entry: Dict[str, Any]):
         "sql": entry.get("sql"),
         "validator": entry.get("validator"),
         "rows": entry.get("rows", 0),
+        "confidence": entry.get("confidence", {}),
         "timing": entry.get("timing", {}),
     }
     if entry.get("error"):
         log_record["error"] = entry["error"]
+    if entry.get("semantic_warnings"):
+        log_record["semantic_warnings"] = entry["semantic_warnings"]
+    if entry.get("data_validation"):
+        log_record["data_validation"] = entry["data_validation"]
 
     with open(log_file, "a", encoding="utf-8") as f:
         f.write(json.dumps(log_record, ensure_ascii=False, default=str) + "\n")

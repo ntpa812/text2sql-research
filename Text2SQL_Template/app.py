@@ -23,12 +23,30 @@ def print_result(result: dict, show_timing: bool = True):
     print(f"→ Intent: {result.get('intent', 'N/A')}")
     print(f"→ Entities: {result.get('entities', {})}")
     print(f"→ SQL: {result.get('sql', 'N/A')}")
-    print(f"→ Validator: {result.get('validator', 'N/A')}")
+
+    validator = result.get("validator", "N/A")
+    print(f"→ Validator: {validator}")
+
+    if result.get("semantic_warnings"):
+        for w in result["semantic_warnings"]:
+            print(f"  ⚠ {w}")
 
     if result.get("error"):
         print(f"→ Error: {result['error']}")
+    elif validator == "PASS_EMPTY":
+        print(f"→ Result: 0 rows (dữ liệu không tồn tại, SQL hợp lệ)")
+    elif validator == "DATA_ERROR":
+        dv = result.get("data_validation", {})
+        print(f"→ Result: DATA_ERROR — {dv.get('message', '')}")
     else:
         print(f"→ Result: {result.get('rows', 0)} rows")
+
+    # Confidence score
+    conf = result.get("confidence", {})
+    if conf:
+        score = conf.get("score", 0)
+        passed = conf.get("passed", False)
+        print(f"→ Confidence: {score} ({'PASS' if passed else 'LOW'})")
 
     if result.get("explain"):
         print(f"→ Explain: {result['explain']}")
@@ -91,11 +109,14 @@ def run_batch(file_path: str, no_explain: bool = False, parallel: int = 1):
     # Summary
     total = len(all_results)
     passed = sum(1 for r in all_results if r.get("validator") == "PASS")
-    failed = sum(1 for r in all_results if r.get("error"))
+    pass_empty = sum(1 for r in all_results if r.get("validator") == "PASS_EMPTY")
+    data_errors = sum(1 for r in all_results if r.get("validator") == "DATA_ERROR")
+    failed = sum(1 for r in all_results if r.get("error") and r.get("validator") not in ("PASS_EMPTY", "DATA_ERROR"))
     avg_time = round(batch_elapsed / total, 2) if total else 0
+    avg_conf = round(sum(r.get("confidence", {}).get("score", 0) for r in all_results) / total, 2) if total else 0
     print(f"\n{'='*60}")
-    print(f"  SUMMARY: {total} questions | {passed} PASS | {failed} errors")
-    print(f"  Total: {batch_elapsed}s | Avg: {avg_time}s/query")
+    print(f"  SUMMARY: {total} questions | {passed} PASS | {pass_empty} EMPTY | {data_errors} DATA_ERR | {failed} FAIL")
+    print(f"  Avg confidence: {avg_conf} | Total: {batch_elapsed}s | Avg: {avg_time}s/query")
     print(f"{'='*60}")
 
     # Save batch results to JSON
@@ -108,7 +129,7 @@ def run_batch(file_path: str, no_explain: bool = False, parallel: int = 1):
 
     batch_output = []
     for r in all_results:
-        batch_output.append({
+        entry = {
             "question": r.get("question"),
             "tables": r.get("tables", []),
             "intent": r.get("intent"),
@@ -116,8 +137,16 @@ def run_batch(file_path: str, no_explain: bool = False, parallel: int = 1):
             "sql": r.get("sql"),
             "validator": r.get("validator"),
             "rows": r.get("rows", 0),
+            "confidence": r.get("confidence", {}),
             "timing": r.get("timing", {}),
-        })
+        }
+        if r.get("semantic_warnings"):
+            entry["semantic_warnings"] = r["semantic_warnings"]
+        if r.get("data_validation"):
+            entry["data_validation"] = r["data_validation"]
+        if r.get("error"):
+            entry["error"] = r["error"]
+        batch_output.append(entry)
 
     with open(batch_file, "w", encoding="utf-8") as f:
         json.dump(batch_output, f, ensure_ascii=False, indent=2)

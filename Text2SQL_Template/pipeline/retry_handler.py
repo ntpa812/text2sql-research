@@ -1,7 +1,12 @@
 """
 Pipeline – Retry Handler
 Quản lý retry strategy cho SQL generation.
-Max 3 attempts: syntax fix → schema fix → logic fix.
+
+Logic:
+  syntax_error  → retry SQL (max 2)
+  runtime_error → retry SQL hoặc fallback template
+  row=0         → data validation (không retry bừa)
+  connection    → không retry
 """
 
 import logging
@@ -14,18 +19,21 @@ logger = logging.getLogger(__name__)
 
 class RetryHandler:
     """
-    Retry handler cho SQL pipeline.
-    3 retry levels:
-      1. Syntax fix
-      2. Schema correction
-      3. Logic correction
+    Smart retry handler:
+    - Phân loại lỗi trước khi retry
+    - Max 2 retries cho syntax/runtime
+    - Không retry connection errors
+    - Row=0 → delegate cho data validator
     """
 
-    def __init__(self, max_retries: int = 3):
+    def __init__(self, max_retries: int = 2):
         self.max_retries = max_retries
         self.attempts: list = []
 
-    def should_retry(self) -> bool:
+    def should_retry(self, error_type: str = "") -> bool:
+        """Chỉ retry nếu lỗi có thể sửa được."""
+        if error_type in ("connection", "security"):
+            return False
         return len(self.attempts) < self.max_retries
 
     @property
@@ -47,18 +55,26 @@ class RetryHandler:
         error_message: str,
         schema: str = "",
         question: str = "",
+        semantic_warnings: list = None,
     ) -> str:
         """
         Build retry prompt phù hợp với loại lỗi.
         """
-        retry_num = self.retry_count
+        # Nếu có semantic warnings, thêm vào error message
+        if semantic_warnings:
+            extra = "\n\nSemantic issues:\n" + "\n".join(f"- {w}" for w in semantic_warnings)
+            error_message = error_message + extra
 
-        if retry_num == 1 or error_type == "syntax":
+        if error_type in ("syntax", "execution"):
             return build_retry_prompt("syntax", sql, error_message)
-        elif retry_num == 2 or error_type == "schema":
+        elif error_type == "schema":
             return build_retry_prompt("schema", sql, error_message, schema=schema)
-        else:
+        elif error_type == "runtime":
+            return build_retry_prompt("syntax", sql, error_message, schema=schema)
+        elif error_type == "semantic":
             return build_retry_prompt("logic", sql, error_message, schema=schema, question=question)
+        else:
+            return build_retry_prompt("syntax", sql, error_message)
 
     def get_summary(self) -> Dict[str, Any]:
         return {

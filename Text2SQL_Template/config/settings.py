@@ -30,7 +30,7 @@ NER_MODEL_PATH = os.path.join(
 )
 
 # ─── Pipeline ───────────────────────────────────────────────
-MAX_RETRY_ATTEMPTS = 3
+MAX_RETRY_ATTEMPTS = 2
 QUERY_ROW_LIMIT = 100
 QUERY_TIMEOUT_SECONDS = 30
 

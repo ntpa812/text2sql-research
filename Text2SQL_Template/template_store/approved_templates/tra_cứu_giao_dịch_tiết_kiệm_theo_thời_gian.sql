@@ -1,0 +1,4 @@
+SELECT COUNT(*)
+FROM transaction
+WHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)
+AND trans_name LIKE 'SAVING_%';
