@@ -1,0 +1,1486 @@
+[
+  {
+    "question": "Tôi đã chuyển bao nhiêu tiền trong tháng này",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.002,
+      "intent_detection": 0.011,
+      "entity_extraction": 1.536,
+      "template_fill": 0.001,
+      "sql_generation": 9.44
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tổng số tiền tôi đã chuyển trong tháng 1 năm 2024 là bao nhiêu",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.003,
+      "intent_detection": 0.011,
+      "entity_extraction": 1.569,
+      "template_fill": 0.0,
+      "sql_generation": 10.497
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Có bao nhiêu giao dịch tôi thực hiện trong tuần này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_kênh_thực_hiện",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.004,
+      "intent_detection": 0.001,
+      "entity_extraction": 1.602,
+      "template_fill": 0.0,
+      "sql_generation": 15.452
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Liệt kê tất cả giao dịch của tôi trong tháng trước",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_vay",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.003,
+      "intent_detection": 0.011,
+      "entity_extraction": 1.637,
+      "template_fill": 0.0,
+      "sql_generation": 16.319
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Cho tôi xem lịch sử giao dịch từ ngày 01/01/2024 đến 31/01/2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_thời_gian_sử_dụng_dịch_vụ",
+    "entities": {
+      "amount": "2024"
+    },
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.098,
+      "template_fill": 0.0,
+      "sql_generation": 0.0
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Các giao dịch trên 10 triệu trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {
+      "amount": "10000000"
+    },
+    "sql": "SELECT COUNT(*)\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)\nAND trans_name LIKE 'SAVING_%';",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  {
+    "question": "Các giao dịch dưới 500 nghìn trong tuần này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_số_tiền",
+    "entities": {
+      "amount": "500000"
+    },
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.005,
+      "entity_extraction": 0.038,
+      "template_fill": 0.0,
+      "sql_generation": 8.69
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tôi đã nhận được bao nhiêu tiền trong tháng này",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.038,
+      "template_fill": 0.001,
+      "sql_generation": 15.082
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tổng số giao dịch tôi thực hiện trong ngày hôm qua",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_kênh_thực_hiện",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.038,
+      "template_fill": 0.0,
+      "sql_generation": 19.218
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Các giao dịch chuyển khoản đến tài khoản của tôi hôm nay",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_đích",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.005,
+      "entity_extraction": 0.061,
+      "template_fill": 0.0,
+      "sql_generation": 8.033
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tôi đã chuyển tiền cho những tài khoản nào trong tháng này",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.117,
+      "template_fill": 0.0,
+      "sql_generation": 8.017
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tài khoản nào đã chuyển tiền cho tôi nhiều nhất",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.102,
+      "template_fill": 0.0,
+      "sql_generation": 9.115
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Giao dịch lớn nhất của tôi trong tháng này là bao nhiêu",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.032,
+      "template_fill": 0.0,
+      "sql_generation": 14.119
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Giao dịch nhỏ nhất của tôi trong tháng này là bao nhiêu",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.081,
+      "template_fill": 0.0,
+      "sql_generation": 7.415
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Có bao nhiêu giao dịch trên 5 triệu trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {
+      "amount": "5000000"
+    },
+    "sql": "SELECT COUNT(*)\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)\nAND trans_name LIKE 'SAVING_%';",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  {
+    "question": "Tổng tiền các giao dịch trên 2 triệu trong tuần này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_số_tiền",
+    "entities": {
+      "amount": "2000000"
+    },
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.094,
+      "template_fill": 0.0,
+      "sql_generation": 0.001
+    },
+    "semantic_warnings": [
+      "Câu hỏi yêu cầu tổng (SUM) nhưng SQL thiếu SUM()",
+      "Câu hỏi có thời gian nhưng SQL thiếu filter thời gian"
+    ],
+    "error": "Post-semantic-retry validation failed: Empty SQL query"
+  },
+  {
+    "question": "Các giao dịch từ 2 triệu đến 10 triệu trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {
+      "amount": "10000000"
+    },
+    "sql": "SELECT COUNT(*)\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)\nAND trans_name LIKE 'SAVING_%';",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  {
+    "question": "Tôi đã chuyển bao nhiêu tiền cho tài khoản 123456789",
+    "tables": [
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "account_no": "123456789"
+    },
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.011,
+      "entity_extraction": 0.16,
+      "template_fill": 0.001,
+      "sql_generation": 0.0
+    },
+    "semantic_warnings": [
+      "Câu hỏi yêu cầu đếm (COUNT) nhưng SQL thiếu COUNT()"
+    ],
+    "error": "Post-semantic-retry validation failed: Empty SQL query"
+  },
+  {
+    "question": "Tôi đã nhận bao nhiêu tiền từ tài khoản 987654321",
+    "tables": [
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "account_no": "987654321"
+    },
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.003,
+      "entity_extraction": 0.016,
+      "template_fill": 0.001,
+      "sql_generation": 0.0
+    },
+    "semantic_warnings": [
+      "Câu hỏi yêu cầu đếm (COUNT) nhưng SQL thiếu COUNT()"
+    ],
+    "error": "Post-semantic-retry validation failed: Empty SQL query"
+  },
+  {
+    "question": "Lịch sử giao dịch với tài khoản 123456789 trong tháng này",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "123456789",
+      "amount": "123456789000000"
+    },
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.008,
+      "entity_extraction": 0.061,
+      "template_fill": 0.001,
+      "sql_generation": 0.0
+    },
+    "semantic_warnings": [
+      "Câu hỏi có thời gian nhưng SQL thiếu filter thời gian"
+    ],
+    "error": "Post-semantic-retry validation failed: Empty SQL query"
+  },
+  {
+    "question": "Giao dịch gần nhất của tôi là gì",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.034,
+      "template_fill": 0.0,
+      "sql_generation": 12.058
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Giao dịch đầu tiên trong tháng này là gì",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT *\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)\nAND trans_name LIKE 'SAVING_%'\nLIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  {
+    "question": "Các giao dịch trong 7 ngày gần nhất",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.003,
+      "entity_extraction": 0.033,
+      "template_fill": 0.0,
+      "sql_generation": 11.902
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Các giao dịch trong 30 ngày gần nhất",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.037,
+      "template_fill": 0.001,
+      "sql_generation": 12.321
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tổng số tiền tôi đã chi tiêu trong tuần này",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.031,
+      "template_fill": 0.0,
+      "sql_generation": 13.853
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tổng số tiền tôi đã nhận trong tuần này",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.003,
+      "entity_extraction": 0.032,
+      "template_fill": 0.001,
+      "sql_generation": 9.254
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Có bao nhiêu giao dịch trong tháng 2 năm 2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.005,
+      "entity_extraction": 0.107,
+      "template_fill": 0.0,
+      "sql_generation": 13.917
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Các giao dịch ngày 15/03/2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.003,
+      "entity_extraction": 0.035,
+      "template_fill": 0.0,
+      "sql_generation": 14.737
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tổng tiền giao dịch ngày hôm qua",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_kênh_giao_dịch",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.002,
+      "entity_extraction": 0.037,
+      "template_fill": 0.0,
+      "sql_generation": 14.584
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tổng tiền giao dịch hôm nay",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_nạp_hoặc_rút_tiền",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.005,
+      "entity_extraction": 0.094,
+      "template_fill": 0.0,
+      "sql_generation": 7.573
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Các giao dịch chuyển đi trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.001,
+      "entity_extraction": 0.035,
+      "template_fill": 0.0,
+      "sql_generation": 8.606
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Các giao dịch nhận tiền trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_nạp_hoặc_rút_tiền",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.002,
+      "intent_detection": 0.003,
+      "entity_extraction": 0.033,
+      "template_fill": 0.0,
+      "sql_generation": 9.431
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tổng số tiền tôi đã chuyển trong 3 tháng gần đây",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.042,
+      "template_fill": 0.0,
+      "sql_generation": 14.881
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tổng số tiền tôi đã nhận trong 3 tháng gần đây",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.116,
+      "template_fill": 0.001,
+      "sql_generation": 9.131
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Có bao nhiêu giao dịch trên 1 triệu trong 30 ngày qua",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_vay_và_tín_dụng_theo_số_tiền",
+    "entities": {
+      "amount": "1000000"
+    },
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.009,
+      "entity_extraction": 0.094,
+      "template_fill": 0.0,
+      "sql_generation": 0.0
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Các giao dịch trên 20 triệu trong năm 2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_vay_và_tín_dụng_theo_số_tiền",
+    "entities": {
+      "amount": "20000000"
+    },
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.092,
+      "template_fill": 0.0,
+      "sql_generation": 0.0
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Các giao dịch dưới 100 nghìn trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {
+      "amount": "100000"
+    },
+    "sql": "SELECT COUNT(*)\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)\nAND trans_name LIKE 'SAVING_%';",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  {
+    "question": "Các giao dịch chuyển tiền vào cuối tuần",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_dòng_tiền",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.038,
+      "template_fill": 0.0,
+      "sql_generation": 13.431
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Các giao dịch chuyển tiền vào thứ hai tuần này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_dòng_tiền",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.009,
+      "entity_extraction": 0.108,
+      "template_fill": 0.0,
+      "sql_generation": 7.474
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tôi đã giao dịch với bao nhiêu tài khoản khác nhau trong tháng này",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_nguồn",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.026,
+      "template_fill": 0.003,
+      "sql_generation": 12.961
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tài khoản nào tôi giao dịch nhiều nhất",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_nguồn",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.055,
+      "template_fill": 0.0,
+      "sql_generation": 17.191
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Giao dịch có số tiền lớn nhất trong năm nay",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_số_tiền",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.005,
+      "entity_extraction": 0.035,
+      "template_fill": 0.0,
+      "sql_generation": 11.692
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Giao dịch có số tiền nhỏ nhất trong năm nay",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_số_tiền",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.08,
+      "template_fill": 0.0,
+      "sql_generation": 7.375
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tổng số tiền giao dịch trong năm 2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.003,
+      "entity_extraction": 0.029,
+      "template_fill": 0.0,
+      "sql_generation": 8.249
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Các giao dịch trong quý 1 năm 2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.003,
+      "entity_extraction": 0.044,
+      "template_fill": 0.001,
+      "sql_generation": 11.967
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Các giao dịch trong quý 2 năm 2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.03,
+      "template_fill": 0.0,
+      "sql_generation": 11.289
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Các giao dịch trong tháng 12 năm 2023",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.015,
+      "entity_extraction": 0.158,
+      "template_fill": 0.0,
+      "sql_generation": 7.404
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Có bao nhiêu giao dịch trong ngày hôm nay",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.029,
+      "template_fill": 0.0,
+      "sql_generation": 8.479
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tổng số tiền tôi đã chuyển cho tất cả tài khoản trong tháng này",
+    "tables": [
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.033,
+      "template_fill": 0.0,
+      "sql_generation": 9.273
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Lịch sử tất cả giao dịch của tôi trong năm nay",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.003,
+      "entity_extraction": 0.034,
+      "template_fill": 0.0,
+      "sql_generation": 7.936
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  }
+]

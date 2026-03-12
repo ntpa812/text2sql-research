@@ -1,0 +1,900 @@
+{
+  "90a0fb2122580eab": {
+    "question": "Xem tất cả giao dịch của tài khoản 123456 trong tháng 1 năm 2024",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "123456",
+      "amount": "123456000000"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE 'SAVING_%'\nAND from_account_no = '123456'\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.046,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "b5005a917d987543": {
+    "question": "Tôi đã nhận bao nhiêu tiền vào ngày 15/03/2024",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_dòng_tiền",
+    "entities": {},
+    "sql": "SELECT \n  SUM(CASE WHEN trans_type = 'IN' THEN amount_transfer ELSE 0 END) AS total_income\nFROM \n  transaction\nWHERE \n  trans_time >= '2024-03-15' AND \n  (trans_type = 'IN' OR trans_type = 'OUT') AND \n  amount_currency = 'VND'\nORDER BY \n  trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.044,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "601874c7888498c5": {
+    "question": "Có bao nhiêu giao dịch trên 10 triệu trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {
+      "amount": "10000000"
+    },
+    "sql": "SELECT COUNT(*)\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)\nAND trans_name LIKE 'SAVING_%';",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.003,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "bc597b0177706407": {
+    "question": "Giao dịch gần nhất của tài khoản 123456 là gì",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "123456"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE 'SAVING_%'\nAND from_account_no = '123456'\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "1d95fc524f31f4ff": {
+    "question": "Liệt kê các giao dịch chuyển khoản của tài khoản 987654 trong tuần này",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "987654",
+      "amount": "987654000000"
+    },
+    "sql": "SELECT \n    t.trans_id, \n    t.trans_time, \n    t.trans_type, \n    t.trans_name, \n    t.from_account_no, \n    t.to_account_no, \n    t.amount_transfer, \n    t.amount_currency, \n    t.trans_status, \n    t.trans_desc\nFROM \n    transaction t\nWHERE \n    t.trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) \n    AND t.from_account_no = '987654'\nORDER BY \n    t.trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.044,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "7ef17cac7795d7a5": {
+    "question": "Xem các giao dịch chuyển tiền trên 5 triệu trong tháng 3",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {
+      "amount": "5000000"
+    },
+    "sql": "SELECT \n  COUNT(*) AS total_transactions\nFROM \n  transaction\nWHERE \n  trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY) AND \n  trans_time < DATE_SUB(CURRENT_DATE, INTERVAL 0 DAY)",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.002,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "12e95dd7967f6056": {
+    "question": "Liệt kê các giao dịch nạp tiền vào tài khoản của tôi",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {},
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%EWALLET_%' OR category_code = 'TOPUP'\nAND from_account_no = 'your_account_number'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.006,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "d7d279d9421fc6e6": {
+    "question": "Liệt kê 10 giao dịch gần nhất của tài khoản 111222",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "111222"
+    },
+    "sql": "SELECT\n  trans_id, trans_time, trans_type, trans_name,\n  from_account_no, to_account_no,\n  amount_transfer, amount_currency,\n  trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%FORGEIN_CURRENCY%'\n  AND from_account_no = '111222'\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "74dde7e37d804736": {
+    "question": "Tài khoản 456789 đã chuyển bao nhiêu tiền trong tuần qua",
+    "tables": [
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "account_no": "456789",
+      "amount": "456789"
+    },
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transfer\nFROM transaction t\nJOIN customer_account c ON t.from_account_no = c.account_no\nWHERE c.account_no = '456789'\nAND t.trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)\nAND t.category_code LIKE 'TRANSFER_%'\nORDER BY t.trans_time DESC;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.003,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "041552c8e4b46460": {
+    "question": "Xem lịch sử giao dịch của tài khoản 333444 trong 7 ngày qua",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "333444",
+      "amount": "333444000000"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE 'SAVING_%'\nAND from_account_no = '333444'\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "c4c94076fac6e29d": {
+    "question": "Những giao dịch nào diễn ra vào ngày 20/02/2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_dòng_tiền",
+    "entities": {},
+    "sql": "SELECT \n  *\nFROM \n  transaction\nWHERE \n  trans_time >= '2024-02-20'\nORDER BY \n  trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "fd169c5a1786b2f0": {
+    "question": "Tôi đã thực hiện bao nhiêu giao dịch trong tháng 6",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_kênh_thực_hiện",
+    "entities": {},
+    "sql": "SELECT COUNT(*) \nFROM transaction \nWHERE EXTRACT(MONTH FROM transaction.trans_time) = 6 AND trans_type = 'DIMENSION' AND channel_receiver = 'DIMENSION';",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "23e0ecf01f75848a": {
+    "question": "Xem các giao dịch chuyển khoản ra ngoài ngân hàng",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_loại_giao_dịch",
+    "entities": {},
+    "sql": "SELECT *\nFROM transaction\nWHERE trans_type IN ('CHUYEN NOI BO', 'CHUYEN LIEN NGAN HANG', 'CHUYEN QUA THE', 'CHUYEN QUA VI DIEN TU')\nLIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "3c076d4041a2a9e9": {
+    "question": "Liệt kê các giao dịch vào ngày hôm nay",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_vay",
+    "entities": {},
+    "sql": "SELECT *\nFROM transaction\nWHERE trans_time = CURDATE()\nLIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "204d952e23694415": {
+    "question": "Tổng số tiền giao dịch của tài khoản 888999 trong tháng này",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "account_no": "888999",
+      "amount": "888999000000"
+    },
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transfer\nFROM transaction t\nJOIN customer_account c ON t.from_account_no = c.account_no\nWHERE c.account_no = '888999'\nAND t.trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)\nAND t.category_code LIKE 'TRANSFER_%'\nORDER BY t.trans_time DESC;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "24ce984533c74352": {
+    "question": "Xem các giao dịch từ ngày 10/02/2024 đến 20/02/2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {
+      "amount": "2024"
+    },
+    "sql": "SELECT COUNT(*)\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)\nAND trans_name LIKE 'SAVING_%';",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "eca6524915a54292": {
+    "question": "Các giao dịch có giá trị dưới 1 triệu trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_số_tiền",
+    "entities": {
+      "amount": "1000000"
+    },
+    "sql": "SELECT \n  t.trans_code,\n  t.from_account_no,\n  t.to_account_no,\n  t.amount_transfer,\n  t.amount_currency,\n  t.trans_time\nFROM transaction t\nWHERE \n  t.trans_time >= '2023-01-01' AND \n  t.trans_time < '2023-02-01' AND \n  t.amount_transfer < 1000000;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "b29b685ac8e28079": {
+    "question": "Cho tôi danh sách giao dịch của tài khoản 555666",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "555666"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE 'SAVING_%'\nAND from_account_no = '555666'\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.001,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "e6efd87c7c85227b": {
+    "question": "Các giao dịch chuyển tiền vào tài khoản 123456 trong tháng trước",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "123456",
+      "amount": "123456000000"
+    },
+    "sql": "SELECT \n    t.trans_id, \n    t.trans_time, \n    t.trans_type, \n    t.trans_name, \n    t.from_account_no, \n    t.to_account_no, \n    t.amount_transfer, \n    t.amount_currency, \n    t.trans_status, \n    t.trans_desc\nFROM \n    transaction t\nWHERE \n    t.trans_type = 'TRANSFER'\nAND \n    t.from_account_no = '123456'\nAND \n    t.trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)\nORDER BY \n    t.trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "40cdf2b646087705": {
+    "question": "Xem lịch sử chuyển tiền của tài khoản 222333",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "222333"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '222333')\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "4aa63974a7868469": {
+    "question": "Giao dịch có giá trị lớn nhất trong tháng 5 là gì",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT *\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)\nAND trans_name LIKE 'SAVING_%'\nORDER BY amount_transfer DESC\nLIMIT 1;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "c9295dea962acbed": {
+    "question": "Liệt kê các giao dịch có số tiền từ 2 triệu đến 10 triệu",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_số_tiền",
+    "entities": {
+      "amount": "10000000"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE amount_transfer > 20000000\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.001,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "14d1c5a0c86e1a6b": {
+    "question": "Có bao nhiêu giao dịch trong ngày 01/03/2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT COUNT(*)\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)\nAND trans_name LIKE 'SAVING_%';",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.001,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "0485c76654e24353": {
+    "question": "Các giao dịch rút tiền trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT \n  t.reference_id,\n  t.trans_id,\n  t.from_account_no,\n  t.to_account_no,\n  t.amount_transfer,\n  t.amount_currency,\n  t.category_code,\n  t.trans_time\nFROM transaction t\nWHERE t.category_code LIKE 'RUT TIEN'\n  AND t.trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)\n  AND t.trans_time < DATE_ADD(CURRENT_DATE, INTERVAL 1 DAY);",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "b52e4b810dbefcf2": {
+    "question": "Những giao dịch nào có số tiền trên 20 triệu",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_số_tiền",
+    "entities": {
+      "amount": "20000000"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE amount_transfer > 20000000\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "0dbca25cf1953a28": {
+    "question": "Xem các giao dịch nhận tiền từ tài khoản 777888",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_tài_khoản_nhận",
+    "entities": {
+      "account_no": "777888"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE 'SAVING_%'\n  AND to_account_no = '777888'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "612eaec96fd13828": {
+    "question": "Giao dịch đầu tiên trong tháng này là gì",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT *\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)\nAND trans_name LIKE 'SAVING_%'\nLIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "f3fb94d742b452dd": {
+    "question": "Xem lịch sử giao dịch của tôi trong 30 ngày gần nhất",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_thời_gian_sử_dụng_dịch_vụ",
+    "entities": {},
+    "sql": "SELECT *\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 30 DAY)\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "801dbbeb91c3507c": {
+    "question": "Các giao dịch trên 10 triệu trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {
+      "amount": "10000000"
+    },
+    "sql": "SELECT COUNT(*)\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)\nAND trans_name LIKE 'SAVING_%';",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "0dd84c38e186df63": {
+    "question": "Có bao nhiêu giao dịch trên 5 triệu trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {
+      "amount": "5000000"
+    },
+    "sql": "SELECT COUNT(*)\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)\nAND trans_name LIKE 'SAVING_%';",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "d845a7c43c158a56": {
+    "question": "Các giao dịch từ 2 triệu đến 10 triệu trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {
+      "amount": "10000000"
+    },
+    "sql": "SELECT COUNT(*)\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)\nAND trans_name LIKE 'SAVING_%';",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.0,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "729cdfb8992b72cc": {
+    "question": "Các giao dịch dưới 100 nghìn trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {
+      "amount": "100000"
+    },
+    "sql": "SELECT COUNT(*)\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)\nAND trans_name LIKE 'SAVING_%';",
+    "validator": "PASS",
+    "cache_hit": true,
+    "execution_time": 0.001,
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  "2a3cdaa0197a9908": {
+    "question": "Tổng số tiền tôi đã chuyển đi trong tháng 2",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE trans_time >= '2024-02-01' \n  AND trans_time < '2024-03-01'\n  AND from_account_no = 'YOUR_ACCOUNT_NUMBER'",
+    "validator": "PASS"
+  },
+  "b5d8adb2cc5a2db0": {
+    "question": "Tổng số giao dịch trong ngày hôm qua",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {},
+    "sql": "SELECT COUNT(*) AS total_transactions\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURDATE(), INTERVAL 1 DAY)\n  AND trans_time < CURDATE();",
+    "validator": "PASS"
+  },
+  "7aab6393f7af9ce6": {
+    "question": "Tổng tiền đã chuyển trong ngày hôm nay",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "SELECT SUM(amount_transfer) AS total_transferred\nFROM transaction\nWHERE DATE(trans_time) = CURDATE()\n  AND trans_status = 'S';",
+    "validator": "PASS"
+  },
+  "e7c39125ea2f0788": {
+    "question": "Có bao nhiêu giao dịch tôi thực hiện trong tuần này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_kênh_thực_hiện",
+    "entities": {},
+    "sql": "SELECT COUNT(*) \nFROM transaction \nWHERE EXTRACT(MONTH FROM transaction.trans_time) = MONTH(CURRENT_DATE) AND trans_type = 'DIMENSION' AND channel_receiver = 'DIMENSION' \nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "8a605fb6e61a62bf": {
+    "question": "Tôi đã chuyển bao nhiêu tiền trong tháng này",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT \n  SUM(amount_transfer) AS total_transfer\nFROM \n  transaction\nWHERE \n  category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER'\nAND \n  from_account_no = 'your_account_number'\nAND \n  trans_time BETWEEN '2023-01-01' AND '2023-01-31'",
+    "validator": "PASS"
+  },
+  "2f9229620d89e690": {
+    "question": "Tổng số tiền tôi đã chuyển trong tháng 1 năm 2024 là bao nhiêu",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transferred\nFROM transaction t\nJOIN customer c ON t.from_cust_no = c.customer_no\nWHERE DATE(t.trans_time) = '2024-01-01'\n  AND t.trans_status = 'S'\n  AND c.init_date <= '2024-01-31';",
+    "validator": "PASS"
+  },
+  "d33eaeea705e2f57": {
+    "question": "Các giao dịch dưới 500 nghìn trong tuần này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_số_tiền",
+    "entities": {
+      "amount": "500000"
+    },
+    "sql": "SELECT \n  t.trans_code,\n  t.from_account_no,\n  t.to_account_no,\n  t.amount_transfer,\n  t.amount_currency,\n  t.trans_time\nFROM transaction t\nWHERE t.trans_time >= DATE_SUB(CURDATE(), INTERVAL 1 WEEK)\n  AND t.amount_transfer <= 500000;",
+    "validator": "PASS_EMPTY"
+  },
+  "9f5b6e735bf836f5": {
+    "question": "Tôi đã nhận được bao nhiêu tiền trong tháng này",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {},
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transfer\nFROM transaction t\nJOIN customer_account c ON t.from_account_no = c.account_no\nWHERE c.account_no = '888999'\nAND t.trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)\nAND t.category_code LIKE 'TRANSFER_%'\nAND t.amount_transfer > 0\nORDER BY t.trans_time DESC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "a1da07e7cbc2bc0c": {
+    "question": "Tài khoản nào đã chuyển tiền cho tôi nhiều nhất",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {},
+    "sql": "SELECT c.account_name, SUM(t.amount_transfer) AS total_transfer\nFROM transaction t\nJOIN customer_account c ON t.from_account_no = c.account_no\nWHERE c.account_class = 'DIMENSION'\nAND t.trans_type = 'DIMENSION'\nGROUP BY c.account_name\nORDER BY SUM(t.amount_transfer) DESC\nLIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "5487427f287efe19": {
+    "question": "Các giao dịch chuyển khoản đến tài khoản của tôi hôm nay",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_đích",
+    "entities": {},
+    "sql": "SELECT \n  t.trans_id, t.trans_time, t.trans_type, t.trans_name,\n  t.from_account_no, t.to_account_no,\n  t.amount_transfer, t.amount_currency,\n  t.trans_status, t.trans_desc\nFROM transaction t\nJOIN customer_account ca ON t.from_account_no = ca.account_no\nWHERE ca.account_name = 'your_account_name'\n  AND t.trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 0 DAY)\nORDER BY t.trans_time DESC\nLIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "272bbb569abf6b36": {
+    "question": "Tôi đã chuyển bao nhiêu tiền cho tài khoản 123456789",
+    "tables": [
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "account_no": "123456789"
+    },
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transfer\nFROM transaction t\nJOIN customer_account c ON t.from_account_no = c.account_no\nWHERE c.account_no = '123456789'\nAND t.category_code LIKE 'TRANSFER_%'\nORDER BY t.trans_time DESC;",
+    "validator": "PASS"
+  },
+  "b4f6e721928fa78c": {
+    "question": "Giao dịch lớn nhất của tôi trong tháng này là bao nhiêu",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT MAX(bill_amount) AS largest_saving_transaction\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)\nAND trans_name LIKE 'SAVING_%';",
+    "validator": "PASS"
+  },
+  "49598560cfff9b4a": {
+    "question": "Tổng tiền các giao dịch trên 2 triệu trong tuần này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_số_tiền",
+    "entities": {
+      "amount": "2000000"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) AND amount_transfer > 2000000;",
+    "validator": "PASS"
+  },
+  "e558b2bea0cb02da": {
+    "question": "Các giao dịch trong 7 ngày gần nhất",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT *\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)\nAND trans_name LIKE 'SAVING_%'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "bb04b25aa6f03a7b": {
+    "question": "Tổng số tiền tôi đã chi tiêu trong tuần này",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "SELECT SUM(amount_transfer) AS total_transferred\nFROM transaction\nWHERE DATE(trans_time) = CURDATE()\n  AND trans_status = 'S';",
+    "validator": "PASS"
+  },
+  "5035d73e6e1f0332": {
+    "question": "Các giao dịch trong 30 ngày gần nhất",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT *\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 30 DAY)\nAND trans_name LIKE 'SAVING_%'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "a8fc3d84285cb81b": {
+    "question": "Tổng số tiền tôi đã nhận trong tuần này",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "SELECT SUM(amount_transfer) AS total_transferred\nFROM transaction\nWHERE DATE(trans_time) = CURDATE()\n  AND trans_status = 'S';",
+    "validator": "PASS"
+  },
+  "efd105090b63e0f5": {
+    "question": "Có bao nhiêu giao dịch trong tháng 2 năm 2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT COUNT(*)\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)\nAND trans_name LIKE 'SAVING_%';",
+    "validator": "PASS"
+  },
+  "d63a66cfb5d5b09b": {
+    "question": "Các giao dịch ngày 15/03/2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT *\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)\nAND trans_name LIKE 'SAVING_%'\nLIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "998da0e1983dbf8f": {
+    "question": "Tổng tiền giao dịch hôm nay",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_nạp_hoặc_rút_tiền",
+    "entities": {},
+    "sql": "SELECT \n  COUNT(*)            AS total_transactions,\n  SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURDATE(), INTERVAL 1 DAY)",
+    "validator": "PASS"
+  },
+  "6bfa56fcf8816937": {
+    "question": "Tổng tiền giao dịch ngày hôm qua",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_kênh_giao_dịch",
+    "entities": {},
+    "sql": "SELECT \n  SUM(t.amount_transfer) AS total_amount\nFROM transaction t\nWHERE t.trans_time >= DATE_SUB(CURDATE(), INTERVAL 1 DAY)\nORDER BY t.trans_time DESC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "cee8b6e361732c81": {
+    "question": "Các giao dịch nhận tiền trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_nạp_hoặc_rút_tiền",
+    "entities": {},
+    "sql": "SELECT \n  COUNT(*)            AS total_transactions,\n  SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE trans_type = 'DEPOSIT'\n  AND EXTRACT(MONTH FROM transaction.trans_time) = MONTH(CURRENT_DATE)\n  AND EXTRACT(YEAR FROM transaction.trans_time) = YEAR(CURRENT_DATE);",
+    "validator": "PASS"
+  },
+  "a62fda91aea06bd9": {
+    "question": "Tổng số tiền tôi đã chuyển trong 3 tháng gần đây",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transferred\nFROM transaction t\nJOIN customer c ON t.from_cust_no = c.customer_no\nWHERE DATE(t.trans_time) >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\n  AND t.trans_status = 'S';",
+    "validator": "PASS"
+  },
+  "1f88f225b5e75f11": {
+    "question": "Tổng số tiền tôi đã nhận trong 3 tháng gần đây",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transferred\nFROM transaction t\nJOIN customer c ON t.from_cust_no = c.customer_no\nWHERE DATE(t.trans_time) >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\n  AND t.trans_status = 'S';",
+    "validator": "PASS"
+  },
+  "5eb0483c6c1f48d3": {
+    "question": "Các giao dịch chuyển tiền vào cuối tuần",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_dòng_tiền",
+    "entities": {},
+    "sql": "SELECT \n  *\nFROM \n  transaction\nWHERE \n  trans_type = 'TRANSFER' AND \n  trans_time >= '2024-02-20'\nORDER BY \n  trans_time DESC\nLIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "65bed319b8aa0842": {
+    "question": "Tài khoản nào tôi giao dịch nhiều nhất",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_nguồn",
+    "entities": {},
+    "sql": "SELECT \n  trans_id, trans_time, trans_type, trans_name,\n  from_account_no, to_account_no,\n  amount_transfer, amount_currency,\n  trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%FOREIGN_CURRENCY%'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "89a519d474287643": {
+    "question": "Tổng số tiền giao dịch trong năm 2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "SELECT SUM(amount_transfer) AS total_transferred\nFROM transaction\nWHERE DATE(trans_time) = CURDATE()\n  AND trans_status = 'S';",
+    "validator": "PASS"
+  },
+  "f7670ff02a2d6184": {
+    "question": "Các giao dịch trong tháng 12 năm 2023",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT *\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)\nAND trans_name LIKE 'SAVING_%'\nLIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "6a1930c1325e4b2a": {
+    "question": "Các giao dịch trong quý 1 năm 2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT \n  t.trans_code,\n  t.from_account_no,\n  t.to_account_no,\n  t.amount_transfer,\n  t.amount_currency,\n  t.category_code,\n  t.trans_time\nFROM transaction t\nWHERE t.category_code LIKE 'BOOKING%'\n  AND t.trans_time BETWEEN '2024-01-01' AND '2024-03-31';",
+    "validator": "PASS_EMPTY"
+  },
+  "cb70fe03e54af4e3": {
+    "question": "Các giao dịch trong quý 2 năm 2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT \n  trans_code,\n  from_account_no,\n  to_account_no,\n  amount_transfer,\n  amount_currency,\n  category_code,\n  trans_time\nFROM transaction\nWHERE category_code LIKE 'BOOKING%'\n  AND trans_time BETWEEN '2024-04-01' AND '2024-06-30';",
+    "validator": "PASS_EMPTY"
+  },
+  "abc4c2b7cd01c239": {
+    "question": "Lịch sử tất cả giao dịch của tôi trong năm nay",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT *\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 YEAR)\nAND trans_name LIKE 'SAVING_%'\nLIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "6d2d7c571acb60ff": {
+    "question": "Có bao nhiêu giao dịch trong ngày hôm nay",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_thời_gian",
+    "entities": {},
+    "sql": "SELECT COUNT(*) \nFROM transaction \nWHERE trans_time >= DATE_SUB(CURDATE(), INTERVAL 0 DAY) \nAND category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER';",
+    "validator": "PASS"
+  },
+  "0f5a21f66dc4da72": {
+    "question": "Tổng số tiền tôi đã chuyển cho tất cả tài khoản trong tháng này",
+    "tables": [
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {},
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transfer\nFROM transaction t\nJOIN customer_account c ON t.from_account_no = c.account_no\nWHERE c.account_class = 'CORE'\nAND t.trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)\nAND t.category_code LIKE 'TRANSFER_%'\nGROUP BY c.account_no\nORDER BY c.account_no;",
+    "validator": "PASS_EMPTY"
+  }
+}

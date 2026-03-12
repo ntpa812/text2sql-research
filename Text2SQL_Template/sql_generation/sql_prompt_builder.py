@@ -8,7 +8,7 @@ from typing import Dict, Any, Optional
 
 logger = logging.getLogger(__name__)
 
-SQL_PROMPT_TEMPLATE = """You are an expert SQL generator for a banking database for MariaDB 10.x.
+SQL_PROMPT_TEMPLATE = """You are an expert SQL generator for a banking database.
 
 Your task is to write a valid SQL query based on the user question.
 
@@ -20,6 +20,7 @@ You MUST follow these rules:
 4. The SQL must be syntactically valid.
 5. Only generate a SELECT query.
 6. Limit the result to {row_limit} rows.
+7. Dialect: MySQL / MariaDB.
 
 ---------------------
 DATABASE SCHEMA

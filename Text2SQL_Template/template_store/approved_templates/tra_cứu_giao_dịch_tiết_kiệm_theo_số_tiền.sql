@@ -1,8 +1,3 @@
-SELECT trans_id, trans_time, trans_type, trans_name,
-       from_account_no, to_account_no,
-       amount_transfer, amount_currency,
-       trans_status, trans_desc
+SELECT SUM(amount_transfer) AS total_amount
 FROM transaction
-WHERE amount_transfer > 20000000
-ORDER BY trans_time DESC
-LIMIT 100;
+WHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) AND amount_transfer > 2000000;

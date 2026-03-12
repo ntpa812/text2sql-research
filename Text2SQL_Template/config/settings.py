@@ -20,6 +20,8 @@ LOGS_DIR = os.path.join(BASE_DIR, "logs")
 LLM_BACKEND = "ollama"          # "ollama" | "transformers"
 LLM_OLLAMA_BASE_URL = "http://localhost:11434"
 LLM_OLLAMA_MODEL = "llama3:8b"  # ollama model name
+# LLM_OLLAMA_MODEL = "kwangsuklee/Qwen3.5-4B-Claude-4.6-Opus-Reasoning-Distilled-GGUF:latest"
+# LLM_OLLAMA_MODEL = "hf.co/defog/sqlcoder-7b-2:Q5_K_M"
 LLM_MODEL_PATH = ""             # HF path (only for transformers backend)
 LLM_MAX_NEW_TOKENS = 256
 LLM_TEMPERATURE = 0.0
@@ -33,6 +35,12 @@ NER_MODEL_PATH = os.path.join(
 MAX_RETRY_ATTEMPTS = 2
 QUERY_ROW_LIMIT = 100
 QUERY_TIMEOUT_SECONDS = 30
+
+# ─── Testing ────────────────────────────────────────────────
+# Mock account for offline testing (inject vào SQL khi test)
+TEST_MODE = False
+TEST_ACCOUNT = "1234567890"
+TEST_CUSTOMER_ID = "CUS001"
 
 # ─── Embedding (for intent ranking / schema routing) ───────
 EMBEDDING_MODEL_NAME = "intfloat/multilingual-e5-base"

@@ -48,6 +48,18 @@ def print_result(result: dict, show_timing: bool = True):
         passed = conf.get("passed", False)
         print(f"→ Confidence: {score} ({'PASS' if passed else 'LOW'})")
 
+    # Structure score
+    struct_score = result.get("structure_score")
+    if struct_score is not None:
+        print(f"→ Structure: {struct_score}")
+        issues = result.get("structure_issues", [])
+        for issue in issues:
+            print(f"  ⚠ {issue}")
+
+    # Cache hit
+    if result.get("cache_hit"):
+        print(f"→ Cache: HIT (skip pipeline)")
+
     if result.get("explain"):
         print(f"→ Explain: {result['explain']}")
 
@@ -112,10 +124,13 @@ def run_batch(file_path: str, no_explain: bool = False, parallel: int = 1):
     pass_empty = sum(1 for r in all_results if r.get("validator") == "PASS_EMPTY")
     data_errors = sum(1 for r in all_results if r.get("validator") == "DATA_ERROR")
     failed = sum(1 for r in all_results if r.get("error") and r.get("validator") not in ("PASS_EMPTY", "DATA_ERROR"))
+    cache_hits = sum(1 for r in all_results if r.get("cache_hit"))
     avg_time = round(batch_elapsed / total, 2) if total else 0
     avg_conf = round(sum(r.get("confidence", {}).get("score", 0) for r in all_results) / total, 2) if total else 0
     print(f"\n{'='*60}")
-    print(f"  SUMMARY: {total} questions | {passed} PASS | {pass_empty} EMPTY | {data_errors} DATA_ERR | {failed} FAIL")
+    print(f"  SUMMARY: {total} queries | {passed} PASS | {pass_empty} EMPTY | {data_errors} DATA_ERR | {failed} FAIL")
+    if cache_hits:
+        print(f"  Cache hits: {cache_hits}/{total}")
     print(f"  Avg confidence: {avg_conf} | Total: {batch_elapsed}s | Avg: {avg_time}s/query")
     print(f"{'='*60}")
 
@@ -181,7 +196,21 @@ def main():
     parser.add_argument("--no-explain", action="store_true", help="Skip explain step (faster)")
     parser.add_argument("--parallel", type=int, default=1, help="Number of parallel threads (batch mode)")
     parser.add_argument("--warm", action="store_true", help="Warm up Ollama model before running")
+    parser.add_argument("--test-mode", action="store_true", help="Enable test mode (inject mock account)")
+    parser.add_argument("--clear-cache", action="store_true", help="Xoá query cache trước khi chạy")
     args = parser.parse_args()
+
+    # Test mode: inject mock account
+    if args.test_mode:
+        import config.settings as cfg
+        cfg.TEST_MODE = True
+        print("⚡ TEST MODE enabled — mock account will be injected")
+
+    # Clear cache if requested
+    if args.clear_cache:
+        from pipeline.query_cache import clear_query_cache
+        clear_query_cache()
+        print("🗑 Query cache cleared")
 
     if args.warm:
         from sql_generation.llm_sql_generator import warm_ollama

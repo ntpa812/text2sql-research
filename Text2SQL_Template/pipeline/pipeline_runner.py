@@ -39,6 +39,7 @@ from sql_generation.llm_sql_generator import generate_sql
 # Validator
 from validator.security_guard import validate_all, classify_execution_error
 from validator.semantic_validator import validate_semantic
+from validator.structure_validator import validate_sql_structure
 from validator.data_validator import validate_empty_result
 from validator.confidence_scorer import compute_confidence
 
@@ -48,8 +49,10 @@ from executor.query_executor import execute_query, explain_query
 # Explain
 from explain.explain_engine import generate_explain, format_result_table
 
-# Retry
+# Retry & Cache & Mock
 from pipeline.retry_handler import RetryHandler
+from pipeline.query_cache import get_cached_result, cache_result
+from pipeline.test_mock import inject_test_account
 
 logger = logging.getLogger(__name__)
 
@@ -85,6 +88,14 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
     """
     start_time = time.time()
     _ensure_loaded()
+
+    # ─── Cache check ────────────────────────────────────
+    cached = get_cached_result(question)
+    if cached:
+        cached["execution_time"] = round(time.time() - start_time, 3)
+        cached["timing"] = {"cache_hit": 0.0}
+        logger.info(f"[Pipeline] Cache HIT → returning cached SQL")
+        return cached
 
     timing: Dict[str, float] = {}
 
@@ -184,6 +195,9 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
             )
             sql = generate_sql(prompt)
 
+        # Inject test mock account nếu TEST_MODE
+        sql = inject_test_account(sql)
+
         log_entry["sql"] = sql
         timing["sql_generation"] = round(time.time() - t0, 3)
         logger.info(f"[Step 5] ({timing['sql_generation']}s)")
@@ -223,7 +237,7 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
             # Confidence: SQL không chạy được
             log_entry["confidence"] = compute_confidence(
                 sql_executed=False, entity_valid=True, schema_valid=False,
-                row_count=0, semantic_ok=False,
+                row_count=0, semantic_ok=False, structure_score=0.0,
             )
             _log_query(log_entry)
             return log_entry
@@ -283,7 +297,7 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
             log_entry["timing"] = timing
             log_entry["confidence"] = compute_confidence(
                 sql_executed=False, entity_valid=True, schema_valid=True,
-                row_count=0, semantic_ok=semantic_ok,
+                row_count=0, semantic_ok=semantic_ok, structure_score=0.0,
             )
             _log_query(log_entry)
             return log_entry
@@ -325,7 +339,7 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
                 log_entry["timing"] = timing
                 log_entry["confidence"] = compute_confidence(
                     sql_executed=False, entity_valid=True, schema_valid=True,
-                    row_count=0, semantic_ok=semantic_ok,
+                    row_count=0, semantic_ok=semantic_ok, structure_score=0.0,
                 )
                 _log_query(log_entry)
                 return log_entry
@@ -333,35 +347,53 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
         row_count = len(rows) if rows else 0
         log_entry["rows"] = row_count
 
-        # ─── Step 7b: Handle row = 0 (data validation, NOT fail) ──
+        # ─── Step 7b: SQL Structure Validation (primary check) ──
+        # Dùng structure validator thay vì row count làm tiêu chí chính
+        struct_valid, struct_issues, struct_score = validate_sql_structure(
+            sql=sql,
+            question=question,
+            entities=entities,
+            profiles=_profiles,
+            intent=intent,
+        )
+        log_entry["structure_score"] = struct_score
+        log_entry["structure_issues"] = struct_issues
+
+        # ─── Step 7c: Handle row = 0 (data validation, NOT fail) ──
         entity_valid = True
         if row_count == 0 and success:
-            logger.info("[Step 7] row=0 → running data validation...")
-            data_result = validate_empty_result(
-                sql=sql,
-                entities=entities,
-                profiles=_profiles,
-                executor_fn=execute_query,
-            )
-            log_entry["data_validation"] = data_result
-
-            if data_result["status"] == "DATA_ERROR":
-                log_entry["validator"] = "DATA_ERROR"
-                log_entry["error"] = data_result["message"]
-                entity_valid = False
-                logger.warning(f"[Step 7] DATA_ERROR: {data_result['message']}")
-            else:
-                # PASS_EMPTY: SQL đúng nhưng không có data
+            if struct_valid:
+                # SQL structure đúng → row=0 là do data không có (PASS_EMPTY)
                 log_entry["validator"] = "PASS_EMPTY"
-                logger.info(f"[Step 7] PASS_EMPTY: {data_result['message']}")
+                logger.info(f"[Step 7] PASS_EMPTY: SQL structure OK (score={struct_score}), data rỗng")
+            else:
+                # SQL structure có vấn đề + row=0 → chạy data validation thêm
+                logger.info("[Step 7] row=0 + structure issues → running data validation...")
+                data_result = validate_empty_result(
+                    sql=sql,
+                    entities=entities,
+                    profiles=_profiles,
+                    executor_fn=execute_query,
+                )
+                log_entry["data_validation"] = data_result
 
-        # ─── Confidence scoring ─────────────────────────────
+                if data_result["status"] == "DATA_ERROR":
+                    log_entry["validator"] = "DATA_ERROR"
+                    log_entry["error"] = data_result["message"]
+                    entity_valid = False
+                    logger.warning(f"[Step 7] DATA_ERROR: {data_result['message']}")
+                else:
+                    log_entry["validator"] = "PASS_EMPTY"
+                    logger.info(f"[Step 7] PASS_EMPTY: {data_result['message']}")
+
+        # ─── Confidence scoring (structure-first, not row-count) ──
         log_entry["confidence"] = compute_confidence(
             sql_executed=success,
             entity_valid=entity_valid,
             schema_valid=True,  # passed Step 6a
             row_count=row_count,
             semantic_ok=semantic_ok,
+            structure_score=struct_score,
         )
 
         timing["execution"] = round(time.time() - t0, 3)
@@ -397,6 +429,9 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
         log_entry["execution_time"] = round(time.time() - start_time, 3)
         log_entry["timing"] = timing
         _log_query(log_entry)
+
+        # Cache successful results
+        cache_result(question, log_entry)
 
         logger.info(f"[Pipeline] Completed in {log_entry['execution_time']}s")
         _print_timing(timing)
@@ -460,6 +495,10 @@ def _log_query(entry: Dict[str, Any]):
         log_record["semantic_warnings"] = entry["semantic_warnings"]
     if entry.get("data_validation"):
         log_record["data_validation"] = entry["data_validation"]
+    if entry.get("structure_score") is not None:
+        log_record["structure_score"] = entry["structure_score"]
+    if entry.get("structure_issues"):
+        log_record["structure_issues"] = entry["structure_issues"]
 
     with open(log_file, "a", encoding="utf-8") as f:
         f.write(json.dumps(log_record, ensure_ascii=False, default=str) + "\n")
