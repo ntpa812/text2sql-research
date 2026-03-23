@@ -16,14 +16,22 @@ APPROVED_TEMPLATES_DIR = os.path.join(BASE_DIR, "template_store", "approved_temp
 USER_QUESTIONS_DIR = os.path.join(BASE_DIR, "data", "user_questions")
 LOGS_DIR = os.path.join(BASE_DIR, "logs")
 
-# ─── LLM (Llama 3 via Ollama) ───────────────────────────────
-LLM_BACKEND = "ollama"          # "ollama" | "transformers"
+# ─── LLM ────────────────────────────────────────────────────
+# Supported backends: "openai_compatible" | "ollama" | "transformers"
+LLM_BACKEND = "openai_compatible"
+
+# OpenAI-compatible API (current serving endpoint)
+LLM_API_BASE_URL = "http://192.168.3.7:6805/v1"
+LLM_API_KEY = "EMPTY"
+LLM_API_MODEL = "qwen3.5-9b"
+
+# Ollama fallback
 LLM_OLLAMA_BASE_URL = "http://localhost:11434"
-LLM_OLLAMA_MODEL = "llama3:8b"  # ollama model name
-# LLM_OLLAMA_MODEL = "kwangsuklee/Qwen3.5-4B-Claude-4.6-Opus-Reasoning-Distilled-GGUF:latest"
-# LLM_OLLAMA_MODEL = "hf.co/defog/sqlcoder-7b-2:Q5_K_M"
+LLM_OLLAMA_MODEL = "llama3:8b"
+
+# Transformers fallback
 LLM_MODEL_PATH = ""             # HF path (only for transformers backend)
-LLM_MAX_NEW_TOKENS = 256
+LLM_MAX_NEW_TOKENS = 2048        # Increased to handle extended thinking + SQL generation
 LLM_TEMPERATURE = 0.0
 
 # ─── NER (in 6804_DDQ) ─────────────────────────────────────

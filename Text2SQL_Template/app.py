@@ -195,7 +195,7 @@ def main():
     parser.add_argument("file", nargs="?", help="Input file (json/csv/xlsx/md) for batch mode")
     parser.add_argument("--no-explain", action="store_true", help="Skip explain step (faster)")
     parser.add_argument("--parallel", type=int, default=1, help="Number of parallel threads (batch mode)")
-    parser.add_argument("--warm", action="store_true", help="Warm up Ollama model before running")
+    parser.add_argument("--warm", action="store_true", help="Warm up configured LLM backend before running")
     parser.add_argument("--test-mode", action="store_true", help="Enable test mode (inject mock account)")
     parser.add_argument("--clear-cache", action="store_true", help="Xoá query cache trước khi chạy")
     args = parser.parse_args()
@@ -213,7 +213,8 @@ def main():
         print("🗑 Query cache cleared")
 
     if args.warm:
-        from sql_generation.llm_sql_generator import warm_ollama
+        from sql_generation.llm_sql_generator import warm_ollama, warm_openai_compatible
+        warm_openai_compatible()
         warm_ollama()
 
     if args.file:

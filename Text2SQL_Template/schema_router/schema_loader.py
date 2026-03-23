@@ -32,10 +32,16 @@ def load_all_profiles() -> Dict[str, Any]:
 def get_schema_description(profiles: Dict[str, Any], table_names: List[str] | None = None) -> str:
     """
     Sinh schema description text cho LLM prompt.
+    Chỉ include bảng được select (schema linking optimization).
     Nếu table_names = None → dùng tất cả.
     """
     if table_names is None:
         table_names = list(profiles.keys())
+
+    # Log schema linking: which tables included
+    import logging
+    logger = logging.getLogger(__name__)
+    logger.info(f"[SchemaLoader] Building schema description for tables: {table_names}")
 
     lines: List[str] = []
     for tname in table_names:
@@ -49,7 +55,9 @@ def get_schema_description(profiles: Dict[str, Any], table_names: List[str] | No
         lines.append(")")
         lines.append("")
 
-    return "\n".join(lines)
+    schema_text = "\n".join(lines)
+    logger.debug(f"[SchemaLoader] Schema text length: {len(schema_text)} chars")
+    return schema_text
 
 
 def get_column_names(profiles: Dict[str, Any], table_name: str) -> List[str]:

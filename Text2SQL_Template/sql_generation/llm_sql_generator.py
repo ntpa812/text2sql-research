@@ -1,7 +1,7 @@
 """
 SQL Generation – LLM SQL Generator
-Call Llama 3 (local via Ollama) để sinh SQL từ prompt.
-Support 2 backend: ollama (recommended) hoặc transformers.
+Sinh SQL tu prompt voi nhieu backend LLM.
+Support: openai_compatible, ollama, transformers.
 """
 
 import re
@@ -13,6 +13,9 @@ from urllib.error import URLError
 
 from config.settings import (
     LLM_BACKEND,
+    LLM_API_BASE_URL,
+    LLM_API_KEY,
+    LLM_API_MODEL,
     LLM_OLLAMA_BASE_URL,
     LLM_OLLAMA_MODEL,
     LLM_MODEL_PATH,
@@ -37,6 +40,88 @@ def warm_ollama():
         logger.info("[LLM] Ollama warm-up done.")
     except Exception as e:
         logger.warning(f"[LLM] Ollama warm-up failed: {e}")
+
+
+def warm_openai_compatible():
+    """Warm up OpenAI-compatible endpoint de giam cold start."""
+    if LLM_BACKEND != "openai_compatible":
+        return
+    try:
+        logger.info("[LLM] Warming up OpenAI-compatible model...")
+        _generate_openai_compatible("SELECT 1;", max_tokens=8, temperature=0)
+        logger.info("[LLM] OpenAI-compatible warm-up done.")
+    except Exception as e:
+        logger.warning(f"[LLM] OpenAI-compatible warm-up failed: {e}")
+
+
+# ════════════════════════════════════════════════════════════
+#  OpenAI-compatible Backend
+# ════════════════════════════════════════════════════════════
+
+def _generate_openai_compatible(
+    prompt: str,
+    model: str = LLM_API_MODEL,
+    max_tokens: int = LLM_MAX_NEW_TOKENS,
+    temperature: float = LLM_TEMPERATURE,
+) -> str:
+    """Call OpenAI-compatible /v1/chat/completions endpoint."""
+    url = f"{LLM_API_BASE_URL.rstrip('/')}/chat/completions"
+    payload = json.dumps({
+        "model": model,
+        "messages": [
+            {"role": "user", "content": prompt},
+        ],
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+    }).encode("utf-8")
+
+    headers = {
+        "Content-Type": "application/json",
+    }
+    
+    # Only add Authorization if api_key is meaningful (not EMPTY)
+    if LLM_API_KEY and LLM_API_KEY != "EMPTY":
+        headers["Authorization"] = f"Bearer {LLM_API_KEY}"
+    
+    req = Request(url, data=payload, headers=headers)
+
+    try:
+        with urlopen(req, timeout=120) as resp:
+            body = json.loads(resp.read().decode("utf-8"))
+            logger.debug(f"[LLM-OpenAI] finish_reason: {body.get('choices', [{}])[0].get('finish_reason')}")
+            
+            choices = body.get("choices", [])
+            if not choices:
+                raise RuntimeError(f"No choices returned from API: {body}")
+            
+            message = choices[0].get("message", {})
+            content = message.get("content")
+            
+            # Qwen may return empty content with reasoning in other fields
+            if not content or (isinstance(content, str) and content.isspace()):
+                # Try to extract from reasoning field
+                reasoning = message.get("reasoning")
+                if reasoning and str(reasoning).strip():
+                    logger.info(f"[LLM-OpenAI] Using reasoning field ({len(str(reasoning))} chars)")
+                    content = reasoning
+                else:
+                    logger.warning(f"[LLM-OpenAI] Empty content AND empty reasoning. Full message: {json.dumps(message, ensure_ascii=False)[:500]}")
+                    return ""
+            
+            return str(content).strip()
+    
+    except URLError as e:
+        logger.error(f"[LLM-OpenAI] URLError: {e}")
+        raise RuntimeError(
+            f"OpenAI-compatible endpoint not reachable at {LLM_API_BASE_URL}. "
+            f"Error: {e}"
+        )
+    except json.JSONDecodeError as e:
+        logger.error(f"[LLM-OpenAI] Invalid JSON response: {e}")
+        raise RuntimeError(f"OpenAI-compatible API returned invalid JSON: {e}")
+    except Exception as e:
+        logger.error(f"[LLM-OpenAI] Unexpected error: {e}", exc_info=True)
+        raise
 
 
 # ════════════════════════════════════════════════════════════
@@ -146,10 +231,11 @@ def generate_sql(
     temperature: float = LLM_TEMPERATURE,
 ) -> str:
     """
-    Generate SQL từ prompt bằng Llama 3 local.
-    Backend chọn qua LLM_BACKEND setting ("ollama" | "transformers").
+    Generate SQL tu prompt theo backend trong LLM_BACKEND.
     """
-    if LLM_BACKEND == "ollama":
+    if LLM_BACKEND == "openai_compatible":
+        raw = _generate_openai_compatible(prompt, max_tokens=max_new_tokens, temperature=temperature)
+    elif LLM_BACKEND == "ollama":
         raw = _generate_ollama(prompt, max_tokens=max_new_tokens, temperature=temperature)
     elif LLM_BACKEND == "transformers":
         raw = _generate_transformers(prompt, max_tokens=max_new_tokens, temperature=temperature)
@@ -180,8 +266,16 @@ def _extract_sql(response: str, prompt: str) -> str:
     Extract SQL query từ LLM response.
     Loại bỏ prompt prefix, code fences, và text thừa.
     """
+    # Handle None/empty response
+    if not response:
+        logger.warning("[LLM] Empty response from LLM backend")
+        return ""
+    
+    if not isinstance(response, str):
+        response = str(response)
+    
     # Loại bỏ prompt nếu response chứa cả prompt
-    if prompt and response.startswith(prompt):
+    if prompt and isinstance(prompt, str) and response.startswith(prompt):
         response = response[len(prompt):]
 
     response = response.strip()
