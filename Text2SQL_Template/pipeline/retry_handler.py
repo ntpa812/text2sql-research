@@ -29,7 +29,7 @@ class RetryHandler:
     def __init__(self, max_retries: int = 2):
         self.max_retries = max_retries
         self.attempts: list = []
-        self.repair_attempted = False
+        self.repair_attempted_for: set = set()  # Track repair by error type
 
     def should_retry(self, error_type: str = "") -> bool:
         """Chỉ retry nếu lỗi có thể sửa được."""
@@ -37,15 +37,25 @@ class RetryHandler:
             return False
         return len(self.attempts) < self.max_retries
     
-    def should_attempt_repair(self) -> bool:
-        """Có nên thử repair SQL trước khi regenerate không."""
-        # Repair nếu: chưa thử repair và còn attempts
-        return not self.repair_attempted and len(self.attempts) == 0
+    def should_attempt_repair(self, error_type: str = "structure") -> bool:
+        """Có nên thử repair SQL trước khi regenerate không.
+        
+        Return True if:
+        - Repair not yet attempted for this error type
+        - No recorded attempts yet (fresh error)
+        """
+        # Repair if: haven't tried repair for this error type AND no attempts recorded yet
+        return error_type not in self.repair_attempted_for and len(self.attempts) == 0
     
     def should_regenerate(self) -> bool:
         """Có nên regenerate từ LLM không."""
-        # Regenerate nếu: repair đã thử (và fail) và còn attempts
-        return self.repair_attempted and len(self.attempts) < self.max_retries
+        # Regenerate if: we have attempts to spare
+        return len(self.attempts) < self.max_retries
+
+    @property
+    def repair_attempted(self) -> bool:
+        """For backward compatibility - check if ANY repair was attempted."""
+        return len(self.repair_attempted_for) > 0
 
     @property
     def retry_count(self) -> int:
@@ -59,17 +69,23 @@ class RetryHandler:
             "error_type": error_type,
         })
     
-    def attempt_repair(self, sql: str, error_msg: str = "", question: str = "", entities: dict = None) -> Tuple[bool, str]:
+    def attempt_repair(self, sql: str, error_msg: str = "", question: str = "", entities: dict = None, error_type: str = "structure") -> Tuple[bool, str]:
         """
         Cố gắng repair SQL bị lỗi.
+        Args:
+            sql: SQL query to repair
+            error_msg: Error message
+            question: User question
+            entities: Extracted entities
+            error_type: Type of error (structure, semantic, syntax, db_execution)
         Returns: (success, repaired_sql)
         """
-        self.repair_attempted = True
+        self.repair_attempted_for.add(error_type)
         success, repaired = repair_sql(sql, error_msg, question, entities)
         if success:
-            logger.info(f"[Retry] SQL repair successful")
+            logger.info(f"[Retry] SQL repair successful ({error_type})")
         else:
-            logger.warning(f"[Retry] SQL repair failed, will regenerate")
+            logger.warning(f"[Retry] SQL repair failed ({error_type}), will regenerate")
         return success, repaired
 
     def get_retry_prompt(

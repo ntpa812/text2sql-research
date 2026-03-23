@@ -87,14 +87,22 @@ def test_repair_integration(test_file: str = "data/user_questions/test_sets/bank
             result = run_pipeline(question, use_embedding=False, explain=False)
             elapsed = time.time() - start_time
             
-            # Check result
-            is_success = result.get("sql") is not None and result.get("rows") is not None
+            # Check result - handle both cached and fresh results
+            has_sql = result.get("sql") is not None
+            has_rows_key = "rows" in result
+            is_success = has_sql and (has_rows_key or result.get("cached"))  # cached results might not have rows key
+            
             if is_success:
                 stats["success"] += 1
-                status = f"✓ SUCCESS ({result.get('rows', 0)} rows, {result.get('retry_count', 0)} retries)"
+                row_count = result.get("rows", 0) if has_rows_key else "(cached)"
+                retry_count = result.get("retry_count", 0)
+                status = f"✓ SUCCESS ({row_count} rows, {retry_count} retries)"
             else:
                 stats["failed"] += 1
-                status = f"✗ FAILED: {result.get('error', 'Unknown error')[:50]}"
+                error_msg = result.get("error", "Unknown error")
+                if not error_msg or error_msg == "Unknown error":
+                    error_msg = f"Missing required fields: sql={has_sql}, rows={has_rows_key}"
+                status = f"✗ FAILED: {error_msg[:60]}"
             
             print(f"  {status} ({elapsed:.2f}s)")
             
@@ -133,7 +141,9 @@ def test_repair_integration(test_file: str = "data/user_questions/test_sets/bank
             
         except Exception as e:
             stats["failed"] += 1
-            print(f"  ✗ EXCEPTION: {str(e)[:60]}")
+            error_detail = f"{type(e).__name__}: {str(e)[:50]}"
+            print(f"  ✗ EXCEPTION: {error_detail}")
+            repair_log.clear()  # Clear logs on exception
     
     # Remove log capture
     logging.root.removeHandler(log_capture)

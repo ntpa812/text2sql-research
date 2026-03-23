@@ -67,7 +67,7 @@ try:
         content = f.read()
     
     integration_checks = [
-        ("should_attempt_repair()", "Repair attempt check"),
+        ("should_attempt_repair", "Repair attempt check"),
         ("should_regenerate()", "Regenerate check"),
         ("attempt_repair(", "Repair execution"),
         ("[Step 6]", "Step 6 logging"),

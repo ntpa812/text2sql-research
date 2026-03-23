@@ -215,9 +215,9 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
             logger.warning(f"[Step 6] Validation failed ({error_type}): {error_msg}")
             
             # Try 1: Attempt SQL repair (cheap, fast)
-            if retry.should_attempt_repair():
+            if retry.should_attempt_repair(error_type):
                 logger.info(f"[Step 6] Attempting SQL repair...")
-                repair_ok, repaired_sql = retry.attempt_repair(sql, error_msg, question, entities)
+                repair_ok, repaired_sql = retry.attempt_repair(sql, error_msg, question, entities, error_type)
                 if repair_ok:
                     sql = repaired_sql
                     log_entry["sql"] = sql
@@ -268,10 +268,10 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
             logger.warning(f"[Step 6] Semantic issues: {semantic_warnings}")
             
             # Try 1: SQL repair for semantic issues
-            if retry.should_attempt_repair():
+            if retry.should_attempt_repair("semantic"):
                 logger.info(f"[Step 6] Attempting semantic repair...")
                 error_msg = "; ".join(semantic_warnings)
-                repair_ok, repaired_sql = retry.attempt_repair(sql, error_msg, question, entities)
+                repair_ok, repaired_sql = retry.attempt_repair(sql, error_msg, question, entities, "semantic")
                 if repair_ok:
                     sql = repaired_sql
                     log_entry["sql"] = sql
@@ -304,9 +304,9 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
             logger.warning(f"[Step 6] EXPLAIN failed: {explain_err}")
             
             # Try 1: SQL repair for EXPLAIN issues
-            if retry.should_attempt_repair():
+            if retry.should_attempt_repair("syntax"):
                 logger.info(f"[Step 6] Attempting syntax repair...")
-                repair_ok, repaired_sql = retry.attempt_repair(sql, explain_err, question, entities)
+                repair_ok, repaired_sql = retry.attempt_repair(sql, explain_err, question, entities, "syntax")
                 if repair_ok:
                     sql = repaired_sql
                     log_entry["sql"] = sql
@@ -358,9 +358,9 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
 
             if exec_error_type in ("syntax", "runtime") and retry.should_retry(exec_error_type):
                 # Try 1: SQL repair for syntax/runtime errors
-                if retry.should_attempt_repair():
+                if retry.should_attempt_repair(exec_error_type):
                     logger.info(f"[Step 7] Attempting {exec_error_type} repair...")
-                    repair_ok, repaired_sql = retry.attempt_repair(sql, db_error, question, entities)
+                    repair_ok, repaired_sql = retry.attempt_repair(sql, db_error, question, entities, exec_error_type)
                     if repair_ok:
                         sql = repaired_sql
                         log_entry["sql"] = sql

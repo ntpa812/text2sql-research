@@ -97,16 +97,13 @@ def _generate_openai_compatible(
             message = choices[0].get("message", {})
             content = message.get("content")
             
-            # Qwen may return empty content with reasoning in other fields
+            # Prefer content field - don't use reasoning as SQL source
+            # (reasoning contains thinking steps, not final SQL)
             if not content or (isinstance(content, str) and content.isspace()):
-                # Try to extract from reasoning field
-                reasoning = message.get("reasoning")
-                if reasoning and str(reasoning).strip():
-                    logger.info(f"[LLM-OpenAI] Using reasoning field ({len(str(reasoning))} chars)")
-                    content = reasoning
-                else:
-                    logger.warning(f"[LLM-OpenAI] Empty content AND empty reasoning. Full message: {json.dumps(message, ensure_ascii=False)[:500]}")
-                    return ""
+                # Check if this is just whitespace or truly empty
+                finish_reason = choices[0].get("finish_reason")
+                logger.warning(f"[LLM-OpenAI] Empty content (finish_reason={finish_reason}). Full message excerpt: {str(message)[:300]}")
+                return ""
             
             return str(content).strip()
     
