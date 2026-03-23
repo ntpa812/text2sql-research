@@ -40,12 +40,11 @@ class RetryHandler:
     def should_attempt_repair(self, error_type: str = "structure") -> bool:
         """Có nên thử repair SQL trước khi regenerate không.
         
-        Return True if:
-        - Repair not yet attempted for this error type
-        - No recorded attempts yet (fresh error)
+        Return True if repair hasn't been attempted for this specific error_type.
+        Repairs for different error types (structure, semantic, syntax, db_exec) are independent.
         """
-        # Repair if: haven't tried repair for this error type AND no attempts recorded yet
-        return error_type not in self.repair_attempted_for and len(self.attempts) == 0
+        # Only repair if we haven't tried repair for this specific error type
+        return error_type not in self.repair_attempted_for
     
     def should_regenerate(self) -> bool:
         """Có nên regenerate từ LLM không."""

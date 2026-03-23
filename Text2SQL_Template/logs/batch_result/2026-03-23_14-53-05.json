@@ -1,0 +1,1174 @@
+[
+  {
+    "question": "Xem tất cả giao dịch của tài khoản 123456 trong tháng 1 năm 2024",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "123456",
+      "amount": "123456000000"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE 'SAVING_%'\nAND from_account_no = '123456'\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.86,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.264,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.006,
+      "intent_detection": 0.014,
+      "entity_extraction": 1.719,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.143,
+      "execution": 0.104,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Tổng số tiền tôi đã chuyển đi trong tháng 2",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.002,
+      "intent_detection": 0.004,
+      "entity_extraction": 1.605,
+      "template_fill": 0.0,
+      "sql_generation": 69.515
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tôi đã nhận bao nhiêu tiền vào ngày 15/03/2024",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_dòng_tiền",
+    "entities": {},
+    "sql": "The SQL query was not provided in your message. Please include the actual SQL statement so I can identify and fix the syntax error.",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.006,
+      "intent_detection": 0.009,
+      "entity_extraction": 1.672,
+      "template_fill": 0.0,
+      "sql_generation": 21.626
+    },
+    "error": "EXPLAIN failed: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SQL query was not provided in your message. Please include the actual SQL sta...' at line 1"
+  },
+  {
+    "question": "Liệt kê các giao dịch chuyển khoản của tài khoản 987654 trong tuần này",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "987654",
+      "amount": "987654000000"
+    },
+    "sql": "The SQL query was not provided in your message. Please include the actual SQL statement so I can identify and fix the syntax error.",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.003,
+      "intent_detection": 0.01,
+      "entity_extraction": 1.632,
+      "template_fill": 0.0,
+      "sql_generation": 0.0
+    },
+    "error": "EXPLAIN failed: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SQL query was not provided in your message. Please include the actual SQL sta...' at line 1"
+  },
+  {
+    "question": "Cho tôi xem lịch sử giao dịch từ ngày 01/01/2024 đến 31/01/2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_thời_gian_sử_dụng_dịch_vụ",
+    "entities": {
+      "amount": "2024"
+    },
+    "sql": "-- No SQL query was provided to fix. Please supply the actual SQL statement containing the syntax error.",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.029,
+      "template_fill": 0.0,
+      "sql_generation": 0.0
+    },
+    "error": "Validation failed after 2 retries: SQL comments detected (possible injection)"
+  },
+  {
+    "question": "Có bao nhiêu giao dịch trên 10 triệu trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {
+      "amount": "10000000"
+    },
+    "sql": "SELECT COUNT(*)\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)\nAND trans_name LIKE 'SAVING_%';",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 0.93,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.042,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.136,
+      "execution": 0.12,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Giao dịch gần nhất của tài khoản 123456 là gì",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "123456"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE 'SAVING_%'\nAND from_account_no = '123456'\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.9,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.003,
+      "entity_extraction": 0.035,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.123,
+      "execution": 0.165,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Liệt kê các giao dịch nạp tiền vào tài khoản của tôi",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.002,
+      "intent_detection": 0.012,
+      "entity_extraction": 0.043,
+      "template_fill": 0.0,
+      "sql_generation": 68.154
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tổng số giao dịch trong ngày hôm qua",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {},
+    "sql": "-- No SQL query was provided to fix. Please supply the actual SQL statement.",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.036,
+      "template_fill": 0.0,
+      "sql_generation": 68.101
+    },
+    "error": "Validation failed after 1 retries: SQL comments detected (possible injection)"
+  },
+  {
+    "question": "Xem các giao dịch chuyển tiền trên 5 triệu trong tháng 3",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {
+      "amount": "5000000"
+    },
+    "sql": "SELECT COUNT(*) AS total_transactions\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURDATE(), INTERVAL 1 DAY)\n  AND trans_time < CURDATE();",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 0.93,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.032,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.114,
+      "execution": 0.124,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Tài khoản 456789 đã chuyển bao nhiêu tiền trong tuần qua",
+    "tables": [
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "account_no": "456789",
+      "amount": "456789"
+    },
+    "sql": "The SQL query was not provided in your message. Please include the actual SQL statement you'd like me to fix, and I'll correct the syntax error for you.",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.002,
+      "intent_detection": 0.003,
+      "entity_extraction": 0.041,
+      "template_fill": 0.0,
+      "sql_generation": 0.0
+    },
+    "error": "EXPLAIN failed: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SQL query was not provided in your message. Please include the actual SQL sta...' at line 1"
+  },
+  {
+    "question": "Những giao dịch nào diễn ra vào ngày 20/02/2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_dòng_tiền",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.005,
+      "entity_extraction": 0.046,
+      "template_fill": 0.0,
+      "sql_generation": 69.238
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Liệt kê 10 giao dịch gần nhất của tài khoản 111222",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "111222"
+    },
+    "sql": "SELECT \n  trans_id, trans_time, trans_type, trans_name,\n  from_account_no, to_account_no,\n  amount_transfer, amount_currency,\n  trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%FOREIGN_CURRENCY%'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 50,
+    "confidence": {
+      "score": 0.93,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.005,
+      "entity_extraction": 0.035,
+      "template_fill": 0.002,
+      "sql_generation": 0.0,
+      "validation": 0.147,
+      "execution": 0.151,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Tổng số tiền đã nhận trong tháng 4",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "SELECT SUM(amount_transfer) AS total_received\nFROM transaction\nWHERE YEAR(trans_time) = YEAR(CURRENT_DATE())\n  AND MONTH(trans_time) = 4\n  AND trans_status = 'S'\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 1.0,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.003,
+      "entity_extraction": 0.035,
+      "template_fill": 0.0,
+      "sql_generation": 24.629,
+      "validation": 0.112,
+      "execution": 0.137,
+      "explain": 0.001
+    }
+  },
+  {
+    "question": "Xem lịch sử giao dịch của tài khoản 333444 trong 7 ngày qua",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "333444",
+      "amount": "333444000000"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE 'SAVING_%'\nAND from_account_no = '333444'\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.86,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.264,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.002,
+      "intent_detection": 0.005,
+      "entity_extraction": 0.041,
+      "template_fill": 0.0,
+      "sql_generation": 0.002,
+      "validation": 0.126,
+      "execution": 0.149,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Các giao dịch có giá trị dưới 1 triệu trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_số_tiền",
+    "entities": {
+      "amount": "1000000"
+    },
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.002,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.047,
+      "template_fill": 0.004,
+      "sql_generation": 69.314
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tôi đã thực hiện bao nhiêu giao dịch trong tháng 6",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_kênh_thực_hiện",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.005,
+      "entity_extraction": 0.033,
+      "template_fill": 0.0,
+      "sql_generation": 69.106
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Xem các giao dịch chuyển khoản ra ngoài ngân hàng",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_loại_giao_dịch",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.039,
+      "template_fill": 0.0,
+      "sql_generation": 68.442
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Có giao dịch nào trên 50 triệu trong năm 2024 không",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_vay_và_tín_dụng_theo_số_tiền",
+    "entities": {
+      "amount": "2024000"
+    },
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.036,
+      "template_fill": 0.0,
+      "sql_generation": 0.002
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Liệt kê các giao dịch vào ngày hôm nay",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_vay",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.005,
+      "entity_extraction": 0.04,
+      "template_fill": 0.0,
+      "sql_generation": 68.474
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Tổng số tiền giao dịch của tài khoản 888999 trong tháng này",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "account_no": "888999",
+      "amount": "888999000000"
+    },
+    "sql": "The SQL query was not provided in your message. Please include the actual SQL statement so I can identify and fix the syntax error.",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.002,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.033,
+      "template_fill": 0.0,
+      "sql_generation": 0.0
+    },
+    "error": "EXPLAIN failed: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SQL query was not provided in your message. Please include the actual SQL sta...' at line 1"
+  },
+  {
+    "question": "Các giao dịch chuyển tiền vào tài khoản 123456 trong tháng trước",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "123456",
+      "amount": "123456000000"
+    },
+    "sql": "The SQL query was not provided in your message. Please include the actual SQL statement so I can identify and fix the syntax error.",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.039,
+      "template_fill": 0.0,
+      "sql_generation": 0.0
+    },
+    "error": "EXPLAIN failed: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SQL query was not provided in your message. Please include the actual SQL sta...' at line 1"
+  },
+  {
+    "question": "Xem các giao dịch từ ngày 10/02/2024 đến 20/02/2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {
+      "amount": "2024"
+    },
+    "sql": "SELECT COUNT(*)\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)\nAND trans_name LIKE 'SAVING_%';",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 0.93,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.045,
+      "template_fill": 0.001,
+      "sql_generation": 0.0,
+      "validation": 0.347,
+      "execution": 0.248,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Có bao nhiêu giao dịch chuyển khoản trong tuần này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.003,
+      "entity_extraction": 0.043,
+      "template_fill": 0.0,
+      "sql_generation": 69.219
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Giao dịch có giá trị lớn nhất trong tháng 5 là gì",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "The SQL query was not provided in your message. Please include the actual SQL statement you'd like me to fix.",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.005,
+      "entity_extraction": 0.033,
+      "template_fill": 0.0,
+      "sql_generation": 28.978
+    },
+    "error": "EXPLAIN failed: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SQL query was not provided in your message. Please include the actual SQL sta...' at line 1"
+  },
+  {
+    "question": "Cho tôi danh sách giao dịch của tài khoản 555666",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "555666"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE 'SAVING_%'\nAND from_account_no = '555666'\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.9,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.005,
+      "entity_extraction": 0.031,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.111,
+      "execution": 0.107,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Các giao dịch rút tiền trong tháng này",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.002,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.03,
+      "template_fill": 0.0,
+      "sql_generation": 68.84
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Xem lịch sử chuyển tiền của tài khoản 222333",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "222333"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '222333')\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.82,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.036,
+      "template_fill": 0.001,
+      "sql_generation": 0.0,
+      "validation": 0.151,
+      "execution": 0.201,
+      "explain": 0.001
+    }
+  },
+  {
+    "question": "Tổng tiền đã chuyển trong ngày hôm nay",
+    "tables": [
+      "customer",
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.005,
+      "entity_extraction": 0.033,
+      "template_fill": 0.0,
+      "sql_generation": 68.494
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Liệt kê các giao dịch có số tiền từ 2 triệu đến 10 triệu",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_số_tiền",
+    "entities": {
+      "amount": "10000000"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) AND amount_transfer > 2000000;",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 0.93,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.031,
+      "template_fill": 0.002,
+      "sql_generation": 0.0,
+      "validation": 0.121,
+      "execution": 0.133,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Có bao nhiêu giao dịch trong ngày 01/03/2024",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.1,
+      "template_fill": 0.0,
+      "sql_generation": 68.482
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Xem các giao dịch nhận tiền từ tài khoản 777888",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_tài_khoản_nhận",
+    "entities": {
+      "account_no": "777888"
+    },
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.003,
+      "entity_extraction": 0.035,
+      "template_fill": 0.0,
+      "sql_generation": 68.624
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Giao dịch đầu tiên trong tháng này là gì",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.002,
+      "intent_detection": 0.004,
+      "entity_extraction": 0.03,
+      "template_fill": 0.0,
+      "sql_generation": 68.242
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Những giao dịch nào có số tiền trên 20 triệu",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_số_tiền",
+    "entities": {
+      "amount": "20000000"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) AND amount_transfer > 2000000;",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 0.93,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "schema_router": 0.0,
+      "intent_detection": 0.005,
+      "entity_extraction": 0.04,
+      "template_fill": 0.001,
+      "sql_generation": 0.0,
+      "validation": 0.13,
+      "execution": 0.134,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Xem lịch sử giao dịch của tôi trong 30 ngày gần nhất",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_thời_gian_sử_dụng_dịch_vụ",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.005,
+      "entity_extraction": 0.032,
+      "template_fill": 0.0,
+      "sql_generation": 67.746
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  }
+]
