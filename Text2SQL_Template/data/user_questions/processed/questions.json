@@ -1,202 +1,45 @@
 [
   {
-    "id": "1",
-    "question": "Tôi đã chuyển bao nhiêu tiền trong tháng này"
+    "id": "q001",
+    "question": "Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1",
+    "expected_intent": "tra_cu_giao_dich_chuyen_tien_theo_so_tai_khoan_nguoi_nhan",
+    "expected_entities": {
+      "to_account_no": "123",
+      "start_date": "2026-01-01",
+      "end_date": "2026-01-31"
+    }
   },
   {
-    "id": "2",
-    "question": "Tổng số tiền tôi đã chuyển trong tháng 1 năm 2024 là bao nhiêu"
+    "id": "q002",
+    "question": "Cho tôi xem các giao dịch nhận tiền của tài khoản 456 trong tuần này",
+    "expected_intent": "tra_cu_giao_dich_nhan_tien",
+    "expected_entities": {
+      "account_no": "456"
+    }
   },
   {
-    "id": "3",
-    "question": "Có bao nhiêu giao dịch tôi thực hiện trong tuần này"
+    "id": "q003",
+    "question": "Tổng tiền chuyển đi của tài khoản 789 trong quý 1",
+    "expected_intent": "tra_cu_giao_dich_chuyen_tien",
+    "expected_entities": {
+      "account_no": "789"
+    }
   },
   {
-    "id": "4",
-    "question": "Liệt kê tất cả giao dịch của tôi trong tháng trước"
+    "id": "q004",
+    "question": "Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua",
+    "expected_intent": "tra_cu_giao_dich_theo_trang_thai",
+    "expected_entities": {
+      "account_no": "1001",
+      "status": "SUCCESS"
+    }
   },
   {
-    "id": "5",
-    "question": "Cho tôi xem lịch sử giao dịch từ ngày 01/01/2024 đến 31/01/2024"
-  },
-  {
-    "id": "6",
-    "question": "Các giao dịch trên 10 triệu trong tháng này"
-  },
-  {
-    "id": "7",
-    "question": "Các giao dịch dưới 500 nghìn trong tuần này"
-  },
-  {
-    "id": "8",
-    "question": "Tôi đã nhận được bao nhiêu tiền trong tháng này"
-  },
-  {
-    "id": "9",
-    "question": "Tổng số giao dịch tôi thực hiện trong ngày hôm qua"
-  },
-  {
-    "id": "10",
-    "question": "Các giao dịch chuyển khoản đến tài khoản của tôi hôm nay"
-  },
-  {
-    "id": "11",
-    "question": "Tôi đã chuyển tiền cho những tài khoản nào trong tháng này"
-  },
-  {
-    "id": "12",
-    "question": "Tài khoản nào đã chuyển tiền cho tôi nhiều nhất"
-  },
-  {
-    "id": "13",
-    "question": "Giao dịch lớn nhất của tôi trong tháng này là bao nhiêu"
-  },
-  {
-    "id": "14",
-    "question": "Giao dịch nhỏ nhất của tôi trong tháng này là bao nhiêu"
-  },
-  {
-    "id": "15",
-    "question": "Có bao nhiêu giao dịch trên 5 triệu trong tháng này"
-  },
-  {
-    "id": "16",
-    "question": "Tổng tiền các giao dịch trên 2 triệu trong tuần này"
-  },
-  {
-    "id": "17",
-    "question": "Các giao dịch từ 2 triệu đến 10 triệu trong tháng này"
-  },
-  {
-    "id": "18",
-    "question": "Tôi đã chuyển bao nhiêu tiền cho tài khoản 123456789"
-  },
-  {
-    "id": "19",
-    "question": "Tôi đã nhận bao nhiêu tiền từ tài khoản 987654321"
-  },
-  {
-    "id": "20",
-    "question": "Lịch sử giao dịch với tài khoản 123456789 trong tháng này"
-  },
-  {
-    "id": "21",
-    "question": "Giao dịch gần nhất của tôi là gì"
-  },
-  {
-    "id": "22",
-    "question": "Giao dịch đầu tiên trong tháng này là gì"
-  },
-  {
-    "id": "23",
-    "question": "Các giao dịch trong 7 ngày gần nhất"
-  },
-  {
-    "id": "24",
-    "question": "Các giao dịch trong 30 ngày gần nhất"
-  },
-  {
-    "id": "25",
-    "question": "Tổng số tiền tôi đã chi tiêu trong tuần này"
-  },
-  {
-    "id": "26",
-    "question": "Tổng số tiền tôi đã nhận trong tuần này"
-  },
-  {
-    "id": "27",
-    "question": "Có bao nhiêu giao dịch trong tháng 2 năm 2024"
-  },
-  {
-    "id": "28",
-    "question": "Các giao dịch ngày 15/03/2024"
-  },
-  {
-    "id": "29",
-    "question": "Tổng tiền giao dịch ngày hôm qua"
-  },
-  {
-    "id": "30",
-    "question": "Tổng tiền giao dịch hôm nay"
-  },
-  {
-    "id": "31",
-    "question": "Các giao dịch chuyển đi trong tháng này"
-  },
-  {
-    "id": "32",
-    "question": "Các giao dịch nhận tiền trong tháng này"
-  },
-  {
-    "id": "33",
-    "question": "Tổng số tiền tôi đã chuyển trong 3 tháng gần đây"
-  },
-  {
-    "id": "34",
-    "question": "Tổng số tiền tôi đã nhận trong 3 tháng gần đây"
-  },
-  {
-    "id": "35",
-    "question": "Có bao nhiêu giao dịch trên 1 triệu trong 30 ngày qua"
-  },
-  {
-    "id": "36",
-    "question": "Các giao dịch trên 20 triệu trong năm 2024"
-  },
-  {
-    "id": "37",
-    "question": "Các giao dịch dưới 100 nghìn trong tháng này"
-  },
-  {
-    "id": "38",
-    "question": "Các giao dịch chuyển tiền vào cuối tuần"
-  },
-  {
-    "id": "39",
-    "question": "Các giao dịch chuyển tiền vào thứ hai tuần này"
-  },
-  {
-    "id": "40",
-    "question": "Tôi đã giao dịch với bao nhiêu tài khoản khác nhau trong tháng này"
-  },
-  {
-    "id": "41",
-    "question": "Tài khoản nào tôi giao dịch nhiều nhất"
-  },
-  {
-    "id": "42",
-    "question": "Giao dịch có số tiền lớn nhất trong năm nay"
-  },
-  {
-    "id": "43",
-    "question": "Giao dịch có số tiền nhỏ nhất trong năm nay"
-  },
-  {
-    "id": "44",
-    "question": "Tổng số tiền giao dịch trong năm 2024"
-  },
-  {
-    "id": "45",
-    "question": "Các giao dịch trong quý 1 năm 2024"
-  },
-  {
-    "id": "46",
-    "question": "Các giao dịch trong quý 2 năm 2024"
-  },
-  {
-    "id": "47",
-    "question": "Các giao dịch trong tháng 12 năm 2023"
-  },
-  {
-    "id": "48",
-    "question": "Có bao nhiêu giao dịch trong ngày hôm nay"
-  },
-  {
-    "id": "49",
-    "question": "Tổng số tiền tôi đã chuyển cho tất cả tài khoản trong tháng này"
-  },
-  {
-    "id": "50",
-    "question": "Lịch sử tất cả giao dịch của tôi trong năm nay"
+    "id": "q005",
+    "question": "Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 3",
+    "expected_intent": "tra_cu_giao_dich_chuyen_tien_theo_so_tien",
+    "expected_entities": {
+      "amount": "5000000"
+    }
   }
 ]

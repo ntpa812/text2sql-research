@@ -1,0 +1,112 @@
+[
+  {
+    "question": "Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "amount": "123000000"
+    },
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transfer\nFROM transaction t\nJOIN customer_account c ON t.from_account_no = c.account_no\nWHERE c.account_no = '123456789'\nAND t.category_code LIKE 'TRANSFER_%'\nORDER BY t.trans_time DESC;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  {
+    "question": "Cho tôi xem các giao dịch nhận tiền của tài khoản 456 trong tuần này",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_tài_khoản_nhận",
+    "entities": {
+      "amount": "456000000"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE to_account_no = 456\n  AND trans_time >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "cache_hit": 0.0
+    }
+  },
+  {
+    "question": "Tổng tiền chuyển đi của tài khoản 789 trong quý 1",
+    "tables": [
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "amount": "789000000"
+    },
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "schema_router": 0.002,
+      "intent_detection": 0.003,
+      "entity_extraction": 0.003,
+      "template_fill": 0.001,
+      "sql_generation": 61.778
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Kiểm tra trạng thái giao dịch thành công của tài khoản 1001 hôm qua",
+    "tables": [
+      "customer_account",
+      "transaction"
+    ],
+    "intent": "tra_cứu_danh_sách_giao_dịch_nạp_hoặc_rút_tiền_theo_trạng_thái",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "schema_router": 0.001,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.004,
+      "template_fill": 0.0,
+      "sql_generation": 19.593
+    },
+    "semantic_warnings": [
+      "Câu hỏi có thời gian nhưng SQL thiếu filter thời gian"
+    ],
+    "error": "Post-semantic-retry validation failed: Empty SQL query"
+  },
+  {
+    "question": "Liệt kê các giao dịch chuyển tiền có số tiền trên 5 triệu trong tháng 3",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {
+      "amount": "5000000"
+    },
+    "sql": "SELECT COUNT(*) AS total_transactions\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURDATE(), INTERVAL 1 DAY)\n  AND trans_time < CURDATE();",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "cache_hit": 0.0
+    }
+  }
+]

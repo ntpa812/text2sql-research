@@ -212,22 +212,40 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
         log_entry["validator"] = "PASS" if is_valid else "FAIL"
 
         while not is_valid and retry.should_retry(error_type):
-            retry.record_attempt(sql, error_msg, error_type)
             logger.warning(f"[Step 6] Validation failed ({error_type}): {error_msg}")
-            logger.info(f"[Step 6] Retry #{retry.retry_count}")
+            
+            # Try 1: Attempt SQL repair (cheap, fast)
+            if retry.should_attempt_repair():
+                logger.info(f"[Step 6] Attempting SQL repair...")
+                repair_ok, repaired_sql = retry.attempt_repair(sql, error_msg, question, entities)
+                if repair_ok:
+                    sql = repaired_sql
+                    log_entry["sql"] = sql
+                    is_valid, error_msg, error_type = validate_all(sql, _profiles)
+                    if is_valid:
+                        logger.info(f"[Step 6] SQL repair successful!")
+                        log_entry["validator"] = "PASS"
+                        break
+            
+            # Try 2: Regenerate SQL if repair failed (expensive, but more capable)
+            if retry.should_regenerate():
+                logger.info(f"[Step 6] Retry #{retry.retry_count + 1} - regenerating SQL")
+                retry.record_attempt(sql, error_msg, error_type)
+                
+                retry_prompt = retry.get_retry_prompt(
+                    error_type=error_type,
+                    sql=sql,
+                    error_message=error_msg,
+                    schema=schema_desc,
+                    question=question,
+                )
+                sql = generate_sql(retry_prompt)
+                log_entry["sql"] = sql
 
-            retry_prompt = retry.get_retry_prompt(
-                error_type=error_type,
-                sql=sql,
-                error_message=error_msg,
-                schema=schema_desc,
-                question=question,
-            )
-            sql = generate_sql(retry_prompt)
-            log_entry["sql"] = sql
-
-            is_valid, error_msg, error_type = validate_all(sql, _profiles)
-            log_entry["validator"] = "PASS" if is_valid else "FAIL"
+                is_valid, error_msg, error_type = validate_all(sql, _profiles)
+                log_entry["validator"] = "PASS" if is_valid else "FAIL"
+            else:
+                break
 
         if not is_valid:
             log_entry["error"] = f"Validation failed after {retry.retry_count} retries: {error_msg}"
@@ -248,46 +266,68 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
 
         if not semantic_ok and retry.should_retry("semantic"):
             logger.warning(f"[Step 6] Semantic issues: {semantic_warnings}")
-            retry.record_attempt(sql, "; ".join(semantic_warnings), "semantic")
-            retry_prompt = retry.get_retry_prompt(
-                error_type="semantic",
-                sql=sql,
-                error_message="; ".join(semantic_warnings),
-                schema=schema_desc,
-                question=question,
-                semantic_warnings=semantic_warnings,
-            )
-            sql = generate_sql(retry_prompt)
-            log_entry["sql"] = sql
-            # Re-validate after semantic retry
-            is_valid, error_msg, error_type = validate_all(sql, _profiles)
-            if not is_valid:
-                log_entry["validator"] = "FAIL"
-                log_entry["error"] = f"Post-semantic-retry validation failed: {error_msg}"
-                log_entry["retry_count"] = retry.retry_count
-                log_entry["execution_time"] = time.time() - start_time
-                log_entry["timing"] = timing
-                _log_query(log_entry)
-                return log_entry
-            # Re-check semantic
-            semantic_ok, semantic_warnings = validate_semantic(question, sql)
-            log_entry["semantic_warnings"] = semantic_warnings
+            
+            # Try 1: SQL repair for semantic issues
+            if retry.should_attempt_repair():
+                logger.info(f"[Step 6] Attempting semantic repair...")
+                error_msg = "; ".join(semantic_warnings)
+                repair_ok, repaired_sql = retry.attempt_repair(sql, error_msg, question, entities)
+                if repair_ok:
+                    sql = repaired_sql
+                    log_entry["sql"] = sql
+                    semantic_ok, semantic_warnings = validate_semantic(question, sql)
+                    log_entry["semantic_warnings"] = semantic_warnings
+                    if semantic_ok:
+                        logger.info(f"[Step 6] Semantic repair successful!")
+            
+            # Try 2: Regenerate if repair failed
+            if not semantic_ok and retry.should_regenerate():
+                logger.info(f"[Step 6] Retry #{retry.retry_count + 1} - regenerating for semantic fix")
+                retry.record_attempt(sql, "; ".join(semantic_warnings), "semantic")
+                retry_prompt = retry.get_retry_prompt(
+                    error_type="semantic",
+                    sql=sql,
+                    error_message="; ".join(semantic_warnings),
+                    schema=schema_desc,
+                    question=question,
+                    semantic_warnings=semantic_warnings,
+                )
+                sql = generate_sql(retry_prompt)
+                log_entry["sql"] = sql
+                # Re-check semantic
+                semantic_ok, semantic_warnings = validate_semantic(question, sql)
+                log_entry["semantic_warnings"] = semantic_warnings
 
         # 6c. EXPLAIN pre-check (check syntax on DB without running full query)
         explain_ok, explain_err = explain_query(sql)
         if not explain_ok and retry.should_retry("syntax"):
             logger.warning(f"[Step 6] EXPLAIN failed: {explain_err}")
-            retry.record_attempt(sql, explain_err, "syntax")
-            retry_prompt = retry.get_retry_prompt(
-                error_type="syntax",
-                sql=sql,
-                error_message=f"EXPLAIN failed: {explain_err}",
-                schema=schema_desc,
-                question=question,
-            )
-            sql = generate_sql(retry_prompt)
-            log_entry["sql"] = sql
-            explain_ok, explain_err = explain_query(sql)
+            
+            # Try 1: SQL repair for EXPLAIN issues
+            if retry.should_attempt_repair():
+                logger.info(f"[Step 6] Attempting syntax repair...")
+                repair_ok, repaired_sql = retry.attempt_repair(sql, explain_err, question, entities)
+                if repair_ok:
+                    sql = repaired_sql
+                    log_entry["sql"] = sql
+                    explain_ok, explain_err = explain_query(sql)
+                    if explain_ok:
+                        logger.info(f"[Step 6] Syntax repair successful!")
+            
+            # Try 2: Regenerate if repair failed
+            if not explain_ok and retry.should_regenerate():
+                logger.info(f"[Step 6] Regenerating SQL for EXPLAIN fix...")
+                retry.record_attempt(sql, explain_err, "syntax")
+                retry_prompt = retry.get_retry_prompt(
+                    error_type="syntax",
+                    sql=sql,
+                    error_message=f"EXPLAIN failed: {explain_err}",
+                    schema=schema_desc,
+                    question=question,
+                )
+                sql = generate_sql(retry_prompt)
+                log_entry["sql"] = sql
+                explain_ok, explain_err = explain_query(sql)
 
         if not explain_ok:
             log_entry["error"] = f"EXPLAIN failed: {explain_err}"
@@ -317,21 +357,37 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
             logger.warning(f"[Step 7] DB error ({exec_error_type}): {db_error}")
 
             if exec_error_type in ("syntax", "runtime") and retry.should_retry(exec_error_type):
-                retry.record_attempt(sql, db_error, exec_error_type)
-                retry_prompt = retry.get_retry_prompt(
-                    error_type=exec_error_type,
-                    sql=sql,
-                    error_message=db_error,
-                    schema=schema_desc,
-                    question=question,
-                )
-                sql = generate_sql(retry_prompt)
-                log_entry["sql"] = sql
-                log_entry["retry_count"] = retry.retry_count
+                # Try 1: SQL repair for syntax/runtime errors
+                if retry.should_attempt_repair():
+                    logger.info(f"[Step 7] Attempting {exec_error_type} repair...")
+                    repair_ok, repaired_sql = retry.attempt_repair(sql, db_error, question, entities)
+                    if repair_ok:
+                        sql = repaired_sql
+                        log_entry["sql"] = sql
+                        success, rows, db_error = execute_query(sql)
+                        log_entry["rows"] = len(rows) if rows else 0
+                        if success:
+                            logger.info(f"[Step 7] {exec_error_type} repair successful!")
+                
+                # Try 2: Regenerate if repair failed
+                if not success and retry.should_regenerate():
+                    logger.info(f"[Step 7] Regenerating SQL for {exec_error_type} fix...")
+                    retry.record_attempt(sql, db_error, exec_error_type)
+                    retry_prompt = retry.get_retry_prompt(
+                        error_type=exec_error_type,
+                        sql=sql,
+                        error_message=db_error,
+                        schema=schema_desc,
+                        question=question,
+                    )
+                    sql = generate_sql(retry_prompt)
+                    log_entry["sql"] = sql
+                    log_entry["retry_count"] = retry.retry_count
 
-                is_valid, _, _ = validate_all(sql, _profiles)
-                if is_valid:
-                    success, rows, db_error = execute_query(sql)
+                    is_valid, _, _ = validate_all(sql, _profiles)
+                    if is_valid:
+                        success, rows, db_error = execute_query(sql)
+                        log_entry["rows"] = len(rows) if rows else 0
 
             if not success:
                 log_entry["error"] = f"DB execution failed ({exec_error_type}): {db_error}"

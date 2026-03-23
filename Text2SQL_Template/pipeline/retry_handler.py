@@ -3,38 +3,49 @@ Pipeline – Retry Handler
 Quản lý retry strategy cho SQL generation.
 
 Logic:
-  syntax_error  → retry SQL (max 2)
-  runtime_error → retry SQL hoặc fallback template
-  row=0         → data validation (không retry bừa)
-  connection    → không retry
+  Attempt 1: Try SQL repair (fix lỗi syntax/schema không regenerate)
+  Attempt 2: If repair failed → regenerate full SQL từ LLM
+  connection/security errors → không retry
 """
 
 import logging
 from typing import Dict, Any, Optional, Tuple, Callable
 
 from sql_generation.sql_prompt_builder import build_retry_prompt
+from sql_generation.sql_repairer import repair_sql
 
 logger = logging.getLogger(__name__)
 
 
 class RetryHandler:
     """
-    Smart retry handler:
-    - Phân loại lỗi trước khi retry
-    - Max 2 retries cho syntax/runtime
+    Smart retry handler với SQL repair strategy:
+    - Attempt 1: Try SQL repair (fix syntax/schema without regenerate)
+    - Attempt 2: If repair failed → regenerate from LLM
+    - Max 2 retries total
     - Không retry connection errors
-    - Row=0 → delegate cho data validator
     """
 
     def __init__(self, max_retries: int = 2):
         self.max_retries = max_retries
         self.attempts: list = []
+        self.repair_attempted = False
 
     def should_retry(self, error_type: str = "") -> bool:
         """Chỉ retry nếu lỗi có thể sửa được."""
         if error_type in ("connection", "security"):
             return False
         return len(self.attempts) < self.max_retries
+    
+    def should_attempt_repair(self) -> bool:
+        """Có nên thử repair SQL trước khi regenerate không."""
+        # Repair nếu: chưa thử repair và còn attempts
+        return not self.repair_attempted and len(self.attempts) == 0
+    
+    def should_regenerate(self) -> bool:
+        """Có nên regenerate từ LLM không."""
+        # Regenerate nếu: repair đã thử (và fail) và còn attempts
+        return self.repair_attempted and len(self.attempts) < self.max_retries
 
     @property
     def retry_count(self) -> int:
@@ -47,6 +58,19 @@ class RetryHandler:
             "error": error,
             "error_type": error_type,
         })
+    
+    def attempt_repair(self, sql: str, error_msg: str = "", question: str = "", entities: dict = None) -> Tuple[bool, str]:
+        """
+        Cố gắng repair SQL bị lỗi.
+        Returns: (success, repaired_sql)
+        """
+        self.repair_attempted = True
+        success, repaired = repair_sql(sql, error_msg, question, entities)
+        if success:
+            logger.info(f"[Retry] SQL repair successful")
+        else:
+            logger.warning(f"[Retry] SQL repair failed, will regenerate")
+        return success, repaired
 
     def get_retry_prompt(
         self,
