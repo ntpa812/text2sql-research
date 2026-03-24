@@ -13,3 +13,17 @@ download.py
 **/checkpoints**
 models/
 models**/**
+.venv/
+venv/
+__pycache__/
+*.pt
+*.pth
+*.bin
+*.ckpt
+*.h5
+*.zip
+*.tar
+*.csv
+data/
+models/
+checkpoints/
