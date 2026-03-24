@@ -85,6 +85,19 @@ class DomainRoutingTests(unittest.TestCase):
         self.assertIsNotNone(get_cached_result("same question", "hrm"))
         self.assertIsNone(get_cached_result("same question", "banking"))
 
+    def test_demo_mode_can_fallback_when_models_are_unavailable(self):
+        original_generate_sql = pr.generate_sql
+        pr.generate_sql = lambda prompt: (_ for _ in ()).throw(RuntimeError("model unavailable"))
+        try:
+            result = pr.run_pipeline("Tra cuu giao dich chuyen tien", explain=False, demo_mode=True)
+        finally:
+            pr.generate_sql = original_generate_sql
+
+        self.assertEqual(result["validator"], "PASS")
+        self.assertEqual(result["domain"], "banking")
+        self.assertIn("SELECT", result["sql"])
+        self.assertEqual(result["model_info"]["active_model"], "demo-sql-fallback")
+
 
 if __name__ == "__main__":
     unittest.main()

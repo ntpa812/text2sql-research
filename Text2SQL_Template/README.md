@@ -179,6 +179,39 @@ python app.py --domain hrm
 | `--warm` | Warm-up Ollama model trước khi chạy |
 | `--domain DOMAIN_ID` | Force chạy trên domain cụ thể để debug/test |
 
+## Demo UI
+
+Demo UI duoc dat trong thu muc `demo_ui/` va backend API demo trong `demo_server.py`.
+
+### 1. Cai dependency backend demo
+
+```bash
+pip install -r demo_requirements.txt
+```
+
+### 2. Chay backend demo
+
+```bash
+uvicorn demo_server:app --reload --port 8000
+```
+
+### 3. Chay frontend demo
+
+```bash
+cd demo_ui
+npm install
+npm run dev
+```
+
+Neu PowerShell chan `npm`, dung `npm.cmd install` va `npm.cmd run dev`.
+
+Demo mode se:
+
+- van chay domain router, schema router, intent detection, template retrieval va SQL generation
+- show current model o thanh input, bao gom fallback `llama3` neu primary model loi
+- khong truy cap DB that, Step 7 se dung local cache trong `cache/demo_execution_cache.json`
+- show prompt, schema, intent, timing va SQL o debug panel ben phai
+
 ## Output format
 
 ### Console

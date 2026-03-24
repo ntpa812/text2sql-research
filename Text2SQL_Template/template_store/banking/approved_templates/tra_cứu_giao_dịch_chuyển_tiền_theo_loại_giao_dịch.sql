@@ -1,0 +1,1 @@
+SELECT * FROM transaction LIMIT 20;

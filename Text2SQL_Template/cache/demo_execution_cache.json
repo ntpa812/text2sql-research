@@ -1,0 +1,32 @@
+{
+  "f33deb4eb1eea27c342f": {
+    "question": "Tra cuu giao dich chuyen tien trong thang nay",
+    "domain": "banking",
+    "rows": [
+      {
+        "demo_id": "f33deb4e",
+        "domain": "banking",
+        "intent": "Tra cứu giao dịch chuyển tiền theo thời gian",
+        "tables": "transaction, customer_account",
+        "preview_sql": "SELECT COUNT(*) \nFROM transaction \nWHERE trans_time >= DATE_SUB(CURDATE(), INTERVAL 0 DAY) \nAND category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRAN",
+        "note": "Demo mode: ket qua duoc luu local cache, khong truy cap DB that.",
+        "created_at": "2026-03-24T16:02:05"
+      }
+    ]
+  },
+  "99617def5083d98cb740": {
+    "question": "Tra cuu giao dich chuyen tien",
+    "domain": "banking",
+    "rows": [
+      {
+        "demo_id": "99617def",
+        "domain": "banking",
+        "intent": "Tra cứu giao dịch chuyển tiền theo loại giao dịch",
+        "tables": "transaction",
+        "preview_sql": "SELECT * FROM transaction LIMIT 20;",
+        "note": "Demo mode: ket qua duoc luu local cache, khong truy cap DB that.",
+        "created_at": "2026-03-24T16:04:31"
+      }
+    ]
+  }
+}

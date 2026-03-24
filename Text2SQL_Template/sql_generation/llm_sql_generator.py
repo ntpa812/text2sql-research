@@ -7,7 +7,7 @@ Support: openai_compatible, ollama, transformers.
 import re
 import json
 import logging
-from typing import Optional, Callable
+from typing import Optional, Callable, Dict, Any
 from urllib.request import Request, urlopen
 from urllib.error import URLError
 
@@ -28,6 +28,43 @@ logger = logging.getLogger(__name__)
 # ─── Singleton model holder (transformers backend) ──────────
 _model = None
 _tokenizer = None
+_last_generation_info: Dict[str, Any] = {}
+
+
+def get_generation_config() -> Dict[str, str]:
+    primary_label = {
+        "openai_compatible": LLM_API_MODEL,
+        "ollama": LLM_OLLAMA_MODEL,
+        "transformers": LLM_MODEL_PATH or "transformers-local",
+    }.get(LLM_BACKEND, "unknown")
+
+    fallback_label = LLM_OLLAMA_MODEL if LLM_BACKEND == "openai_compatible" else ""
+    return {
+        "backend": LLM_BACKEND,
+        "primary_model": primary_label,
+        "fallback_model": fallback_label,
+    }
+
+
+def get_last_generation_info() -> Dict[str, Any]:
+    return dict(_last_generation_info)
+
+
+def _set_generation_info(
+    active_model: str,
+    active_backend: str,
+    used_fallback: bool,
+    error: str = "",
+):
+    global _last_generation_info
+    config = get_generation_config()
+    _last_generation_info = {
+        **config,
+        "active_model": active_model,
+        "active_backend": active_backend,
+        "used_fallback": used_fallback,
+        "error": error,
+    }
 
 
 def warm_ollama():
@@ -230,14 +267,31 @@ def generate_sql(
     """
     Generate SQL tu prompt theo backend trong LLM_BACKEND.
     """
-    if LLM_BACKEND == "openai_compatible":
-        raw = _generate_openai_compatible(prompt, max_tokens=max_new_tokens, temperature=temperature)
-    elif LLM_BACKEND == "ollama":
-        raw = _generate_ollama(prompt, max_tokens=max_new_tokens, temperature=temperature)
-    elif LLM_BACKEND == "transformers":
-        raw = _generate_transformers(prompt, max_tokens=max_new_tokens, temperature=temperature)
-    else:
-        raise ValueError(f"Unknown LLM_BACKEND: {LLM_BACKEND}")
+    last_error = ""
+    try:
+        if LLM_BACKEND == "openai_compatible":
+            raw = _generate_openai_compatible(prompt, max_tokens=max_new_tokens, temperature=temperature)
+            if raw and raw.strip():
+                _set_generation_info(LLM_API_MODEL, "openai_compatible", False)
+            else:
+                raise RuntimeError("Primary OpenAI-compatible model returned empty response")
+        elif LLM_BACKEND == "ollama":
+            raw = _generate_ollama(prompt, max_tokens=max_new_tokens, temperature=temperature)
+            _set_generation_info(LLM_OLLAMA_MODEL, "ollama", False)
+        elif LLM_BACKEND == "transformers":
+            raw = _generate_transformers(prompt, max_tokens=max_new_tokens, temperature=temperature)
+            _set_generation_info(LLM_MODEL_PATH or "transformers-local", "transformers", False)
+        else:
+            raise ValueError(f"Unknown LLM_BACKEND: {LLM_BACKEND}")
+    except Exception as exc:
+        last_error = str(exc)
+        if LLM_BACKEND == "openai_compatible":
+            logger.warning(f"[LLM] Primary model failed, falling back to Ollama: {exc}")
+            raw = _generate_ollama(prompt, max_tokens=max_new_tokens, temperature=temperature)
+            _set_generation_info(LLM_OLLAMA_MODEL, "ollama", True, error=last_error)
+        else:
+            _set_generation_info(get_generation_config()["primary_model"], LLM_BACKEND, False, error=last_error)
+            raise
 
     sql = _extract_sql(raw, prompt)
     logger.info(f"[LLM] Generated SQL: {sql[:200]}...")

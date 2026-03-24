@@ -10,6 +10,15 @@ from typing import Dict, List, Any
 from config.settings import DEFAULT_DOMAIN_ID, LEGACY_INTENT_DATASET_PATH
 
 
+def _clean_sql_template(value: Any) -> str:
+    if not isinstance(value, str):
+        return ""
+    cleaned = value.strip()
+    if cleaned.lower() in {"nan", "none", "null"}:
+        return ""
+    return cleaned
+
+
 def _resolve_intent_path(path: str | None = None, domain_id: str | None = None) -> str:
     if path:
         return path
@@ -61,7 +70,7 @@ def build_intent_index(dataset: List[Dict[str, Any]], domain_id: str | None = No
             "description": item.get("description", ""),
             "keywords": item.get("keywords", []),
             "examples": item.get("examples", []),
-            "sql_template": item.get("metadata", ""),
+            "sql_template": _clean_sql_template(item.get("metadata", "")),
         })
 
     return index

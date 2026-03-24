@@ -31,7 +31,7 @@ from template_store.template_loader import (
 )
 
 from sql_generation.sql_prompt_builder import build_sql_prompt
-from sql_generation.llm_sql_generator import generate_sql
+from sql_generation.llm_sql_generator import generate_sql, get_generation_config, get_last_generation_info
 
 from validator.security_guard import classify_execution_error, validate_all
 from validator.semantic_validator import validate_semantic
@@ -46,6 +46,7 @@ from explain.explain_engine import format_result_table, generate_explain
 from pipeline.retry_handler import RetryHandler
 from pipeline.query_cache import cache_result, get_cached_result
 from pipeline.test_mock import inject_test_account
+from pipeline.demo_cache import get_demo_rows
 
 logger = logging.getLogger(__name__)
 
@@ -103,6 +104,37 @@ def _select_tables_from_ranked(ranked_tables: list[Dict[str, Any]]) -> list[str]
     if selected:
         return selected
     return [ranked_tables[0]["table_name"]]
+
+
+def _build_demo_sql_fallback(table_names: list[str]) -> str:
+    table_name = table_names[0] if table_names else "transaction"
+    return f"SELECT * FROM {table_name} LIMIT 20;"
+
+
+def _generate_sql_with_demo_fallback(
+    prompt: str,
+    demo_mode: bool,
+    table_names: list[str],
+    template_sql: str = "",
+) -> tuple[str, Dict[str, Any]]:
+    safe_template_sql = template_sql if isinstance(template_sql, str) else ""
+    if safe_template_sql.strip().lower() in {"nan", "none", "null"}:
+        safe_template_sql = ""
+    try:
+        sql = generate_sql(prompt)
+        return sql, (get_last_generation_info() or get_generation_config())
+    except Exception as exc:
+        if not demo_mode:
+            raise
+        logger.warning(f"[LLM] Demo mode fallback SQL activated: {exc}")
+        sql = safe_template_sql or _build_demo_sql_fallback(table_names)
+        return sql, {
+            **get_generation_config(),
+            "active_model": "demo-sql-fallback",
+            "active_backend": "demo",
+            "used_fallback": True,
+            "error": str(exc),
+        }
 
 
 def _serialize_ranked_domains(ranked_domains: list[Dict[str, Any]]) -> list[Dict[str, Any]]:
@@ -169,6 +201,7 @@ def run_pipeline(
     use_embedding: bool = False,
     explain: bool = True,
     forced_domain: str | None = None,
+    demo_mode: bool = False,
 ) -> Dict[str, Any]:
     """
     Orchestrator chính.
@@ -201,6 +234,14 @@ def run_pipeline(
         "data_validation": None,
         "explain": "",
         "error": None,
+        "model_info": get_generation_config(),
+        "debug": {
+            "question": question,
+            "schema_description": "",
+            "prompt": "",
+            "template_sql": "",
+            "execution_mode": "demo_cache" if demo_mode else "live",
+        },
     }
 
     try:
@@ -321,6 +362,7 @@ def run_pipeline(
             return cached
 
         schema_desc = get_schema_description(final_resources["profiles"], final_tables)
+        log_entry["debug"]["schema_description"] = schema_desc
 
         if intent:
             log_entry["intent"] = intent.get("intent_id")
@@ -347,6 +389,7 @@ def run_pipeline(
 
         if intent:
             template_sql = get_template_for_intent(intent, final_resources["approved_templates"]) or ""
+            log_entry["debug"]["template_sql"] = template_sql
             if template_sql and entities:
                 filled_template, unfilled = fill_template(template_sql, entities)
                 template_complete = len(unfilled) == 0
@@ -365,6 +408,13 @@ def run_pipeline(
         if template_complete and filled_template:
             logger.info("[Step 5] Template-fill complete → skip LLM")
             sql = filled_template
+            log_entry["model_info"] = {
+                **get_generation_config(),
+                "active_model": "template-first",
+                "active_backend": "template",
+                "used_fallback": False,
+                "error": "",
+            }
         else:
             logger.info("[Step 5] SQL Generation (LLM)")
             prompt = build_sql_prompt(
@@ -377,7 +427,14 @@ def run_pipeline(
                 template_sql=template_sql,
                 row_limit=QUERY_ROW_LIMIT,
             )
-            sql = generate_sql(prompt)
+            log_entry["debug"]["prompt"] = prompt
+            sql, model_info = _generate_sql_with_demo_fallback(
+                prompt=prompt,
+                demo_mode=demo_mode,
+                table_names=final_tables,
+                template_sql=template_sql,
+            )
+            log_entry["model_info"] = model_info
 
         sql = inject_test_account(sql)
         log_entry["sql"] = sql
@@ -420,7 +477,12 @@ def run_pipeline(
                     schema=schema_desc,
                     question=question,
                 )
-                sql = generate_sql(retry_prompt)
+                sql, log_entry["model_info"] = _generate_sql_with_demo_fallback(
+                    prompt=retry_prompt,
+                    demo_mode=demo_mode,
+                    table_names=final_tables,
+                    template_sql=template_sql,
+                )
                 log_entry["sql"] = sql
                 is_valid, error_msg, error_type = validate_all(sql, profiles)
                 log_entry["validator"] = "PASS" if is_valid else "FAIL"
@@ -477,12 +539,17 @@ def run_pipeline(
                     question=question,
                     semantic_warnings=semantic_warnings,
                 )
-                sql = generate_sql(retry_prompt)
+                sql, log_entry["model_info"] = _generate_sql_with_demo_fallback(
+                    prompt=retry_prompt,
+                    demo_mode=demo_mode,
+                    table_names=final_tables,
+                    template_sql=template_sql,
+                )
                 log_entry["sql"] = sql
                 semantic_ok, semantic_warnings = validate_semantic(question, sql)
                 log_entry["semantic_warnings"] = semantic_warnings
 
-        explain_ok, explain_err = explain_query(sql, db_config=db_config)
+        explain_ok, explain_err = (True, "") if demo_mode else explain_query(sql, db_config=db_config)
         if not explain_ok and retry.should_retry("syntax"):
             logger.warning(f"[Step 6] EXPLAIN failed: {explain_err}")
 
@@ -506,7 +573,12 @@ def run_pipeline(
                     schema=schema_desc,
                     question=question,
                 )
-                sql = generate_sql(retry_prompt)
+                sql, log_entry["model_info"] = _generate_sql_with_demo_fallback(
+                    prompt=retry_prompt,
+                    demo_mode=demo_mode,
+                    table_names=final_tables,
+                    template_sql=template_sql,
+                )
                 log_entry["sql"] = sql
                 explain_ok, explain_err = explain_query(sql, db_config=db_config)
 
@@ -534,7 +606,18 @@ def run_pipeline(
         # ─── Step 7: Execute on DB + Smart Result Handling ─
         t0 = time.time()
         logger.info("[Step 7] Execute on DB")
-        success, rows, db_error = execute_query(sql, db_config=db_config)
+        if demo_mode:
+            success = True
+            rows = get_demo_rows(
+                domain_id=final_domain,
+                question=question,
+                sql=sql,
+                intent_name=intent.get("intent_name", "") if intent else "",
+                table_names=final_tables,
+            )
+            db_error = ""
+        else:
+            success, rows, db_error = execute_query(sql, db_config=db_config)
 
         if not success:
             exec_error_type = classify_execution_error(db_error)
@@ -562,7 +645,12 @@ def run_pipeline(
                         schema=schema_desc,
                         question=question,
                     )
-                    sql = generate_sql(retry_prompt)
+                    sql, log_entry["model_info"] = _generate_sql_with_demo_fallback(
+                        prompt=retry_prompt,
+                        demo_mode=demo_mode,
+                        table_names=final_tables,
+                        template_sql=template_sql,
+                    )
                     log_entry["sql"] = sql
                     log_entry["retry_count"] = retry.retry_count
 
@@ -674,6 +762,18 @@ def run_pipeline(
             log_entry["result_table"] = format_result_table(rows)
             log_entry["result_data"] = rows
 
+        log_entry["debug"].update({
+            "domain": final_domain,
+            "tables": final_tables,
+            "intent": log_entry.get("intent"),
+            "intent_name": log_entry.get("intent_name"),
+            "intent_description": log_entry.get("intent_description"),
+            "entities": entities,
+            "candidate_domains": candidate_domains,
+            "domain_routing": log_entry.get("domain_routing"),
+            "timing": timing,
+            "model_info": log_entry.get("model_info", {}),
+        })
         log_entry["execution_time"] = round(time.time() - start_time, 3)
         log_entry["timing"] = timing
         _log_query(log_entry)
