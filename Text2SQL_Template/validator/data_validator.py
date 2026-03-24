@@ -25,6 +25,7 @@ def validate_empty_result(
     entities: Dict[str, str],
     profiles: Dict[str, Any],
     executor_fn=None,
+    domain_context: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     """
     Khi SQL chạy thành công nhưng row = 0, kiểm tra tại sao.
@@ -38,7 +39,7 @@ def validate_empty_result(
     checks: List[Dict[str, Any]] = []
 
     # Check 1: entity tồn tại trong DB không
-    entity_check = _check_entities_exist(entities, profiles, executor_fn)
+    entity_check = _check_entities_exist(entities, profiles, executor_fn, domain_context=domain_context)
     checks.append(entity_check)
 
     # Check 2: time range hợp lệ
@@ -46,7 +47,7 @@ def validate_empty_result(
     checks.append(time_check)
 
     # Check 3: enum/category hợp lệ
-    category_check = _check_categories(entities, profiles)
+    category_check = _check_categories(entities, profiles, domain_context=domain_context)
     checks.append(category_check)
 
     # Tổng hợp
@@ -82,6 +83,7 @@ def _check_entities_exist(
     entities: Dict[str, str],
     profiles: Dict[str, Any],
     executor_fn=None,
+    domain_context: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     """Kiểm tra các entity có tồn tại trong DB."""
     global _entity_cache
@@ -89,13 +91,15 @@ def _check_entities_exist(
     if not entities:
         return {"check": "entity_exists", "status": "SKIP", "message": "Không có entity để kiểm tra."}
 
+    entity_table_map = (domain_context or {}).get("entity_table_map", ENTITY_TABLE_MAP)
+
     invalid_entities: List[str] = []
 
     for key, value in entities.items():
-        if key not in ENTITY_TABLE_MAP:
+        if key not in entity_table_map:
             continue
 
-        table, column = ENTITY_TABLE_MAP[key]
+        table, column = entity_table_map[key]
 
         # Check cache trước
         cache_key = f"{table}.{column}={value}"
@@ -191,15 +195,17 @@ KNOWN_ENUMS = {
 def _check_categories(
     entities: Dict[str, str],
     profiles: Dict[str, Any],
+    domain_context: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     """Kiểm tra các giá trị enum/category có hợp lệ."""
+    known_enums = (domain_context or {}).get("known_enums", KNOWN_ENUMS)
     invalid_cats: List[str] = []
 
     for key, value in entities.items():
-        if key not in KNOWN_ENUMS:
+        if key not in known_enums:
             continue
 
-        enum_info = KNOWN_ENUMS[key]
+        enum_info = known_enums[key]
         valid = enum_info["valid_values"]
 
         if value.upper() not in [v.upper() for v in valid]:

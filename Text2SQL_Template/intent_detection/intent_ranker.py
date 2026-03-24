@@ -7,6 +7,8 @@ import os
 import re
 import pickle
 import logging
+import hashlib
+import unicodedata
 from typing import Dict, List, Any, Optional
 
 from config.settings import EMBEDDING_MODEL_NAME, EMBEDDING_CACHE_DIR
@@ -18,12 +20,30 @@ _embed_model = None
 _intent_embeddings_cache: Dict[str, Any] = {}
 
 
+def _normalize_text(text: str) -> str:
+    text = (text or "").lower()
+    text = text.replace("đ", "d").replace("Đ", "D")
+    text = unicodedata.normalize("NFD", text)
+    text = "".join(ch for ch in text if unicodedata.category(ch) != "Mn")
+    return text
+
+
+def _normalize_scored_items(scored: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    if not scored:
+        return scored
+
+    max_score = max(item.get("_score", 0.0) for item in scored) or 1.0
+    for item in scored:
+        item["_normalized_score"] = max(item.get("_score", 0.0), 0.0) / max_score
+    return scored
+
+
 def rank_by_keyword(question: str, intent_index: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """
     Rank intents bằng keyword matching.
     Trả về list intents sorted by score (descending).
     """
-    question_lower = question.lower()
+    question_lower = _normalize_text(question)
     scored: List[Dict[str, Any]] = []
 
     for intent in intent_index:
@@ -31,16 +51,16 @@ def rank_by_keyword(question: str, intent_index: List[Dict[str, Any]]) -> List[D
 
         # Match keywords
         for kw in intent.get("keywords", []):
-            if kw.lower() in question_lower:
+            if _normalize_text(kw) in question_lower:
                 score += 2
 
         # Match partial words from examples
         for ex in intent.get("examples", [])[:5]:
-            common = _common_words(question_lower, ex.lower())
+            common = _common_words(question_lower, ex)
             score += common * 0.5
 
         # Match description
-        desc = intent.get("description", "").lower()
+        desc = intent.get("description", "")
         common_desc = _common_words(question_lower, desc)
         score += common_desc * 0.3
 
@@ -48,7 +68,7 @@ def rank_by_keyword(question: str, intent_index: List[Dict[str, Any]]) -> List[D
             scored.append({**intent, "_score": score})
 
     scored.sort(key=lambda x: x["_score"], reverse=True)
-    return scored
+    return _normalize_scored_items(scored)
 
 
 def _get_embed_model():
@@ -66,19 +86,23 @@ def _get_intent_embeddings(intent_index: List[Dict[str, Any]]):
     """Cache intent embeddings: compute once, save to disk."""
     global _intent_embeddings_cache
 
-    cache_key = f"intent_emb_{len(intent_index)}"
+    intent_signature = "|".join(
+        sorted(f"{item.get('domain_id', '')}:{item.get('intent_id', '')}" for item in intent_index)
+    )
+    cache_hash = hashlib.sha256(intent_signature.encode("utf-8")).hexdigest()[:16]
+    cache_key = f"intent_emb_{len(intent_index)}_{cache_hash}"
     if cache_key in _intent_embeddings_cache:
         return _intent_embeddings_cache[cache_key]
 
     # Try load from disk
     os.makedirs(EMBEDDING_CACHE_DIR, exist_ok=True)
-    cache_file = os.path.join(EMBEDDING_CACHE_DIR, "intent_embeddings.pkl")
+    cache_file = os.path.join(EMBEDDING_CACHE_DIR, f"intent_embeddings_{cache_hash}.pkl")
 
     if os.path.isfile(cache_file):
         try:
             with open(cache_file, "rb") as f:
                 data = pickle.load(f)
-            if data.get("count") == len(intent_index):
+            if data.get("count") == len(intent_index) and data.get("signature") == cache_hash:
                 logger.info(f"[Intent] Loaded cached intent embeddings ({len(intent_index)} intents)")
                 _intent_embeddings_cache[cache_key] = data["embeddings"]
                 return data["embeddings"]
@@ -100,7 +124,7 @@ def _get_intent_embeddings(intent_index: List[Dict[str, Any]]):
     # Save to disk
     try:
         with open(cache_file, "wb") as f:
-            pickle.dump({"count": len(intent_index), "embeddings": embeddings}, f)
+            pickle.dump({"count": len(intent_index), "signature": cache_hash, "embeddings": embeddings}, f)
         logger.info(f"[Intent] Saved intent embeddings to cache.")
     except Exception as e:
         logger.warning(f"[Intent] Could not save embeddings cache: {e}")
@@ -130,13 +154,26 @@ def rank_by_embedding(
 
         scored: List[Dict[str, Any]] = []
         for i, intent in enumerate(intent_index):
-            scored.append({**intent, "_score": scores[i].item()})
+            raw_score = scores[i].item()
+            normalized = max(min((raw_score + 1.0) / 2.0, 1.0), 0.0)
+            scored.append({**intent, "_score": raw_score, "_normalized_score": normalized})
 
         scored.sort(key=lambda x: x["_score"], reverse=True)
         return scored[:top_k]
 
     except ImportError:
         return rank_by_keyword(question, intent_index)[:top_k]
+
+
+def rank_intents(
+    question: str,
+    intent_index: List[Dict[str, Any]],
+    use_embedding: bool = False,
+    top_k: int = 3,
+) -> List[Dict[str, Any]]:
+    if use_embedding:
+        return rank_by_embedding(question, intent_index, top_k=top_k)
+    return rank_by_keyword(question, intent_index)[:top_k]
 
 
 def detect_intent(
@@ -148,14 +185,12 @@ def detect_intent(
     Detect intent chính từ câu hỏi.
     Trả về intent match tốt nhất hoặc None.
     """
-    if use_embedding:
-        ranked = rank_by_embedding(question, intent_index, top_k=1)
-    else:
-        ranked = rank_by_keyword(question, intent_index)
+    ranked = rank_intents(question, intent_index, use_embedding=use_embedding, top_k=1)
 
     if ranked:
-        best = ranked[0]
+        best = dict(ranked[0])
         best.pop("_score", None)
+        best.pop("_normalized_score", None)
         return best
 
     return None
@@ -164,6 +199,6 @@ def detect_intent(
 def _common_words(text1: str, text2: str) -> int:
     """Đếm số từ chung giữa 2 text (loại bỏ stopwords ngắn)."""
     stopwords = {"của", "và", "là", "các", "cho", "trong", "từ", "đến", "với", "theo", "tôi", "tôi", "có", "được", "để", "hay", "hoặc", "xem", "tra", "cứu"}
-    words1 = set(text1.split()) - stopwords
-    words2 = set(text2.split()) - stopwords
+    words1 = set(_normalize_text(text1).split()) - stopwords
+    words2 = set(_normalize_text(text2).split()) - stopwords
     return len(words1 & words2)

@@ -4,103 +4,186 @@ Orchestrator chính: điều phối toàn bộ luồng Text2SQL.
 """
 
 import json
-import time
 import logging
-from typing import Dict, Any, Optional
+import time
+from typing import Any, Dict, Optional
 
 from config.settings import MAX_RETRY_ATTEMPTS, QUERY_ROW_LIMIT
 
-# Schema router
-from schema_router.schema_loader import load_all_profiles, get_schema_description
-from schema_router.table_selector import select_tables
+from domain_router.registry_loader import get_domain_config, load_domain_registry
+from domain_router.selector import route_domains
 
-# Intent detection
-from intent_detection.intent_loader import load_intent_dataset, build_intent_index
-from intent_detection.intent_ranker import detect_intent
+from schema_router.schema_loader import get_schema_description, load_all_profiles
+from schema_router.table_selector import rank_tables
 
-# Entity extraction
+from intent_detection.intent_loader import build_intent_index, load_intent_dataset
+from intent_detection.intent_ranker import rank_intents
+
 from entity_extraction.ner_local import extract_entities_local
 
-# Slot filling
 from slot_filling.entity_normalizer import normalize_entities
 from slot_filling.slot_filler import fill_template
 
-# Template store
 from template_store.template_loader import (
-    load_approved_templates,
     get_template_for_intent,
+    load_approved_templates,
     save_approved_template,
 )
 
-# SQL generation
 from sql_generation.sql_prompt_builder import build_sql_prompt
 from sql_generation.llm_sql_generator import generate_sql
 
-# Validator
-from validator.security_guard import validate_all, classify_execution_error
+from validator.security_guard import classify_execution_error, validate_all
 from validator.semantic_validator import validate_semantic
 from validator.structure_validator import validate_sql_structure
 from validator.data_validator import validate_empty_result
 from validator.confidence_scorer import compute_confidence
 
-# Executor
 from executor.query_executor import execute_query, explain_query
 
-# Explain
-from explain.explain_engine import generate_explain, format_result_table
+from explain.explain_engine import format_result_table, generate_explain
 
-# Retry & Cache & Mock
 from pipeline.retry_handler import RetryHandler
-from pipeline.query_cache import get_cached_result, cache_result
+from pipeline.query_cache import cache_result, get_cached_result
 from pipeline.test_mock import inject_test_account
 
 logger = logging.getLogger(__name__)
 
 
-# ─── Cached resources (loaded once) ─────────────────────────
-_profiles = None
-_intent_index = None
-_approved_templates = None
+_registry = None
+_domain_resources: Dict[str, Dict[str, Any]] = {}
+_queries_log_file = None
 
 
-def _ensure_loaded():
-    """Lazy load tất cả resources cần thiết."""
-    global _profiles, _intent_index, _approved_templates
-
-    if _profiles is None:
-        logger.info("[Pipeline] Loading semantic profiles...")
-        _profiles = load_all_profiles()
-
-    if _intent_index is None:
-        logger.info("[Pipeline] Loading intent dataset...")
-        dataset = load_intent_dataset()
-        _intent_index = build_intent_index(dataset)
-
-    if _approved_templates is None:
-        logger.info("[Pipeline] Loading approved templates...")
-        _approved_templates = load_approved_templates()
+def _ensure_registry_loaded() -> Dict[str, Any]:
+    global _registry
+    if _registry is None:
+        logger.info("[Pipeline] Loading domain registry...")
+        _registry = load_domain_registry()
+    return _registry
 
 
-def run_pipeline(question: str, use_embedding: bool = False, explain: bool = True) -> Dict[str, Any]:
+def _ensure_domain_resources(domain_id: str) -> Dict[str, Any]:
+    global _domain_resources
+
+    if domain_id in _domain_resources:
+        return _domain_resources[domain_id]
+
+    registry = _ensure_registry_loaded()
+    config = get_domain_config(registry, domain_id)
+    paths = config.get("paths", {})
+
+    logger.info(f"[Pipeline] Loading resources for domain={domain_id}...")
+    profiles = load_all_profiles(path=paths.get("semantic_profiles_dir"), domain_id=domain_id)
+    dataset = load_intent_dataset(path=paths.get("intent_dataset_path"), domain_id=domain_id)
+    intent_index = build_intent_index(dataset, domain_id=domain_id)
+    approved_templates = load_approved_templates(path=paths.get("approved_templates_dir"), domain_id=domain_id)
+
+    _domain_resources[domain_id] = {
+        "config": config,
+        "paths": paths,
+        "profiles": profiles,
+        "intent_index": intent_index,
+        "approved_templates": approved_templates,
+        "db_config": config.get("db_config", {}),
+    }
+    return _domain_resources[domain_id]
+
+
+def _strip_scores(item: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+    if not item:
+        return item
+    return {k: v for k, v in item.items() if not k.startswith("_")}
+
+
+def _select_tables_from_ranked(ranked_tables: list[Dict[str, Any]]) -> list[str]:
+    if not ranked_tables:
+        return []
+    selected = [item["table_name"] for item in ranked_tables if item.get("_normalized_score", 0.0) >= 0.3]
+    if selected:
+        return selected
+    return [ranked_tables[0]["table_name"]]
+
+
+def _serialize_ranked_domains(ranked_domains: list[Dict[str, Any]]) -> list[Dict[str, Any]]:
+    serialized = []
+    for item in ranked_domains:
+        serialized.append({
+            "domain_id": item.get("domain_id"),
+            "display_name": item.get("display_name"),
+            "score": round(item.get("_normalized_score", 0.0), 4),
+            "keyword_score": round(item.get("_keyword_normalized_score", 0.0), 4),
+            "matched_keywords": item.get("matched_keywords", []),
+        })
+    return serialized
+
+
+def _arbitrate_domain(
+    route_result: Dict[str, Any],
+    table_rankings: Dict[str, Dict[str, Any]],
+    intent_rankings: Dict[str, Dict[str, Any]],
+    registry: Dict[str, Any],
+) -> Dict[str, Any]:
+    domain_scores = {
+        item["domain_id"]: item.get("_normalized_score", 0.0)
+        for item in route_result.get("ranked_domains", [])
+    }
+    arbitration = []
+
+    for domain_id in route_result.get("candidate_domains", []):
+        top_table = table_rankings.get(domain_id, {}).get("top_score", 0.0)
+        top_intent = intent_rankings.get(domain_id, {}).get("top_score", 0.0)
+        domain_score = domain_scores.get(domain_id, 0.0)
+        final_score = (0.5 * domain_score) + (0.2 * top_table) + (0.3 * top_intent)
+        arbitration.append({
+            "domain_id": domain_id,
+            "display_name": registry["domains"][domain_id].get("display_name", domain_id),
+            "domain_score": round(domain_score, 4),
+            "table_score": round(top_table, 4),
+            "intent_score": round(top_intent, 4),
+            "final_score": round(final_score, 4),
+        })
+
+    arbitration.sort(key=lambda item: item["final_score"], reverse=True)
+    selected_domain = arbitration[0]["domain_id"] if arbitration else None
+    reason = "single_candidate" if len(arbitration) == 1 else "weighted_domain_table_intent"
+    ambiguous = False
+
+    if len(arbitration) > 1:
+        diff = arbitration[0]["final_score"] - arbitration[1]["final_score"]
+        if diff <= registry.get("ambiguity_tolerance", 0.05):
+            ambiguous = True
+            selected_domain = None
+            reason = f"domain_ambiguous(diff={diff:.4f})"
+
+    return {
+        "selected_domain": selected_domain,
+        "ambiguous": ambiguous,
+        "reason": reason,
+        "scores": arbitration,
+    }
+
+
+def run_pipeline(
+    question: str,
+    use_embedding: bool = False,
+    explain: bool = True,
+    forced_domain: str | None = None,
+) -> Dict[str, Any]:
     """
     Orchestrator chính.
     Chạy toàn bộ pipeline từ câu hỏi → kết quả + giải thích.
     """
     start_time = time.time()
-    _ensure_loaded()
-
-    # ─── Cache check ────────────────────────────────────
-    cached = get_cached_result(question)
-    if cached:
-        cached["execution_time"] = round(time.time() - start_time, 3)
-        cached["timing"] = {"cache_hit": 0.0}
-        logger.info(f"[Pipeline] Cache HIT → returning cached SQL")
-        return cached
+    registry = _ensure_registry_loaded()
 
     timing: Dict[str, float] = {}
-
     log_entry = {
         "question": question,
+        "domain": None,
+        "candidate_domains": [],
+        "domain_routing": {},
+        "domain_tables": {},
         "tables": [],
         "intent": None,
         "intent_name": None,
@@ -121,35 +204,133 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
     }
 
     try:
-        # ─── Step 1: Schema Router ──────────────────────────
-        t0 = time.time()
-        logger.info(f"\n{'='*60}")
-        logger.info(f"[Step 1] Schema Router")
-        tables = select_tables(question, _profiles, use_embedding=use_embedding)
-        schema_desc = get_schema_description(_profiles, tables)
-        log_entry["tables"] = tables
-        timing["schema_router"] = round(time.time() - t0, 3)
-        logger.info(f"[Step 1] Selected tables: {tables} ({timing['schema_router']}s)")
+        logger.info(f"\n{'=' * 60}")
 
-        # ─── Step 2: Intent Detection ───────────────────────
+        # ─── Step 0: Domain Router ──────────────────────────
         t0 = time.time()
-        logger.info(f"[Step 2] Intent Detection")
-        intent = detect_intent(question, _intent_index, use_embedding=use_embedding)
+        logger.info("[Step 0] Domain Router")
+        route_result = route_domains(
+            question=question,
+            registry=registry,
+            use_embedding=use_embedding,
+            forced_domain=forced_domain,
+        )
+        timing["domain_router"] = round(time.time() - t0, 3)
+        log_entry["candidate_domains"] = route_result.get("candidate_domains", [])
+        log_entry["domain_routing"] = {
+            "ranked_domains": _serialize_ranked_domains(route_result.get("ranked_domains", [])),
+            "selected_domain": route_result.get("selected_domain"),
+            "arbitration_reason": route_result.get("reason"),
+        }
+        logger.info(
+            f"[Step 0] Candidate domains: {log_entry['candidate_domains']} "
+            f"({timing['domain_router']}s)"
+        )
+
+        candidate_domains = route_result.get("candidate_domains", [])
+        if not candidate_domains:
+            log_entry["validator"] = "DOMAIN_AMBIGUOUS"
+            log_entry["error"] = "No domain candidate matched the question."
+            log_entry["execution_time"] = round(time.time() - start_time, 3)
+            log_entry["timing"] = timing
+            _log_query(log_entry)
+            return log_entry
+
+        # ─── Step 1: Schema Router per candidate domain ─────
+        t0 = time.time()
+        logger.info("[Step 1] Schema Router")
+        table_rankings: Dict[str, Dict[str, Any]] = {}
+        for domain_id in candidate_domains:
+            resources = _ensure_domain_resources(domain_id)
+            ranked_tables = rank_tables(
+                question=question,
+                profiles=resources["profiles"],
+                use_embedding=use_embedding,
+                table_keyword_map=resources["config"].get("table_keywords"),
+            )
+            selected_tables = _select_tables_from_ranked(ranked_tables)
+            table_rankings[domain_id] = {
+                "ranked_tables": ranked_tables,
+                "selected_tables": selected_tables,
+                "top_score": ranked_tables[0].get("_normalized_score", 0.0) if ranked_tables else 0.0,
+            }
+            log_entry["domain_tables"][domain_id] = selected_tables
+        timing["schema_router"] = round(time.time() - t0, 3)
+        logger.info(f"[Step 1] Domain tables: {log_entry['domain_tables']} ({timing['schema_router']}s)")
+
+        # ─── Step 2: Intent Detection per candidate domain ───
+        t0 = time.time()
+        logger.info("[Step 2] Intent Detection")
+        intent_rankings: Dict[str, Dict[str, Any]] = {}
+        for domain_id in candidate_domains:
+            resources = _ensure_domain_resources(domain_id)
+            ranked_intents = rank_intents(
+                question=question,
+                intent_index=resources["intent_index"],
+                use_embedding=use_embedding,
+                top_k=3,
+            )
+            intent_rankings[domain_id] = {
+                "ranked_intents": ranked_intents,
+                "top_score": ranked_intents[0].get("_normalized_score", 0.0) if ranked_intents else 0.0,
+            }
+        timing["intent_detection"] = round(time.time() - t0, 3)
+
+        arbitration = _arbitrate_domain(route_result, table_rankings, intent_rankings, registry)
+        log_entry["domain_routing"]["selected_domain"] = arbitration["selected_domain"]
+        log_entry["domain_routing"]["arbitration_reason"] = arbitration["reason"]
+        log_entry["domain_routing"]["arbitration_scores"] = arbitration["scores"]
+
+        if arbitration["ambiguous"] or not arbitration["selected_domain"]:
+            log_entry["validator"] = "DOMAIN_AMBIGUOUS"
+            log_entry["error"] = f"Domain routing ambiguous for question: {arbitration['scores']}"
+            log_entry["execution_time"] = round(time.time() - start_time, 3)
+            log_entry["timing"] = timing
+            _log_query(log_entry)
+            return log_entry
+
+        final_domain = arbitration["selected_domain"]
+        final_resources = _ensure_domain_resources(final_domain)
+        final_tables = table_rankings[final_domain]["selected_tables"]
+        final_ranked_intents = intent_rankings[final_domain]["ranked_intents"]
+        intent = dict(final_ranked_intents[0]) if final_ranked_intents else None
+        if intent:
+            intent.pop("_score", None)
+            intent.pop("_normalized_score", None)
+
+        log_entry["domain"] = final_domain
+        log_entry["tables"] = final_tables
+        logger.info(
+            f"[Step 2] Selected domain={final_domain}, "
+            f"tables={final_tables} ({timing['intent_detection']}s)"
+        )
+
+        # ─── Cache check (after final domain resolved) ──────
+        cached = get_cached_result(question, final_domain)
+        if cached:
+            cached.update({
+                "question": question,
+                "domain": final_domain,
+                "candidate_domains": candidate_domains,
+                "domain_routing": log_entry["domain_routing"],
+                "domain_tables": log_entry["domain_tables"],
+                "execution_time": round(time.time() - start_time, 3),
+                "timing": timing,
+            })
+            logger.info("[Pipeline] Cache HIT → returning cached SQL")
+            return cached
+
+        schema_desc = get_schema_description(final_resources["profiles"], final_tables)
 
         if intent:
             log_entry["intent"] = intent.get("intent_id")
             log_entry["intent_name"] = intent.get("intent_name", "")
             log_entry["intent_description"] = intent.get("description", "")
             log_entry["intent_sql_template"] = intent.get("sql_template", "")
-            logger.info(f"[Step 2] Detected intent: {intent.get('intent_id')}")
-        else:
-            logger.warning("[Step 2] No intent detected, proceeding without template hint")
-        timing["intent_detection"] = round(time.time() - t0, 3)
-        logger.info(f"[Step 2] ({timing['intent_detection']}s)")
 
         # ─── Step 3: Entity Extraction ──────────────────────
         t0 = time.time()
-        logger.info(f"[Step 3] Entity Extraction")
+        logger.info("[Step 3] Entity Extraction")
         raw_entities = extract_entities_local(question)
         entities = normalize_entities(raw_entities)
         log_entry["entities"] = entities
@@ -158,18 +339,21 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
 
         # ─── Step 4: Template Retrieval + Slot Filling ──────
         t0 = time.time()
-        logger.info(f"[Step 4] Template Retrieval")
+        logger.info("[Step 4] Template Retrieval")
         template_sql = ""
         filled_template = ""
         unfilled = {}
         template_complete = False
 
         if intent:
-            template_sql = get_template_for_intent(intent, _approved_templates) or ""
+            template_sql = get_template_for_intent(intent, final_resources["approved_templates"]) or ""
             if template_sql and entities:
                 filled_template, unfilled = fill_template(template_sql, entities)
                 template_complete = len(unfilled) == 0
-                logger.info(f"[Step 4] Template complete: {template_complete} (unfilled: {list(unfilled.keys())})")
+                logger.info(
+                    f"[Step 4] Template complete: {template_complete} "
+                    f"(unfilled: {list(unfilled.keys())})"
+                )
             else:
                 filled_template = template_sql
 
@@ -177,16 +361,16 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
         logger.info(f"[Step 4] ({timing['template_fill']}s)")
 
         # ─── Step 5: SQL Generation ─────────────────────────
-        # Template-first: skip LLM if template fills completely
         t0 = time.time()
         if template_complete and filled_template:
-            logger.info(f"[Step 5] Template-fill complete → skip LLM")
+            logger.info("[Step 5] Template-fill complete → skip LLM")
             sql = filled_template
         else:
-            logger.info(f"[Step 5] SQL Generation (LLM)")
+            logger.info("[Step 5] SQL Generation (LLM)")
             prompt = build_sql_prompt(
                 question=question,
                 schema_description=schema_desc,
+                domain_name=final_resources["config"].get("display_name", final_domain),
                 intent_name=intent.get("intent_id", "") if intent else "",
                 intent_description=intent.get("description", "") if intent else "",
                 entities=entities,
@@ -195,43 +379,40 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
             )
             sql = generate_sql(prompt)
 
-        # Inject test mock account nếu TEST_MODE
         sql = inject_test_account(sql)
-
         log_entry["sql"] = sql
         timing["sql_generation"] = round(time.time() - t0, 3)
         logger.info(f"[Step 5] ({timing['sql_generation']}s)")
 
-        # ─── Step 6: Validation + Semantic Check + Retry ────────
+        # ─── Step 6: Validation + Semantic Check + Retry ───
         t0 = time.time()
-        logger.info(f"[Step 6] Validation")
+        logger.info("[Step 6] Validation")
         retry = RetryHandler(max_retries=MAX_RETRY_ATTEMPTS)
 
-        # 6a. Pre-execution validation (security + syntax + schema)
-        is_valid, error_msg, error_type = validate_all(sql, _profiles)
+        profiles = final_resources["profiles"]
+        db_config = final_resources["db_config"]
+
+        is_valid, error_msg, error_type = validate_all(sql, profiles)
         log_entry["validator"] = "PASS" if is_valid else "FAIL"
 
         while not is_valid and retry.should_retry(error_type):
             logger.warning(f"[Step 6] Validation failed ({error_type}): {error_msg}")
-            
-            # Try 1: Attempt SQL repair (cheap, fast)
+
             if retry.should_attempt_repair(error_type):
-                logger.info(f"[Step 6] Attempting SQL repair...")
+                logger.info("[Step 6] Attempting SQL repair...")
                 repair_ok, repaired_sql = retry.attempt_repair(sql, error_msg, question, entities, error_type)
                 if repair_ok:
                     sql = repaired_sql
                     log_entry["sql"] = sql
-                    is_valid, error_msg, error_type = validate_all(sql, _profiles)
+                    is_valid, error_msg, error_type = validate_all(sql, profiles)
                     if is_valid:
-                        logger.info(f"[Step 6] SQL repair successful!")
+                        logger.info("[Step 6] SQL repair successful!")
                         log_entry["validator"] = "PASS"
                         break
-            
-            # Try 2: Regenerate SQL if repair failed (expensive, but more capable)
+
             if retry.should_regenerate():
                 logger.info(f"[Step 6] Retry #{retry.retry_count + 1} - regenerating SQL")
                 retry.record_attempt(sql, error_msg, error_type)
-                
                 retry_prompt = retry.get_retry_prompt(
                     error_type=error_type,
                     sql=sql,
@@ -241,8 +422,7 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
                 )
                 sql = generate_sql(retry_prompt)
                 log_entry["sql"] = sql
-
-                is_valid, error_msg, error_type = validate_all(sql, _profiles)
+                is_valid, error_msg, error_type = validate_all(sql, profiles)
                 log_entry["validator"] = "PASS" if is_valid else "FAIL"
             else:
                 break
@@ -250,37 +430,42 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
         if not is_valid:
             log_entry["error"] = f"Validation failed after {retry.retry_count} retries: {error_msg}"
             log_entry["retry_count"] = retry.retry_count
-            log_entry["execution_time"] = time.time() - start_time
+            log_entry["execution_time"] = round(time.time() - start_time, 3)
             log_entry["timing"] = timing
-            # Confidence: SQL không chạy được
             log_entry["confidence"] = compute_confidence(
-                sql_executed=False, entity_valid=True, schema_valid=False,
-                row_count=0, semantic_ok=False, structure_score=0.0,
+                sql_executed=False,
+                entity_valid=True,
+                schema_valid=False,
+                row_count=0,
+                semantic_ok=False,
+                structure_score=0.0,
             )
             _log_query(log_entry)
             return log_entry
 
-        # 6b. Semantic validation (keyword check question vs SQL)
         semantic_ok, semantic_warnings = validate_semantic(question, sql)
         log_entry["semantic_warnings"] = semantic_warnings
 
         if not semantic_ok and retry.should_retry("semantic"):
             logger.warning(f"[Step 6] Semantic issues: {semantic_warnings}")
-            
-            # Try 1: SQL repair for semantic issues
+
             if retry.should_attempt_repair("semantic"):
-                logger.info(f"[Step 6] Attempting semantic repair...")
-                error_msg = "; ".join(semantic_warnings)
-                repair_ok, repaired_sql = retry.attempt_repair(sql, error_msg, question, entities, "semantic")
+                logger.info("[Step 6] Attempting semantic repair...")
+                repair_ok, repaired_sql = retry.attempt_repair(
+                    sql,
+                    "; ".join(semantic_warnings),
+                    question,
+                    entities,
+                    "semantic",
+                )
                 if repair_ok:
                     sql = repaired_sql
                     log_entry["sql"] = sql
                     semantic_ok, semantic_warnings = validate_semantic(question, sql)
                     log_entry["semantic_warnings"] = semantic_warnings
                     if semantic_ok:
-                        logger.info(f"[Step 6] Semantic repair successful!")
-            
-            # Try 2: Regenerate if repair failed
+                        logger.info("[Step 6] Semantic repair successful!")
+
             if not semantic_ok and retry.should_regenerate():
                 logger.info(f"[Step 6] Retry #{retry.retry_count + 1} - regenerating for semantic fix")
                 retry.record_attempt(sql, "; ".join(semantic_warnings), "semantic")
@@ -294,29 +479,25 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
                 )
                 sql = generate_sql(retry_prompt)
                 log_entry["sql"] = sql
-                # Re-check semantic
                 semantic_ok, semantic_warnings = validate_semantic(question, sql)
                 log_entry["semantic_warnings"] = semantic_warnings
 
-        # 6c. EXPLAIN pre-check (check syntax on DB without running full query)
-        explain_ok, explain_err = explain_query(sql)
+        explain_ok, explain_err = explain_query(sql, db_config=db_config)
         if not explain_ok and retry.should_retry("syntax"):
             logger.warning(f"[Step 6] EXPLAIN failed: {explain_err}")
-            
-            # Try 1: SQL repair for EXPLAIN issues
+
             if retry.should_attempt_repair("syntax"):
-                logger.info(f"[Step 6] Attempting syntax repair...")
+                logger.info("[Step 6] Attempting syntax repair...")
                 repair_ok, repaired_sql = retry.attempt_repair(sql, explain_err, question, entities, "syntax")
                 if repair_ok:
                     sql = repaired_sql
                     log_entry["sql"] = sql
-                    explain_ok, explain_err = explain_query(sql)
+                    explain_ok, explain_err = explain_query(sql, db_config=db_config)
                     if explain_ok:
-                        logger.info(f"[Step 6] Syntax repair successful!")
-            
-            # Try 2: Regenerate if repair failed
+                        logger.info("[Step 6] Syntax repair successful!")
+
             if not explain_ok and retry.should_regenerate():
-                logger.info(f"[Step 6] Regenerating SQL for EXPLAIN fix...")
+                logger.info("[Step 6] Regenerating SQL for EXPLAIN fix...")
                 retry.record_attempt(sql, explain_err, "syntax")
                 retry_prompt = retry.get_retry_prompt(
                     error_type="syntax",
@@ -327,17 +508,21 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
                 )
                 sql = generate_sql(retry_prompt)
                 log_entry["sql"] = sql
-                explain_ok, explain_err = explain_query(sql)
+                explain_ok, explain_err = explain_query(sql, db_config=db_config)
 
         if not explain_ok:
             log_entry["error"] = f"EXPLAIN failed: {explain_err}"
             log_entry["validator"] = "FAIL"
             log_entry["retry_count"] = retry.retry_count
-            log_entry["execution_time"] = time.time() - start_time
+            log_entry["execution_time"] = round(time.time() - start_time, 3)
             log_entry["timing"] = timing
             log_entry["confidence"] = compute_confidence(
-                sql_executed=False, entity_valid=True, schema_valid=True,
-                row_count=0, semantic_ok=semantic_ok, structure_score=0.0,
+                sql_executed=False,
+                entity_valid=True,
+                schema_valid=True,
+                row_count=0,
+                semantic_ok=semantic_ok,
+                structure_score=0.0,
             )
             _log_query(log_entry)
             return log_entry
@@ -346,30 +531,27 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
         timing["validation"] = round(time.time() - t0, 3)
         logger.info(f"[Step 6] ({timing['validation']}s)")
 
-        # ─── Step 7: Execute on DB + Smart Result Handling ──
+        # ─── Step 7: Execute on DB + Smart Result Handling ─
         t0 = time.time()
-        logger.info(f"[Step 7] Execute on DB")
-        success, rows, db_error = execute_query(sql)
+        logger.info("[Step 7] Execute on DB")
+        success, rows, db_error = execute_query(sql, db_config=db_config)
 
         if not success:
-            # Phân loại lỗi DB
             exec_error_type = classify_execution_error(db_error)
             logger.warning(f"[Step 7] DB error ({exec_error_type}): {db_error}")
 
             if exec_error_type in ("syntax", "runtime") and retry.should_retry(exec_error_type):
-                # Try 1: SQL repair for syntax/runtime errors
                 if retry.should_attempt_repair(exec_error_type):
                     logger.info(f"[Step 7] Attempting {exec_error_type} repair...")
                     repair_ok, repaired_sql = retry.attempt_repair(sql, db_error, question, entities, exec_error_type)
                     if repair_ok:
                         sql = repaired_sql
                         log_entry["sql"] = sql
-                        success, rows, db_error = execute_query(sql)
+                        success, rows, db_error = execute_query(sql, db_config=db_config)
                         log_entry["rows"] = len(rows) if rows else 0
                         if success:
                             logger.info(f"[Step 7] {exec_error_type} repair successful!")
-                
-                # Try 2: Regenerate if repair failed
+
                 if not success and retry.should_regenerate():
                     logger.info(f"[Step 7] Regenerating SQL for {exec_error_type} fix...")
                     retry.record_attempt(sql, db_error, exec_error_type)
@@ -384,18 +566,22 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
                     log_entry["sql"] = sql
                     log_entry["retry_count"] = retry.retry_count
 
-                    is_valid, _, _ = validate_all(sql, _profiles)
+                    is_valid, _, _ = validate_all(sql, profiles)
                     if is_valid:
-                        success, rows, db_error = execute_query(sql)
+                        success, rows, db_error = execute_query(sql, db_config=db_config)
                         log_entry["rows"] = len(rows) if rows else 0
 
             if not success:
                 log_entry["error"] = f"DB execution failed ({exec_error_type}): {db_error}"
-                log_entry["execution_time"] = time.time() - start_time
+                log_entry["execution_time"] = round(time.time() - start_time, 3)
                 log_entry["timing"] = timing
                 log_entry["confidence"] = compute_confidence(
-                    sql_executed=False, entity_valid=True, schema_valid=True,
-                    row_count=0, semantic_ok=semantic_ok, structure_score=0.0,
+                    sql_executed=False,
+                    entity_valid=True,
+                    schema_valid=True,
+                    row_count=0,
+                    semantic_ok=semantic_ok,
+                    structure_score=0.0,
                 )
                 _log_query(log_entry)
                 return log_entry
@@ -403,33 +589,35 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
         row_count = len(rows) if rows else 0
         log_entry["rows"] = row_count
 
-        # ─── Step 7b: SQL Structure Validation (primary check) ──
-        # Dùng structure validator thay vì row count làm tiêu chí chính
         struct_valid, struct_issues, struct_score = validate_sql_structure(
             sql=sql,
             question=question,
             entities=entities,
-            profiles=_profiles,
+            profiles=profiles,
             intent=intent,
         )
         log_entry["structure_score"] = struct_score
         log_entry["structure_issues"] = struct_issues
 
-        # ─── Step 7c: Handle row = 0 (data validation, NOT fail) ──
         entity_valid = True
         if row_count == 0 and success:
             if struct_valid:
-                # SQL structure đúng → row=0 là do data không có (PASS_EMPTY)
                 log_entry["validator"] = "PASS_EMPTY"
                 logger.info(f"[Step 7] PASS_EMPTY: SQL structure OK (score={struct_score}), data rỗng")
             else:
-                # SQL structure có vấn đề + row=0 → chạy data validation thêm
                 logger.info("[Step 7] row=0 + structure issues → running data validation...")
                 data_result = validate_empty_result(
                     sql=sql,
                     entities=entities,
-                    profiles=_profiles,
-                    executor_fn=execute_query,
+                    profiles=profiles,
+                    executor_fn=lambda check_sql, params=None, row_limit=1, timeout=None: execute_query(
+                        check_sql,
+                        params=params,
+                        row_limit=row_limit,
+                        timeout=timeout or 5,
+                        db_config=db_config,
+                    ),
+                    domain_context=final_resources["config"],
                 )
                 log_entry["data_validation"] = data_result
 
@@ -442,11 +630,10 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
                     log_entry["validator"] = "PASS_EMPTY"
                     logger.info(f"[Step 7] PASS_EMPTY: {data_result['message']}")
 
-        # ─── Confidence scoring (structure-first, not row-count) ──
         log_entry["confidence"] = compute_confidence(
             sql_executed=success,
             entity_valid=entity_valid,
-            schema_valid=True,  # passed Step 6a
+            schema_valid=True,
             row_count=row_count,
             semantic_ok=semantic_ok,
             structure_score=struct_score,
@@ -455,16 +642,21 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
         timing["execution"] = round(time.time() - t0, 3)
         logger.info(f"[Step 7] ({timing['execution']}s)")
 
-        # Save successful SQL as approved template (only when rows > 0)
         if intent and rows and row_count > 0:
             intent_id = intent.get("intent_id", "")
             if intent_id:
-                save_approved_template(intent_id, sql)
+                save_approved_template(
+                    intent_id,
+                    sql,
+                    path=final_resources["paths"].get("approved_templates_dir"),
+                    domain_id=final_domain,
+                )
+                final_resources["approved_templates"][intent_id] = sql
 
-        # ─── Step 8: Result Formatting + Explain ────────────
+        # ─── Step 8: Result Formatting + Explain ───────────
         if explain:
             t0 = time.time()
-            logger.info(f"[Step 8] Explain & Format")
+            logger.info("[Step 8] Explain & Format")
             explain_text = generate_explain(
                 question=question,
                 sql=sql,
@@ -476,7 +668,7 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
             timing["explain"] = round(time.time() - t0, 3)
             logger.info(f"[Step 8] ({timing['explain']}s)")
         else:
-            logger.info(f"[Step 8] Explain skipped (--no-explain)")
+            logger.info("[Step 8] Explain skipped (--no-explain)")
 
         if rows:
             log_entry["result_table"] = format_result_table(rows)
@@ -485,9 +677,7 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
         log_entry["execution_time"] = round(time.time() - start_time, 3)
         log_entry["timing"] = timing
         _log_query(log_entry)
-
-        # Cache successful results
-        cache_result(question, log_entry)
+        cache_result(question, log_entry, domain_id=final_domain)
 
         logger.info(f"[Pipeline] Completed in {log_entry['execution_time']}s")
         _print_timing(timing)
@@ -503,7 +693,6 @@ def run_pipeline(question: str, use_embedding: bool = False, explain: bool = Tru
 
 
 def _print_timing(timing: Dict[str, float]):
-    """Print timing breakdown cho mỗi step."""
     logger.info("[Timing] ─── Step Breakdown ───")
     for step, elapsed in timing.items():
         logger.info(f"  {step:20s} {elapsed:6.3f}s")
@@ -511,13 +700,9 @@ def _print_timing(timing: Dict[str, float]):
     logger.info(f"  {'TOTAL':20s} {total:6.3f}s")
 
 
-# ─── Per-run log file (set once per app.py invocation) ──────
-_queries_log_file = None
-
-
 def _get_queries_log_file() -> str:
-    """Trả về path log file cho lần chạy hiện tại (tạo 1 lần duy nhất)."""
     global _queries_log_file
+
     if _queries_log_file is None:
         import os
         from datetime import datetime
@@ -531,11 +716,13 @@ def _get_queries_log_file() -> str:
 
 
 def _log_query(entry: Dict[str, Any]):
-    """Log query entry sang file JSONL theo format chuẩn."""
     log_file = _get_queries_log_file()
 
     log_record = {
         "question": entry.get("question"),
+        "domain": entry.get("domain"),
+        "candidate_domains": entry.get("candidate_domains", []),
+        "domain_routing": entry.get("domain_routing", {}),
         "tables": entry.get("tables", []),
         "intent": entry.get("intent"),
         "entities": entry.get("entities", {}),

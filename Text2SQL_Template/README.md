@@ -1,18 +1,22 @@
-# Banking Text2SQL Pipeline
+# Multi-domain Text2SQL Pipeline
 
-Hệ thống chuyển đổi câu hỏi tiếng Việt về giao dịch ngân hàng thành SQL, sử dụng Llama 3 (8B) qua Ollama.
+Hệ thống chuyển đổi câu hỏi tiếng Việt thành SQL cho nhiều domain/database khác nhau như `banking`, `hrm`. Hệ thống dùng một `domain router` không dùng LLM để chọn domain/database trước khi chọn table và sinh SQL.
 
-## Luồng xử lý (8 bước)
+## Luồng xử lý (9 bước)
 
 ```
 User Question (Vietnamese)
         │
    ┌────┴────┐
-   │  Step 1  │  Schema Router        ← chọn bảng liên quan (keyword + embedding)
+   │  Step 0  │  Domain Router        ← chọn domain/database (non-LLM)
    └────┬────┘
         │
    ┌────┴────┐
-   │  Step 2  │  Intent Detection     ← nhận diện intent từ dataset (keyword/embedding)
+   │  Step 1  │  Schema Router        ← chọn bảng liên quan trong domain đã chọn
+   └────┬────┘
+        │
+   ┌────┴────┐
+   │  Step 2  │  Intent Detection     ← nhận diện intent từ dataset theo domain
    └────┬────┘
         │
    ┌────┴────┐
@@ -25,14 +29,14 @@ User Question (Vietnamese)
         │
    ┌────┴────┐
    │  Step 5  │  SQL Generation       ← Template-first (skip LLM nếu fill đủ) hoặc LLM
-   └────┬────┘
-        │
-   ┌────┴────┐
-   │  Step 6  │  Validator            ← security → syntax → schema check
    └────┬────┘                          (retry max 3: syntax → schema → logic)
         │
    ┌────┴────┐
-   │  Step 7  │  Execute on DB        ← parameterized query, LIMIT 100, timeout
+   │  Step 6  │  Validator            ← security → syntax → schema check
+   └────┬────┘
+        │
+   ┌────┴────┐
+   │  Step 7  │  Execute on DB        ← execute trên DB config của domain đã chọn
    └────┬────┘
         │
    ┌────┴────┐
@@ -46,19 +50,23 @@ User Question (Vietnamese)
 Text2SQL_Template/
 │
 ├── app.py                          # Entry point (interactive + batch mode)
-├── test_pipeline.py                # Quick test pipeline steps
+├── test_domain_routing.py          # Regression tests cho domain routing
 │
 ├── config/
-│   ├── settings.py                 # Tất cả settings (DB, LLM, paths, embedding)
-│   └── db_connector.py             # MySQL schema loader
+│   ├── settings.py                 # Settings chung + domain registry path
+│   └── db_connector.py             # MySQL schema loader theo db_config
+│
+├── domain_router/
+│   ├── registry_loader.py          # Load domain registry
+│   └── selector.py                 # Chọn/shortlist domain bằng keyword + embedding
 │
 ├── pipeline/
-│   ├── pipeline_runner.py          # Orchestrator chính (8 steps + per-step timing)
+│   ├── pipeline_runner.py          # Orchestrator chính (domain-aware)
 │   └── retry_handler.py            # Retry strategy (3 levels)
 │
 ├── schema_router/
 │   ├── schema_loader.py            # Load semantic profiles
-│   └── table_selector.py           # Chọn bảng (keyword + embedding singleton)
+│   └── table_selector.py           # Rank bảng theo domain
 │
 ├── intent_detection/
 │   ├── intent_loader.py            # Load intent dataset JSON
@@ -95,14 +103,27 @@ Text2SQL_Template/
 │   └── explain_engine.py           # Giải thích kết quả tiếng Việt
 │
 ├── data/
-│   ├── semantic_profiles/          # JSON schema cho mỗi bảng
-│   ├── user_intent/                # Intent dataset (86 intents, 1000+ examples)
+│   ├── domains/
+│   │   ├── registry.json           # Registry mô tả tất cả domains
+│   │   ├── banking/
+│   │   │   ├── semantic_profiles/
+│   │   │   └── user_intent/
+│   │   └── hrm/
+│   │       ├── semantic_profiles/
+│   │       └── user_intent/
+│   ├── semantic_profiles/          # Legacy path (backward compatibility)
+│   ├── user_intent/                # Legacy path (backward compatibility)
 │   └── user_questions/             # Dataset câu hỏi NL
 │       ├── raw/                    # File gốc (json/csv/xlsx/md)
 │       ├── processed/              # Đã normalize sang JSON
 │       └── test_sets/              # Bộ unit test
 │
 ├── cache/                          # Embedding cache (intent_embeddings.pkl)
+│
+├── template_store/
+│   ├── banking/approved_templates/
+│   ├── hrm/approved_templates/
+│   └── approved_templates/         # Legacy path (backward compatibility)
 │
 └── logs/
     ├── queries/                    # JSONL per-run query logs
@@ -144,6 +165,9 @@ python app.py data/user_questions/raw/questions.csv --warm --no-explain
 
 # Song song 4 threads
 python app.py data/user_questions/raw/questions.json --parallel 4 --no-explain
+
+# Force chạy trên domain cụ thể
+python app.py --domain hrm
 ```
 
 ### CLI Options
@@ -153,6 +177,7 @@ python app.py data/user_questions/raw/questions.json --parallel 4 --no-explain
 | `--no-explain` | Bỏ qua Step 8 (tiết kiệm thời gian) |
 | `--parallel N` | Chạy N threads song song (batch mode) |
 | `--warm` | Warm-up Ollama model trước khi chạy |
+| `--domain DOMAIN_ID` | Force chạy trên domain cụ thể để debug/test |
 
 ## Output format
 
@@ -160,6 +185,7 @@ python app.py data/user_questions/raw/questions.json --parallel 4 --no-explain
 
 ```
 User Question: Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1
+→ Domain: banking
 → Tables: ['customer_account', 'transaction']
 → Intent: tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận
 → Entities: {'to_account_no': '123', 'start_date': '2026-01-01', 'end_date': '2026-01-31'}
@@ -188,6 +214,8 @@ logs/
 ```json
 {
   "question": "Tra cứu giao dịch chuyển tiền tới số tài khoản 123 trong tháng 1",
+  "domain": "banking",
+  "candidate_domains": ["banking"],
   "tables": ["transaction", "customer_account"],
   "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
   "entities": {"to_account_no": "123", "start_date": "2026-01-01", "end_date": "2026-01-31"},
@@ -238,5 +266,6 @@ Tất cả settings trong `config/settings.py`:
 | `MAX_RETRY_ATTEMPTS` | `3` | Số lần retry tối đa |
 | `QUERY_ROW_LIMIT` | `100` | LIMIT mặc định |
 | `EMBEDDING_MODEL_NAME` | `multilingual-e5-base` | Model embedding cho intent/schema |
-| `DB_HOST` | `192.168.3.7:3306` | MySQL server |
-| `DB_NAME` | `ai_bank_gateway` | Database name |
+| `DOMAIN_REGISTRY_PATH` | `data/domains/registry.json` | Registry mô tả domain + db_config + metadata paths |
+| `DB_HOST` | `192.168.3.7` | Default DB host fallback |
+| `DB_NAME` | `ai_bank_gateway` | Default DB name fallback |

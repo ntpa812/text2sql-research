@@ -8,18 +8,33 @@ import glob
 import logging
 from typing import Dict, Optional, List, Any
 
-from config.settings import APPROVED_TEMPLATES_DIR
+from config.settings import DEFAULT_DOMAIN_ID, LEGACY_APPROVED_TEMPLATES_DIR
 
 logger = logging.getLogger(__name__)
 
 
-def load_approved_templates() -> Dict[str, str]:
+def _resolve_templates_dir(path: str | None = None, domain_id: str | None = None) -> str:
+    if path:
+        return path
+
+    domain_id = domain_id or DEFAULT_DOMAIN_ID
+    domain_candidate = os.path.join(
+        os.path.dirname(LEGACY_APPROVED_TEMPLATES_DIR),
+        domain_id,
+        os.path.basename(LEGACY_APPROVED_TEMPLATES_DIR),
+    )
+    if os.path.isdir(domain_candidate):
+        return domain_candidate
+    return LEGACY_APPROVED_TEMPLATES_DIR
+
+
+def load_approved_templates(path: str | None = None, domain_id: str | None = None) -> Dict[str, str]:
     """
     Load tất cả .sql files từ approved_templates/.
     Returns: { "template_id": "SELECT ... FROM ..." }
     """
     templates: Dict[str, str] = {}
-    pattern = os.path.join(APPROVED_TEMPLATES_DIR, "*.sql")
+    pattern = os.path.join(_resolve_templates_dir(path, domain_id), "*.sql")
 
     for filepath in glob.glob(pattern):
         template_id = os.path.splitext(os.path.basename(filepath))[0]
@@ -66,13 +81,14 @@ def get_template_for_intent(
     return None
 
 
-def save_approved_template(intent_id: str, sql: str) -> str:
+def save_approved_template(intent_id: str, sql: str, path: str | None = None, domain_id: str | None = None) -> str:
     """
     Lưu template SQL đã validated thành approved template.
     Dùng sau khi chạy thành công để tích lũy templates tốt.
     """
-    os.makedirs(APPROVED_TEMPLATES_DIR, exist_ok=True)
-    filepath = os.path.join(APPROVED_TEMPLATES_DIR, f"{intent_id}.sql")
+    target_dir = _resolve_templates_dir(path, domain_id)
+    os.makedirs(target_dir, exist_ok=True)
+    filepath = os.path.join(target_dir, f"{intent_id}.sql")
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(sql)
     logger.info(f"[Template] Saved approved template: {filepath}")

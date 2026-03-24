@@ -8,7 +8,7 @@ from typing import Dict, Any, Optional
 
 logger = logging.getLogger(__name__)
 
-SQL_PROMPT_TEMPLATE = """You are an expert SQL generator for a banking database.
+SQL_PROMPT_TEMPLATE = """You are an expert SQL generator for the {domain_name} database domain.
 
 Your task is to write a valid SQL query based on the user question.
 
@@ -54,6 +54,7 @@ Return ONLY the SQL query."""
 def build_sql_prompt(
     question: str,
     schema_description: str,
+    domain_name: str = "target",
     intent_name: str = "",
     intent_description: str = "",
     entities: Optional[Dict[str, str]] = None,
@@ -66,6 +67,7 @@ def build_sql_prompt(
     entities_json = json.dumps(entities or {}, ensure_ascii=False, indent=2)
 
     prompt = SQL_PROMPT_TEMPLATE.format(
+        domain_name=domain_name,
         schema_description=schema_description,
         question=question,
         intent_name=intent_name,

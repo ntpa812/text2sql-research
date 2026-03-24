@@ -58,13 +58,18 @@ def _hash_question(question: str) -> str:
     return hashlib.sha256(normalized.encode("utf-8")).hexdigest()[:16]
 
 
-def get_cached_result(question: str) -> Optional[Dict[str, Any]]:
+def _build_cache_key(question: str, domain_id: str | None = None) -> str:
+    domain_prefix = (domain_id or "global").strip().lower()
+    return f"{domain_prefix}:{_hash_question(question)}"
+
+
+def get_cached_result(question: str, domain_id: str | None = None) -> Optional[Dict[str, Any]]:
     """
     Tìm kết quả trong cache.
     Returns None nếu miss.
     """
     cache = _load_cache()
-    key = _hash_question(question)
+    key = _build_cache_key(question, domain_id)
     result = cache.get(key)
     if result:
         logger.info(f"[Cache] HIT for question hash={key}")
@@ -72,7 +77,7 @@ def get_cached_result(question: str) -> Optional[Dict[str, Any]]:
     return result
 
 
-def cache_result(question: str, result: Dict[str, Any]):
+def cache_result(question: str, result: Dict[str, Any], domain_id: str | None = None):
     """
     Lưu kết quả thành công vào cache.
     Chỉ cache khi validator = PASS hoặc PASS_EMPTY (SQL logic đúng).
@@ -82,11 +87,13 @@ def cache_result(question: str, result: Dict[str, Any]):
         return  # Không cache kết quả lỗi
 
     cache = _load_cache()
-    key = _hash_question(question)
+    final_domain = domain_id or result.get("domain")
+    key = _build_cache_key(question, final_domain)
 
     # Chỉ cache các field cần thiết (không cache result_data/result_table)
     cache[key] = {
         "question": question,
+        "domain": final_domain,
         "tables": result.get("tables", []),
         "intent": result.get("intent"),
         "entities": result.get("entities", {}),

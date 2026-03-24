@@ -20,11 +20,25 @@ from config.settings import (
 logger = logging.getLogger(__name__)
 
 
+def _resolve_db_config(db_config: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    config = {
+        "host": DB_HOST,
+        "port": DB_PORT,
+        "user": DB_USER,
+        "password": DB_PASSWORD,
+        "database": DB_NAME,
+    }
+    if db_config:
+        config.update({k: v for k, v in db_config.items() if v is not None})
+    return config
+
+
 def execute_query(
     sql: str,
     params: Optional[List[str]] = None,
     row_limit: int = QUERY_ROW_LIMIT,
     timeout: int = QUERY_TIMEOUT_SECONDS,
+    db_config: Optional[Dict[str, Any]] = None,
 ) -> Tuple[bool, Any, str]:
     """
     Execute SQL trên database.
@@ -37,17 +51,18 @@ def execute_query(
         logger.warning("[Executor] mysql-connector-python not installed, skipping DB execution")
         return False, None, "mysql-connector-python not installed"
 
+    conn_config = _resolve_db_config(db_config)
     logger.info(f"[Executor] Executing SQL: {sql[:300]}...")
     start_time = time.time()
 
     conn = None
     try:
         conn = mysql.connector.connect(
-            host=DB_HOST,
-            port=DB_PORT,
-            user=DB_USER,
-            password=DB_PASSWORD,
-            database=DB_NAME,
+            host=conn_config["host"],
+            port=conn_config["port"],
+            user=conn_config["user"],
+            password=conn_config["password"],
+            database=conn_config["database"],
             connection_timeout=timeout,
         )
         cursor = conn.cursor(dictionary=True)
@@ -84,7 +99,7 @@ def _ensure_limit(sql: str, row_limit: int) -> str:
     return sql
 
 
-def explain_query(sql: str) -> Tuple[bool, str]:
+def explain_query(sql: str, db_config: Optional[Dict[str, Any]] = None) -> Tuple[bool, str]:
     """
     Chạy EXPLAIN trước khi execute thật.
     Nếu EXPLAIN fail → SQL có syntax error, tránh chạy full query.
@@ -93,14 +108,15 @@ def explain_query(sql: str) -> Tuple[bool, str]:
     if mysql is None:
         return True, ""  # Không có DB → skip check
 
+    conn_config = _resolve_db_config(db_config)
     conn = None
     try:
         conn = mysql.connector.connect(
-            host=DB_HOST,
-            port=DB_PORT,
-            user=DB_USER,
-            password=DB_PASSWORD,
-            database=DB_NAME,
+            host=conn_config["host"],
+            port=conn_config["port"],
+            user=conn_config["user"],
+            password=conn_config["password"],
+            database=conn_config["database"],
             connection_timeout=5,
         )
         cursor = conn.cursor()

@@ -19,6 +19,9 @@ logger = logging.getLogger(__name__)
 def print_result(result: dict, show_timing: bool = True):
     """In kết quả pipeline ra console theo format chuẩn."""
     print(f"\nUser Question: {result.get('question', '')}")
+    print(f"→ Domain: {result.get('domain', 'N/A')}")
+    if result.get("candidate_domains"):
+        print(f"→ Candidate Domains: {result.get('candidate_domains', [])}")
     print(f"→ Tables: {result.get('tables', [])}")
     print(f"→ Intent: {result.get('intent', 'N/A')}")
     print(f"→ Entities: {result.get('entities', {})}")
@@ -30,6 +33,9 @@ def print_result(result: dict, show_timing: bool = True):
     if result.get("semantic_warnings"):
         for w in result["semantic_warnings"]:
             print(f"  ⚠ {w}")
+
+    if result.get("domain_routing", {}).get("arbitration_reason"):
+        print(f"→ Domain Routing: {result['domain_routing']['arbitration_reason']}")
 
     if result.get("error"):
         print(f"→ Error: {result['error']}")
@@ -69,7 +75,7 @@ def print_result(result: dict, show_timing: bool = True):
         print(f"→ Timing: {', '.join(parts)} | total={result.get('execution_time', 0):.2f}s")
 
 
-def run_batch(file_path: str, no_explain: bool = False, parallel: int = 1):
+def run_batch(file_path: str, no_explain: bool = False, parallel: int = 1, forced_domain: str | None = None):
     """Chạy pipeline cho tất cả câu hỏi từ file (json/csv/xlsx/md)."""
     import time
     from pipeline.pipeline_runner import run_pipeline
@@ -95,7 +101,7 @@ def run_batch(file_path: str, no_explain: bool = False, parallel: int = 1):
 
     # Run pipeline
     def _run_one(q_item):
-        return run_pipeline(q_item["question"], explain=not no_explain)
+        return run_pipeline(q_item["question"], explain=not no_explain, forced_domain=forced_domain)
 
     if parallel > 1:
         from concurrent.futures import ThreadPoolExecutor
@@ -146,6 +152,8 @@ def run_batch(file_path: str, no_explain: bool = False, parallel: int = 1):
     for r in all_results:
         entry = {
             "question": r.get("question"),
+            "domain": r.get("domain"),
+            "candidate_domains": r.get("candidate_domains", []),
             "tables": r.get("tables", []),
             "intent": r.get("intent"),
             "entities": r.get("entities", {}),
@@ -169,7 +177,7 @@ def run_batch(file_path: str, no_explain: bool = False, parallel: int = 1):
     print(f"\nBatch results saved to: {batch_file}")
 
 
-def run_interactive(no_explain: bool = False):
+def run_interactive(no_explain: bool = False, forced_domain: str | None = None):
     """Chế độ hỏi đáp tương tác."""
     from pipeline.pipeline_runner import run_pipeline
 
@@ -186,7 +194,7 @@ def run_interactive(no_explain: bool = False):
             print("Tạm biệt!")
             break
 
-        result = run_pipeline(question, explain=not no_explain)
+        result = run_pipeline(question, explain=not no_explain, forced_domain=forced_domain)
         print_result(result)
 
 
@@ -198,6 +206,7 @@ def main():
     parser.add_argument("--warm", action="store_true", help="Warm up configured LLM backend before running")
     parser.add_argument("--test-mode", action="store_true", help="Enable test mode (inject mock account)")
     parser.add_argument("--clear-cache", action="store_true", help="Xoá query cache trước khi chạy")
+    parser.add_argument("--domain", help="Force a specific domain id (debug/test)")
     args = parser.parse_args()
 
     # Test mode: inject mock account
@@ -221,9 +230,14 @@ def main():
         file_path = args.file
         if not os.path.isabs(file_path):
             file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), file_path)
-        run_batch(file_path, no_explain=args.no_explain, parallel=args.parallel)
+        run_batch(
+            file_path,
+            no_explain=args.no_explain,
+            parallel=args.parallel,
+            forced_domain=args.domain,
+        )
     else:
-        run_interactive(no_explain=args.no_explain)
+        run_interactive(no_explain=args.no_explain, forced_domain=args.domain)
 
 
 if __name__ == "__main__":

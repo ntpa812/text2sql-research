@@ -9,16 +9,27 @@ import os
 import glob
 from typing import Dict, List, Any
 
-from config.settings import SEMANTIC_PROFILES_DIR
+from config.settings import DEFAULT_DOMAIN_ID, LEGACY_SEMANTIC_PROFILES_DIR
 
 
-def load_all_profiles() -> Dict[str, Any]:
+def _resolve_profiles_dir(path: str | None = None, domain_id: str | None = None) -> str:
+    if path:
+        return path
+
+    domain_id = domain_id or DEFAULT_DOMAIN_ID
+    candidate = os.path.join(LEGACY_SEMANTIC_PROFILES_DIR, domain_id)
+    if os.path.isdir(candidate):
+        return candidate
+    return LEGACY_SEMANTIC_PROFILES_DIR
+
+
+def load_all_profiles(path: str | None = None, domain_id: str | None = None) -> Dict[str, Any]:
     """
     Load tất cả semantic profile JSON files.
     Returns: { table_name: { "columns": [...], ... } }
     """
     profiles: Dict[str, Any] = {}
-    pattern = os.path.join(SEMANTIC_PROFILES_DIR, "*.json")
+    pattern = os.path.join(_resolve_profiles_dir(path, domain_id), "*.json")
 
     for filepath in glob.glob(pattern):
         with open(filepath, "r", encoding="utf-8") as f:

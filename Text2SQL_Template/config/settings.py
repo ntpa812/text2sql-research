@@ -1,6 +1,8 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.join(BASE_DIR, "data")
+TEMPLATE_STORE_DIR = os.path.join(BASE_DIR, "template_store")
 
 # ─── Database ───────────────────────────────────────────────
 DB_HOST = "192.168.3.7"
@@ -9,12 +11,23 @@ DB_USER = "bank-gateway"
 DB_PASSWORD = "bankgateway@123"
 DB_NAME = "ai_bank_gateway"
 
+# ─── Domain Routing ─────────────────────────────────────────
+DEFAULT_DOMAIN_ID = "banking"
+DOMAINS_BASE_DIR = os.path.join(DATA_DIR, "domains")
+DOMAIN_REGISTRY_PATH = os.path.join(DOMAINS_BASE_DIR, "registry.json")
+DOMAIN_SHORTLIST_SCORE_GAP = 0.15
+DOMAIN_SHORTLIST_RELATIVE_THRESHOLD = 0.7
+DOMAIN_AMBIGUITY_TOLERANCE = 0.05
+
 # ─── Paths ──────────────────────────────────────────────────
 SEMANTIC_PROFILES_DIR = os.path.join(BASE_DIR, "data", "semantic_profiles")
 INTENT_DATASET_PATH = os.path.join(BASE_DIR, "data", "user_intent", "ddq_document_v2.json")
 APPROVED_TEMPLATES_DIR = os.path.join(BASE_DIR, "template_store", "approved_templates")
 USER_QUESTIONS_DIR = os.path.join(BASE_DIR, "data", "user_questions")
 LOGS_DIR = os.path.join(BASE_DIR, "logs")
+LEGACY_SEMANTIC_PROFILES_DIR = SEMANTIC_PROFILES_DIR
+LEGACY_INTENT_DATASET_PATH = INTENT_DATASET_PATH
+LEGACY_APPROVED_TEMPLATES_DIR = APPROVED_TEMPLATES_DIR
 
 # ─── LLM ────────────────────────────────────────────────────
 # Supported backends: "openai_compatible" | "ollama" | "transformers"

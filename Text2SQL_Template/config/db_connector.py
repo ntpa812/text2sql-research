@@ -2,12 +2,13 @@ import mysql.connector
 
 class DBSchemaLoader:
 
-    def __init__(self):
-        self.host = "192.168.3.7"
-        self.port = 3306
-        self.username = "bank-gateway"
-        self.password = "bankgateway@123"
-        self.database = "ai_bank_gateway"
+    def __init__(self, db_config=None):
+        config = db_config or {}
+        self.host = config.get("host", "192.168.3.7")
+        self.port = config.get("port", 3306)
+        self.username = config.get("user", "bank-gateway")
+        self.password = config.get("password", "bankgateway@123")
+        self.database = config.get("database", "ai_bank_gateway")
 
     def connect(self):
         return mysql.connector.connect(
