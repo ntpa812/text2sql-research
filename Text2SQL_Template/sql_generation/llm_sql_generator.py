@@ -133,16 +133,23 @@ def _generate_openai_compatible(
             
             message = choices[0].get("message", {})
             content = message.get("content")
-            
-            # Prefer content field - don't use reasoning as SQL source
-            # (reasoning contains thinking steps, not final SQL)
-            if not content or (isinstance(content, str) and content.isspace()):
-                # Check if this is just whitespace or truly empty
-                finish_reason = choices[0].get("finish_reason")
-                logger.warning(f"[LLM-OpenAI] Empty content (finish_reason={finish_reason}). Full message excerpt: {str(message)[:300]}")
-                return ""
-            
-            return str(content).strip()
+
+            # Prefer content field for final SQL
+            if content and isinstance(content, str) and not content.isspace():
+                return str(content).strip()
+
+            # Qwen3.5 thinking mode: SQL may be in reasoning_content when content is empty
+            reasoning = message.get("reasoning_content") or message.get("reasoning") or ""
+            if reasoning and isinstance(reasoning, str):
+                logger.info("[LLM-OpenAI] Content empty, trying to extract SQL from reasoning_content")
+                sql_from_reasoning = _extract_sql_from_thinking(reasoning)
+                if sql_from_reasoning:
+                    logger.info(f"[LLM-OpenAI] Extracted SQL from reasoning: {sql_from_reasoning[:100]}...")
+                    return sql_from_reasoning
+
+            finish_reason = choices[0].get("finish_reason")
+            logger.warning(f"[LLM-OpenAI] Empty content and no SQL in reasoning (finish_reason={finish_reason}). Message excerpt: {str(message)[:300]}")
+            return ""
     
     except URLError as e:
         logger.error(f"[LLM-OpenAI] URLError: {e}")
@@ -312,6 +319,41 @@ def generate_sql_with_api(
     return sql
 
 
+def _is_llm_refusal(text: str) -> bool:
+    """Detect LLM refusal/non-SQL responses."""
+    refusal_patterns = [
+        "no sql", "was not provided", "please supply", "please include",
+        "please provide", "not provided in your message", "cannot fix",
+        "no query was provided", "no sql query", "i cannot",
+    ]
+    text_lower = text.lower()
+    return any(p in text_lower for p in refusal_patterns)
+
+
+def _extract_sql_from_thinking(reasoning: str) -> str:
+    """Extract SQL from Qwen3.5 reasoning_content field."""
+    if not reasoning:
+        return ""
+    # Look for SQL in code blocks within reasoning
+    code_block = re.search(r'```(?:sql)?\s*\n?(.*?)```', reasoning, re.DOTALL | re.IGNORECASE)
+    if code_block:
+        candidate = code_block.group(1).strip()
+        if re.search(r'\bSELECT\b', candidate, re.IGNORECASE):
+            semi_pos = candidate.find(';')
+            if semi_pos != -1:
+                candidate = candidate[:semi_pos + 1]
+            return candidate
+    # Look for last SELECT statement in reasoning
+    select_match = re.search(r'(SELECT\s.+)', reasoning, re.DOTALL | re.IGNORECASE)
+    if select_match:
+        sql = select_match.group(1).strip()
+        semi_pos = sql.find(';')
+        if semi_pos != -1:
+            sql = sql[:semi_pos + 1]
+        return sql
+    return ""
+
+
 def _extract_sql(response: str, prompt: str) -> str:
     """
     Extract SQL query từ LLM response.
@@ -321,15 +363,20 @@ def _extract_sql(response: str, prompt: str) -> str:
     if not response:
         logger.warning("[LLM] Empty response from LLM backend")
         return ""
-    
+
     if not isinstance(response, str):
         response = str(response)
-    
+
     # Loại bỏ prompt nếu response chứa cả prompt
     if prompt and isinstance(prompt, str) and response.startswith(prompt):
         response = response[len(prompt):]
 
     response = response.strip()
+
+    # Detect LLM refusal early — return empty instead of garbage
+    if _is_llm_refusal(response):
+        logger.warning(f"[LLM] Detected refusal response: {response[:100]}...")
+        return ""
 
     # Loại bỏ markdown code fences
     code_block = re.search(r'```(?:sql)?\s*\n?(.*?)```', response, re.DOTALL | re.IGNORECASE)
@@ -346,4 +393,11 @@ def _extract_sql(response: str, prompt: str) -> str:
             sql = sql[:semi_pos + 1]
         return sql
 
-    return response.strip()
+    # No SELECT found — only return if it looks like SQL keywords
+    sql_keywords = ["FROM", "WHERE", "JOIN", "GROUP", "ORDER", "LIMIT"]
+    if any(kw in response.upper() for kw in sql_keywords):
+        return response.strip()
+
+    # Not SQL at all — return empty
+    logger.warning(f"[LLM] Response has no SQL keywords, discarding: {response[:100]}...")
+    return ""

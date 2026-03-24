@@ -470,13 +470,33 @@ def run_pipeline(
             if retry.should_regenerate():
                 logger.info(f"[Step 6] Retry #{retry.retry_count + 1} - regenerating SQL")
                 retry.record_attempt(sql, error_msg, error_type)
-                retry_prompt = retry.get_retry_prompt(
-                    error_type=error_type,
-                    sql=sql,
-                    error_message=error_msg,
-                    schema=schema_desc,
-                    question=question,
+
+                # When SQL is empty or not real SQL, re-send full generation prompt
+                # instead of "fix this SQL" prompt (which confuses Qwen3.5)
+                _has_sql = sql and sql.strip() and any(
+                    kw in sql.upper() for kw in ["SELECT", "FROM", "WHERE"]
                 )
+                if _has_sql:
+                    retry_prompt = retry.get_retry_prompt(
+                        error_type=error_type,
+                        sql=sql,
+                        error_message=error_msg,
+                        schema=schema_desc,
+                        question=question,
+                    )
+                else:
+                    logger.info("[Step 6] SQL empty/invalid → re-sending full generation prompt")
+                    retry_prompt = build_sql_prompt(
+                        question=question,
+                        schema_description=schema_desc,
+                        domain_name=final_resources["config"].get("display_name", final_domain),
+                        intent_name=intent.get("intent_id", "") if intent else "",
+                        intent_description=intent.get("description", "") if intent else "",
+                        entities=entities,
+                        template_sql=template_sql,
+                        row_limit=QUERY_ROW_LIMIT,
+                    )
+
                 sql, log_entry["model_info"] = _generate_sql_with_demo_fallback(
                     prompt=retry_prompt,
                     demo_mode=demo_mode,
@@ -531,14 +551,32 @@ def run_pipeline(
             if not semantic_ok and retry.should_regenerate():
                 logger.info(f"[Step 6] Retry #{retry.retry_count + 1} - regenerating for semantic fix")
                 retry.record_attempt(sql, "; ".join(semantic_warnings), "semantic")
-                retry_prompt = retry.get_retry_prompt(
-                    error_type="semantic",
-                    sql=sql,
-                    error_message="; ".join(semantic_warnings),
-                    schema=schema_desc,
-                    question=question,
-                    semantic_warnings=semantic_warnings,
+
+                _has_sql = sql and sql.strip() and any(
+                    kw in sql.upper() for kw in ["SELECT", "FROM", "WHERE"]
                 )
+                if _has_sql:
+                    retry_prompt = retry.get_retry_prompt(
+                        error_type="semantic",
+                        sql=sql,
+                        error_message="; ".join(semantic_warnings),
+                        schema=schema_desc,
+                        question=question,
+                        semantic_warnings=semantic_warnings,
+                    )
+                else:
+                    logger.info("[Step 6] SQL empty/invalid → re-sending full generation prompt (semantic)")
+                    retry_prompt = build_sql_prompt(
+                        question=question,
+                        schema_description=schema_desc,
+                        domain_name=final_resources["config"].get("display_name", final_domain),
+                        intent_name=intent.get("intent_id", "") if intent else "",
+                        intent_description=intent.get("description", "") if intent else "",
+                        entities=entities,
+                        template_sql=template_sql,
+                        row_limit=QUERY_ROW_LIMIT,
+                    )
+
                 sql, log_entry["model_info"] = _generate_sql_with_demo_fallback(
                     prompt=retry_prompt,
                     demo_mode=demo_mode,
@@ -566,13 +604,31 @@ def run_pipeline(
             if not explain_ok and retry.should_regenerate():
                 logger.info("[Step 6] Regenerating SQL for EXPLAIN fix...")
                 retry.record_attempt(sql, explain_err, "syntax")
-                retry_prompt = retry.get_retry_prompt(
-                    error_type="syntax",
-                    sql=sql,
-                    error_message=f"EXPLAIN failed: {explain_err}",
-                    schema=schema_desc,
-                    question=question,
+
+                _has_sql = sql and sql.strip() and any(
+                    kw in sql.upper() for kw in ["SELECT", "FROM", "WHERE"]
                 )
+                if _has_sql:
+                    retry_prompt = retry.get_retry_prompt(
+                        error_type="syntax",
+                        sql=sql,
+                        error_message=f"EXPLAIN failed: {explain_err}",
+                        schema=schema_desc,
+                        question=question,
+                    )
+                else:
+                    logger.info("[Step 6] SQL empty/invalid → re-sending full generation prompt (EXPLAIN)")
+                    retry_prompt = build_sql_prompt(
+                        question=question,
+                        schema_description=schema_desc,
+                        domain_name=final_resources["config"].get("display_name", final_domain),
+                        intent_name=intent.get("intent_id", "") if intent else "",
+                        intent_description=intent.get("description", "") if intent else "",
+                        entities=entities,
+                        template_sql=template_sql,
+                        row_limit=QUERY_ROW_LIMIT,
+                    )
+
                 sql, log_entry["model_info"] = _generate_sql_with_demo_fallback(
                     prompt=retry_prompt,
                     demo_mode=demo_mode,

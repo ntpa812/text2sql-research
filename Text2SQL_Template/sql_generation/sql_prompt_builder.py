@@ -90,7 +90,7 @@ Error:
 {error_message}
 
 Fix the SQL query using the same schema.
-Return only corrected SQL."""
+You MUST output ONLY a valid SQL SELECT query. Do not output explanations, messages, or comments."""
 
 
 RETRY_SCHEMA_PROMPT = """The SQL query used invalid table or column names.
@@ -105,7 +105,7 @@ Error:
 {error_message}
 
 Fix the query using only available tables and columns.
-Return only corrected SQL."""
+You MUST output ONLY a valid SQL SELECT query. Do not output explanations, messages, or comments."""
 
 
 RETRY_LOGIC_PROMPT = """The SQL returned no result.
@@ -120,7 +120,7 @@ Previous SQL:
 {sql}
 
 Try a different approach to answer the question.
-Return only SQL."""
+You MUST output ONLY a valid SQL SELECT query. Do not output explanations, messages, or comments."""
 
 
 def build_retry_prompt(
