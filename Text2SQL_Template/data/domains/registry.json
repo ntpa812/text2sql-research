@@ -1,0 +1,196 @@
+{
+  "defaults": {
+    "default_domain_id": "banking",
+    "shortlist_score_gap": 0.15,
+    "shortlist_relative_threshold": 0.7,
+    "ambiguity_tolerance": 0.05
+  },
+  "domains": [
+    {
+      "domain_id": "banking",
+      "display_name": "banking",
+      "description": "Banking transactions, customer accounts, balances, savings, transfers, FX and loan activity.",
+      "keywords": [
+        "giao dịch",
+        "chuyển tiền",
+        "chuyển khoản",
+        "tài khoản",
+        "sao kê",
+        "số dư",
+        "tiết kiệm",
+        "vay",
+        "ngoại tệ",
+        "khách hàng ngân hàng"
+      ],
+      "keyword_patterns": [
+        "giao dịch|chuyển tiền|chuyển khoản|thanh toán|sao kê|số dư|tk|stk|ngân hàng",
+        "tiết kiệm|loan|fx|foreign exchange|bill payment"
+      ],
+      "examples": [
+        "Tra cứu giao dịch chuyển tiền trong tháng này",
+        "Kiểm tra số dư tài khoản 123456",
+        "Xem lịch sử giao dịch tiết kiệm",
+        "Thống kê giao dịch ngoại tệ"
+      ],
+      "paths": {
+        "semantic_profiles_dir": "banking/semantic_profiles",
+        "intent_dataset_path": "banking/user_intent/ddq_document_v2.json",
+        "approved_templates_dir": "../../template_store/banking/approved_templates"
+      },
+      "db_config": {
+        "host": "192.168.3.7",
+        "port": 3306,
+        "user": "bank-gateway",
+        "password": "bankgateway@123",
+        "database": "ai_bank_gateway"
+      },
+      "table_keywords": {
+        "giao dịch|chuyển tiền|chuyển khoản|thanh toán|transaction|sao kê|lịch sử giao dịch": [
+          "transaction"
+        ],
+        "tài khoản|account|số dư|balance|tk|stk": [
+          "customer_account"
+        ],
+        "khách hàng|customer|thông tin cá nhân|profile|họ tên|cccd|cmnd": [
+          "customer"
+        ],
+        "tiết kiệm|saving|gửi tiết kiệm": [
+          "transaction",
+          "customer_account"
+        ],
+        "hóa đơn|bill|thanh toán hóa đơn|điện|nước|viễn thông": [
+          "transaction"
+        ],
+        "ngoại tệ|fx|đổi tiền|tỷ giá|exchange": [
+          "transaction"
+        ],
+        "đầu tư|investment|trái phiếu|chứng chỉ quỹ": [
+          "transaction"
+        ],
+        "vay|loan|khoản vay|trả nợ": [
+          "transaction"
+        ]
+      },
+      "entity_table_map": {
+        "account_no": [
+          "customer_account",
+          "account_no"
+        ],
+        "to_account_no": [
+          "customer_account",
+          "account_no"
+        ],
+        "customer_id": [
+          "customer",
+          "customer_id"
+        ],
+        "trans_id": [
+          "transaction",
+          "trans_id"
+        ]
+      },
+      "known_enums": {
+        "transaction_type": {
+          "column": "trans_code",
+          "valid_values": [
+            "TRANSFER",
+            "SAVING",
+            "LOAN",
+            "FX",
+            "FEE",
+            "BILL_PAYMENT",
+            "CK_NOI_BO",
+            "THANH_TOAN_HOA_DON",
+            "CK_LIEN_NH"
+          ]
+        },
+        "status": {
+          "column": "status",
+          "valid_values": [
+            "SUCCESS",
+            "FAILED",
+            "PENDING",
+            "PROCESSING",
+            "REJECTED",
+            "CANCELLED"
+          ]
+        }
+      }
+    },
+    {
+      "domain_id": "hrm",
+      "display_name": "hrm",
+      "description": "Human resource management data such as employees, departments, attendance and leave requests.",
+      "keywords": [
+        "nhân viên",
+        "phòng ban",
+        "chấm công",
+        "ngày công",
+        "nghỉ phép",
+        "lương",
+        "hrm",
+        "employee",
+        "department",
+        "attendance"
+      ],
+      "keyword_patterns": [
+        "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm",
+        "employee|department|attendance|leave request|payroll"
+      ],
+      "examples": [
+        "Liệt kê nhân viên thuộc phòng kinh doanh",
+        "Tìm thông tin nhân viên có mã EMP001",
+        "Xem lịch sử chấm công trong tháng này",
+        "Danh sách nhân viên nghỉ phép hôm nay"
+      ],
+      "paths": {
+        "semantic_profiles_dir": "hrm/semantic_profiles",
+        "intent_dataset_path": "hrm/user_intent/hrm_intents.json",
+        "approved_templates_dir": "../../template_store/hrm/approved_templates"
+      },
+      "db_config": {
+        "host": "192.168.3.7",
+        "port": 3306,
+        "user": "bank-gateway",
+        "password": "bankgateway@123",
+        "database": "ai_hrm"
+      },
+      "table_keywords": {
+        "nhân viên|employee|hồ sơ nhân sự|mã nhân viên|tên nhân viên": [
+          "employee"
+        ],
+        "phòng ban|department|đơn vị": [
+          "department"
+        ],
+        "chấm công|attendance|checkin|checkout|ngày công": [
+          "attendance"
+        ],
+        "nghỉ phép|leave|xin nghỉ": [
+          "attendance"
+        ]
+      },
+      "entity_table_map": {
+        "employee_id": [
+          "employee",
+          "employee_id"
+        ],
+        "department_name": [
+          "department",
+          "department_name"
+        ]
+      },
+      "known_enums": {
+        "attendance_status": {
+          "column": "status",
+          "valid_values": [
+            "PRESENT",
+            "ABSENT",
+            "REMOTE",
+            "LATE",
+            "ON_LEAVE"
+          ]
+        }
+      }
+    }
+  ]
+}

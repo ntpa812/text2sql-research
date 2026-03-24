@@ -24,7 +24,6 @@ __pycache__/
 *.zip
 *.tar
 *.csv
-data/
 models/
 checkpoints/
 demo_ui/node_modules/

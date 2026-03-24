@@ -1,0 +1,74 @@
+{
+  "table_name": "attendance",
+  "columns": [
+    {
+      "name": "attendance_id",
+      "role": "IDENTITY",
+      "description": "Mã bản ghi chấm công.",
+      "suggested_keywords": [
+        "mã chấm công",
+        "attendance id"
+      ],
+      "sql_logic": "WHERE {col} = '{val}'",
+      "value_ref": null
+    },
+    {
+      "name": "employee_id",
+      "role": "IDENTITY",
+      "description": "Mã nhân viên của bản ghi chấm công.",
+      "suggested_keywords": [
+        "mã nhân viên",
+        "employee id"
+      ],
+      "sql_logic": "WHERE {col} = '{val}'",
+      "value_ref": null
+    },
+    {
+      "name": "attendance_date",
+      "role": "TEMPORAL",
+      "description": "Ngày chấm công hoặc ngày nghỉ.",
+      "suggested_keywords": [
+        "ngày chấm công",
+        "ngày nghỉ",
+        "attendance date"
+      ],
+      "sql_logic": "WHERE {col} BETWEEN '{start}' AND '{end}'",
+      "value_ref": null
+    },
+    {
+      "name": "check_in_time",
+      "role": "TEMPORAL",
+      "description": "Thời gian check-in đầu ngày.",
+      "suggested_keywords": [
+        "giờ vào làm",
+        "check in"
+      ],
+      "sql_logic": "",
+      "value_ref": null
+    },
+    {
+      "name": "check_out_time",
+      "role": "TEMPORAL",
+      "description": "Thời gian check-out cuối ngày.",
+      "suggested_keywords": [
+        "giờ tan làm",
+        "check out"
+      ],
+      "sql_logic": "",
+      "value_ref": null
+    },
+    {
+      "name": "status",
+      "role": "DIMENSION",
+      "description": "Trạng thái chấm công như present, absent, remote, on_leave.",
+      "suggested_keywords": [
+        "trạng thái chấm công",
+        "có mặt",
+        "vắng mặt",
+        "nghỉ phép"
+      ],
+      "sql_logic": "WHERE {col} = '{val}'",
+      "value_ref": "ATTENDANCE_STATUS"
+    }
+  ]
+}

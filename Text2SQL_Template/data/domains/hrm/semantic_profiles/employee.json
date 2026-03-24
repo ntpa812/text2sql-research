@@ -1,0 +1,76 @@
+{
+  "table_name": "employee",
+  "columns": [
+    {
+      "name": "employee_id",
+      "role": "IDENTITY",
+      "description": "Mã định danh duy nhất của nhân viên.",
+      "suggested_keywords": [
+        "mã nhân viên",
+        "employee id",
+        "id nhân sự"
+      ],
+      "sql_logic": "WHERE {col} = '{val}'",
+      "value_ref": null
+    },
+    {
+      "name": "employee_name",
+      "role": "DIMENSION",
+      "description": "Họ tên đầy đủ của nhân viên.",
+      "suggested_keywords": [
+        "tên nhân viên",
+        "họ tên",
+        "full name"
+      ],
+      "sql_logic": "WHERE {col} LIKE '%{val}%'",
+      "value_ref": null
+    },
+    {
+      "name": "department_id",
+      "role": "IDENTITY",
+      "description": "Phòng ban hiện tại của nhân viên.",
+      "suggested_keywords": [
+        "phòng ban",
+        "department"
+      ],
+      "sql_logic": "WHERE {col} = '{val}'",
+      "value_ref": null
+    },
+    {
+      "name": "job_title",
+      "role": "DIMENSION",
+      "description": "Chức danh công việc của nhân viên.",
+      "suggested_keywords": [
+        "chức danh",
+        "job title",
+        "vị trí"
+      ],
+      "sql_logic": "WHERE {col} = '{val}'",
+      "value_ref": null
+    },
+    {
+      "name": "employment_status",
+      "role": "DIMENSION",
+      "description": "Trạng thái làm việc của nhân viên như active, resigned, probation.",
+      "suggested_keywords": [
+        "trạng thái làm việc",
+        "đang làm",
+        "probation",
+        "nghỉ việc"
+      ],
+      "sql_logic": "WHERE {col} = '{val}'",
+      "value_ref": "STATUS"
+    },
+    {
+      "name": "hire_date",
+      "role": "TEMPORAL",
+      "description": "Ngày nhân viên bắt đầu làm việc.",
+      "suggested_keywords": [
+        "ngày vào làm",
+        "hire date"
+      ],
+      "sql_logic": "WHERE {col} BETWEEN '{start}' AND '{end}'",
+      "value_ref": null
+    }
+  ]
+}

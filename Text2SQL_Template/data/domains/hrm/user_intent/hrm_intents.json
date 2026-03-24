@@ -1,0 +1,47 @@
+[
+  {
+    "document": "getEmployeeProfile | Tra cứu thông tin nhân viên theo mã nhân viên",
+    "description": "Người dùng muốn xem hồ sơ hoặc thông tin cơ bản của một nhân viên theo mã nhân viên.",
+    "examples": [
+      "Tìm thông tin nhân viên EMP001",
+      "Cho tôi xem hồ sơ nhân viên có mã NV002",
+      "Tra cứu nhân viên theo mã nhân sự"
+    ],
+    "keywords": [
+      "mã nhân viên",
+      "thông tin nhân viên",
+      "hồ sơ nhân sự"
+    ],
+    "metadata": "SELECT employee_id, employee_name, department_id, job_title, employment_status, hire_date\nFROM employee\nWHERE employee_id = '{employee_id}'\nLIMIT 100;"
+  },
+  {
+    "document": "listEmployeeByDepartment | Liệt kê nhân viên theo phòng ban",
+    "description": "Người dùng muốn lấy danh sách nhân viên thuộc một phòng ban cụ thể.",
+    "examples": [
+      "Liệt kê nhân viên phòng kinh doanh",
+      "Danh sách nhân viên thuộc phòng nhân sự",
+      "Cho tôi xem nhân viên của phòng IT"
+    ],
+    "keywords": [
+      "nhân viên theo phòng ban",
+      "danh sách nhân viên phòng",
+      "department employee list"
+    ],
+    "metadata": "SELECT e.employee_id, e.employee_name, e.job_title, e.employment_status\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE d.department_name LIKE '%{department_name}%'\nORDER BY e.employee_name ASC\nLIMIT 100;"
+  },
+  {
+    "document": "getAttendanceHistory | Tra cứu chấm công theo nhân viên và thời gian",
+    "description": "Người dùng muốn xem lịch sử chấm công của nhân viên trong một khoảng thời gian.",
+    "examples": [
+      "Xem chấm công của nhân viên EMP001 trong tháng này",
+      "Tra cứu ngày công của nhân viên NV002 tuần trước",
+      "Lịch sử attendance của nhân viên theo thời gian"
+    ],
+    "keywords": [
+      "chấm công nhân viên",
+      "attendance history",
+      "ngày công"
+    ],
+    "metadata": "SELECT attendance_id, employee_id, attendance_date, check_in_time, check_out_time, status\nFROM attendance\nWHERE employee_id = '{employee_id}'\nAND attendance_date BETWEEN '{start_date}' AND '{end_date}'\nORDER BY attendance_date DESC\nLIMIT 100;"
+  }
+]

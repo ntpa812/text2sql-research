@@ -1,0 +1,39 @@
+{
+  "table_name": "department",
+  "columns": [
+    {
+      "name": "department_id",
+      "role": "IDENTITY",
+      "description": "Mã định danh duy nhất của phòng ban.",
+      "suggested_keywords": [
+        "mã phòng ban",
+        "department id"
+      ],
+      "sql_logic": "WHERE {col} = '{val}'",
+      "value_ref": null
+    },
+    {
+      "name": "department_name",
+      "role": "DIMENSION",
+      "description": "Tên phòng ban hoặc đơn vị.",
+      "suggested_keywords": [
+        "tên phòng ban",
+        "department name",
+        "đơn vị"
+      ],
+      "sql_logic": "WHERE {col} LIKE '%{val}%'",
+      "value_ref": null
+    },
+    {
+      "name": "manager_id",
+      "role": "IDENTITY",
+      "description": "Mã quản lý trực tiếp của phòng ban.",
+      "suggested_keywords": [
+        "quản lý phòng ban",
+        "manager"
+      ],
+      "sql_logic": "WHERE {col} = '{val}'",
+      "value_ref": null
+    }
+  ]
+}
