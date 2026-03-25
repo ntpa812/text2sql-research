@@ -165,6 +165,25 @@
     "metadata": "SELECT\n  a.employee_id,\n  strftime('%Y-%m', a.attendance_date) AS month,\n  SUM(CASE WHEN a.status = 'PRESENT' THEN 1 ELSE 0 END)  AS present_days,\n  SUM(CASE WHEN a.status = 'LATE'    THEN 1 ELSE 0 END)  AS late_days,\n  SUM(CASE WHEN a.status = 'REMOTE'  THEN 1 ELSE 0 END)  AS remote_days,\n  SUM(CASE WHEN a.status = 'ABSENT'  THEN 1 ELSE 0 END)  AS absent_days,\n  SUM(CASE WHEN a.status = 'ON_LEAVE' THEN 1 ELSE 0 END) AS on_leave_days\nFROM attendance a\nWHERE a.employee_id = '{employee_id}'\nAND strftime('%Y-%m', a.attendance_date) = '{year_month}'\nGROUP BY a.employee_id, strftime('%Y-%m', a.attendance_date)\nLIMIT 100;"
   },
   {
+    "document": "getAllAttendanceSummary | Tổng hợp ngày công tất cả nhân viên theo tháng",
+    "description": "Người dùng muốn xem tổng hợp ngày công của toàn bộ nhân viên trong một tháng cụ thể, không lọc theo cá nhân.",
+    "examples": [
+      "Tổng hợp ngày công tháng 3 năm 2026",
+      "Thống kê chấm công tháng 1 của tất cả nhân viên",
+      "Báo cáo ngày công toàn công ty tháng 2",
+      "Tổng hợp chuyên cần nhân viên tháng 3",
+      "Xem ngày công tháng 3 của các nhân viên"
+    ],
+    "keywords": [
+      "tổng hợp ngày công",
+      "thống kê chấm công",
+      "báo cáo chuyên cần",
+      "ngày công tháng",
+      "toàn bộ nhân viên"
+    ],
+    "metadata": "SELECT\n  a.employee_id,\n  e.employee_name,\n  d.department_name,\n  strftime('%Y-%m', a.attendance_date) AS month,\n  SUM(CASE WHEN a.status = 'PRESENT'  THEN 1 ELSE 0 END) AS present_days,\n  SUM(CASE WHEN a.status = 'LATE'     THEN 1 ELSE 0 END) AS late_days,\n  SUM(CASE WHEN a.status = 'REMOTE'   THEN 1 ELSE 0 END) AS remote_days,\n  SUM(CASE WHEN a.status = 'ABSENT'   THEN 1 ELSE 0 END) AS absent_days,\n  SUM(CASE WHEN a.status = 'ON_LEAVE' THEN 1 ELSE 0 END) AS on_leave_days,\n  COUNT(*) AS total_working_days\nFROM attendance a\nJOIN employee e ON a.employee_id = e.employee_id\nJOIN department d ON e.department_id = d.department_id\nWHERE strftime('%Y-%m', a.attendance_date) = '{year_month}'\nGROUP BY a.employee_id, e.employee_name, d.department_name, strftime('%Y-%m', a.attendance_date)\nORDER BY d.department_name, e.employee_name\nLIMIT 100;"
+  },
+  {
     "document": "listEmployeeByStatus | Danh sách nhân viên theo trạng thái làm việc",
     "description": "Người dùng muốn lọc danh sách nhân viên theo trạng thái như đang làm việc, thử việc, đã nghỉ việc.",
     "examples": [

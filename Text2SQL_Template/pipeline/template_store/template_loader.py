@@ -72,9 +72,9 @@ def get_template_for_intent(
             logger.info(f"[Template] Using approved template: {intent_id}")
             return approved_templates[intent_id]
 
-        # Fuzzy match: tìm template chứa intent_id
+        # Fuzzy match: template file name starts with intent_id (versioned templates)
         for tid, sql in approved_templates.items():
-            if intent_id in tid or tid in intent_id:
+            if intent_id in tid:
                 logger.info(f"[Template] Fuzzy match: {tid} for intent {intent_id}")
                 return sql
 
