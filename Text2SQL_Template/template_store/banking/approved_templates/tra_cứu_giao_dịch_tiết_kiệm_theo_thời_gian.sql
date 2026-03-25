@@ -1,4 +1,0 @@
-SELECT COUNT(*)
-FROM transaction
-WHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)
-AND trans_name LIKE 'SAVING_%';

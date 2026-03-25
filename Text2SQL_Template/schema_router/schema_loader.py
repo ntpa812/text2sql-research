@@ -9,7 +9,7 @@ import os
 import glob
 from typing import Dict, List, Any
 
-from config.settings import DEFAULT_DOMAIN_ID, LEGACY_SEMANTIC_PROFILES_DIR
+from config.settings import DEFAULT_DOMAIN_ID, DOMAINS_BASE_DIR
 
 
 def _resolve_profiles_dir(path: str | None = None, domain_id: str | None = None) -> str:
@@ -17,10 +17,7 @@ def _resolve_profiles_dir(path: str | None = None, domain_id: str | None = None)
         return path
 
     domain_id = domain_id or DEFAULT_DOMAIN_ID
-    candidate = os.path.join(LEGACY_SEMANTIC_PROFILES_DIR, domain_id)
-    if os.path.isdir(candidate):
-        return candidate
-    return LEGACY_SEMANTIC_PROFILES_DIR
+    return os.path.join(DOMAINS_BASE_DIR, domain_id, "semantic_profiles")
 
 
 def load_all_profiles(path: str | None = None, domain_id: str | None = None) -> Dict[str, Any]:

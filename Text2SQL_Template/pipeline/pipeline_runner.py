@@ -800,13 +800,17 @@ def run_pipeline(
         if intent and rows and row_count > 0:
             intent_id = intent.get("intent_id", "")
             if intent_id:
+                # When template was filled via slot-fill, save the parameterized
+                # template (with {placeholders}) not the filled SQL, so future
+                # queries with different values can reuse it correctly.
+                sql_to_save = template_sql if template_complete and template_sql else sql
                 save_approved_template(
                     intent_id,
-                    sql,
+                    sql_to_save,
                     path=final_resources["paths"].get("approved_templates_dir"),
                     domain_id=final_domain,
                 )
-                final_resources["approved_templates"][intent_id] = sql
+                final_resources["approved_templates"][intent_id] = sql_to_save
 
         # ─── Step 8: Result Formatting + Explain ───────────
         if explain:

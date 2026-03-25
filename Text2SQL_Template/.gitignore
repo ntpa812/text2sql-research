@@ -26,6 +26,10 @@ __pycache__/
 *.csv
 models/
 checkpoints/
-demo_ui/node_modules/
-demo_ui/dist/
-demo_ui/.vite/
+demo/ui/node_modules/
+demo/ui/dist/
+demo/ui/.vite/
+demo/ui/tsconfig.*.tsbuildinfo
+demo/ui/vite.config.d.ts
+demo/ui/vite.config.js
+runtime/

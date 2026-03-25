@@ -17,7 +17,7 @@ from config.settings import EMBEDDING_CACHE_DIR
 
 logger = logging.getLogger(__name__)
 
-_HRM_DB_PATH = Path(__file__).resolve().parent.parent / "data" / "mock" / "hrm.db"
+_HRM_DB_PATH = Path(__file__).resolve().parent.parent / "data" / "domains" / "hrm" / "mock" / "hrm.db"
 
 _DEMO_CACHE_FILE = os.path.join(EMBEDDING_CACHE_DIR, "demo_execution_cache.json")
 _demo_cache: Dict[str, Any] | None = None

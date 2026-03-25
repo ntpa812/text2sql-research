@@ -35,7 +35,7 @@
       "paths": {
         "semantic_profiles_dir": "banking/semantic_profiles",
         "intent_dataset_path": "banking/user_intent/ddq_document_v2.json",
-        "approved_templates_dir": "../../template_store/banking/approved_templates"
+        "approved_templates_dir": "banking/templates/approved_templates"
       },
       "db_config": {
         "host": "192.168.3.7",
@@ -146,11 +146,11 @@
       "paths": {
         "semantic_profiles_dir": "hrm/semantic_profiles",
         "intent_dataset_path": "hrm/user_intent/hrm_intents.json",
-        "approved_templates_dir": "../../template_store/hrm/approved_templates"
+        "approved_templates_dir": "hrm/templates/approved_templates"
       },
       "db_config": {
         "engine": "sqlite",
-        "database": "data/mock/hrm.db"
+        "database": "data/domains/hrm/mock/hrm.db"
       },
       "table_keywords": {
         "nhân viên|employee|hồ sơ nhân sự|mã nhân viên|tên nhân viên": [

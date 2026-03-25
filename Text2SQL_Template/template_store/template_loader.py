@@ -9,7 +9,7 @@ import glob
 import logging
 from typing import Dict, Optional, Any
 
-from config.settings import DEFAULT_DOMAIN_ID, LEGACY_APPROVED_TEMPLATES_DIR
+from config.settings import DEFAULT_DOMAIN_ID, DOMAINS_BASE_DIR
 
 logger = logging.getLogger(__name__)
 
@@ -22,14 +22,7 @@ def _resolve_templates_dir(path: Optional[str] = None, domain_id: Optional[str] 
         return path
 
     domain_id = domain_id or DEFAULT_DOMAIN_ID
-    domain_candidate = os.path.join(
-        os.path.dirname(LEGACY_APPROVED_TEMPLATES_DIR),
-        domain_id,
-        os.path.basename(LEGACY_APPROVED_TEMPLATES_DIR),
-    )
-    if os.path.isdir(domain_candidate):
-        return domain_candidate
-    return LEGACY_APPROVED_TEMPLATES_DIR
+    return os.path.join(DOMAINS_BASE_DIR, domain_id, "templates", "approved_templates")
 
 
 def load_approved_templates(path: Optional[str] = None, domain_id: Optional[str] = None) -> Dict[str, str]:

@@ -19,9 +19,9 @@ from domain_router.registry_loader import load_domain_registry
 from pipeline.pipeline_runner import run_pipeline
 from sql_generation.llm_sql_generator import get_generation_config
 
-BASE_DIR = Path(__file__).resolve().parent
-FRONTEND_DIST = BASE_DIR / "demo_ui" / "dist"
-HRM_DB_PATH = BASE_DIR / "data" / "mock" / "hrm.db"
+BASE_DIR = Path(__file__).resolve().parent.parent  # project root
+FRONTEND_DIST = BASE_DIR / "demo" / "ui" / "dist"
+HRM_DB_PATH = BASE_DIR / "data" / "domains" / "hrm" / "mock" / "hrm.db"
 
 
 def _hrm_query(sql: str, params: tuple = ()) -> List[Dict[str, Any]]:

@@ -103,5 +103,20 @@
         "created_at": "2026-03-25T14:24:45"
       }
     ]
+  },
+  "13d6749e06c7f77f8c8e": {
+    "question": "tổng tiền chuyển đi trong tháng 1",
+    "domain": "banking",
+    "rows": [
+      {
+        "demo_id": "13d6749e",
+        "domain": "banking",
+        "intent": "Thống kê giao dịch chuyển tiền",
+        "tables": "transaction, customer",
+        "preview_sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1\nLIMIT 100;",
+        "note": "Demo mode: ket qua duoc luu local cache, khong truy cap DB that.",
+        "created_at": "2026-03-25T14:34:06"
+      }
+    ]
   }
 }

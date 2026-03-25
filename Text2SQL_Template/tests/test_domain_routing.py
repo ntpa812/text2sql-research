@@ -2,7 +2,8 @@ import sys
 import unittest
 from copy import deepcopy
 
-sys.path.insert(0, __file__.rsplit("\\", 1)[0])
+import pathlib
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
 from domain_router.registry_loader import load_domain_registry
 from domain_router.selector import route_domains
