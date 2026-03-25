@@ -11,8 +11,8 @@ Logic:
 import logging
 from typing import Dict, Any, Optional, Tuple, Callable
 
-from sql_generation.sql_prompt_builder import build_retry_prompt
-from sql_generation.sql_repairer import repair_sql
+from pipeline.sql_generation.sql_prompt_builder import build_retry_prompt
+from pipeline.sql_generation.sql_repairer import repair_sql
 
 logger = logging.getLogger(__name__)
 

@@ -1,0 +1,1386 @@
+[
+  {
+    "question": "Xem tất cả giao dịch của tài khoản 123456 trong tháng 1 năm 2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "123456",
+      "amount": "123456000000"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '123456')\nORDER BY trans_time DESC;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.002,
+      "schema_router": 0.055,
+      "intent_detection": 0.018,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.002
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Tổng số tiền tôi đã chuyển đi trong tháng 2",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\n    FROM transaction\n    WHERE YEAR(trans_time) = YEAR(CURRENT_DATE())\n      AND MONTH(trans_time) = 2\n      AND trans_status = 'S'\n    LIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.001,
+      "schema_router": 0.04,
+      "intent_detection": 0.011,
+      "entity_extraction": 0.01,
+      "template_fill": 0.0,
+      "sql_generation": 69.048,
+      "validation": 0.0
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Tôi đã nhận bao nhiêu tiền vào ngày 15/03/2024",
+    "domain": null,
+    "candidate_domains": [
+      "banking",
+      "hrm"
+    ],
+    "tables": [],
+    "intent": null,
+    "entities": {},
+    "sql": null,
+    "validator": "DOMAIN_AMBIGUOUS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.001,
+      "schema_router": 0.016,
+      "intent_detection": 0.007
+    },
+    "error": "Domain routing ambiguous for question: [{'domain_id': 'banking', 'display_name': 'banking', 'domain_score': 1.0, 'table_score': 1.0, 'intent_score': 1.0, 'final_score': 1.0}, {'domain_id': 'hrm', 'display_name': 'hrm', 'domain_score': 1.0, 'table_score': 1.0, 'intent_score': 1.0, 'final_score': 1.0}]"
+  },
+  {
+    "question": "Liệt kê các giao dịch chuyển khoản của tài khoản 987654 trong tuần này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "987654",
+      "amount": "987654000000"
+    },
+    "sql": "SELECT query.\n\n2.  **Analyze the Schema:**\n    *   `transaction` table contains transaction details.\n    *   Relevant columns for filtering:\n        *   `from_account_no` (IDENTITY): Source account number.\n        *   `to_account_no` (IDENTITY): Destination account number.\n        *   `trans_time` (TEMPORAL): Transaction time.\n        *   `trans_type` (DIMENSION): Type of transaction.\n        *   `trans_status` (DIMENSION): Status of transaction.\n        *   `amount_transfer` (METRIC): Transfer amount.\n    *   Relevant columns for joining (if needed):\n        *   `customer_account` table has `account_no` and `customer_no`.\n    *   The user asks for \"transfer transactions\" (giao dịch chuyển khoản).\n    *   The user specifies account `987654`. This could be the source (`from_account_no`) or the destination (`to_account_no`). Usually, \"transactions of account X\" implies X is involved, often as the sender, but could be receiver. To be safe, I should check both or focus on the most likely interpretation (sender). However, since the previous SQL failed, I need to check the logic.\n    *   The previous SQL used `category_code`. Looking at the schema, `category_code` is NOT in the `transaction` table. It is in the `customer_account` table. This is a major reason for the failure.\n    *   The previous SQL also used `category_code LIKE 'TRANSFER_%'`. This column doesn't exist in `transaction`.\n    *   The previous SQL filtered `from_account_no = '987654'`.\n    *   The previous SQL didn't filter for \"this week\" (trong tuần này).\n\n3.  **Identify Issues with Previous SQL:**\n    *   **Column `category_code`:** Does not exist in `transaction` table. It exists in `customer_account`. This causes the query to fail or return no rows if the DB engine ignores it (unlikely) or throws an error (but the prompt says \"returned no result\", implying it ran but found nothing, or perhaps the column exists but values don't match). Wait, if the column doesn't exist, it should throw an error. However, sometimes schema descriptions are partial. Let's look closer. `category_code` is listed under `customer_account`. It is NOT listed under `transaction`. So the previous SQL is definitely invalid regarding column existence if strict, or it returns nothing if the column exists but is NULL/empty. Given the instruction \"returned no result\", I must assume the query ran but found no matches, likely due to the wrong column or wrong logic.\n    *   **Time Filter:** \"Trong tuần này\" (This week) is missing.\n    *   **Account Logic:** \"Giao dịch chuyển khoản của tài khoản 987654\". This usually means the account is the sender (`from_account_no`). It could also mean the account is involved in any way. I should probably check `from_account_no` primarily, but maybe `to_account_no` too if it's a general inquiry. However, standard interpretation is sender.\n    *   **Transaction Type:** How to identify a \"transfer\" (chuyển khoản)? `trans_type` is available. `trans_name` is available. `amount_transfer` is available. There isn't a specific `trans_type` value defined in the schema (like 'TRANSFER'). I need to make a reasonable assumption or select all transactions involving that account where money moved. Since `amount_transfer` exists, filtering for non-zero amount might help, but `trans_type` is better. Without knowing the specific values for `trans_type`, I should probably select transactions where `from_account_no` or `to_account_no` matches, and perhaps filter by `trans_status` = 'SUCCESS' or similar if needed, but the prompt just asks for the list.\n    *   **Date Calculation:** \"This week\" usually means the current week (Monday to Sunday or Sunday to Saturday depending on locale, often current date minus 7 days to current date). In SQL, `DATE_TRUNC` or `EXTRACT` or `BETWEEN` is needed. Since the specific SQL dialect isn't specified (PostgreSQL, MySQL, SQL Server?), I should use standard SQL or common syntax. Given `TEMPORAL` type hints, it might be PostgreSQL or similar. I will use a generic `BETWEEN` with `CURRENT_DATE` logic.\n    *   **Correction on `category_code`:** Since `category_code` is in `customer_account`, I should probably join `transaction` with `customer_account` if I need to filter by account category, but the user asks for account number `987654`. I can filter directly on `transaction.from_account_no` or `transaction.to_account_no`.\n    *   **Refining the Query:**\n        1.  Select relevant columns (`trans_id`, `trans_time`, `from_account_no`, `to_account_no`, `amount_transfer`, `trans_status`, etc.).\n        2.  Filter `from_account_no = '987654'` OR `to_account_no = '987654'`. (Usually \"transactions of account\" implies involvement). Let's stick to `from_account_no` as primary for \"transfer *of* account\", but adding `to_account_no` makes it more robust. However, to avoid duplicates if it's a self-transfer, `OR` is fine.\n        3.  Filter for \"This week\". I need to define \"This week\". Let's assume current week start (Monday) to current date. Or simply `trans_time >= DATE_TRUNC('week', CURRENT_DATE)`. Or simpler: `trans_time >= CURRENT_DATE - INTERVAL '7 days' AND trans_time <= CURRENT_DATE`. Let's use a standard date range logic.\n        4.  Fix the `category_code` issue. Remove it.\n        5.  Ensure `trans_type` or similar indicates a transfer. Since I don't know the values, I will select transactions involving the account where `amount_transfer` is not null or `trans_type` is not null. Actually, just filtering by account number is usually enough for \"transactions of account\".\n        6.  The previous query failed. Why? Likely `category_code` doesn't exist in `transaction`.\n        7.  I need to make sure I don't use `category_code` from `transaction`.\n\n    *   **Date Logic:** \"This week\" (tuần này).\n        *   Option 1: `trans_time >= DATE_TRUNC('week', CURRENT_DATE)` (Postgres)\n        *   Option 2: `trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)` (MySQL)\n        *   Option 3: `trans_time >= DATEADD(WEEK, DATEDIFF(WEEK, 0, GETDATE()), 0)` (SQL Server)\n        *   Since I don't know the DB, I'll use a generic approach often compatible with standard SQL or assume PostgreSQL due to `TEMPORAL` hints often seen in data modeling tools like PowerBI/DBT which often use Postgres. However, `DATE_TRUNC` is specific. A safer bet for \"this week\" without knowing dialect is `trans_time >= CURRENT_DATE - INTERVAL '7 days'` (Postgres/MySQL) or `trans_time >= DATEADD(day, -7, GETDATE())` (SQL Server).\n        *   Let's look at the schema again. `trans_time` is `TEMPORAL`.\n        *   Let's assume a standard SQL dialect that supports `CURRENT_DATE` and `INTERVAL`.\n        *   To be safe and generic, I will filter `trans_time` between `CURRENT_DATE - 7 days` and `CURRENT_DATE`.\n        *   Wait, \"This week\" often implies the current calendar week (Mon-Sun).\n        *   Let's try to be precise. `trans_time >= DATE_TRUNC('week', CURRENT_DATE)` is specific to Postgres.\n        *   Let's try to avoid specific dialect functions if possible, but `DATE_TRUNC` is common in modern data warehouses.\n        *   Actually, looking at the previous SQL, it didn't have a date filter. The user specifically asked for \"this week\".\n        *   I will use `trans_time >= CURRENT_DATE - INTERVAL '7 days'` as a reasonable approximation for \"this week\" (last 7 days) or `trans_time >= DATE_TRUNC('week', CURRENT_DATE)`. Given the previous SQL used `trans_time`, I'll stick to that.",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.001,
+      "schema_router": 0.044,
+      "intent_detection": 0.008,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 69.104
+    },
+    "semantic_warnings": [
+      "Câu hỏi có thời gian nhưng SQL thiếu filter thời gian"
+    ],
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Cho tôi xem lịch sử giao dịch từ ngày 01/01/2024 đến 31/01/2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_đơn_vị_tiền_tệ",
+    "entities": {
+      "amount": "2024"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_name, amount_transfer, trans_status, from_account_no, to_account_no\nFROM transaction\nWHERE trans_time BETWEEN '2024-01-01' AND '2024-01-31'\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.003,
+      "intent_detection": 0.008,
+      "entity_extraction": 0.003,
+      "template_fill": 0.0,
+      "sql_generation": 69.052,
+      "validation": 69.183
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Có bao nhiêu giao dịch trên 10 triệu trong tháng này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_vay_và_tín_dụng_theo_số_tiền",
+    "entities": {
+      "amount": "10000000"
+    },
+    "sql": "SELECT query.\n        6.  Limit result to 100 rows.\n        7.  Dialect: MySQL / MariaDB.\n    *   **User Question:** \"Có bao nhiêu giao dịch trên 10 triệu trong tháng này\" (How many transactions over 10 million in this month).\n    *   **Schema:** `transaction`, `customer_account`, `customer`.\n    *   **Intent:** `tra_cứu_giao_dịch_vay_và_tín_dụng_theo_số_tiền` (Investigate loan and credit transactions by amount).\n    *   **Extracted Entities:** `amount`: \"10000000\".\n    *   **Language:** Vietnamese.\n\n2.  **Analyze the Schema:**\n    *   **Table:** `transaction`\n    *   **Relevant Columns:**\n        *   `amount_transfer` (METRIC) - Likely the transaction amount.\n        *   `amount_currency` (DIMENSION) - Currency type.\n        *   `trans_time` (TEMPORAL) - Transaction time.\n        *   `trans_status` (DIMENSION) - Status.\n        *   `request_time` (TEMPORAL) - Request time.\n        *   `insert_time` (TEMPORAL) - Insert time.\n        *   `amount` is not explicitly a column name, but `amount_transfer` seems to be the main amount field. There is also `bill_amount`, `fee_amount`, `commission_amount`, `discount_amount`, `input_amount`, `vat_amount`, `partner_discount_amount`. Given the context of \"transactions\" (giao dịch), `amount_transfer` is the most logical candidate for the transaction value.\n        *   Date filtering: \"trong tháng này\" (in this month). I need to filter `trans_time` or `request_time` based on the current month. Since I don't know the exact current date, I should use a function like `MONTH(trans_time) = MONTH(CURRENT_DATE())` and `YEAR(trans_time) = YEAR(CURRENT_DATE())`. Or simply `DATE_FORMAT(trans_time, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')`.\n        *   Counting: \"Có bao nhiêu\" (How many). This implies a `COUNT(*)` or `COUNT(trans_id)`.\n\n3.  **Determine the Logic:**\n    *   Table: `transaction`\n    *   Condition 1: Amount > 10,000,000. The extracted entity says \"10000000\". I should assume this is the threshold.\n    *   Condition 2: Time is \"this month\". I need to filter by `trans_time`.\n    *   Output: Count of transactions.\n    *   Limit: 100 rows (Rule 6). *Wait, if I'm counting, a LIMIT 100 on a count query doesn't make sense unless I'm selecting the rows themselves.*\n    *   Re-reading Rule 6: \"Limit the result to 100 rows.\"\n    *   Re-reading User Question: \"Có bao nhiêu giao dịch...\" (How many transactions...). Usually, this expects a single number (COUNT). However, the rule says \"Limit the result to 100 rows\". If I return a single count, it's 1 row. If I return the list of transactions, it's many rows.\n    *   Interpretation: Often, when asked \"How many\", the user wants the count. But the system instruction says \"Limit the result to 100 rows\". This might conflict if I just return `SELECT COUNT(*)`.\n    *   However, looking at the Intent: \"tra_cứu_giao_dịch_và_tín_dụng_theo_số_tiền\" (Investigate loan and credit transactions by amount). This suggests listing the transactions might be more appropriate than just a count, or the count is the primary goal.\n    *   Let's look at the instruction again: \"Only generate a SELECT query.\" \"Limit the result to 100 rows.\"\n    *   If I write `SELECT COUNT(*) ...`, the result is 1 row. This satisfies \"Limit to 100 rows\" (1 <= 100).\n    *   If I write `SELECT * ... WHERE amount > 10000000 ...`, I might get more than 100 rows. So I should add `LIMIT 100`.\n    *   Which one fits the user intent better? \"Có bao nhiêu\" literally means \"How many\". A count query is the direct answer. However, in many SQL generation tasks for banking, if the user asks \"How many\", returning the count is standard. But if the system forces a limit on rows, it might imply returning the actual records.\n    *   Let's check the Intent Description: \"Người dùng muốn tra cứu lịch sử giao dịch vay và tín dụng theo số tiền.\" (User wants to investigate history of loan and credit transactions by amount). This sounds like listing transactions.\n    *   But the Question is \"Có bao nhiêu giao dịch...\" (How many transactions...).\n    *   Conflict: Question asks for count, Intent suggests investigation/listing.\n    *   Decision: Usually, for \"How many\", a count is best. But to satisfy the \"Limit 100 rows\" rule strictly in a way that makes sense for a dataset query, I will select the transaction details but limit to 100, OR select the count.\n    *   Actually, usually \"Limit the result to 100 rows\" is a safety rule for the generator to prevent huge outputs. If I return `SELECT COUNT(*)`, it returns 1 row. That is valid.\n    *   However, often these prompts expect the actual data rows if the intent is \"investigate history\". But the specific question is \"How many\".\n    *   Let's look at similar patterns. If I ask \"How many apples\", I expect \"5\". If I ask \"Show me apples\", I expect a list.\n    *   Given the strict rule \"Limit the result to 100 rows\", if I do `SELECT COUNT(*)`, it's 1 row. If I do `SELECT trans_id, ...`, it's up to 100 rows.\n    *   Let's try to satisfy the specific question \"How many\" while adhering to the schema.\n    *   Wait, if I return `SELECT COUNT(*)`, it's a scalar.\n    *   Let's consider the phrase \"trong tháng này\" (in this month). I need to filter `trans_time`.\n    *   Let's consider the amount. `amount_transfer` > 10000000.\n    *   Let's consider the Limit. If I return the count, it's 1 row. If I return the list, it's 100 rows.\n    *   To be safe and useful, I will select the count. But wait, if the system expects a list of transactions to verify, `SELECT *` with `LIMIT 100` is safer for the \"Limit 100 rows\" rule context which often implies \"don't return too much data\".\n    *   However, the question is explicitly \"How many\".\n    *   Let's check the Intent again: \"tra_cứu_giao_dịch_vay_và_tín_dụng_theo_số_tiền\". This implies filtering transactions.\n    *   Okay, I will write a query that counts the transactions. It returns 1 row, which is within the limit of 100 rows.\n    *   Wait, looking at the \"Extracted Entities\", it has `amount: \"10000000\"`.\n    *   Let's refine the date filter. `trans_time` is TEMPORAL.\n    *   MySQL syntax for current month: `DATE_FORMAT(trans_time, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')`.\n    *   Column for amount: `amount_transfer`.\n    *   Table: `transaction`.\n\n    *   Wait, is there a specific column for \"loan/credit\"? The intent mentions \"vay và tín dụng\" (loan and credit). The schema has `trans_type` (DIMENSION). I don't know the values of `trans_type`. I should probably not filter by `trans_type` unless I know the values, to avoid excluding valid data based on unknown enums. I will stick to the amount and time filter as per the explicit question \"How many transactions over 10 million\".\n    *   Wait, the question is \"Có bao nhiêu giao dịch...\" (How many transactions...).\n    *   If I return `SELECT COUNT(*)`, it answers the question.\n    *   If I return `SELECT trans_id, ...`, it answers the intent \"investigate history\".\n    *   Given the explicit question \"How many\", `COUNT(*)` is",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.003,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 69.471
+    },
+    "error": "Validation failed after 0 retries: Blocked SQL keyword detected: INSERT"
+  },
+  {
+    "question": "Giao dịch gần nhất của tài khoản 123456 là gì",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "123456"
+    },
+    "sql": "SELECT \n  trans_id, trans_time, trans_type, trans_name,\n  from_account_no, to_account_no,\n  amount_transfer, amount_currency,\n  trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%FOREIGN_CURRENCY%'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.0
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Liệt kê các giao dịch nạp tiền vào tài khoản của tôi",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {},
+    "sql": "SELECT query.\n        *   No explanations, comments, or extra text.\n        *   Dialect: MySQL/MariaDB (implied by context).\n        *   Limit: 100 rows (mentioned in step 6 of the context).\n        *   Fix Syntax Error: The template hint has an operator precedence issue (`OR` vs `AND`) and potentially a logic issue regarding \"into my account\" vs \"source account number\".\n        *   Schema: `transaction` table.\n        *   User Question: \"Deposit transactions into my account\" (implies `to_account_no`).\n        *   Intent/Template Hint: \"Search ... by source account number\" (implies `from_account_no`).\n        *   Specific Error Mentioned in prompt header: \"Unclosed single quote\" (though the template hint provided in the text actually has a logic/precedence error, the prompt header says \"Unclosed single quote\" is the specific error mentioned in the context of fixing SQL, but looking at the template hint `from_account_no = 'your_account_number'`, the quotes are closed. However, the prompt instruction says \"The following SQL has a syntax error.\" and then lists context. It seems I need to generate the *correct* SQL based on the context provided, treating the template hint as the base logic to be corrected).\n        *   Wait, looking closely at the prompt structure: \"The following SQL has a syntax error. SQL: SELECT query.\" followed by instructions. It seems the user wants me to generate the SQL that *should* be there, fixing the logic/syntax based on the provided context (User Question + Intent + Schema + Template Hint).\n        *   The prompt explicitly says \"Fix the SQL query using the same schema.\" and \"You MUST output ONLY a valid SQL SELECT query.\"\n        *   The \"Template Hint\" provided in the text is: `WHERE category_code LIKE '%EWALLET_%' OR category_code = 'TOPUP' AND from_account_no = 'your_account_number'`.\n        *   Issues with Template Hint:\n            1.  Precedence: `OR` has lower precedence than `AND`. It should be `(category_code LIKE ... OR category_code = ...) AND from_account_no = ...`.\n            2.  Logic: User Question says \"into my account\" (`to_account_no`), Intent says \"source account number\" (`from_account_no`). Usually, \"Deposit into my account\" means money coming in (`to_account_no`). However, the Intent ID and Template Hint specifically point to `from_account_no`. In many banking contexts, a \"Topup\" (deposit) might be initiated *from* the user's account (e.g., topping up a wallet from a bank card, the wallet is the destination, but the transaction record might vary). However, the most literal interpretation of \"into my account\" is `to_account_no`. But the Intent name is very specific: \"Search ... by source account number\". And the Template Hint uses `from_account_no`.\n            3.  Given the instruction \"Fix the SQL query... using the same schema\" and the presence of the Template Hint which seems to be the \"broken\" version I need to correct, I should prioritize the Template Hint's logic (Category + Account) but fix the syntax and ensure it makes sense.\n            4.  However, the User Question is \"Deposit transactions into my account\". If I use `from_account_no`, it means transactions *from* my account. If I use `to_account_no`, it means transactions *to* my account.\n            5.  Let's look at the \"Specific Error Mentioned\" in the prompt header: \"Unclosed single quote\". The template hint `from_account_no = 'your_account_number'` has closed quotes. But maybe the prompt implies I need to generate a query where I replace `'your_account_number'` with a placeholder or a specific column if available? No, usually in these tasks, `'your_account_number'` is a placeholder for the user's ID.\n            6.  Wait, the prompt says \"The following SQL has a syntax error.\" but doesn't actually show a broken SQL block to fix, it shows context. It asks me to \"Fix the SQL query\". This implies I should construct the correct query based on the context provided (which includes a flawed template hint).\n            7.  Constraint Checklist & Confidence Score:\n                1.  Output ONLY SQL? Yes.\n                2.  No explanations? Yes.\n                3.  Fix syntax error? Yes (Precedence).\n                4.  Limit 100? Yes (Step 6).\n                5.  Schema `transaction`? Yes.\n                6.  Dialect MySQL? Yes.\n                7.  Logic: \"Deposit into my account\".\n            8.  Decision on `from` vs `to`: The Intent explicitly says \"by source account number\". The Template Hint uses `from_account_no`. The User Question says \"into my account\". In the context of fixing a query based on a provided \"Template Hint\" that is described as having an error, I should correct the hint's syntax and logic. The hint uses `from_account_no`. I will stick to the hint's column (`from_account_no`) because the Intent explicitly defines the search criteria as \"by source account number\", even if the User Question phrasing is slightly ambiguous (sometimes \"deposit into\" implies the user is the recipient, but the system logic defined by the Intent overrides). However, \"Deposit into my account\" strongly suggests `to_account_no`.\n            9.  Re-evaluating: If I change `from_account_no` to `to_account_no`, I might deviate from the Intent `tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_số_tài_khoản_nguồn` (Search ... by source account number). If I keep `from_account_no`, I align with the Intent and Template Hint but might contradict the literal English translation of the User Question. However, in Vietnamese banking contexts, \"Nạp tiền vào tài khoản\" (Deposit into account) often involves the user's account being the *destination*. But the Intent says \"by source account number\". This is a contradiction in the prompt's provided context.\n            10. Safest bet for \"Fixing the SQL\": Correct the syntax of the provided Template Hint (Precedence) and ensure it's valid SQL. The Template Hint uses `from_account_no`. I will use `from_account_no` to match the Intent and the Hint, assuming the Hint represents the intended logic despite the User Question phrasing ambiguity.\n            11. Wait, looking at the \"Specific Error Mentioned\" in the prompt header: \"Unclosed single quote\". The template hint `from_account_no = 'your_account_number'` is fine. Maybe the error is in the `LIKE` clause? `'%EWALLET_%'` is fine.\n            12. Actually, the prompt says \"The following SQL has a syntax error.\" followed by \"SQL: SELECT query.\" and then the context. It seems the \"SQL: SELECT query.\" is where the broken SQL *should* be, but it's empty. The instruction is to \"Fix the SQL query\". This implies I need to generate the *corrected* version of what is described.\n            13. The most critical fix is the `OR`/`AND` precedence.\n            14. Also, the prompt mentions \"Unclosed single quote\" as the specific error mentioned in the context description (bullet point 1). Even if the text provided doesn't show an unclosed quote, I should ensure my output has closed quotes.\n            15. Limit: 100 rows.\n            16. Columns: Select `*` or specific columns? The hint implies filtering. I'll select `*` or relevant columns. Usually `*` is safe unless specified.\n            17. Table: `transaction`.\n            18. Placeholder: `'your_account_number'` should probably remain as a placeholder or be replaced. Since I don't have the actual user ID, I will keep the placeholder or use a generic identifier. The hint uses `'your_account_number'`. I will keep it to match the hint's intent.\n            19. Wait, one more thing: The prompt header says \"Specific Error Mentioned: 'Unclosed single quote'\". I need to make sure I don't introduce that.\n            20. Final check on `from` vs `to`: The Intent is `tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_số_tài_khoản_nguồn` (Search deposit or withdrawal transactions by source account number",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 69.161
+    },
+    "error": "Validation failed after 2 retries: Unbalanced parentheses"
+  },
+  {
+    "question": "Tổng số giao dịch trong ngày hôm qua",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {},
+    "sql": "SELECT COUNT(*) AS total_transactions\n        FROM transaction\n        WHERE trans_time >= DATE_SUB(CURDATE(), INTERVAL 1 DAY)\n          AND trans_time < CURDATE()",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 69.117,
+      "validation": 69.427
+    },
+    "semantic_warnings": [
+      "Câu hỏi yêu cầu tổng (SUM) nhưng SQL thiếu SUM()"
+    ],
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Xem các giao dịch chuyển tiền trên 5 triệu trong tháng 3",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {
+      "amount": "5000000"
+    },
+    "sql": "SELECT COUNT(*) AS total_transactions\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURDATE(), INTERVAL 1 DAY)\n  AND trans_time < CURDATE();",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.0
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Tài khoản 456789 đã chuyển bao nhiêu tiền trong tuần qua",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "customer_account",
+      "transaction",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "account_no": "456789",
+      "amount": "456789"
+    },
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transfer\nFROM transaction t\nJOIN customer_account c ON t.from_account_no = c.account_no\nWHERE c.account_no = '456789'\nAND t.trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)\nAND t.category_code LIKE 'TRANSFER_%';",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 61.888
+    },
+    "semantic_warnings": [
+      "Câu hỏi yêu cầu đếm (COUNT) nhưng SQL thiếu COUNT()",
+      "Câu hỏi có thời gian nhưng SQL thiếu filter thời gian"
+    ],
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Những giao dịch nào diễn ra vào ngày 20/02/2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_dòng_tiền",
+    "entities": {},
+    "sql": "SELECT * FROM transaction WHERE trans_time >= '2024-02-20' AND trans_time < '2024-02-21' ORDER BY trans_time DESC LIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 69.414,
+      "validation": 139.441
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Liệt kê 10 giao dịch gần nhất của tài khoản 111222",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "111222"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '111222')\nORDER BY trans_time DESC;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.003,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.0
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Tổng số tiền đã nhận trong tháng 4",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "SELECT SUM(amount_transfer) AS total_received\n    FROM transaction\n    WHERE YEAR(trans_time) = YEAR(CURRENT_DATE())\n      AND MONTH(trans_time) = 4\n      AND trans_status = 'S'\n    LIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.003,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 69.404,
+      "validation": 0.0
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Xem lịch sử giao dịch của tài khoản 333444 trong 7 ngày qua",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "333444",
+      "amount": "333444000000"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '333444')\nORDER BY trans_time DESC;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.0
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Các giao dịch có giá trị dưới 1 triệu trong tháng này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_số_tiền",
+    "entities": {
+      "amount": "1000000"
+    },
+    "sql": "SELECT query.\n\n2.  **Analyze the Previous SQL & Why it might have failed:**\n    *   `amount_transfer < 1000000`: This assumes the currency is the default one (likely VND) and the unit is the base unit. However, there is `amount_currency` and `amount_rate`. Sometimes transactions are stored in different currencies.\n    *   `YEAR(trans_time) = YEAR(NOW()) AND MONTH(trans_time) = MONTH(NOW())`: This is standard for \"this month\".\n    *   `LIMIT 100`: Limits results.\n    *   **Potential Issue 1 (Currency):** The value \"1 million\" might refer to a specific currency (e.g., VND). If `amount_currency` is not 'VND' or similar, the comparison might be invalid or the amount might be in a different unit. However, without knowing the specific currency context, usually, we assume the base currency or the `amount_transfer` field represents the value in the transaction's currency.\n    *   **Potential Issue 2 (Data Type/Nulls):** `amount_transfer` might be NULL or 0.\n    *   **Potential Issue 3 (Date Function):** `NOW()` might not be supported or behave differently in the specific SQL dialect (e.g., MySQL vs PostgreSQL vs Oracle). The schema looks like it could be MySQL or similar (IDENTITY, TEMPORAL, DIMENSION, METRIC tags suggest a specific modeling tool, possibly a data warehouse or OLAP system).\n    *   **Potential Issue 4 (Logic):** \"Under 1 million\" could mean `amount_transfer < 1000000`.\n    *   **Potential Issue 5 (Timezone/Date):** `trans_time` is TEMPORAL.\n    *   **Potential Issue 6 (Currency Conversion):** If the transaction is in USD, 1 million USD is huge. If it's VND, 1 million VND is small. Usually, in banking systems, \"1 million\" implies the local currency (VND).\n    *   **Potential Issue 7 (Filtering):** Maybe there are no transactions *exactly* matching the criteria in the raw table, or the column name is different.\n    *   **Potential Issue 8 (Date Range):** `YEAR` and `MONTH` functions can be slow or specific. Using `DATE_FORMAT` or `BETWEEN` might be better.\n    *   **Potential Issue 9 (Amount Field):** There are multiple amount fields: `amount_transfer`, `bill_amount`, `input_amount`, `fee_amount`. The question asks for \"giao dịch có giá trị\" (transaction value). `amount_transfer` seems the most relevant for transfers. `bill_amount` is for bills.\n    *   **Potential Issue 10 (Currency Dimension):** `amount_currency` is a DIMENSION. We might need to filter by currency if \"1 million\" implies a specific currency (e.g., VND). But without knowing the currency code, we can't filter strictly. However, often `amount_transfer` is the value in the transaction currency.\n    *   **Why \"No Result\"?**\n        *   Maybe `amount_transfer` is stored as a string? (Unlikely for METRIC).\n        *   Maybe the data is in a different currency and 1 million is too small/large?\n        *   Maybe the date filter is wrong (e.g., `trans_time` is in a different format).\n        *   Maybe the query needs to join with `customer_account` or `customer` to get valid transactions? (Unlikely for just transaction value).\n        *   Maybe the threshold should be `<= 1000000`?\n        *   Maybe the currency is not VND, so 1 million VND is 0 USD, but the data is in USD?\n        *   **Crucial Observation:** The previous query used `NOW()`. In some SQL dialects (like older MySQL or specific DBs), `NOW()` might not work well with `trans_time` if `trans_time` is a specific type (TEMPORAL).\n        *   **Crucial Observation 2:** The previous query returned *no result*. This implies the condition `amount_transfer < 1000000` combined with the date filter yielded nothing.\n        *   **Hypothesis:** The amount might be stored in a different unit (e.g., cents) or the currency is different. Or, more likely, the date filter is too restrictive or `trans_time` is not indexed/compatible.\n        *   **Hypothesis 2:** The user wants to see *any* transactions under 1 million, regardless of currency, or perhaps the currency needs to be considered.\n        *   **Hypothesis 3:** The previous query might have failed because `amount_transfer` is NULL for some records, or the data type is incompatible.\n        *   **Hypothesis 4:** Maybe the query needs to check `bill_amount` instead of `amount_transfer`? The question says \"giao dịch\" (transaction). `amount_transfer` is specific to transfers. `bill_amount` is for bills. Usually, \"transaction value\" implies the main amount.\n        *   **Hypothesis 5:** Maybe the date logic needs to be more robust. `DATE(trans_time) >= DATE(NOW())`? No, \"this month\" means `trans_time >= FirstDayOfMonth` AND `trans_time < FirstDayOfNextMonth`.\n        *   **Hypothesis 6:** Maybe the currency is not VND. If the system is international, 1 million could be 1,000,000 of the transaction currency.\n        *   **Hypothesis 7:** Maybe the previous query failed because `amount_transfer` is not the correct field for \"value\". There is `input_amount`, `bill_amount`. But `amount_transfer` is the most direct \"transfer value\".\n        *   **Hypothesis 8:** Maybe the query needs to handle the currency dimension. If `amount_currency` is not 'VND', 1 million VND is negligible. If the data is in USD, 1 million USD is huge. If the data is in VND, 1 million VND is small.\n        *   **Hypothesis 9:** Maybe the query needs to check `amount_transfer` is NOT NULL.\n        *   **Hypothesis 10:** Maybe the query needs to use `DATE_FORMAT` or `BETWEEN` for the date to ensure compatibility.\n        *   **Hypothesis 11:** Maybe the previous query failed because `amount_transfer` is actually `amount_transfer` * `amount_rate`? No, usually stored as is.\n        *   **Hypothesis 12:** Maybe the query needs to filter out completed transactions only? `trans_status`?\n        *   **Hypothesis 13:** Maybe the query needs to check `bill_amount` if it's a bill transaction.\n        *   **Hypothesis 14:** Maybe the query needs to check `input_amount`.\n        *   **Hypothesis 15:** Maybe the query needs to check `amount_transfer` > 0.\n        *   **Hypothesis 16:** Maybe the query needs to check `amount_transfer` < 1000000 AND `amount_currency` = 'VND' (assuming VND is the default).\n        *   **Hypothesis 17:** Maybe the query needs to check `amount_transfer` < 1000000 AND `amount_currency` IS NOT NULL.\n        *   **Hypothesis 18:** Maybe the query needs to check `amount_transfer` < 1000000 AND `amount_transfer` IS NOT NULL.\n        *   **Hypothesis 19:** Maybe the query needs to check `amount_transfer` < 1000000 AND `amount_transfer` > 0.\n        *   **Hypothesis 20:** Maybe the query needs to check `amount_transfer` < 1000000 AND `amount_transfer` IS NOT NULL AND `trans_status` = 'SUCCESS' (or similar).\n        *   **Hypothesis 21:** Maybe the query needs to check `amount_transfer` < 1000000 AND `amount_transfer` IS NOT NULL AND `trans_time` >= '2023-01-01' (assuming current month).\n        *   **Hypothesis 22:** Maybe the query needs to check `amount_transfer` < 1000000 AND `amount_transfer` IS NOT NULL AND `trans_time` >= CURDATE() - INTERVAL 1 MONTH.\n        *   **Hypothesis 23:** Maybe the query needs to check `amount_transfer` < 1000000 AND `amount_transfer` IS NOT NULL AND `trans_time` >= DATE",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 69.583,
+      "validation": 69.999
+    },
+    "semantic_warnings": [
+      "Câu hỏi có thời gian nhưng SQL thiếu filter thời gian"
+    ],
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Tôi đã thực hiện bao nhiêu giao dịch trong tháng 6",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_kênh_thực_hiện",
+    "entities": {},
+    "sql": "SELECT COUNT(*) FROM transaction WHERE EXTRACT(MONTH FROM trans_time) = 6 LIMIT 100;",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 12.537
+    },
+    "error": "Validation failed after 2 retries: Unknown tables: trans_time. Available: customer_account, transaction, customer"
+  },
+  {
+    "question": "Xem các giao dịch chuyển khoản ra ngoài ngân hàng",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_đích",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 69.99
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Có giao dịch nào trên 50 triệu trong năm 2024 không",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_vay_và_tín_dụng_theo_số_tiền",
+    "entities": {
+      "amount": "2024000"
+    },
+    "sql": "SELECT * \nFROM transaction \nWHERE YEAR(trans_time) = 2024 \n  AND amount_transfer > 50000000\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 26.023,
+      "validation": 0.0
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Liệt kê các giao dịch vào ngày hôm nay",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "thống_kê_giao_dịch_vay",
+    "entities": {},
+    "sql": "SELECT * FROM transaction WHERE DATE(trans_time) = CURDATE() LIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.004,
+      "intent_detection": 0.008,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 11.422,
+      "validation": 0.0
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Tổng số tiền giao dịch của tài khoản 888999 trong tháng này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "888999",
+      "amount": "888999000000"
+    },
+    "sql": "SELECT query. No explanations.\n\n2.  **Analyze the Schema:**\n    *   `transaction` table contains transaction details.\n    *   Relevant columns for \"account\": `from_account_no`, `to_account_no`.\n    *   Relevant columns for \"amount\": `amount_transfer`, `to_amount`, `bill_amount`, `input_amount`. Usually, `amount_transfer` or `to_amount` is the transaction amount. Given the context of \"transaction amount\", `amount_transfer` is a strong candidate, or `to_amount`. Let's look at the previous SQL. It used `amount_transfer`.\n    *   Relevant columns for \"account number\": `from_account_no`, `to_account_no`.\n    *   Relevant columns for \"time\": `trans_time`, `request_time`, `insert_time`. `trans_time` seems most appropriate for transaction time.\n    *   Relevant columns for \"account type\": `customer_account` links `account_no` to `customer`. However, the question asks for \"account 888999\". This number likely matches `from_account_no` or `to_account_no` in the `transaction` table directly, or `account_no` in `customer_account`.\n    *   The previous SQL filtered `from_account_no = '888999'`. It also filtered `category_code LIKE 'TRANSFER_%'`. The user question doesn't specify the transaction type (transfer, payment, etc.), just \"transaction\". So filtering by `category_code` might be too restrictive and cause \"no result\".\n    *   The user question asks for \"this month\" (trong tháng này). The previous SQL didn't filter by date.\n    *   The previous SQL selected specific columns but didn't aggregate (SUM). The question asks for \"Tổng số tiền\" (Total amount).\n\n3.  **Identify Issues with Previous SQL:**\n    *   Filtered by `category_code` which might not exist or match the data (it's not in the `transaction` schema provided in the list, wait, let me check).\n    *   Checking `transaction` schema columns: `category_code` is NOT in the `transaction` table schema provided. It is in `customer_account`? No. It's in `transaction`? Let me scan the list again.\n    *   Scanning `transaction` columns: `reference_id`, `trans_id`, `trans_code`, `parent_id`, `node_id`, `user_id`, `user_name`, `session_id`, `trans_time`, `trans_type`, `action_id`, `channel_receiver`, `stak_user_type_do`, `user_do`, `branch_code_do`, `product_id`, `business_process`, `request_id`, `original_request_id`, `input_type`, `input_value`, `from_system_id`, `from_cust_id`, `from_cust_no`, `from_cust_branch`, `from_account_class`, `from_account_type`, `from_account_no`, `from_account_branch`, `from_account_currency`, `from_account_fullname`, `from_message`, `to_system_id`, `to_cust_no`, `to_cust_branch`, `to_account_no`, `to_account_branch`, `to_account_currency`, `to_amount`, `to_account_fullname`, `to_message`, `to_user_name`, `amount_transfer`, `amount_currency`, `amount_rate`, `block_amount`, `block_amount_ref_no`, `fee_affect_object`, `fee_amount`, `fee_currency`, `fee_amount_rate`, `fee_ind`, `commission_amount`, `commission_currency`, `commission_rate`, `commission_ind`, `promotion_amount`, `promotion_currency`, `promotion_rate`, `promotion_ind`, `trans_ref_no`, `trans_name`, `trans_desc`, `trans_info`, `trans_progress`, `request_time`, `request_channel`, `trans_request`, `trans_revert_ref_no`, `partner_code`, `response_time`, `response_code`, `response_message`, `response_status`, `error_code`, `trans_response`, `checker_id`, `checker_date`, `maker_id`, `maker_date`, `approve_status`, `trans_status`, `core_system`, `core_ref_no`, `core_revert_ref_no`, `payment_system`, `payment_ref_no`, `payment_status`, `bill_customer_code`, `bill_customer_name`, `bill_customer_address`, `bill_customer_phone`, `bill_id`, `bill_type`, `bill_code`, `bill_currency`, `bill_from_date`, `bill_to_date`, `bill_cycle`, `bill_total_consumption`, `bill_desc`, `bill_other_info`, `number_of_bills`, `insert_time`, `finish_time`, `discount_amount`, `input_amount`, `receive_time`, `vat_amount`, `partner_discount_amount`, `accounting_online`, `server_session_id`, `source_type`, `card_number`, `cust_no_do`, `bill_amount`, `category_code`, `app_version`, `from_cif_no`.\n    *   Wait, `category_code` IS in the `transaction` table (last few lines).\n    *   However, the previous SQL returned no result. Why?\n        1.  `category_code` filter might be wrong.\n        2.  `from_account_no = '888999'` might be correct, but maybe the account is in `to_account_no` as well.\n        3.  Missing date filter (\"this month\").\n        4.  Missing aggregation (`SUM`).\n\n4.  **Formulate the New Query:**\n    *   **Goal:** Calculate total transaction amount for account '888999' in the current month.\n    *   **Table:** `transaction`.\n    *   **Account Filter:** The account number could be `from_account_no` or `to_account_no`. To be safe, I should check both or assume `from_account_no` is the primary identifier for the account initiating the transaction, but often \"account transactions\" implies any transaction involving that account. Given the previous SQL only checked `from_account_no`, I will stick to that or check both. Usually, for \"account X transactions\", it implies transactions where X is the source or destination. Let's assume `from_account_no` or `to_account_no`. To be comprehensive, I can use `OR`. However, simpler is often better if the previous attempt failed due to other reasons. The previous attempt failed likely because of the `category_code` restriction or missing date filter.\n    *   **Date Filter:** \"This month\". I need to filter `trans_time` (or `request_time`) to be within the current month. Since I don't know the specific date context (e.g., 2023-10), I should use a dynamic date function or a generic placeholder. In standard SQL (often Oracle/Postgres/SQL Server based on the schema style like `TEMPORAL`, `DIMENSION`), `CURRENT_DATE` or `SYSDATE` is common. Let's assume standard SQL date functions. `EXTRACT(MONTH FROM trans_time) = EXTRACT(MONTH FROM CURRENT_DATE)` AND `EXTRACT(YEAR FROM trans_time) = EXTRACT(YEAR FROM CURRENT_DATE)`. Or simply `trans_time >= TRUNC(CURRENT_DATE, 'MM')`.\n    *   **Amount:** `amount_transfer` seems to be the main metric. `to_amount` is also possible. `amount_transfer` is explicitly labeled `METRIC`.\n    *   **Aggregation:** `SUM(amount_transfer)`.\n    *   **Grouping:** None needed if just total.\n    *   **Refining the Account Filter:** The previous SQL used `from_account_no = '888999'`. I will keep this but remove the restrictive `category_code` filter unless necessary. The question asks for \"transaction amount\", not specifically transfer. So I should remove `category_code`.\n    *   **Refining the Date Filter:** Add `WHERE trans_time >= ...`.\n    *   **Refining the Amount:** Sum `amount_transfer`.\n\n    *   *Self-Correction on Date:* Since I am an AI generating SQL, I should use a standard way to represent \"this month\". `trans_time >= TRUNC(SYSDATE, 'MM')` (Oracle style) or `trans_time >= DATE_TRUNC('month', CURRENT_DATE)` (Postgres style). Given the schema has `TEMPORAL` and `DIMENSION` types, it looks like a data warehouse schema, possibly Oracle or similar. I will use a generic date filter logic that works broadly or assume `trans_time` is a timestamp. Let's use `trans_time >= DATE_TRUNC('month', CURRENT_DATE)` or similar. However, to be safe and generic, `trans_time >= '01-01-' || TO_CHAR(CURRENT_DATE, 'YYYY-MM')` is specific. Let's try to be standard. `trans_time >= TRUNC(CURRENT_DATE, 'MM')` is common in Oracle. If it's Postgres, `trans_time >= DATE_TRUNC('month', CURRENT_DATE)`. Without knowing the DB, I'll use a standard SQL approach often accepted in these contexts: `trans_time >= DATE_TRUNC('month', CURRENT_DATE)",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.003,
+      "intent_detection": 0.008,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 68.555
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Các giao dịch chuyển tiền vào tài khoản 123456 trong tháng trước",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "account_no": "123456",
+      "amount": "123456000000"
+    },
+    "sql": "",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.008,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 68.512
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Xem các giao dịch từ ngày 10/02/2024 đến 20/02/2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_trạng_thái",
+    "entities": {
+      "amount": "2024"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n           from_account_no, to_account_no,\n           amount_transfer, amount_currency,\n           trans_status, trans_desc\n    FROM transaction\n    WHERE trans_time BETWEEN '2024-02-10' AND '2024-02-20'\n    ORDER BY trans_time DESC\n    LIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 68.626,
+      "validation": 0.0
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Có bao nhiêu giao dịch chuyển khoản trong tuần này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {},
+    "sql": "SELECT COUNT(*) AS total_transactions\n        FROM transaction\n        WHERE trans_time >= DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)\n          AND trans_time < DATE_ADD(CURDATE(), INTERVAL 1 DAY)\n        LIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.003,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 69.412,
+      "validation": 0.0
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Giao dịch có giá trị lớn nhất trong tháng 5 là gì",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tỷ_giá_áp_dụng",
+    "entities": {},
+    "sql": "SELECT *\nFROM transaction\nWHERE trans_time >= '2024-05-01 00:00:00' AND trans_time < '2024-06-01 00:00:00'\n  AND amount_transfer IS NOT NULL\nORDER BY amount_transfer DESC\nLIMIT 1;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 17.975,
+      "validation": 52.542
+    },
+    "semantic_warnings": [
+      "Câu hỏi yêu cầu MAX nhưng SQL thiếu MAX()"
+    ],
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Cho tôi danh sách giao dịch của tài khoản 555666",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "555666"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%EWALLET_%' OR category_code = 'TOPUP'\nAND from_account_no = 'your_account_number'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.0
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Các giao dịch rút tiền trong tháng này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_thời_gian",
+    "entities": {},
+    "sql": "",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 69.436,
+      "validation": 68.95
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Xem lịch sử chuyển tiền của tài khoản 222333",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "222333"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '222333')\nORDER BY trans_time DESC;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.0
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Tổng tiền đã chuyển trong ngày hôm nay",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "SELECT SUM(amount_transfer) AS total_transferred\n        FROM transaction\n        WHERE DATE(trans_time) = CURDATE()\n          AND trans_status = 'S'\n        LIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 69.442,
+      "validation": 0.0
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Liệt kê các giao dịch có số tiền từ 2 triệu đến 10 triệu",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_số_tiền",
+    "entities": {
+      "amount": "10000000"
+    },
+    "sql": "SELECT query. No explanations.\n    *   Specific Instruction from the end of the prompt: \"Error: Unclosed single quote\". This seems to be a specific error I need to avoid in my output.\n    *   Wait, looking at the very beginning of the prompt text provided in the `user` block: \"The following SQL has a syntax error. SQL: SELECT query.\" ... \"Error mentioned in prompt: 'Unbalanced parentheses'.\" ... \"Error: Unclosed single quote\".\n    *   Actually, the prompt structure is a bit messy. It looks like a few-shot example or a specific task where I need to generate the SQL based on the analysis provided *within* the prompt text (which looks like a CoT dump).\n    *   The core requirement is to write a SQL query that:\n        1.  Selects from `transaction`.\n        2.  Filters `amount_transfer` between 2,000,000 and 10,000,000.\n        3.  Filters `category_code` LIKE 'INVEST_%' (based on Intent/Template Hint).\n        4.  Limits to 100 rows.\n        5.  Is syntactically correct (no unbalanced parentheses, no unclosed quotes).\n        6.  Uses MySQL/MariaDB syntax.\n\n2.  **Determine Columns:**\n    *   Based on Template Hint: `category_code`, `amount_transfer`, `from_account_no`.\n    *   Based on User Question: Amount is key.\n    *   Standard practice: Select `*` or specific relevant columns. Since the hint mentions specific columns, I'll select relevant ones like `trans_id`, `amount_transfer`, `category_code`, `trans_time` (assuming standard transaction table structure) or just `*` if unsure. However, to be safe and specific based on the hint, I'll select `trans_id`, `amount_transfer`, `category_code`.\n    *   Wait, the prompt says \"Fix the SQL query using the same schema.\" and \"Schema: `transaction`, `customer_account`, `customer`.\" It doesn't explicitly list columns in the schema section, but the analysis mentions `amount_transfer` and `category_code`. I will use these.\n    *   Let's select `*` to be safe, or specific columns. Given the hint mentions `category_code` and `amount_transfer`, I'll include them. Let's assume `trans_id` exists.\n    *   Actually, looking at the \"Template Hint\": `category_code LIKE 'INVEST_%'`, `from_account_no`, and `amount_transfer`.\n    *   I will select `trans_id`, `amount_transfer`, `category_code`, `from_account_no`.\n    *   Wait, simpler is often better. `SELECT * FROM transaction WHERE ...` is valid. But specific columns are better. Let's stick to the hint's implication.\n    *   Let's check the error constraint: \"Unclosed single quote\". I must ensure all string literals are closed.\n    *   Let's check the error constraint: \"Unbalanced parentheses\". I must ensure parentheses are balanced.\n\n3.  **Construct the Query:**\n    *   `SELECT trans_id, amount_transfer, category_code, from_account_no` (or just `*`? The prompt says \"Fix the SQL query\". Usually, if the original was `SELECT query.`, it was broken. I should provide a complete valid query).\n    *   `FROM transaction`\n    *   `WHERE amount_transfer BETWEEN 2000000 AND 10000000`\n    *   `AND category_code LIKE 'INVEST_%'`\n    *   `LIMIT 100`\n    *   Ensure quotes are straight single quotes `'`.\n    *   Ensure parentheses are balanced (none needed for simple WHERE, but `LIKE` doesn't need them).\n    *   Wait, the prompt mentions \"Error: Unclosed single quote\". This might be a hint about what *not* to do, or it might be part of the \"Error mentioned in prompt\" section which I need to avoid.\n    *   I will write a clean query.\n\n4.  **Refining the Query:**\n    *   `SELECT trans_id, amount_transfer, category_code, from_account_no FROM transaction WHERE amount_transfer BETWEEN 2000000 AND 10000000 AND category_code LIKE 'INVEST_%' LIMIT 100;",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 69.147
+    },
+    "error": "Validation failed after 2 retries: Unknown tables: the. Available: customer_account, transaction, customer"
+  },
+  {
+    "question": "Có bao nhiêu giao dịch trong ngày 01/03/2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_dòng_tiền",
+    "entities": {},
+    "sql": "SELECT COUNT(*)\n    FROM transaction\n    WHERE trans_time >= '2024-03-01' AND trans_time < '2024-03-02'",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 69.105,
+      "validation": 68.919
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Xem các giao dịch nhận tiền từ tài khoản 777888",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "777888"
+    },
+    "sql": "SELECT \n  trans_id, trans_time, trans_type, trans_name,\n  from_account_no, to_account_no,\n  amount_transfer, amount_currency,\n  trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%FOREIGN_CURRENCY%'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.0
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Giao dịch đầu tiên trong tháng này là gì",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_số_tiền",
+    "entities": {},
+    "sql": "SELECT trans_id, trans_time, trans_name, amount_transfer, amount_currency, trans_status, trans_desc\n    FROM transaction\n    WHERE trans_time >= DATE_FORMAT(NOW(), '%Y-%m-01') AND trans_time < DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')\n    ORDER BY trans_time ASC\n    LIMIT 100",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 68.263,
+      "validation": 70.673
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Những giao dịch nào có số tiền trên 20 triệu",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_số_tiền",
+    "entities": {
+      "amount": "20000000"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) AND amount_transfer > 2000000;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.0
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Xem lịch sử giao dịch của tôi trong 30 ngày gần nhất",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {},
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.003,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 68.78
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  }
+]

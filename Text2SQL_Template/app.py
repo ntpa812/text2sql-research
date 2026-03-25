@@ -78,8 +78,8 @@ def print_result(result: dict, show_timing: bool = True):
 def run_batch(file_path: str, no_explain: bool = False, parallel: int = 1, forced_domain: str | None = None):
     """Chạy pipeline cho tất cả câu hỏi từ file (json/csv/xlsx/md)."""
     import time
-    from pipeline.pipeline_runner import run_pipeline
-    from dataset_loader.question_loader import load_questions, save_processed
+    from pipeline.runner import run_pipeline
+    from pipeline.dataset_loader.question_loader import load_questions, save_processed
 
     print(f"\n{'='*60}")
     print(f"  Batch Mode — {os.path.basename(file_path)}")
@@ -179,7 +179,7 @@ def run_batch(file_path: str, no_explain: bool = False, parallel: int = 1, force
 
 def run_interactive(no_explain: bool = False, forced_domain: str | None = None):
     """Chế độ hỏi đáp tương tác."""
-    from pipeline.pipeline_runner import run_pipeline
+    from pipeline.runner import run_pipeline
 
     print(f"\n{'='*60}")
     print("  Banking Text2SQL Pipeline — Interactive Mode")
@@ -222,7 +222,7 @@ def main():
         print("🗑 Query cache cleared")
 
     if args.warm:
-        from sql_generation.llm_sql_generator import warm_ollama, warm_openai_compatible
+        from pipeline.sql_generation.llm_sql_generator import warm_ollama, warm_openai_compatible
         warm_openai_compatible()
         warm_ollama()
 

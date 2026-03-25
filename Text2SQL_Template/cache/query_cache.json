@@ -1,0 +1,302 @@
+{
+  "hrm:d4e1e5435c3ad466": {
+    "question": "Đếm số nhân viên theo từng phòng ban",
+    "domain": "hrm",
+    "tables": [
+      "employee",
+      "department"
+    ],
+    "intent": "thống_kê_số_lượng_nhân_viên_theo_phòng_ban",
+    "entities": {
+      "department_name": "ban"
+    },
+    "sql": "SELECT d.department_id, d.department_name, COUNT(e.employee_id) as count\n    FROM department d\n    LEFT JOIN employee e ON d.department_id = e.department_id\n    GROUP BY d.department_id, d.department_name\n    ORDER BY count DESC\n    LIMIT 100;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm",
+            "phòng ban"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0405,
+          "keyword_score": 0.0405,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee",
+        "department"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
+  },
+  "hrm:686d0ffb17dfd655": {
+    "question": "Nhân viên nào đang thử việc",
+    "domain": "hrm",
+    "tables": [
+      "employee"
+    ],
+    "intent": "danh_sách_nhân_viên_theo_trạng_thái_làm_việc",
+    "entities": {
+      "employment_status": "PROBATION"
+    },
+    "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.employment_status = 'PROBATION'\nORDER BY d.department_name, e.employee_name ASC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "hrm:7be7734399208bea": {
+    "question": "Liệt kê nhân viên phòng kinh doanh",
+    "domain": "hrm",
+    "tables": [
+      "employee"
+    ],
+    "intent": "liệt_kê_nhân_viên_theo_phòng_ban",
+    "entities": {
+      "department_name": "kinh doanh"
+    },
+    "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE d.department_name LIKE '%kinh doanh%'\nORDER BY e.employee_name ASC\nLIMIT 100;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0455,
+          "keyword_score": 0.0455,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
+  },
+  "hrm:5f36c2b1946570b0": {
+    "question": "ai vắng mặt hôm nay",
+    "domain": "hrm",
+    "tables": [
+      "attendance"
+    ],
+    "intent": "danh_sách_nhân_viên_vắng_mặt_theo_ngày",
+    "entities": {
+      "attendance_date": "2026-03-25"
+    },
+    "sql": "SELECT e.employee_name, d.department_name, e.job_title, a.status\n    FROM attendance a\n    JOIN employee e ON a.employee_id = e.employee_id\n    JOIN department d ON e.department_id = d.department_id\n    WHERE a.attendance_date = CURRENT_DATE\n      AND a.status = 'ABSENT'\n    ORDER BY d.department_name, e.employee_name;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": []
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.5,
+          "keyword_score": 0.5,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "attendance"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
+  },
+  "banking:e3cd0ad1e9374c73": {
+    "question": "Tổng tiền chuyển đi tháng 3",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\n    FROM transaction\n    WHERE YEAR(trans_time) = YEAR(CURRENT_DATE())\n      AND MONTH(trans_time) = 3\n      AND trans_status = 'S'\n    LIMIT 100;",
+    "validator": "PASS"
+  },
+  "hrm:9ad4b39bfbffec3c": {
+    "question": "ngày 24/3/2026 có nhân viên nào chấm công đúng vào 8:00?",
+    "domain": "hrm",
+    "tables": [
+      "attendance",
+      "employee"
+    ],
+    "intent": "tra_cứu_chấm_công_theo_nhân_viên_và_thời_gian",
+    "entities": {
+      "employee_name": "nào chấm công đúng",
+      "attendance_date": "2026-03-24"
+    },
+    "sql": "SELECT\n        a.attendance_id,\n        a.employee_id,\n        e.employee_name,\n        a.attendance_date,\n        a.check_in_time,\n        a.check_out_time,\n        a.status\n    FROM attendance a\n    JOIN employee e ON a.employee_id = e.employee_id\n    WHERE e.employee_name = 'nào chấm công đúng'\n      AND a.attendance_date = '2026-03-24'\n    ORDER BY a.attendance_date DESC\n    LIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "banking:70ed18d84443ac9f": {
+    "question": "tổng tiền chuyển đi trong tháng 3",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\n    FROM transaction\n    WHERE YEAR(trans_time) = YEAR(CURRENT_DATE())\n      AND MONTH(trans_time) = 3\n      AND trans_status = 'S'\n    LIMIT 100;",
+    "validator": "PASS"
+  },
+  "banking:7202b7574cf90a02": {
+    "question": "tổng tiền chuyển đi trong tháng 1",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "hrm:afc40335a033b1f4": {
+    "question": "giờ chấm công của  lê văn cường ngày 16/3/2026",
+    "domain": "hrm",
+    "tables": [
+      "attendance"
+    ],
+    "intent": "tra_cứu_chấm_công_theo_nhân_viên_và_thời_gian",
+    "entities": {
+      "employee_name": "lê văn cường",
+      "attendance_date": "2026-03-16"
+    },
+    "sql": "SELECT\n        a.attendance_id,\n        a.employee_id,\n        e.employee_name,\n        a.attendance_date,\n        a.check_in_time,\n        a.check_out_time,\n        a.status\n    FROM attendance a\n    JOIN employee e ON a.employee_id = e.employee_id\n    WHERE e.employee_name = 'lê văn cường'\n      AND a.attendance_date = '2026-03-16'\n    ORDER BY a.attendance_date DESC\n    LIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "hrm:d8b3b83f15ddd43f": {
+    "question": "Chấm công của Trần Thị Bình ngày 2026-03-20",
+    "domain": "hrm",
+    "tables": [
+      "attendance"
+    ],
+    "intent": "tra_cứu_chấm_công_theo_nhân_viên_và_thời_gian",
+    "entities": {
+      "employee_name": "Trần Thị Bình",
+      "attendance_date": "2026-03-20"
+    },
+    "sql": "SELECT\n        a.attendance_id,\n        a.employee_id,\n        e.employee_name,\n        a.attendance_date,\n        a.check_in_time,\n        a.check_out_time,\n        a.status\n    FROM attendance a\n    JOIN employee e ON a.employee_id = e.employee_id\n    WHERE e.employee_name = 'Trần Thị Bình'\n      AND a.attendance_date = '2026-03-20'\n    ORDER BY a.attendance_date DESC\n    LIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "hrm:62241472def6de4d": {
+    "question": "Chấm công của Nguyễn Văn An ngày 2026-03-24",
+    "domain": "hrm",
+    "tables": [
+      "attendance"
+    ],
+    "intent": "tra_cứu_chấm_công_theo_nhân_viên_và_thời_gian",
+    "entities": {
+      "employee_name": "Nguyễn Văn An",
+      "attendance_date": "2026-03-24"
+    },
+    "sql": "SELECT\n        a.attendance_id,\n        a.employee_id,\n        e.employee_name,\n        a.attendance_date,\n        a.check_in_time,\n        a.check_out_time,\n        a.status\n    FROM attendance a\n    JOIN employee e ON a.employee_id = e.employee_id\n    WHERE e.employee_name = 'Nguyễn Văn An'\n      AND a.attendance_date = '2026-03-24'\n    ORDER BY a.attendance_date DESC\n    LIMIT 100;",
+    "validator": "PASS"
+  },
+  "banking:d81c5e267edad099": {
+    "question": "Tra cứu giao dịch chuyển tiền tháng 3",
+    "domain": "banking",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_loại_giao_dịch",
+    "entities": {},
+    "sql": "SELECT * FROM transaction WHERE MONTH(trans_time) = 3 ORDER BY trans_time DESC LIMIT 100;",
+    "validator": "PASS"
+  }
+}

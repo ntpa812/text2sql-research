@@ -1,1 +1,1 @@
-SELECT * FROM transaction LIMIT 20;
+SELECT * FROM transaction WHERE MONTH(trans_time) = 3 ORDER BY trans_time DESC LIMIT 100;

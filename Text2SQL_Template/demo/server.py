@@ -15,9 +15,9 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from domain_router.registry_loader import load_domain_registry
-from pipeline.pipeline_runner import run_pipeline
-from sql_generation.llm_sql_generator import get_generation_config
+from pipeline.domain_router.registry_loader import load_domain_registry
+from pipeline.runner import run_pipeline
+from pipeline.sql_generation.llm_sql_generator import get_generation_config
 
 BASE_DIR = Path(__file__).resolve().parent.parent  # project root
 FRONTEND_DIST = BASE_DIR / "demo" / "ui" / "dist"

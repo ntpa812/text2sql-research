@@ -53,8 +53,8 @@ def validate_all(
     Returns: (is_valid, error_message, error_type)
     error_type: "security" | "syntax" | "schema" | ""
     """
-    from validator.sql_validator import validate_syntax
-    from validator.schema_validator import validate_schema
+    from pipeline.validator.sql_validator import validate_syntax
+    from pipeline.validator.schema_validator import validate_schema
 
     # 1. Security check FIRST
     is_valid, error = validate_security(sql)

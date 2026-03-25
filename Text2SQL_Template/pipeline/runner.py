@@ -10,38 +10,38 @@ from typing import Any, Dict, Optional
 
 from config.settings import MAX_RETRY_ATTEMPTS, QUERY_ROW_LIMIT
 
-from domain_router.registry_loader import get_domain_config, load_domain_registry
-from domain_router.selector import route_domains
+from pipeline.domain_router.registry_loader import get_domain_config, load_domain_registry
+from pipeline.domain_router.selector import route_domains
 
-from schema_router.schema_loader import get_schema_description, load_all_profiles
-from schema_router.table_selector import rank_tables
+from pipeline.schema_router.schema_loader import get_schema_description, load_all_profiles
+from pipeline.schema_router.table_selector import rank_tables
 
-from intent_detection.intent_loader import build_intent_index, load_intent_dataset
-from intent_detection.intent_ranker import rank_intents
+from pipeline.intent_detection.intent_loader import build_intent_index, load_intent_dataset
+from pipeline.intent_detection.intent_ranker import rank_intents
 
-from entity_extraction.ner_local import extract_entities_local
+from pipeline.entity_extraction.ner_local import extract_entities_local
 
-from slot_filling.entity_normalizer import normalize_entities
-from slot_filling.slot_filler import fill_template
+from pipeline.slot_filling.entity_normalizer import normalize_entities
+from pipeline.slot_filling.slot_filler import fill_template
 
-from template_store.template_loader import (
+from pipeline.template_store.template_loader import (
     get_template_for_intent,
     load_approved_templates,
     save_approved_template,
 )
 
-from sql_generation.sql_prompt_builder import build_sql_prompt
-from sql_generation.llm_sql_generator import generate_sql, get_generation_config, get_last_generation_info
+from pipeline.sql_generation.sql_prompt_builder import build_sql_prompt
+from pipeline.sql_generation.llm_sql_generator import generate_sql, get_generation_config, get_last_generation_info
 
-from validator.security_guard import classify_execution_error, validate_all
-from validator.semantic_validator import validate_semantic
-from validator.structure_validator import validate_sql_structure
-from validator.data_validator import validate_empty_result
-from validator.confidence_scorer import compute_confidence
+from pipeline.validator.security_guard import classify_execution_error, validate_all
+from pipeline.validator.semantic_validator import validate_semantic
+from pipeline.validator.structure_validator import validate_sql_structure
+from pipeline.validator.data_validator import validate_empty_result
+from pipeline.validator.confidence_scorer import compute_confidence
 
-from executor.query_executor import execute_query, explain_query
+from pipeline.executor.query_executor import execute_query, explain_query
 
-from explain.explain_engine import format_result_table, generate_explain
+from pipeline.explain.explain_engine import format_result_table, generate_explain
 
 from pipeline.retry_handler import RetryHandler
 from pipeline.query_cache import cache_result, get_cached_result

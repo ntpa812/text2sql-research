@@ -118,5 +118,20 @@
         "created_at": "2026-03-25T14:34:06"
       }
     ]
+  },
+  "a4501d89662d78df65cb": {
+    "question": "Tra cứu giao dịch chuyển tiền tháng 3",
+    "domain": "banking",
+    "rows": [
+      {
+        "demo_id": "a4501d89",
+        "domain": "banking",
+        "intent": "Tra cứu giao dịch chuyển tiền theo loại giao dịch",
+        "tables": "transaction",
+        "preview_sql": "SELECT * FROM transaction WHERE MONTH(trans_time) = 3 ORDER BY trans_time DESC LIMIT 100;",
+        "note": "Demo mode: ket qua duoc luu local cache, khong truy cap DB that.",
+        "created_at": "2026-03-25T14:51:20"
+      }
+    ]
   }
 }
