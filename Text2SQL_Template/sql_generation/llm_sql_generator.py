@@ -135,8 +135,12 @@ def _generate_openai_compatible(
             content = message.get("content")
 
             # Prefer content field for final SQL
+            # Strip Qwen3/thinking model <think>...</think> blocks from content
             if content and isinstance(content, str) and not content.isspace():
-                return str(content).strip()
+                cleaned = _strip_think_blocks(content)
+                if cleaned:
+                    return cleaned
+                # content was only <think> blocks — fall through to reasoning_content
 
             # Qwen3.5 thinking mode: SQL may be in reasoning_content when content is empty
             reasoning = message.get("reasoning_content") or message.get("reasoning") or ""
@@ -319,6 +323,19 @@ def generate_sql_with_api(
     return sql
 
 
+def _strip_think_blocks(text: str) -> str:
+    """Strip <think>...</think> blocks from Qwen3/thinking model responses.
+    Also handles truncated blocks (no closing </think> tag).
+    """
+    if not text or "<think>" not in text:
+        return text.strip()
+    # Remove complete <think>...</think> blocks
+    result = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL)
+    # Handle truncated <think> block (no closing tag — max_tokens hit)
+    result = re.sub(r'<think>.*$', '', result, flags=re.DOTALL)
+    return result.strip()
+
+
 def _is_llm_refusal(text: str) -> bool:
     """Detect LLM refusal/non-SQL responses."""
     refusal_patterns = [
@@ -372,6 +389,11 @@ def _extract_sql(response: str, prompt: str) -> str:
         response = response[len(prompt):]
 
     response = response.strip()
+
+    # Strip Qwen3/thinking model <think>...</think> blocks (incl. truncated) before any analysis
+    think_stripped = _strip_think_blocks(response)
+    if think_stripped:
+        response = think_stripped
 
     # Detect LLM refusal early — return empty instead of garbage
     if _is_llm_refusal(response):

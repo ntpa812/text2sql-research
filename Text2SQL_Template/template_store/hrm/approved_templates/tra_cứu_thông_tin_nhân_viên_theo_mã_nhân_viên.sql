@@ -4,9 +4,10 @@ SELECT
     d.department_name,
     e.job_title,
     e.employment_status,
-    e.hire_date
+    e.hire_date,
+    e.email,
+    e.phone
 FROM employee e
 JOIN department d ON e.department_id = d.department_id
-WHERE d.department_name LIKE '%{department_name}%'
-ORDER BY e.employee_name ASC
+WHERE e.employee_id = '{employee_id}'
 LIMIT 100;

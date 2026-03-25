@@ -1,21 +1,18 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import {
   Alert,
-  Badge,
   Button,
   Card,
+  Collapse,
   ConfigProvider,
-  Descriptions,
   Empty,
   Input,
   Layout,
   List,
-  Select,
   Space,
   Spin,
   Table,
   Tag,
-  Tabs,
   Typography,
 } from 'antd';
 import useShadcnTheme from './shadcnTheme';
@@ -86,9 +83,7 @@ function createSession(): Session {
 
 function loadSessions(): Session[] {
   const raw = window.localStorage.getItem(SESSION_STORAGE_KEY);
-  if (!raw) {
-    return [createSession()];
-  }
+  if (!raw) return [createSession()];
   try {
     const parsed = JSON.parse(raw) as Session[];
     return parsed.length ? parsed : [createSession()];
@@ -118,7 +113,6 @@ export default function App() {
   const [sessions, setSessions] = useState<Session[]>(() => loadSessions());
   const [activeSessionId, setActiveSessionId] = useState<string>(() => loadSessions()[0].id);
   const [input, setInput] = useState('');
-  const [forcedDomain, setForcedDomain] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -129,34 +123,26 @@ export default function App() {
   useEffect(() => {
     fetch('/api/meta')
       .then((res) => res.json())
-      .then((data: MetaResponse) => {
-        setMeta(data);
-      })
-      .catch((err) => {
-        setError(`Khong tai duoc metadata demo: ${String(err)}`);
-      });
+      .then((data: MetaResponse) => setMeta(data))
+      .catch((err) => setError(`Không tải được metadata demo: ${String(err)}`));
   }, []);
 
   const activeSession = useMemo(
-    () => sessions.find((session) => session.id === activeSessionId) ?? sessions[0],
+    () => sessions.find((s) => s.id === activeSessionId) ?? sessions[0],
     [sessions, activeSessionId],
   );
 
   const activeResult = useMemo(() => {
-    const assistantMessages = activeSession?.messages.filter((item) => item.role === 'assistant') ?? [];
-    return assistantMessages.at(-1)?.result;
+    const msgs = activeSession?.messages.filter((m) => m.role === 'assistant') ?? [];
+    return msgs.length ? msgs[msgs.length - 1].result : undefined;
   }, [activeSession]);
 
   const modelLabel = useMemo(() => {
     const modelInfo = activeResult?.model_info;
     if (modelInfo && typeof modelInfo.active_model === 'string') {
-      const active = modelInfo.active_model;
-      return modelInfo.used_fallback ? `${active} fallback` : active;
+      return modelInfo.used_fallback ? `${modelInfo.active_model} (fallback)` : String(modelInfo.active_model);
     }
-    if (meta?.models.primary_model) {
-      return meta.models.primary_model;
-    }
-    return 'loading...';
+    return meta?.models.primary_model ?? 'loading...';
   }, [activeResult, meta]);
 
   const createNewSession = () => {
@@ -168,27 +154,21 @@ export default function App() {
 
   const handleSubmit = async () => {
     const message = input.trim();
-    if (!message || loading || !activeSession) {
-      return;
-    }
+    if (!message || loading || !activeSession) return;
 
-    const userMessage: Message = {
-      id: crypto.randomUUID(),
-      role: 'user',
-      content: message,
-    };
-
-    const nextSessions = sessions.map((session) =>
-      session.id === activeSession.id
-        ? {
-            ...session,
-            title: session.messages.length === 0 ? message.slice(0, 40) : session.title,
-            messages: [...session.messages, userMessage],
-            updatedAt: new Date().toISOString(),
-          }
-        : session,
+    const userMessage: Message = { id: crypto.randomUUID(), role: 'user', content: message };
+    setSessions((prev) =>
+      prev.map((s) =>
+        s.id === activeSession.id
+          ? {
+              ...s,
+              title: s.messages.length === 0 ? message.slice(0, 40) : s.title,
+              messages: [...s.messages, userMessage],
+              updatedAt: new Date().toISOString(),
+            }
+          : s,
+      ),
     );
-    setSessions(nextSessions);
     setInput('');
     setLoading(true);
     setError(null);
@@ -197,10 +177,7 @@ export default function App() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message,
-          forced_domain: forcedDomain,
-        }),
+        body: JSON.stringify({ message }),
       });
       const data = (await res.json()) as ChatApiResponse;
       const assistantMessage: Message = {
@@ -209,39 +186,157 @@ export default function App() {
         content: data.assistant_message,
         result: data.result,
       };
-
       setSessions((prev) =>
-        prev.map((session) =>
-          session.id === activeSession.id
-            ? {
-                ...session,
-                messages: [...session.messages, assistantMessage],
-                updatedAt: new Date().toISOString(),
-              }
-            : session,
+        prev.map((s) =>
+          s.id === activeSession.id
+            ? { ...s, messages: [...s.messages, assistantMessage], updatedAt: new Date().toISOString() }
+            : s,
         ),
       );
     } catch (err) {
-      setError(`Gui tin that bai: ${String(err)}`);
+      setError(`Gửi tin thất bại: ${String(err)}`);
     } finally {
       setLoading(false);
     }
   };
 
+  // ── Debug panel collapse items ────────────────────────────────────────────
+  const debugCollapseItems = activeResult
+    ? [
+        {
+          key: 'domain',
+          label: (
+            <Space size={6}>
+              <Text strong>Domain</Text>
+              {activeResult.domain ? (
+                <Tag color="blue">{activeResult.domain}</Tag>
+              ) : (
+                <Tag color="default">N/A</Tag>
+              )}
+            </Space>
+          ),
+          children: (
+            <Space direction="vertical" size={6} style={{ width: '100%' }}>
+              <div>
+                <Text type="secondary" style={{ fontSize: 12 }}>Domain đã chọn</Text>
+                <Paragraph className="code-panel" style={{ marginTop: 4 }}>
+                  {activeResult.domain ?? 'N/A'}
+                </Paragraph>
+              </div>
+              <div>
+                <Text type="secondary" style={{ fontSize: 12 }}>Các domain ứng viên</Text>
+                <Paragraph className="code-panel" style={{ marginTop: 4 }}>
+                  {(activeResult.candidate_domains ?? []).join(', ') || 'N/A'}
+                </Paragraph>
+              </div>
+              <div>
+                <Text type="secondary" style={{ fontSize: 12 }}>Intent</Text>
+                <Paragraph className="code-panel" style={{ marginTop: 4 }}>
+                  {activeResult.intent_name ?? activeResult.intent ?? 'N/A'}
+                </Paragraph>
+              </div>
+              {activeResult.debug?.domain_routing ? (
+                <div>
+                  <Text type="secondary" style={{ fontSize: 12 }}>Routing scores</Text>
+                  <Paragraph className="code-panel" style={{ marginTop: 4 }}>
+                    {JSON.stringify(activeResult.debug.domain_routing, null, 2)}
+                  </Paragraph>
+                </div>
+              ) : null}
+            </Space>
+          ),
+        },
+        {
+          key: 'schema',
+          label: (
+            <Space size={6}>
+              <Text strong>Schema</Text>
+              {(activeResult.tables ?? []).length > 0 ? (
+                <Tag color="geekblue">{(activeResult.tables ?? []).join(', ')}</Tag>
+              ) : (
+                <Tag color="default">N/A</Tag>
+              )}
+            </Space>
+          ),
+          children: (
+            <Space direction="vertical" size={6} style={{ width: '100%' }}>
+              <div>
+                <Text type="secondary" style={{ fontSize: 12 }}>Bảng được sử dụng</Text>
+                <Paragraph className="code-panel" style={{ marginTop: 4 }}>
+                  {(activeResult.tables ?? []).join(', ') || 'N/A'}
+                </Paragraph>
+              </div>
+              {activeResult.debug?.schema_description ? (
+                <div>
+                  <Text type="secondary" style={{ fontSize: 12 }}>Schema description</Text>
+                  <Paragraph className="code-panel" style={{ marginTop: 4 }}>
+                    {String(activeResult.debug.schema_description)}
+                  </Paragraph>
+                </div>
+              ) : null}
+              {activeResult.debug?.entities ? (
+                <div>
+                  <Text type="secondary" style={{ fontSize: 12 }}>Entities</Text>
+                  <Paragraph className="code-panel" style={{ marginTop: 4 }}>
+                    {JSON.stringify(activeResult.debug.entities, null, 2)}
+                  </Paragraph>
+                </div>
+              ) : null}
+            </Space>
+          ),
+        },
+        {
+          key: 'sql',
+          label: (
+            <Space size={6}>
+              <Text strong>SQL Query</Text>
+              <Tag color={activeResult.validator === 'PASS' ? 'green' : 'orange'}>
+                {activeResult.validator ?? '—'}
+              </Tag>
+              <Tag>{activeResult.rows ?? 0} rows</Tag>
+            </Space>
+          ),
+          children: (
+            <Space direction="vertical" size={6} style={{ width: '100%' }}>
+              <div>
+                <Text type="secondary" style={{ fontSize: 12 }}>SQL sinh ra</Text>
+                <Paragraph className="code-panel" style={{ marginTop: 4 }}>
+                  {activeResult.sql ?? 'N/A'}
+                </Paragraph>
+              </div>
+              {activeResult.timing ? (
+                <div>
+                  <Text type="secondary" style={{ fontSize: 12 }}>Timing (ms)</Text>
+                  <Paragraph className="code-panel" style={{ marginTop: 4 }}>
+                    {JSON.stringify(activeResult.timing, null, 2)}
+                  </Paragraph>
+                </div>
+              ) : null}
+              {activeResult.result_data?.length ? (
+                <Table
+                  size="small"
+                  pagination={false}
+                  rowKey={(_, idx) => String(idx)}
+                  columns={buildColumns(activeResult.result_data)}
+                  dataSource={activeResult.result_data}
+                  scroll={{ x: true }}
+                />
+              ) : null}
+            </Space>
+          ),
+        },
+      ]
+    : [];
+
   return (
     <ConfigProvider {...configProps}>
       <Layout className="app-shell">
-        <Sider width={280} className="history-pane">
+
+        {/* ── Left: session history ──────────────────────────────────────── */}
+        <Sider width={220} className="history-pane">
           <div className="pane-header">
-            <div>
-              <Text className="eyebrow">Conversation History</Text>
-              <Title level={4} className="pane-title">
-                Demo sessions
-              </Title>
-            </div>
-            <Button type="primary" onClick={createNewSession}>
-              New chat
-            </Button>
+            <Title level={4} className="pane-title">Demo sessions</Title>
+            <Button type="primary" onClick={createNewSession}>New chat</Button>
           </div>
           <List
             dataSource={sessions}
@@ -261,29 +356,10 @@ export default function App() {
           />
         </Sider>
 
+        {/* ── Center: chat ───────────────────────────────────────────────── */}
         <Content className="center-pane">
           <div className="chat-header">
-            <div>
-              <Text className="eyebrow">Text2SQL Demo</Text>
-              <Title level={2} className="hero-title">
-                Chatbot quan sat duoc toan bo pipeline
-              </Title>
-              <Paragraph className="hero-copy">
-                Demo nay chay `demo_mode`: van route domain, rank intent/schema, build prompt va sinh SQL,
-                nhung ket qua Step 7 duoc luu local cache thay vi goi DB that.
-              </Paragraph>
-            </div>
-            <Card size="small" className="model-card">
-              <Space direction="vertical" size={4}>
-                <Text type="secondary">Current model</Text>
-                <Tag color="default" className="model-tag">
-                  {modelLabel}
-                </Tag>
-                {meta?.models.fallback_model ? (
-                  <Text type="secondary">Fallback: {meta.models.fallback_model}</Text>
-                ) : null}
-              </Space>
-            </Card>
+            <Title level={3} className="hero-title">Text2SQL Demo</Title>
           </div>
 
           {error ? <Alert type="error" showIcon message={error} className="main-alert" /> : null}
@@ -300,8 +376,20 @@ export default function App() {
                       {message.role === 'user' ? 'User' : 'Assistant'}
                     </Text>
                     <Paragraph className="message-content">{message.content}</Paragraph>
+
+                    {/* Bot: show explain below the main reply */}
+                    {message.role === 'assistant' && message.result?.explain ? (
+                      <div className="explain-block">
+                        <Text type="secondary" style={{ fontSize: 12, display: 'block', marginBottom: 4 }}>
+                          Giải thích
+                        </Text>
+                        <Paragraph className="explain-text">{message.result.explain}</Paragraph>
+                      </div>
+                    ) : null}
+
+                    {/* Summary tags */}
                     {message.result ? (
-                      <Space wrap size={[8, 8]}>
+                      <Space wrap size={[6, 6]} style={{ marginTop: 8 }}>
                         <Tag>{message.result.domain ?? 'N/A'}</Tag>
                         <Tag color="blue">{message.result.intent_name ?? message.result.intent ?? 'No intent'}</Tag>
                         <Tag color={message.result.validator === 'PASS' ? 'green' : 'orange'}>
@@ -314,155 +402,57 @@ export default function App() {
                 </div>
               ))
             ) : (
-              <Empty
-                description="Chua co tin nhan nao. Thu hoi mot cau banking hoac HRM de xem domain router va prompt panel."
-              />
+              <Empty description="Chưa có tin nhắn. Thử hỏi về banking hoặc HRM để xem domain router và prompt panel." />
             )}
             {loading ? (
-              <div className="loading-block">
-                <Spin />
-              </div>
+              <div className="loading-block"><Spin /></div>
             ) : null}
           </div>
 
+          {/* ── Composer ── */}
           <Card className="composer-card">
-            <Space direction="vertical" size={12} style={{ width: '100%' }}>
-              <Space wrap size={[8, 8]}>
-                <Badge color="#18181b" text={`Model: ${modelLabel}`} />
-                <Select
-                  allowClear
-                  placeholder="Force domain"
-                  style={{ width: 180 }}
-                  value={forcedDomain}
-                  onChange={(value) => setForcedDomain(value)}
-                  options={(meta?.domains ?? []).map((item) => ({
-                    label: item.display_name,
-                    value: item.domain_id,
-                  }))}
-                />
-              </Space>
+            <div className="composer-textarea-wrap">
               <Input.TextArea
                 value={input}
-                onChange={(event) => setInput(event.target.value)}
-                rows={4}
-                placeholder="Nhap cau hoi demo... vi du: Liet ke nhan vien thuoc phong kinh doanh"
-                onPressEnter={(event) => {
-                  if (!event.shiftKey) {
-                    event.preventDefault();
-                    void handleSubmit();
-                  }
+                onChange={(e) => setInput(e.target.value)}
+                rows={3}
+                placeholder="Nhập câu hỏi demo... ví dụ: Liệt kê nhân viên thuộc phòng kinh doanh"
+                onPressEnter={(e) => {
+                  if (!e.shiftKey) { e.preventDefault(); void handleSubmit(); }
                 }}
               />
-              <div className="composer-actions">
-                <Text type="secondary">
-                  Shift+Enter de xuong dong, Enter de gui.
-                </Text>
-                <Button type="primary" onClick={() => void handleSubmit()} loading={loading}>
-                  Send
-                </Button>
+              <div className="composer-model-chip">
+                <Tag color="default" className="model-tag">{modelLabel}</Tag>
               </div>
-            </Space>
+            </div>
+            <div className="composer-actions" style={{ marginTop: 8 }}>
+              <Text type="secondary" style={{ fontSize: 12 }}>
+                Shift+Enter để xuống dòng · Enter để gửi
+              </Text>
+              <Button type="primary" onClick={() => void handleSubmit()} loading={loading}>
+                Gửi
+              </Button>
+            </div>
           </Card>
         </Content>
 
-        <Sider width={380} className="debug-pane">
-          <div className="pane-header">
-            <div>
-              <Text className="eyebrow">Prompt Inspector</Text>
-              <Title level={4} className="pane-title">
-                Debug context
-              </Title>
-            </div>
+        {/* ── Right: pipeline inspector ─────────────────────────────────── */}
+        <Sider width={360} className="debug-pane">
+          <div className="pane-header" style={{ marginBottom: 16 }}>
+            <Title level={4} className="pane-title">Pipeline Inspector</Title>
           </div>
 
           {activeResult ? (
-            <Tabs
-              defaultActiveKey="prompt"
-              items={[
-                {
-                  key: 'prompt',
-                  label: 'Prompt',
-                  children: (
-                    <Card size="small">
-                      <Paragraph className="code-panel">
-                        {String(activeResult.debug?.prompt || activeResult.debug?.template_sql || 'Template-first mode, khong co prompt LLM.')}
-                      </Paragraph>
-                    </Card>
-                  ),
-                },
-                {
-                  key: 'context',
-                  label: 'Context',
-                  children: (
-                    <Space direction="vertical" size={12} style={{ width: '100%' }}>
-                      <Descriptions column={1} size="small" bordered>
-                        <Descriptions.Item label="Domain">{String(activeResult.domain ?? 'N/A')}</Descriptions.Item>
-                        <Descriptions.Item label="Candidate domains">
-                          {String((activeResult.candidate_domains ?? []).join(', ') || 'N/A')}
-                        </Descriptions.Item>
-                        <Descriptions.Item label="Intent">
-                          {String(activeResult.intent_name ?? activeResult.intent ?? 'N/A')}
-                        </Descriptions.Item>
-                        <Descriptions.Item label="Tables">
-                          {String((activeResult.tables ?? []).join(', ') || 'N/A')}
-                        </Descriptions.Item>
-                        <Descriptions.Item label="Model">
-                          {String((activeResult.model_info?.active_model as string) ?? modelLabel)}
-                        </Descriptions.Item>
-                      </Descriptions>
-                      <Card size="small" title="Schema description">
-                        <Paragraph className="code-panel">
-                          {String(activeResult.debug?.schema_description || 'N/A')}
-                        </Paragraph>
-                      </Card>
-                      <Card size="small" title="Entities">
-                        <Paragraph className="code-panel">
-                          {JSON.stringify(activeResult.debug?.entities ?? {}, null, 2)}
-                        </Paragraph>
-                      </Card>
-                    </Space>
-                  ),
-                },
-                {
-                  key: 'result',
-                  label: 'Result',
-                  children: (
-                    <Space direction="vertical" size={12} style={{ width: '100%' }}>
-                      <Card size="small" title="SQL">
-                        <Paragraph className="code-panel">{String(activeResult.sql || 'N/A')}</Paragraph>
-                      </Card>
-                      <Card size="small" title="Timing / trace">
-                        <Paragraph className="code-panel">
-                          {JSON.stringify(
-                            {
-                              validator: activeResult.validator,
-                              timing: activeResult.timing,
-                              domain_routing: activeResult.debug?.domain_routing,
-                            },
-                            null,
-                            2,
-                          )}
-                        </Paragraph>
-                      </Card>
-                      {activeResult.result_data?.length ? (
-                        <Table
-                          size="small"
-                          pagination={false}
-                          rowKey={(_, index) => String(index)}
-                          columns={buildColumns(activeResult.result_data)}
-                          dataSource={activeResult.result_data}
-                          scroll={{ x: true }}
-                        />
-                      ) : null}
-                    </Space>
-                  ),
-                },
-              ]}
+            <Collapse
+              defaultActiveKey={['domain', 'sql']}
+              className="inspector-collapse"
+              items={debugCollapseItems}
             />
           ) : (
-            <Empty description="Gui mot cau hoi de xem prompt, schema, intent va SQL." />
+            <Empty description="Gửi một câu hỏi để xem domain, schema và SQL đã sinh ra." />
           )}
         </Sider>
+
       </Layout>
     </ConfigProvider>
   );

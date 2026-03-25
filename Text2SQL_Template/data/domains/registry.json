@@ -149,11 +149,8 @@
         "approved_templates_dir": "../../template_store/hrm/approved_templates"
       },
       "db_config": {
-        "host": "192.168.3.7",
-        "port": 3306,
-        "user": "bank-gateway",
-        "password": "bankgateway@123",
-        "database": "ai_hrm"
+        "engine": "sqlite",
+        "database": "data/mock/hrm.db"
       },
       "table_keywords": {
         "nhân viên|employee|hồ sơ nhân sự|mã nhân viên|tên nhân viên": [

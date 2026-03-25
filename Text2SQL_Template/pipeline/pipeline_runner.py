@@ -50,6 +50,17 @@ from pipeline.demo_cache import get_demo_rows
 
 logger = logging.getLogger(__name__)
 
+# ── Domain arbitration weights (tổng = 1.0) ──────────────────────────────────
+ARBITRATION_WEIGHT_DOMAIN = 0.5   # trọng số domain routing score
+ARBITRATION_WEIGHT_TABLE  = 0.2   # trọng số table relevance score
+ARBITRATION_WEIGHT_INTENT = 0.3   # trọng số intent match score
+
+# ── Table selection threshold ─────────────────────────────────────────────────
+TABLE_SELECTION_MIN_SCORE = 0.3   # normalized score tối thiểu để table được chọn
+
+# ── Intent ranking top-k ──────────────────────────────────────────────────────
+INTENT_RANKING_TOP_K = 3
+
 
 _registry = None
 _domain_resources: Dict[str, Dict[str, Any]] = {}
@@ -100,7 +111,7 @@ def _strip_scores(item: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
 def _select_tables_from_ranked(ranked_tables: list[Dict[str, Any]]) -> list[str]:
     if not ranked_tables:
         return []
-    selected = [item["table_name"] for item in ranked_tables if item.get("_normalized_score", 0.0) >= 0.3]
+    selected = [item["table_name"] for item in ranked_tables if item.get("_normalized_score", 0.0) >= TABLE_SELECTION_MIN_SCORE]
     if selected:
         return selected
     return [ranked_tables[0]["table_name"]]
@@ -166,7 +177,7 @@ def _arbitrate_domain(
         top_table = table_rankings.get(domain_id, {}).get("top_score", 0.0)
         top_intent = intent_rankings.get(domain_id, {}).get("top_score", 0.0)
         domain_score = domain_scores.get(domain_id, 0.0)
-        final_score = (0.5 * domain_score) + (0.2 * top_table) + (0.3 * top_intent)
+        final_score = (ARBITRATION_WEIGHT_DOMAIN * domain_score) + (ARBITRATION_WEIGHT_TABLE * top_table) + (ARBITRATION_WEIGHT_INTENT * top_intent)
         arbitration.append({
             "domain_id": domain_id,
             "display_name": registry["domains"][domain_id].get("display_name", domain_id),
@@ -309,7 +320,7 @@ def run_pipeline(
                 question=question,
                 intent_index=resources["intent_index"],
                 use_embedding=use_embedding,
-                top_k=3,
+                top_k=INTENT_RANKING_TOP_K,
             )
             intent_rankings[domain_id] = {
                 "ranked_intents": ranked_intents,

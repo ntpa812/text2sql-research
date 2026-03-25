@@ -1,0 +1,269 @@
+"""
+Script tạo HRM mock database (SQLite).
+Chạy: python data/mock/create_hrm_db.py
+Output: data/mock/hrm.db
+"""
+
+import sqlite3
+import os
+import random
+from datetime import date, timedelta
+
+DB_PATH = os.path.join(os.path.dirname(__file__), "hrm.db")
+
+# ── 1. Schema ────────────────────────────────────────────────────────────────
+
+SCHEMA = """
+CREATE TABLE IF NOT EXISTS department (
+    department_id   TEXT PRIMARY KEY,
+    department_name TEXT NOT NULL,
+    manager_id      TEXT
+);
+
+CREATE TABLE IF NOT EXISTS employee (
+    employee_id       TEXT PRIMARY KEY,
+    employee_name     TEXT NOT NULL,
+    department_id     TEXT NOT NULL,
+    job_title         TEXT NOT NULL,
+    employment_status TEXT NOT NULL,   -- ACTIVE | PROBATION | RESIGNED | SUSPENDED
+    hire_date         TEXT NOT NULL,   -- YYYY-MM-DD
+    email             TEXT,
+    phone             TEXT,
+    FOREIGN KEY (department_id) REFERENCES department(department_id)
+);
+
+CREATE TABLE IF NOT EXISTS attendance (
+    attendance_id   INTEGER PRIMARY KEY AUTOINCREMENT,
+    employee_id     TEXT NOT NULL,
+    attendance_date TEXT NOT NULL,     -- YYYY-MM-DD
+    check_in_time   TEXT,              -- HH:MM:SS  (NULL nếu absent/on_leave)
+    check_out_time  TEXT,              -- HH:MM:SS
+    status          TEXT NOT NULL,     -- PRESENT | LATE | REMOTE | ABSENT | ON_LEAVE
+    FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
+);
+"""
+
+# ── 2. Dữ liệu phòng ban ─────────────────────────────────────────────────────
+
+DEPARTMENTS = [
+    ("DEPT001", "Ban Giám Đốc",                  "EMP001"),
+    ("DEPT002", "Phòng Nhân Sự",                 "EMP005"),
+    ("DEPT003", "Phòng Kế Toán - Tài Chính",     "EMP010"),
+    ("DEPT004", "Phòng Kinh Doanh",              "EMP015"),
+    ("DEPT005", "Phòng Marketing",               "EMP020"),
+    ("DEPT006", "Phòng Công Nghệ Thông Tin",     "EMP025"),
+    ("DEPT007", "Phòng Hành Chính",              "EMP030"),
+    ("DEPT008", "Phòng Pháp Chế",               "EMP035"),
+    ("DEPT009", "Phòng Vận Hành",               "EMP040"),
+    ("DEPT010", "Phòng Chăm Sóc Khách Hàng",    "EMP045"),
+]
+
+# ── 3. Dữ liệu nhân viên ────────────────────────────────────────────────────
+# (employee_id, employee_name, department_id, job_title, employment_status, hire_date)
+
+EMPLOYEES = [
+    # Ban Giám Đốc
+    ("EMP001", "Nguyễn Văn An",     "DEPT001", "Giám Đốc Điều Hành",        "ACTIVE",    "2018-03-01"),
+    ("EMP002", "Trần Thị Bích",     "DEPT001", "Phó Giám Đốc",              "ACTIVE",    "2019-05-15"),
+    ("EMP003", "Lê Văn Cường",      "DEPT001", "Trợ Lý Giám Đốc",           "ACTIVE",    "2021-07-10"),
+    ("EMP004", "Phạm Thị Dung",     "DEPT001", "Thư Ký Điều Hành",          "RESIGNED",  "2020-01-20"),
+
+    # Phòng Nhân Sự
+    ("EMP005", "Hoàng Văn Em",      "DEPT002", "Trưởng Phòng Nhân Sự",      "ACTIVE",    "2019-02-01"),
+    ("EMP006", "Vũ Thị Hoa",        "DEPT002", "Chuyên Viên Nhân Sự",       "ACTIVE",    "2020-06-15"),
+    ("EMP007", "Đặng Văn Giang",    "DEPT002", "Chuyên Viên Tuyển Dụng",    "ACTIVE",    "2021-09-01"),
+    ("EMP008", "Bùi Thị Hương",     "DEPT002", "Nhân Viên Nhân Sự",         "PROBATION", "2025-12-01"),
+    ("EMP009", "Ngô Văn Khoa",      "DEPT002", "Nhân Viên Đào Tạo",         "ACTIVE",    "2022-03-10"),
+
+    # Phòng Kế Toán - Tài Chính
+    ("EMP010", "Dương Thị Lan",     "DEPT003", "Trưởng Phòng Kế Toán",      "ACTIVE",    "2018-08-01"),
+    ("EMP011", "Lý Văn Minh",       "DEPT003", "Kế Toán Tổng Hợp",          "ACTIVE",    "2020-04-20"),
+    ("EMP012", "Trịnh Thị Nhung",   "DEPT003", "Kế Toán Viên",              "ACTIVE",    "2021-11-15"),
+    ("EMP013", "Phan Văn Quân",     "DEPT003", "Kế Toán Thuế",              "RESIGNED",  "2019-06-01"),
+    ("EMP014", "Hồ Thị Phúc",       "DEPT003", "Kiểm Soát Viên Tài Chính",  "ACTIVE",    "2022-01-05"),
+
+    # Phòng Kinh Doanh
+    ("EMP015", "Đinh Văn Sơn",      "DEPT004", "Trưởng Phòng Kinh Doanh",   "ACTIVE",    "2018-11-01"),
+    ("EMP016", "Mai Thị Trang",     "DEPT004", "Chuyên Viên Kinh Doanh",    "ACTIVE",    "2020-08-10"),
+    ("EMP017", "Cao Văn Tuấn",      "DEPT004", "Nhân Viên Kinh Doanh",      "ACTIVE",    "2021-03-15"),
+    ("EMP018", "Lưu Thị Uyên",      "DEPT004", "Nhân Viên Kinh Doanh",      "PROBATION", "2026-01-10"),
+    ("EMP019", "Hà Văn Vinh",       "DEPT004", "Nhân Viên Kinh Doanh",      "ACTIVE",    "2023-07-01"),
+
+    # Phòng Marketing
+    ("EMP020", "Nguyễn Thị Xuân",   "DEPT005", "Trưởng Phòng Marketing",    "ACTIVE",    "2019-09-01"),
+    ("EMP021", "Trần Văn Yên",      "DEPT005", "Chuyên Viên Marketing",     "ACTIVE",    "2021-02-20"),
+    ("EMP022", "Lê Thị Ánh",        "DEPT005", "Chuyên Viên Content",       "ACTIVE",    "2022-05-10"),
+    ("EMP023", "Phạm Văn Bình",     "DEPT005", "Nhân Viên Marketing",       "RESIGNED",  "2021-08-01"),
+    ("EMP024", "Hoàng Thị Châu",    "DEPT005", "Nhân Viên Thiết Kế",        "ACTIVE",    "2023-01-15"),
+
+    # Phòng Công Nghệ Thông Tin
+    ("EMP025", "Vũ Văn Đức",        "DEPT006", "Trưởng Phòng CNTT",         "ACTIVE",    "2018-05-01"),
+    ("EMP026", "Đặng Thị Giang",    "DEPT006", "Lập Trình Viên Senior",     "ACTIVE",    "2019-10-15"),
+    ("EMP027", "Bùi Văn Hải",       "DEPT006", "Lập Trình Viên",            "ACTIVE",    "2021-04-01"),
+    ("EMP028", "Ngô Thị Hạnh",      "DEPT006", "Kỹ Thuật Viên Hệ Thống",   "ACTIVE",    "2022-08-20"),
+    ("EMP029", "Dương Văn Kiên",    "DEPT006", "Lập Trình Viên",            "PROBATION", "2026-02-01"),
+
+    # Phòng Hành Chính
+    ("EMP030", "Lý Thị Linh",       "DEPT007", "Trưởng Phòng Hành Chính",   "ACTIVE",    "2019-01-15"),
+    ("EMP031", "Trịnh Văn Long",    "DEPT007", "Nhân Viên Hành Chính",      "ACTIVE",    "2020-10-01"),
+    ("EMP032", "Phan Thị Mỹ",       "DEPT007", "Nhân Viên Văn Phòng",       "ACTIVE",    "2022-03-20"),
+    ("EMP033", "Hồ Văn Nam",        "DEPT007", "Nhân Viên Lái Xe",          "SUSPENDED", "2020-07-10"),
+    ("EMP034", "Đinh Thị Oanh",     "DEPT007", "Nhân Viên Hành Chính",      "ACTIVE",    "2023-05-15"),
+
+    # Phòng Pháp Chế
+    ("EMP035", "Mai Văn Phong",     "DEPT008", "Trưởng Phòng Pháp Chế",    "ACTIVE",    "2019-04-01"),
+    ("EMP036", "Cao Thị Quyên",     "DEPT008", "Chuyên Viên Pháp Lý",      "ACTIVE",    "2020-12-10"),
+    ("EMP037", "Lưu Văn Rạng",      "DEPT008", "Chuyên Viên Hợp Đồng",     "ACTIVE",    "2022-06-01"),
+    ("EMP038", "Hà Thị Sương",      "DEPT008", "Nhân Viên Pháp Chế",       "RESIGNED",  "2022-09-01"),
+
+    # Phòng Vận Hành
+    ("EMP039", "Nguyễn Văn Thắng",  "DEPT009", "Chuyên Viên Vận Hành",     "ACTIVE",    "2021-01-10"),
+    ("EMP040", "Trần Thị Uyên",     "DEPT009", "Trưởng Phòng Vận Hành",    "ACTIVE",    "2018-12-01"),
+    ("EMP041", "Lê Văn Vũ",         "DEPT009", "Nhân Viên Vận Hành",       "ACTIVE",    "2022-04-15"),
+    ("EMP042", "Phạm Thị Yến",      "DEPT009", "Nhân Viên Vận Hành",       "ACTIVE",    "2023-08-20"),
+    ("EMP043", "Hoàng Văn Anh",     "DEPT009", "Kỹ Thuật Viên Vận Hành",   "SUSPENDED", "2021-06-01"),
+
+    # Phòng Chăm Sóc Khách Hàng
+    ("EMP044", "Vũ Thị Bình",       "DEPT010", "Chuyên Viên CSKH",         "ACTIVE",    "2020-09-15"),
+    ("EMP045", "Đặng Văn Chiến",    "DEPT010", "Trưởng Phòng CSKH",        "ACTIVE",    "2019-07-01"),
+    ("EMP046", "Bùi Thị Diệu",      "DEPT010", "Nhân Viên CSKH",           "ACTIVE",    "2021-10-20"),
+    ("EMP047", "Ngô Văn Hậu",       "DEPT010", "Nhân Viên CSKH",           "PROBATION", "2026-01-20"),
+    ("EMP048", "Dương Thị Khánh",   "DEPT010", "Nhân Viên CSKH",           "ACTIVE",    "2022-11-10"),
+    ("EMP049", "Lý Văn Lộc",        "DEPT010", "Chuyên Viên CSKH",         "ACTIVE",    "2020-03-05"),
+    ("EMP050", "Trịnh Thị Mai",     "DEPT010", "Nhân Viên CSKH",           "RESIGNED",  "2023-04-01"),
+]
+
+# ── 4. Tạo email & phone ─────────────────────────────────────────────────────
+
+def make_email(name: str, emp_id: str) -> str:
+    import unicodedata, re
+    name_ascii = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
+    parts = name_ascii.lower().split()
+    if len(parts) >= 2:
+        local = parts[-1] + "." + parts[0][0]
+    else:
+        local = parts[0]
+    local = re.sub(r"[^a-z0-9.]", "", local)
+    return f"{local}@company.vn"
+
+
+def make_phone(emp_id: str) -> str:
+    seed = int(emp_id.replace("EMP", ""))
+    random.seed(seed * 17 + 3)
+    prefix = random.choice(["090", "091", "093", "094", "096", "097", "098", "032", "033", "034", "035"])
+    suffix = "".join([str(random.randint(0, 9)) for _ in range(7)])
+    return f"{prefix}{suffix}"
+
+
+# ── 5. Sinh dữ liệu chấm công ────────────────────────────────────────────────
+
+def working_days(start: date, end: date):
+    """Trả về các ngày làm việc (T2-T6) trong khoảng."""
+    cur = start
+    while cur <= end:
+        if cur.weekday() < 5:  # 0=Mon, 4=Fri
+            yield cur
+        cur += timedelta(days=1)
+
+
+STATUS_WEIGHTS = [
+    ("PRESENT",  70),
+    ("REMOTE",   12),
+    ("LATE",      8),
+    ("ON_LEAVE",  6),
+    ("ABSENT",    4),
+]
+STATUSES = [s for s, w in STATUS_WEIGHTS for _ in range(w)]
+
+
+def rand_time(base_h: int, base_m: int, jitter_m: int, seed: int) -> str:
+    random.seed(seed)
+    delta = random.randint(0, jitter_m)
+    total_m = base_h * 60 + base_m + delta
+    h, m = divmod(total_m, 60)
+    s = random.randint(0, 59)
+    return f"{h:02d}:{m:02d}:{s:02d}"
+
+
+def gen_attendance(employees, start: date, end: date):
+    rows = []
+    active_statuses = {"ACTIVE", "PROBATION"}
+    active_emps = [e for e in employees if e[4] in active_statuses]
+
+    for emp in active_emps:
+        emp_id = emp[0]
+        hire_dt = date.fromisoformat(emp[5])
+
+        for wday in working_days(start, end):
+            if wday < hire_dt:
+                continue
+
+            seed = hash(f"{emp_id}{wday}") & 0xFFFFFF
+            random.seed(seed)
+            status = random.choice(STATUSES)
+
+            if status in ("ABSENT", "ON_LEAVE"):
+                check_in = None
+                check_out = None
+            elif status == "REMOTE":
+                check_in = None
+                check_out = None
+            elif status == "LATE":
+                check_in  = rand_time(8, 10, 80, seed)      # 08:10 ~ 09:30
+                check_out = rand_time(17, 5, 55, seed + 1)  # 17:05 ~ 18:00
+            else:  # PRESENT
+                check_in  = rand_time(7, 30, 30, seed)      # 07:30 ~ 08:00
+                check_out = rand_time(17, 0, 30, seed + 1)  # 17:00 ~ 17:30
+
+            rows.append((emp_id, wday.isoformat(), check_in, check_out, status))
+
+    return rows
+
+
+# ── 6. Main ──────────────────────────────────────────────────────────────────
+
+def main():
+    if os.path.exists(DB_PATH):
+        os.remove(DB_PATH)
+
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+
+    # Schema
+    cur.executescript(SCHEMA)
+
+    # Departments
+    cur.executemany(
+        "INSERT INTO department VALUES (?, ?, ?)",
+        DEPARTMENTS,
+    )
+
+    # Employees (thêm email + phone)
+    emp_rows = []
+    for e in EMPLOYEES:
+        emp_id, name, dept, title, status, hire = e
+        emp_rows.append((emp_id, name, dept, title, status, hire,
+                         make_email(name, emp_id), make_phone(emp_id)))
+    cur.executemany(
+        "INSERT INTO employee VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        emp_rows,
+    )
+
+    # Attendance: 2026-01-01 → 2026-03-24
+    att_rows = gen_attendance(EMPLOYEES, date(2026, 1, 1), date(2026, 3, 24))
+    cur.executemany(
+        "INSERT INTO attendance (employee_id, attendance_date, check_in_time, check_out_time, status) VALUES (?, ?, ?, ?, ?)",
+        att_rows,
+    )
+
+    conn.commit()
+    conn.close()
+
+    print(f"[OK] Created: {DB_PATH}")
+    print(f"     Departments : {len(DEPARTMENTS)}")
+    print(f"     Employees   : {len(EMPLOYEES)}")
+    print(f"     Attendance  : {len(att_rows)} records")
+
+
+if __name__ == "__main__":
+    main()

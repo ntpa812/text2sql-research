@@ -5,14 +5,17 @@
     "examples": [
       "Tìm thông tin nhân viên EMP001",
       "Cho tôi xem hồ sơ nhân viên có mã NV002",
-      "Tra cứu nhân viên theo mã nhân sự"
+      "Tra cứu nhân viên theo mã nhân sự",
+      "Hồ sơ của nhân viên mã EMP025 là gì",
+      "Thông tin cá nhân của nhân viên EMP010"
     ],
     "keywords": [
       "mã nhân viên",
       "thông tin nhân viên",
-      "hồ sơ nhân sự"
+      "hồ sơ nhân sự",
+      "tra cứu nhân viên"
     ],
-    "metadata": "SELECT employee_id, employee_name, department_id, job_title, employment_status, hire_date\nFROM employee\nWHERE employee_id = '{employee_id}'\nLIMIT 100;"
+    "metadata": "SELECT e.employee_id, e.employee_name, d.department_name, e.job_title, e.employment_status, e.hire_date, e.email, e.phone\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.employee_id = '{employee_id}'\nLIMIT 100;"
   },
   {
     "document": "listEmployeeByDepartment | Liệt kê nhân viên theo phòng ban",
@@ -20,14 +23,16 @@
     "examples": [
       "Liệt kê nhân viên phòng kinh doanh",
       "Danh sách nhân viên thuộc phòng nhân sự",
-      "Cho tôi xem nhân viên của phòng IT"
+      "Cho tôi xem nhân viên của phòng IT",
+      "Nhân viên phòng kế toán gồm những ai",
+      "Ai đang làm việc ở phòng marketing"
     ],
     "keywords": [
       "nhân viên theo phòng ban",
       "danh sách nhân viên phòng",
-      "department employee list"
+      "nhân viên phòng"
     ],
-    "metadata": "SELECT e.employee_id, e.employee_name, e.job_title, e.employment_status\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE d.department_name LIKE '%{department_name}%'\nORDER BY e.employee_name ASC\nLIMIT 100;"
+    "metadata": "SELECT e.employee_id, e.employee_name, e.job_title, e.employment_status, e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE d.department_name LIKE '%{department_name}%'\nORDER BY e.employee_name ASC\nLIMIT 100;"
   },
   {
     "document": "getAttendanceHistory | Tra cứu chấm công theo nhân viên và thời gian",
@@ -35,13 +40,149 @@
     "examples": [
       "Xem chấm công của nhân viên EMP001 trong tháng này",
       "Tra cứu ngày công của nhân viên NV002 tuần trước",
-      "Lịch sử attendance của nhân viên theo thời gian"
+      "Lịch sử attendance của nhân viên theo thời gian",
+      "Chấm công tháng 1 của EMP015",
+      "Xem lịch chuyên cần của nhân viên EMP030 từ 01/01 đến 31/01"
     ],
     "keywords": [
       "chấm công nhân viên",
       "attendance history",
-      "ngày công"
+      "ngày công",
+      "lịch sử chấm công"
     ],
     "metadata": "SELECT attendance_id, employee_id, attendance_date, check_in_time, check_out_time, status\nFROM attendance\nWHERE employee_id = '{employee_id}'\nAND attendance_date BETWEEN '{start_date}' AND '{end_date}'\nORDER BY attendance_date DESC\nLIMIT 100;"
+  },
+  {
+    "document": "searchEmployeeByName | Tìm kiếm nhân viên theo tên",
+    "description": "Người dùng muốn tìm nhân viên bằng tên hoặc họ tên.",
+    "examples": [
+      "Tìm nhân viên tên Nguyễn Văn An",
+      "Ai là nhân viên có tên Lan",
+      "Tìm kiếm nhân viên họ Trần",
+      "Nhân viên tên Hoa là ai",
+      "Cho tôi biết nhân viên tên Minh đang làm ở phòng nào"
+    ],
+    "keywords": [
+      "tìm nhân viên theo tên",
+      "tên nhân viên",
+      "họ tên nhân viên",
+      "tìm kiếm tên"
+    ],
+    "metadata": "SELECT e.employee_id, e.employee_name, d.department_name, e.job_title, e.employment_status\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.employee_name LIKE '%{employee_name}%'\nORDER BY e.employee_name ASC\nLIMIT 100;"
+  },
+  {
+    "document": "searchEmployeeByJobTitle | Tìm kiếm nhân viên theo chức danh",
+    "description": "Người dùng muốn xem danh sách nhân viên theo vị trí hoặc chức danh công việc.",
+    "examples": [
+      "Danh sách các lập trình viên",
+      "Ai đang giữ chức trưởng phòng",
+      "Liệt kê tất cả chuyên viên nhân sự",
+      "Tìm nhân viên có chức danh kế toán viên",
+      "Những ai đang là giám đốc hoặc phó giám đốc"
+    ],
+    "keywords": [
+      "chức danh",
+      "vị trí công việc",
+      "job title",
+      "trưởng phòng",
+      "chuyên viên"
+    ],
+    "metadata": "SELECT e.employee_id, e.employee_name, d.department_name, e.job_title, e.employment_status\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.job_title LIKE '%{job_title}%'\nORDER BY d.department_name, e.employee_name ASC\nLIMIT 100;"
+  },
+  {
+    "document": "listNewEmployees | Danh sách nhân viên mới trong khoảng thời gian",
+    "description": "Người dùng muốn xem nhân viên mới được tuyển dụng trong một khoảng thời gian.",
+    "examples": [
+      "Nhân viên mới trong tháng này",
+      "Ai được tuyển dụng từ đầu năm đến nay",
+      "Danh sách nhân viên vào làm trong tháng 1 năm 2026",
+      "Nhân viên gia nhập công ty trong quý này",
+      "Những nhân viên mới tuyển từ tháng 1 đến tháng 3"
+    ],
+    "keywords": [
+      "nhân viên mới",
+      "tuyển dụng",
+      "ngày vào làm",
+      "gia nhập",
+      "hire date"
+    ],
+    "metadata": "SELECT e.employee_id, e.employee_name, d.department_name, e.job_title, e.employment_status, e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.hire_date BETWEEN '{start_date}' AND '{end_date}'\nORDER BY e.hire_date DESC\nLIMIT 100;"
+  },
+  {
+    "document": "countEmployeeByDepartment | Thống kê số lượng nhân viên theo phòng ban",
+    "description": "Người dùng muốn biết số lượng nhân viên trong từng phòng ban.",
+    "examples": [
+      "Mỗi phòng ban có bao nhiêu nhân viên",
+      "Thống kê số nhân viên theo phòng ban",
+      "Phòng nào có nhiều nhân viên nhất",
+      "Tổng số nhân viên của từng bộ phận",
+      "Báo cáo nhân sự theo phòng ban"
+    ],
+    "keywords": [
+      "thống kê nhân viên",
+      "số lượng nhân viên",
+      "báo cáo nhân sự",
+      "đếm nhân viên theo phòng"
+    ],
+    "metadata": "SELECT d.department_id, d.department_name, COUNT(e.employee_id) AS total_employees\nFROM department d\nLEFT JOIN employee e ON d.department_id = e.department_id AND e.employment_status = 'ACTIVE'\nGROUP BY d.department_id, d.department_name\nORDER BY total_employees DESC\nLIMIT 100;"
+  },
+  {
+    "document": "getAbsentEmployees | Danh sách nhân viên vắng mặt theo ngày",
+    "description": "Người dùng muốn biết danh sách nhân viên vắng mặt hoặc nghỉ phép trong một ngày cụ thể.",
+    "examples": [
+      "Hôm nay ai vắng mặt",
+      "Danh sách nhân viên nghỉ phép ngày 15/3",
+      "Nhân viên nào không có mặt ngày hôm nay",
+      "Ai đang nghỉ trong ngày 2026-03-10",
+      "Báo cáo vắng mặt ngày 20 tháng 2"
+    ],
+    "keywords": [
+      "vắng mặt",
+      "nghỉ phép",
+      "absent",
+      "on leave",
+      "nhân viên nghỉ"
+    ],
+    "metadata": "SELECT e.employee_id, e.employee_name, d.department_name, a.status\nFROM attendance a\nJOIN employee e ON a.employee_id = e.employee_id\nJOIN department d ON e.department_id = d.department_id\nWHERE a.attendance_date = '{attendance_date}'\nAND a.status IN ('ABSENT', 'ON_LEAVE')\nORDER BY d.department_name, e.employee_name\nLIMIT 100;"
+  },
+  {
+    "document": "getAttendanceSummary | Tổng hợp ngày công nhân viên theo tháng",
+    "description": "Người dùng muốn xem tổng hợp số ngày có mặt, vắng mặt, đi muộn của một nhân viên trong tháng.",
+    "examples": [
+      "Tổng hợp chấm công tháng 1 của nhân viên EMP001",
+      "Bao nhiêu ngày nhân viên EMP010 đi muộn trong tháng 2",
+      "Thống kê ngày công tháng này của EMP025",
+      "Nhân viên EMP015 có mặt bao nhiêu ngày trong tháng 3",
+      "Tóm tắt chuyên cần của NV030 tháng vừa rồi"
+    ],
+    "keywords": [
+      "tổng hợp chấm công",
+      "thống kê ngày công",
+      "số ngày đi làm",
+      "chuyên cần",
+      "summary attendance"
+    ],
+    "metadata": "SELECT\n  a.employee_id,\n  strftime('%Y-%m', a.attendance_date) AS month,\n  SUM(CASE WHEN a.status = 'PRESENT' THEN 1 ELSE 0 END)  AS present_days,\n  SUM(CASE WHEN a.status = 'LATE'    THEN 1 ELSE 0 END)  AS late_days,\n  SUM(CASE WHEN a.status = 'REMOTE'  THEN 1 ELSE 0 END)  AS remote_days,\n  SUM(CASE WHEN a.status = 'ABSENT'  THEN 1 ELSE 0 END)  AS absent_days,\n  SUM(CASE WHEN a.status = 'ON_LEAVE' THEN 1 ELSE 0 END) AS on_leave_days\nFROM attendance a\nWHERE a.employee_id = '{employee_id}'\nAND strftime('%Y-%m', a.attendance_date) = '{year_month}'\nGROUP BY a.employee_id, strftime('%Y-%m', a.attendance_date)\nLIMIT 100;"
+  },
+  {
+    "document": "listEmployeeByStatus | Danh sách nhân viên theo trạng thái làm việc",
+    "description": "Người dùng muốn lọc danh sách nhân viên theo trạng thái như đang làm việc, thử việc, đã nghỉ việc.",
+    "examples": [
+      "Danh sách nhân viên đang thử việc",
+      "Liệt kê nhân viên đã nghỉ việc",
+      "Nhân viên nào đang bị đình chỉ",
+      "Cho tôi xem tất cả nhân viên đang active",
+      "Danh sách nhân viên probation hiện tại"
+    ],
+    "keywords": [
+      "trạng thái nhân viên",
+      "thử việc",
+      "đã nghỉ việc",
+      "employment status",
+      "active",
+      "probation",
+      "resigned"
+    ],
+    "metadata": "SELECT e.employee_id, e.employee_name, d.department_name, e.job_title, e.employment_status, e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.employment_status = '{employment_status}'\nORDER BY d.department_name, e.employee_name ASC\nLIMIT 100;"
   }
 ]

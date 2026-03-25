@@ -15,7 +15,17 @@ from config.settings import EMBEDDING_MODEL_NAME, EMBEDDING_CACHE_DIR
 
 logger = logging.getLogger(__name__)
 
-# ─── Cached embedding model (singleton) ─────────────────────
+# ── Keyword ranking weights ───────────────────────────────────────────────────
+KEYWORD_MATCH_WEIGHT         = 2    # điểm mỗi keyword khớp chính xác
+EXAMPLE_WORD_MATCH_WEIGHT    = 0.5  # điểm mỗi từ chung với examples
+DESCRIPTION_WORD_MATCH_WEIGHT = 0.3 # điểm mỗi từ chung với description
+MAX_EXAMPLES_TO_SCAN         = 5    # số examples tối đa khi keyword scan
+MAX_EXAMPLES_FOR_EMBEDDING   = 3    # số examples tối đa khi build embedding passage
+
+# ── Ranking defaults ──────────────────────────────────────────────────────────
+DEFAULT_TOP_K = 3
+
+# ─── Cached embedding model (singleton) ─────────────────────────────────────
 _embed_model = None
 _intent_embeddings_cache: Dict[str, Any] = {}
 
@@ -52,17 +62,17 @@ def rank_by_keyword(question: str, intent_index: List[Dict[str, Any]]) -> List[D
         # Match keywords
         for kw in intent.get("keywords", []):
             if _normalize_text(kw) in question_lower:
-                score += 2
+                score += KEYWORD_MATCH_WEIGHT
 
         # Match partial words from examples
-        for ex in intent.get("examples", [])[:5]:
+        for ex in intent.get("examples", [])[:MAX_EXAMPLES_TO_SCAN]:
             common = _common_words(question_lower, ex)
-            score += common * 0.5
+            score += common * EXAMPLE_WORD_MATCH_WEIGHT
 
         # Match description
         desc = intent.get("description", "")
         common_desc = _common_words(question_lower, desc)
-        score += common_desc * 0.3
+        score += common_desc * DESCRIPTION_WORD_MATCH_WEIGHT
 
         if score > 0:
             scored.append({**intent, "_score": score})
@@ -115,7 +125,7 @@ def _get_intent_embeddings(intent_index: List[Dict[str, Any]]):
     for intent in intent_index:
         texts = [intent.get("description", "")]
         texts.extend(intent.get("keywords", []))
-        texts.extend(intent.get("examples", [])[:3])
+        texts.extend(intent.get("examples", [])[:MAX_EXAMPLES_FOR_EMBEDDING])
         passages.append("passage: " + " ".join(texts))
 
     logger.info(f"[Intent] Computing embeddings for {len(passages)} intents...")
@@ -169,7 +179,7 @@ def rank_intents(
     question: str,
     intent_index: List[Dict[str, Any]],
     use_embedding: bool = False,
-    top_k: int = 3,
+    top_k: int = DEFAULT_TOP_K,
 ) -> List[Dict[str, Any]]:
     if use_embedding:
         return rank_by_embedding(question, intent_index, top_k=top_k)

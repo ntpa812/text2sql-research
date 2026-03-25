@@ -7,6 +7,6 @@ SELECT
     e.hire_date
 FROM employee e
 JOIN department d ON e.department_id = d.department_id
-WHERE d.department_name LIKE '%{department_name}%'
-ORDER BY e.employee_name ASC
+WHERE e.job_title LIKE '%{job_title}%'
+ORDER BY d.department_name, e.employee_name ASC
 LIMIT 100;

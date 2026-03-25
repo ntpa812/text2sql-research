@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HRM Database – Dữ liệu giả lập</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+    body { background: #f5f5f5; font-family: "Segoe UI", sans-serif; }
+    .page-header {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+      color: white;
+      padding: 28px 0 20px;
+    }
+    .stat-card { border: none; border-radius: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.07); }
+    .stat-icon { font-size: 2rem; opacity: .85; }
+    .nav-tabs .nav-link { color: #6c757d; font-weight: 500; }
+    .nav-tabs .nav-link.active { color: #2563eb; border-bottom-color: #2563eb; font-weight: 600; }
+    .search-bar { max-width: 320px; }
+    .badge-status { font-size: .75rem; padding: 4px 10px; border-radius: 20px; }
+    .progress { height: 8px; border-radius: 4px; }
+    .table-hover tbody tr:hover { background: #f0f4ff; }
+    .dept-badge { font-size: .72rem; background: #e0e7ff; color: #3730a3; padding: 3px 8px; border-radius: 10px; }
+    .att-rate { font-weight: 700; }
+    .att-high { color: #16a34a; }
+    .att-mid  { color: #d97706; }
+    .att-low  { color: #dc2626; }
+    #pagination-wrap .page-link { color: #2563eb; }
+    #pagination-wrap .page-item.active .page-link { background: #2563eb; border-color: #2563eb; }
+    .notice-badge {
+      background: #fef3c7; color: #92400e;
+      border: 1px solid #fde68a;
+      border-radius: 8px; padding: 6px 14px;
+      font-size: .8rem; display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="container">
+    <div class="d-flex align-items-center gap-3 mb-1">
+      <i class="bi bi-database-fill fs-3"></i>
+      <div>
+        <h4 class="mb-0 fw-bold">HRM Mock Database</h4>
+        <small class="opacity-75">Dữ liệu giả lập – Q1/2026 (Jan–Mar) · SQLite</small>
+      </div>
+    </div>
+    <span class="notice-badge mt-2">
+      <i class="bi bi-info-circle me-1"></i>
+      Đây là dữ liệu giả lập phục vụ demo Text2SQL, không phải dữ liệu thật.
+    </span>
+  </div>
+</div>
+
+<div class="container py-4">
+
+  <!-- Stat cards -->
+  <div class="row g-3 mb-4" id="stat-cards"></div>
+
+  <!-- Tabs -->
+  <ul class="nav nav-tabs mb-3" id="mainTab">
+    <li class="nav-item">
+      <button class="nav-link active" data-tab="dept"><i class="bi bi-building me-1"></i>Phòng Ban</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" data-tab="emp"><i class="bi bi-people me-1"></i>Nhân Viên</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" data-tab="att"><i class="bi bi-calendar-check me-1"></i>Chấm Công</button>
+    </li>
+  </ul>
+
+  <!-- Department tab -->
+  <div id="tab-dept">
+    <div class="card border-0 shadow-sm rounded-3">
+      <div class="card-body p-0">
+        <table class="table table-hover mb-0" id="dept-table">
+          <thead class="table-light">
+            <tr>
+              <th>Mã PB</th>
+              <th>Tên Phòng Ban</th>
+              <th>Trưởng Phòng</th>
+              <th class="text-center">Số NV</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Employee tab -->
+  <div id="tab-emp" class="d-none">
+    <div class="d-flex flex-wrap gap-2 mb-3 align-items-center">
+      <input type="text" class="form-control search-bar" id="emp-search" placeholder="Tìm theo tên, mã, chức vụ..." />
+      <select class="form-select" style="max-width:180px" id="emp-filter-status">
+        <option value="">Tất cả trạng thái</option>
+        <option>ACTIVE</option>
+        <option>PROBATION</option>
+        <option>RESIGNED</option>
+        <option>SUSPENDED</option>
+      </select>
+      <select class="form-select" style="max-width:220px" id="emp-filter-dept">
+        <option value="">Tất cả phòng ban</option>
+      </select>
+    </div>
+    <div class="card border-0 shadow-sm rounded-3">
+      <div class="card-body p-0">
+        <table class="table table-hover mb-0" id="emp-table">
+          <thead class="table-light">
+            <tr>
+              <th>Mã NV</th>
+              <th>Họ Tên</th>
+              <th>Phòng Ban</th>
+              <th>Chức Vụ</th>
+              <th>Trạng Thái</th>
+              <th>Ngày Vào</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <small class="text-muted" id="emp-count-label"></small>
+      <nav><ul class="pagination pagination-sm mb-0" id="pagination-wrap"></ul></nav>
+    </div>
+  </div>
+
+  <!-- Attendance tab -->
+  <div id="tab-att" class="d-none">
+    <p class="text-muted small mb-3">
+      <i class="bi bi-info-circle me-1"></i>
+      Tỷ lệ chuyên cần = (Có mặt + Remote + Đi muộn) / Tổng ngày công.
+      Dữ liệu Q1/2026 (Jan–Mar, chỉ ngày làm việc).
+    </p>
+    <div class="card border-0 shadow-sm rounded-3">
+      <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>Mã NV</th>
+              <th>Họ Tên</th>
+              <th>Phòng Ban</th>
+              <th class="text-center">Tổng ngày</th>
+              <th class="text-center">Có mặt</th>
+              <th class="text-center">Remote</th>
+              <th class="text-center">Đi muộn</th>
+              <th class="text-center">Nghỉ phép</th>
+              <th class="text-center">Vắng</th>
+              <th style="min-width:160px">Tỷ lệ chuyên cần</th>
+            </tr>
+          </thead>
+          <tbody id="att-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+// ── Embedded data ─────────────────────────────────────────────────────────────
+const DEPTS = [{"department_id":"DEPT001","department_name":"Ban Giám Đốc","manager_id":"EMP001"},{"department_id":"DEPT002","department_name":"Phòng Nhân Sự","manager_id":"EMP005"},{"department_id":"DEPT003","department_name":"Phòng Kế Toán - Tài Chính","manager_id":"EMP010"},{"department_id":"DEPT004","department_name":"Phòng Kinh Doanh","manager_id":"EMP015"},{"department_id":"DEPT005","department_name":"Phòng Marketing","manager_id":"EMP020"},{"department_id":"DEPT006","department_name":"Phòng Công Nghệ Thông Tin","manager_id":"EMP025"},{"department_id":"DEPT007","department_name":"Phòng Hành Chính","manager_id":"EMP030"},{"department_id":"DEPT008","department_name":"Phòng Pháp Chế","manager_id":"EMP035"},{"department_id":"DEPT009","department_name":"Phòng Vận Hành","manager_id":"EMP040"},{"department_id":"DEPT010","department_name":"Phòng Chăm Sóc Khách Hàng","manager_id":"EMP045"}];
+
+const EMPS = [{"employee_id":"EMP001","employee_name":"Nguyễn Văn An","department_id":"DEPT001","job_title":"Giám Đốc Điều Hành","employment_status":"ACTIVE","hire_date":"2018-03-01","email":"an.n@company.vn","phone":"0352415920"},{"employee_id":"EMP002","employee_name":"Trần Thị Bích","department_id":"DEPT001","job_title":"Phó Giám Đốc","employment_status":"ACTIVE","hire_date":"2019-05-15","email":"bich.t@company.vn","phone":"0359198057"},{"employee_id":"EMP003","employee_name":"Lê Văn Cường","department_id":"DEPT001","job_title":"Trợ Lý Giám Đốc","employment_status":"ACTIVE","hire_date":"2021-07-10","email":"cuong.l@company.vn","phone":"0937847763"},{"employee_id":"EMP004","employee_name":"Phạm Thị Dung","department_id":"DEPT001","job_title":"Thư Ký Điều Hành","employment_status":"RESIGNED","hire_date":"2020-01-20","email":"dung.p@company.vn","phone":"0978904234"},{"employee_id":"EMP005","employee_name":"Hoàng Văn Em","department_id":"DEPT002","job_title":"Trưởng Phòng Nhân Sự","employment_status":"ACTIVE","hire_date":"2019-02-01","email":"em.h@company.vn","phone":"0983520805"},{"employee_id":"EMP006","employee_name":"Vũ Thị Hoa","department_id":"DEPT002","job_title":"Chuyên Viên Nhân Sự","employment_status":"ACTIVE","hire_date":"2020-06-15","email":"hoa.v@company.vn","phone":"0345910489"},{"employee_id":"EMP007","employee_name":"Đặng Văn Giang","department_id":"DEPT002","job_title":"Chuyên Viên Tuyển Dụng","employment_status":"ACTIVE","hire_date":"2021-09-01","email":"giang.a@company.vn","phone":"0333941537"},{"employee_id":"EMP008","employee_name":"Bùi Thị Hương","department_id":"DEPT002","job_title":"Nhân Viên Nhân Sự","employment_status":"PROBATION","hire_date":"2025-12-01","email":"huong.b@company.vn","phone":"0909894808"},{"employee_id":"EMP009","employee_name":"Ngô Văn Khoa","department_id":"DEPT002","job_title":"Nhân Viên Đào Tạo","employment_status":"ACTIVE","hire_date":"2022-03-10","email":"khoa.n@company.vn","phone":"0326352322"},{"employee_id":"EMP010","employee_name":"Dương Thị Lan","department_id":"DEPT003","job_title":"Trưởng Phòng Kế Toán","employment_status":"ACTIVE","hire_date":"2018-08-01","email":"lan.d@company.vn","phone":"0977895360"},{"employee_id":"EMP011","employee_name":"Lý Văn Minh","department_id":"DEPT003","job_title":"Kế Toán Tổng Hợp","employment_status":"ACTIVE","hire_date":"2020-04-20","email":"minh.l@company.vn","phone":"0912553376"},{"employee_id":"EMP012","employee_name":"Trịnh Thị Nhung","department_id":"DEPT003","job_title":"Kế Toán Viên","employment_status":"ACTIVE","hire_date":"2021-11-15","email":"nhung.t@company.vn","phone":"0339320527"},{"employee_id":"EMP013","employee_name":"Phan Văn Quân","department_id":"DEPT003","job_title":"Kế Toán Thuế","employment_status":"RESIGNED","hire_date":"2019-06-01","email":"quan.p@company.vn","phone":"0913718316"},{"employee_id":"EMP014","employee_name":"Hồ Thị Phúc","department_id":"DEPT003","job_title":"Kiểm Soát Viên Tài Chính","employment_status":"ACTIVE","hire_date":"2022-01-05","email":"phuc.h@company.vn","phone":"0331513982"},{"employee_id":"EMP015","employee_name":"Đinh Văn Sơn","department_id":"DEPT004","job_title":"Trưởng Phòng Kinh Doanh","employment_status":"ACTIVE","hire_date":"2018-11-01","email":"son.i@company.vn","phone":"0351286323"},{"employee_id":"EMP016","employee_name":"Mai Thị Trang","department_id":"DEPT004","job_title":"Chuyên Viên Kinh Doanh","employment_status":"ACTIVE","hire_date":"2020-08-10","email":"trang.m@company.vn","phone":"0919584525"},{"employee_id":"EMP017","employee_name":"Cao Văn Tuấn","department_id":"DEPT004","job_title":"Nhân Viên Kinh Doanh","employment_status":"ACTIVE","hire_date":"2021-03-15","email":"tuan.c@company.vn","phone":"0934253895"},{"employee_id":"EMP018","employee_name":"Lưu Thị Uyên","department_id":"DEPT004","job_title":"Nhân Viên Kinh Doanh","employment_status":"PROBATION","hire_date":"2026-01-10","email":"uyen.l@company.vn","phone":"0914023333"},{"employee_id":"EMP019","employee_name":"Hà Văn Vinh","department_id":"DEPT004","job_title":"Nhân Viên Kinh Doanh","employment_status":"ACTIVE","hire_date":"2023-07-01","email":"vinh.h@company.vn","phone":"0917407611"},{"employee_id":"EMP020","employee_name":"Nguyễn Thị Xuân","department_id":"DEPT005","job_title":"Trưởng Phòng Marketing","employment_status":"ACTIVE","hire_date":"2019-09-01","email":"xuan.n@company.vn","phone":"0947279185"},{"employee_id":"EMP021","employee_name":"Trần Văn Yên","department_id":"DEPT005","job_title":"Chuyên Viên Marketing","employment_status":"ACTIVE","hire_date":"2021-02-20","email":"yen.t@company.vn","phone":"0944313282"},{"employee_id":"EMP022","employee_name":"Lê Thị Ánh","department_id":"DEPT005","job_title":"Chuyên Viên Content","employment_status":"ACTIVE","hire_date":"2022-05-10","email":"anh.l@company.vn","phone":"0948131073"},{"employee_id":"EMP023","employee_name":"Phạm Văn Bình","department_id":"DEPT005","job_title":"Nhân Viên Marketing","employment_status":"RESIGNED","hire_date":"2021-08-01","email":"binh.p@company.vn","phone":"0943537155"},{"employee_id":"EMP024","employee_name":"Hoàng Thị Châu","department_id":"DEPT005","job_title":"Nhân Viên Thiết Kế","employment_status":"ACTIVE","hire_date":"2023-01-15","email":"chau.h@company.vn","phone":"0940539337"},{"employee_id":"EMP025","employee_name":"Vũ Văn Đức","department_id":"DEPT006","job_title":"Trưởng Phòng CNTT","employment_status":"ACTIVE","hire_date":"2018-05-01","email":"uc.v@company.vn","phone":"0960871944"},{"employee_id":"EMP026","employee_name":"Đặng Thị Giang","department_id":"DEPT006","job_title":"Lập Trình Viên Senior","employment_status":"ACTIVE","hire_date":"2019-10-15","email":"giang.a@company.vn","phone":"0336316469"},{"employee_id":"EMP027","employee_name":"Bùi Văn Hải","department_id":"DEPT006","job_title":"Lập Trình Viên","employment_status":"ACTIVE","hire_date":"2021-04-01","email":"hai.b@company.vn","phone":"0341620109"},{"employee_id":"EMP028","employee_name":"Ngô Thị Hạnh","department_id":"DEPT006","job_title":"Kỹ Thuật Viên Hệ Thống","employment_status":"ACTIVE","hire_date":"2022-08-20","email":"hanh.n@company.vn","phone":"0988888828"},{"employee_id":"EMP029","employee_name":"Dương Văn Kiên","department_id":"DEPT006","job_title":"Lập Trình Viên","employment_status":"PROBATION","hire_date":"2026-02-01","email":"kien.d@company.vn","phone":"0326153829"},{"employee_id":"EMP030","employee_name":"Lý Thị Linh","department_id":"DEPT007","job_title":"Trưởng Phòng Hành Chính","employment_status":"ACTIVE","hire_date":"2019-01-15","email":"linh.l@company.vn","phone":"0903292694"},{"employee_id":"EMP031","employee_name":"Trịnh Văn Long","department_id":"DEPT007","job_title":"Nhân Viên Hành Chính","employment_status":"ACTIVE","hire_date":"2020-10-01","email":"long.t@company.vn","phone":"0971839718"},{"employee_id":"EMP032","employee_name":"Phan Thị Mỹ","department_id":"DEPT007","job_title":"Nhân Viên Văn Phòng","employment_status":"ACTIVE","hire_date":"2022-03-20","email":"my.p@company.vn","phone":"0901457365"},{"employee_id":"EMP033","employee_name":"Hồ Văn Nam","department_id":"DEPT007","job_title":"Nhân Viên Lái Xe","employment_status":"SUSPENDED","hire_date":"2020-07-10","email":"nam.h@company.vn","phone":"0963504654"},{"employee_id":"EMP034","employee_name":"Đinh Thị Oanh","department_id":"DEPT007","job_title":"Nhân Viên Hành Chính","employment_status":"ACTIVE","hire_date":"2023-05-15","email":"oanh.i@company.vn","phone":"0902446096"},{"employee_id":"EMP035","employee_name":"Mai Văn Phong","department_id":"DEPT008","job_title":"Trưởng Phòng Pháp Chế","employment_status":"ACTIVE","hire_date":"2019-04-01","email":"phong.m@company.vn","phone":"0917817555"},{"employee_id":"EMP036","employee_name":"Cao Thị Quyên","department_id":"DEPT008","job_title":"Chuyên Viên Pháp Lý","employment_status":"ACTIVE","hire_date":"2020-12-10","email":"quyen.c@company.vn","phone":"0946122456"},{"employee_id":"EMP037","employee_name":"Lưu Văn Rạng","department_id":"DEPT008","job_title":"Chuyên Viên Hợp Đồng","employment_status":"ACTIVE","hire_date":"2022-06-01","email":"rang.l@company.vn","phone":"0973800491"},{"employee_id":"EMP038","employee_name":"Hà Thị Sương","department_id":"DEPT008","job_title":"Nhân Viên Pháp Chế","employment_status":"RESIGNED","hire_date":"2022-09-01","email":"suong.h@company.vn","phone":"0973579914"},{"employee_id":"EMP039","employee_name":"Nguyễn Văn Thắng","department_id":"DEPT009","job_title":"Chuyên Viên Vận Hành","employment_status":"ACTIVE","hire_date":"2021-01-10","email":"thang.n@company.vn","phone":"0326648088"},{"employee_id":"EMP040","employee_name":"Trần Thị Uyên","department_id":"DEPT009","job_title":"Trưởng Phòng Vận Hành","employment_status":"ACTIVE","hire_date":"2018-12-01","email":"uyen.t@company.vn","phone":"0980432180"},{"employee_id":"EMP041","employee_name":"Lê Văn Vũ","department_id":"DEPT009","job_title":"Nhân Viên Vận Hành","employment_status":"ACTIVE","hire_date":"2022-04-15","email":"vu.l@company.vn","phone":"0933738950"},{"employee_id":"EMP042","employee_name":"Phạm Thị Yến","department_id":"DEPT009","job_title":"Nhân Viên Vận Hành","employment_status":"ACTIVE","hire_date":"2023-08-20","email":"yen.p@company.vn","phone":"0942937310"},{"employee_id":"EMP043","employee_name":"Hoàng Văn Anh","department_id":"DEPT009","job_title":"Kỹ Thuật Viên Vận Hành","employment_status":"SUSPENDED","hire_date":"2021-06-01","email":"anh.h@company.vn","phone":"0355458208"},{"employee_id":"EMP044","employee_name":"Vũ Thị Bình","department_id":"DEPT010","job_title":"Chuyên Viên CSKH","employment_status":"ACTIVE","hire_date":"2020-09-15","email":"binh.v@company.vn","phone":"0331568583"},{"employee_id":"EMP045","employee_name":"Đặng Văn Chiến","department_id":"DEPT010","job_title":"Trưởng Phòng CSKH","employment_status":"ACTIVE","hire_date":"2019-07-01","email":"chien.a@company.vn","phone":"0914743728"},{"employee_id":"EMP046","employee_name":"Bùi Thị Diệu","department_id":"DEPT010","job_title":"Nhân Viên CSKH","employment_status":"ACTIVE","hire_date":"2021-10-20","email":"dieu.b@company.vn","phone":"0331260299"},{"employee_id":"EMP047","employee_name":"Ngô Văn Hậu","department_id":"DEPT010","job_title":"Nhân Viên CSKH","employment_status":"PROBATION","hire_date":"2026-01-20","email":"hau.n@company.vn","phone":"0332855425"},{"employee_id":"EMP048","employee_name":"Dương Thị Khánh","department_id":"DEPT010","job_title":"Nhân Viên CSKH","employment_status":"ACTIVE","hire_date":"2022-11-10","email":"khanh.d@company.vn","phone":"0972245249"},{"employee_id":"EMP049","employee_name":"Lý Văn Lộc","department_id":"DEPT010","job_title":"Chuyên Viên CSKH","employment_status":"ACTIVE","hire_date":"2020-03-05","email":"loc.l@company.vn","phone":"0980810118"},{"employee_id":"EMP050","employee_name":"Trịnh Thị Mai","department_id":"DEPT010","job_title":"Nhân Viên CSKH","employment_status":"RESIGNED","hire_date":"2023-04-01","email":"mai.t@company.vn","phone":"0984455121"}];
+
+const ATT = [{"employee_id":"EMP001","employee_name":"Nguyễn Văn An","department_id":"DEPT001","total_days":59,"present":42,"remote":10,"late":1,"on_leave":4,"absent":2},{"employee_id":"EMP002","employee_name":"Trần Thị Bích","department_id":"DEPT001","total_days":59,"present":46,"remote":7,"late":1,"on_leave":4,"absent":1},{"employee_id":"EMP003","employee_name":"Lê Văn Cường","department_id":"DEPT001","total_days":59,"present":42,"remote":5,"late":3,"on_leave":5,"absent":4},{"employee_id":"EMP005","employee_name":"Hoàng Văn Em","department_id":"DEPT002","total_days":59,"present":40,"remote":9,"late":6,"on_leave":2,"absent":2},{"employee_id":"EMP006","employee_name":"Vũ Thị Hoa","department_id":"DEPT002","total_days":59,"present":35,"remote":6,"late":5,"on_leave":7,"absent":6},{"employee_id":"EMP007","employee_name":"Đặng Văn Giang","department_id":"DEPT002","total_days":59,"present":42,"remote":4,"late":6,"on_leave":5,"absent":2},{"employee_id":"EMP008","employee_name":"Bùi Thị Hương","department_id":"DEPT002","total_days":59,"present":43,"remote":6,"late":4,"on_leave":5,"absent":1},{"employee_id":"EMP009","employee_name":"Ngô Văn Khoa","department_id":"DEPT002","total_days":59,"present":39,"remote":10,"late":3,"on_leave":3,"absent":4},{"employee_id":"EMP010","employee_name":"Dương Thị Lan","department_id":"DEPT003","total_days":59,"present":38,"remote":9,"late":2,"on_leave":9,"absent":1},{"employee_id":"EMP011","employee_name":"Lý Văn Minh","department_id":"DEPT003","total_days":59,"present":39,"remote":11,"late":3,"on_leave":4,"absent":2},{"employee_id":"EMP012","employee_name":"Trịnh Thị Nhung","department_id":"DEPT003","total_days":59,"present":38,"remote":11,"late":5,"on_leave":5,"absent":0},{"employee_id":"EMP014","employee_name":"Hồ Thị Phúc","department_id":"DEPT003","total_days":59,"present":36,"remote":9,"late":8,"on_leave":5,"absent":1},{"employee_id":"EMP015","employee_name":"Đinh Văn Sơn","department_id":"DEPT004","total_days":59,"present":36,"remote":13,"late":7,"on_leave":2,"absent":1},{"employee_id":"EMP016","employee_name":"Mai Thị Trang","department_id":"DEPT004","total_days":59,"present":40,"remote":10,"late":4,"on_leave":3,"absent":2},{"employee_id":"EMP017","employee_name":"Cao Văn Tuấn","department_id":"DEPT004","total_days":59,"present":42,"remote":6,"late":3,"on_leave":3,"absent":5},{"employee_id":"EMP018","employee_name":"Lưu Thị Uyên","department_id":"DEPT004","total_days":52,"present":34,"remote":8,"late":5,"on_leave":3,"absent":2},{"employee_id":"EMP019","employee_name":"Hà Văn Vinh","department_id":"DEPT004","total_days":59,"present":37,"remote":7,"late":7,"on_leave":5,"absent":3},{"employee_id":"EMP020","employee_name":"Nguyễn Thị Xuân","department_id":"DEPT005","total_days":59,"present":44,"remote":6,"late":4,"on_leave":2,"absent":3},{"employee_id":"EMP021","employee_name":"Trần Văn Yên","department_id":"DEPT005","total_days":59,"present":38,"remote":12,"late":5,"on_leave":2,"absent":2},{"employee_id":"EMP022","employee_name":"Lê Thị Ánh","department_id":"DEPT005","total_days":59,"present":34,"remote":8,"late":5,"on_leave":5,"absent":7},{"employee_id":"EMP024","employee_name":"Hoàng Thị Châu","department_id":"DEPT005","total_days":59,"present":49,"remote":3,"late":5,"on_leave":1,"absent":1},{"employee_id":"EMP025","employee_name":"Vũ Văn Đức","department_id":"DEPT006","total_days":59,"present":39,"remote":8,"late":2,"on_leave":5,"absent":5},{"employee_id":"EMP026","employee_name":"Đặng Thị Giang","department_id":"DEPT006","total_days":59,"present":41,"remote":8,"late":5,"on_leave":3,"absent":2},{"employee_id":"EMP027","employee_name":"Bùi Văn Hải","department_id":"DEPT006","total_days":59,"present":37,"remote":12,"late":5,"on_leave":4,"absent":1},{"employee_id":"EMP028","employee_name":"Ngô Thị Hạnh","department_id":"DEPT006","total_days":59,"present":42,"remote":5,"late":3,"on_leave":4,"absent":5},{"employee_id":"EMP029","employee_name":"Dương Văn Kiên","department_id":"DEPT006","total_days":37,"present":21,"remote":5,"late":6,"on_leave":4,"absent":1},{"employee_id":"EMP030","employee_name":"Lý Thị Linh","department_id":"DEPT007","total_days":59,"present":50,"remote":4,"late":2,"on_leave":1,"absent":2},{"employee_id":"EMP031","employee_name":"Trịnh Văn Long","department_id":"DEPT007","total_days":59,"present":46,"remote":9,"late":3,"on_leave":0,"absent":1},{"employee_id":"EMP032","employee_name":"Phan Thị Mỹ","department_id":"DEPT007","total_days":59,"present":38,"remote":7,"late":6,"on_leave":6,"absent":2},{"employee_id":"EMP034","employee_name":"Đinh Thị Oanh","department_id":"DEPT007","total_days":59,"present":39,"remote":11,"late":5,"on_leave":0,"absent":4},{"employee_id":"EMP035","employee_name":"Mai Văn Phong","department_id":"DEPT008","total_days":59,"present":30,"remote":11,"late":7,"on_leave":6,"absent":5},{"employee_id":"EMP036","employee_name":"Cao Thị Quyên","department_id":"DEPT008","total_days":59,"present":41,"remote":8,"late":5,"on_leave":3,"absent":2},{"employee_id":"EMP037","employee_name":"Lưu Văn Rạng","department_id":"DEPT008","total_days":59,"present":31,"remote":7,"late":9,"on_leave":9,"absent":3},{"employee_id":"EMP039","employee_name":"Nguyễn Văn Thắng","department_id":"DEPT009","total_days":59,"present":40,"remote":8,"late":6,"on_leave":3,"absent":2},{"employee_id":"EMP040","employee_name":"Trần Thị Uyên","department_id":"DEPT009","total_days":59,"present":45,"remote":9,"late":1,"on_leave":4,"absent":0},{"employee_id":"EMP041","employee_name":"Lê Văn Vũ","department_id":"DEPT009","total_days":59,"present":47,"remote":7,"late":1,"on_leave":2,"absent":2},{"employee_id":"EMP042","employee_name":"Phạm Thị Yến","department_id":"DEPT009","total_days":59,"present":41,"remote":7,"late":4,"on_leave":6,"absent":1},{"employee_id":"EMP044","employee_name":"Vũ Thị Bình","department_id":"DEPT010","total_days":59,"present":39,"remote":10,"late":4,"on_leave":1,"absent":5},{"employee_id":"EMP045","employee_name":"Đặng Văn Chiến","department_id":"DEPT010","total_days":59,"present":44,"remote":3,"late":5,"on_leave":3,"absent":4},{"employee_id":"EMP046","employee_name":"Bùi Thị Diệu","department_id":"DEPT010","total_days":59,"present":41,"remote":6,"late":5,"on_leave":5,"absent":2},{"employee_id":"EMP047","employee_name":"Ngô Văn Hậu","department_id":"DEPT010","total_days":46,"present":37,"remote":1,"late":4,"on_leave":4,"absent":0},{"employee_id":"EMP048","employee_name":"Dương Thị Khánh","department_id":"DEPT010","total_days":59,"present":40,"remote":6,"late":6,"on_leave":5,"absent":2},{"employee_id":"EMP049","employee_name":"Lý Văn Lộc","department_id":"DEPT010","total_days":59,"present":45,"remote":7,"late":1,"on_leave":4,"absent":2}];
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+const deptMap   = Object.fromEntries(DEPTS.map(d => [d.department_id, d.department_name]));
+const managerMap = Object.fromEntries(DEPTS.map(d => [d.manager_id, d]));
+const empNameMap = Object.fromEntries(EMPS.map(e => [e.employee_id, e.employee_name]));
+
+function statusBadge(s) {
+  const cfg = {
+    ACTIVE:    ['bg-success', 'Đang làm'],
+    PROBATION: ['bg-warning text-dark', 'Thử việc'],
+    RESIGNED:  ['bg-secondary', 'Đã nghỉ'],
+    SUSPENDED: ['bg-danger', 'Tạm đình chỉ'],
+  };
+  const [cls, label] = cfg[s] || ['bg-secondary', s];
+  return `<span class="badge badge-status ${cls}">${label}</span>`;
+}
+
+// ── Stat cards ────────────────────────────────────────────────────────────────
+(function buildStats() {
+  const total  = EMPS.length;
+  const active = EMPS.filter(e => e.employment_status === 'ACTIVE').length;
+  const prob   = EMPS.filter(e => e.employment_status === 'PROBATION').length;
+  const deptN  = DEPTS.length;
+  const cards = [
+    { label: 'Tổng nhân viên', value: total, icon: 'bi-people-fill', color: 'text-primary' },
+    { label: 'Đang làm việc',  value: active, icon: 'bi-person-check-fill', color: 'text-success' },
+    { label: 'Thử việc',       value: prob,   icon: 'bi-person-plus-fill',  color: 'text-warning' },
+    { label: 'Phòng ban',      value: deptN,  icon: 'bi-building-fill',     color: 'text-info' },
+  ];
+  const wrap = document.getElementById('stat-cards');
+  wrap.innerHTML = cards.map(c => `
+    <div class="col-6 col-md-3">
+      <div class="card stat-card p-3">
+        <div class="d-flex align-items-center gap-3">
+          <i class="bi ${c.icon} stat-icon ${c.color}"></i>
+          <div>
+            <div class="fw-bold fs-3 lh-1">${c.value}</div>
+            <div class="text-muted small">${c.label}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+})();
+
+// ── Department table ──────────────────────────────────────────────────────────
+(function buildDeptTable() {
+  const empCount = {};
+  EMPS.forEach(e => { empCount[e.department_id] = (empCount[e.department_id] || 0) + 1; });
+  const tbody = document.querySelector('#dept-table tbody');
+  tbody.innerHTML = DEPTS.map(d => `
+    <tr>
+      <td><code>${d.department_id}</code></td>
+      <td><strong>${d.department_name}</strong></td>
+      <td>${empNameMap[d.manager_id] || d.manager_id}</td>
+      <td class="text-center"><span class="badge bg-light text-dark border">${empCount[d.department_id] || 0}</span></td>
+    </tr>
+  `).join('');
+})();
+
+// ── Employee table with filter + pagination ───────────────────────────────────
+const PAGE_SIZE = 15;
+let empPage = 1;
+let empFiltered = [...EMPS];
+
+// Populate dept filter
+const deptSelect = document.getElementById('emp-filter-dept');
+DEPTS.forEach(d => {
+  const opt = document.createElement('option');
+  opt.value = d.department_id;
+  opt.textContent = d.department_name;
+  deptSelect.appendChild(opt);
+});
+
+function renderEmpTable() {
+  const q      = document.getElementById('emp-search').value.toLowerCase();
+  const status = document.getElementById('emp-filter-status').value;
+  const dept   = document.getElementById('emp-filter-dept').value;
+
+  empFiltered = EMPS.filter(e => {
+    if (status && e.employment_status !== status) return false;
+    if (dept   && e.department_id    !== dept)   return false;
+    if (q && ![e.employee_id, e.employee_name, e.job_title].some(f => f.toLowerCase().includes(q))) return false;
+    return true;
+  });
+
+  const totalPages = Math.max(1, Math.ceil(empFiltered.length / PAGE_SIZE));
+  if (empPage > totalPages) empPage = totalPages;
+
+  const pageData = empFiltered.slice((empPage - 1) * PAGE_SIZE, empPage * PAGE_SIZE);
+  document.querySelector('#emp-table tbody').innerHTML = pageData.map(e => `
+    <tr>
+      <td><code>${e.employee_id}</code></td>
+      <td><strong>${e.employee_name}</strong></td>
+      <td><span class="dept-badge">${deptMap[e.department_id] || e.department_id}</span></td>
+      <td>${e.job_title}</td>
+      <td>${statusBadge(e.employment_status)}</td>
+      <td>${e.hire_date}</td>
+      <td class="text-muted small">${e.email}</td>
+    </tr>
+  `).join('') || '<tr><td colspan="7" class="text-center text-muted py-4">Không tìm thấy nhân viên.</td></tr>';
+
+  document.getElementById('emp-count-label').textContent =
+    `Hiển thị ${pageData.length} / ${empFiltered.length} nhân viên`;
+
+  // Pagination
+  const pag = document.getElementById('pagination-wrap');
+  if (totalPages <= 1) { pag.innerHTML = ''; return; }
+  let html = `<li class="page-item ${empPage===1?'disabled':''}">
+    <a class="page-link" href="#" data-p="${empPage-1}">‹</a></li>`;
+  for (let i = 1; i <= totalPages; i++) {
+    html += `<li class="page-item ${i===empPage?'active':''}">
+      <a class="page-link" href="#" data-p="${i}">${i}</a></li>`;
+  }
+  html += `<li class="page-item ${empPage===totalPages?'disabled':''}">
+    <a class="page-link" href="#" data-p="${empPage+1}">›</a></li>`;
+  pag.innerHTML = html;
+  pag.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const p = parseInt(a.dataset.p);
+      if (p >= 1 && p <= totalPages) { empPage = p; renderEmpTable(); }
+    });
+  });
+}
+
+document.getElementById('emp-search').addEventListener('input', () => { empPage = 1; renderEmpTable(); });
+document.getElementById('emp-filter-status').addEventListener('change', () => { empPage = 1; renderEmpTable(); });
+document.getElementById('emp-filter-dept').addEventListener('change', () => { empPage = 1; renderEmpTable(); });
+renderEmpTable();
+
+// ── Attendance table ──────────────────────────────────────────────────────────
+(function buildAttTable() {
+  const tbody = document.getElementById('att-tbody');
+  tbody.innerHTML = ATT.map(a => {
+    const rate = Math.round((a.present + a.remote + a.late) / a.total_days * 100);
+    const rateClass = rate >= 90 ? 'att-high' : rate >= 75 ? 'att-mid' : 'att-low';
+    const barClass  = rate >= 90 ? 'bg-success' : rate >= 75 ? 'bg-warning' : 'bg-danger';
+    return `
+      <tr>
+        <td><code>${a.employee_id}</code></td>
+        <td>${a.employee_name}</td>
+        <td><span class="dept-badge">${deptMap[a.department_id] || a.department_id}</span></td>
+        <td class="text-center">${a.total_days}</td>
+        <td class="text-center text-success fw-semibold">${a.present}</td>
+        <td class="text-center text-primary">${a.remote}</td>
+        <td class="text-center text-warning">${a.late}</td>
+        <td class="text-center text-secondary">${a.on_leave}</td>
+        <td class="text-center text-danger">${a.absent}</td>
+        <td>
+          <div class="d-flex align-items-center gap-2">
+            <div class="progress flex-grow-1"><div class="progress-bar ${barClass}" style="width:${rate}%"></div></div>
+            <span class="att-rate ${rateClass}" style="min-width:38px">${rate}%</span>
+          </div>
+        </td>
+      </tr>`;
+  }).join('');
+})();
+
+// ── Tab switching ─────────────────────────────────────────────────────────────
+document.querySelectorAll('#mainTab button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#mainTab button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    ['dept','emp','att'].forEach(t => {
+      document.getElementById('tab-' + t).classList.toggle('d-none', t !== btn.dataset.tab);
+    });
+  });
+});
+</script>
+</body>
+</html>

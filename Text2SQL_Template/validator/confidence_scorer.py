@@ -19,7 +19,15 @@ from typing import Dict, Any, List
 
 logger = logging.getLogger(__name__)
 
-THRESHOLD_PASS = 0.6
+# ── Score thresholds ──────────────────────────────────────────────────────────
+THRESHOLD_PASS = 0.6          # score >= này thì PASS
+
+# ── Component weights (tổng = 1.0) ───────────────────────────────────────────
+WEIGHT_SQL_EXECUTABLE = 0.3   # SQL chạy không lỗi syntax/runtime
+WEIGHT_STRUCTURE      = 0.3   # Structure validator score (table, column, WHERE)
+WEIGHT_ENTITY_VALID   = 0.2   # Entity tồn tại trong DB, enum đúng
+WEIGHT_SEMANTIC_OK    = 0.1   # Semantic check pass
+WEIGHT_HAS_ROWS       = 0.1   # Có ít nhất 1 dòng kết quả (bonus)
 
 
 def compute_confidence(
@@ -43,19 +51,19 @@ def compute_confidence(
     breakdown: Dict[str, float] = {}
 
     # SQL chạy được (không syntax/runtime error)
-    breakdown["sql_executable"] = 0.3 if sql_executed else 0.0
+    breakdown["sql_executable"] = WEIGHT_SQL_EXECUTABLE if sql_executed else 0.0
 
     # Structure score (table, column, WHERE, operators)
-    breakdown["structure"] = round(min(structure_score, 1.0) * 0.3, 3)
+    breakdown["structure"] = round(min(structure_score, 1.0) * WEIGHT_STRUCTURE, 3)
 
     # Entity hợp lệ (tồn tại trong DB, enum đúng)
-    breakdown["entity_valid"] = 0.2 if entity_valid else 0.0
+    breakdown["entity_valid"] = WEIGHT_ENTITY_VALID if entity_valid else 0.0
 
     # Semantic check
-    breakdown["semantic_ok"] = 0.1 if semantic_ok else 0.0
+    breakdown["semantic_ok"] = WEIGHT_SEMANTIC_OK if semantic_ok else 0.0
 
     # Có kết quả (bonus, KHÔNG phải tiêu chí chính)
-    breakdown["has_rows"] = 0.1 if row_count > 0 else 0.0
+    breakdown["has_rows"] = WEIGHT_HAS_ROWS if row_count > 0 else 0.0
 
     score = round(sum(breakdown.values()), 2)
     passed = score >= THRESHOLD_PASS
