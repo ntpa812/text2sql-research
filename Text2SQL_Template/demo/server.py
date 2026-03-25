@@ -21,17 +21,26 @@ from pipeline.sql_generation.llm_sql_generator import get_generation_config
 
 BASE_DIR = Path(__file__).resolve().parent.parent  # project root
 FRONTEND_DIST = BASE_DIR / "demo" / "ui" / "dist"
-HRM_DB_PATH = BASE_DIR / "data" / "domains" / "hrm" / "mock" / "hrm.db"
+HRM_DB_PATH     = BASE_DIR / "data" / "domains" / "hrm"     / "mock" / "hrm.db"
+BANKING_DB_PATH = BASE_DIR / "data" / "domains" / "banking" / "mock" / "banking.db"
 
 
-def _hrm_query(sql: str, params: tuple = ()) -> List[Dict[str, Any]]:
-    conn = sqlite3.connect(HRM_DB_PATH)
+def _db_query(db_path: Path, sql: str, params: tuple = ()) -> List[Dict[str, Any]]:
+    conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     try:
         rows = conn.execute(sql, params).fetchall()
         return [dict(r) for r in rows]
     finally:
         conn.close()
+
+
+def _hrm_query(sql: str, params: tuple = ()) -> List[Dict[str, Any]]:
+    return _db_query(HRM_DB_PATH, sql, params)
+
+
+def _banking_query(sql: str, params: tuple = ()) -> List[Dict[str, Any]]:
+    return _db_query(BANKING_DB_PATH, sql, params)
 
 app = FastAPI(title="Text2SQL Demo API", version="1.0.0")
 app.add_middleware(
@@ -155,6 +164,110 @@ def hrm_attendance(
         LIMIT 300
     """, (date_from, date_to))
     return {"attendance": rows, "date_from": date_from, "date_to": date_to}
+
+
+# ── Banking endpoints ──────────────────────────────────────────────────────────
+
+@app.get("/api/banking/customers")
+def banking_customers():
+    rows = _banking_query("""
+        SELECT c.cif_no, c.customer_no, c.customer_name, c.mobile_phone, c.email,
+               c.status,
+               COUNT(a.id) AS account_count
+        FROM customer c
+        LEFT JOIN customer_account a ON c.customer_no = a.customer_no
+        GROUP BY c.id
+        ORDER BY c.customer_name
+    """)
+    return {"customers": rows}
+
+
+@app.get("/api/banking/accounts")
+def banking_accounts(
+    customer_no: Optional[str] = Query(default=None),
+    status: Optional[str] = Query(default=None),
+):
+    where = "WHERE 1=1"
+    params: list = []
+    if customer_no:
+        where += " AND a.customer_no = ?"
+        params.append(customer_no)
+    if status:
+        where += " AND a.status = ?"
+        params.append(status)
+    rows = _banking_query(f"""
+        SELECT a.account_no, a.customer_no, c.customer_name, a.account_class,
+               a.account_name, a.status, a.create_date
+        FROM customer_account a
+        JOIN customer c ON a.customer_no = c.customer_no
+        {where}
+        ORDER BY a.customer_no, a.account_class
+    """, tuple(params))
+    return {"accounts": rows}
+
+
+@app.get("/api/banking/transactions")
+def banking_transactions(
+    account_no: Optional[str] = Query(default=None),
+    trans_type: Optional[str] = Query(default=None),
+    status: Optional[str] = Query(default=None),
+    date_from: str = Query(default="2026-03-01"),
+    date_to: str = Query(default="2026-03-31"),
+):
+    where = "WHERE t.trans_time BETWEEN ? AND ?"
+    params: list = [date_from + " 00:00:00", date_to + " 23:59:59"]
+    if account_no:
+        where += " AND (t.from_account_no = ? OR t.to_account_no = ?)"
+        params += [account_no, account_no]
+    if trans_type:
+        where += " AND t.trans_type = ?"
+        params.append(trans_type)
+    if status:
+        where += " AND t.trans_status = ?"
+        params.append(status)
+    rows = _banking_query(f"""
+        SELECT t.trans_id, t.trans_time, t.trans_type, t.trans_name,
+               t.from_account_no, t.to_account_no, t.to_account_fullname,
+               t.amount_transfer, t.amount_currency, t.fee_amount,
+               t.trans_status, t.channel_receiver, t.trans_desc
+        FROM "transaction" t
+        {where}
+        ORDER BY t.trans_time DESC
+        LIMIT 300
+    """, tuple(params))
+    return {
+        "transactions": rows,
+        "date_from": date_from,
+        "date_to": date_to,
+    }
+
+
+@app.get("/api/banking/summary")
+def banking_summary(
+    date_from: str = Query(default="2026-03-01"),
+    date_to: str = Query(default="2026-03-31"),
+):
+    params = (date_from + " 00:00:00", date_to + " 23:59:59")
+    by_type = _banking_query("""
+        SELECT trans_type,
+               COUNT(*) AS count,
+               SUM(amount_transfer) AS total_amount,
+               SUM(CASE WHEN trans_status='SUCCESS' THEN 1 ELSE 0 END) AS success_count
+        FROM "transaction"
+        WHERE trans_time BETWEEN ? AND ?
+        GROUP BY trans_type
+        ORDER BY total_amount DESC
+    """, params)
+    by_channel = _banking_query("""
+        SELECT channel_receiver,
+               COUNT(*) AS count,
+               SUM(amount_transfer) AS total_amount
+        FROM "transaction"
+        WHERE trans_time BETWEEN ? AND ?
+        GROUP BY channel_receiver
+        ORDER BY count DESC
+    """, params)
+    return {"by_type": by_type, "by_channel": by_channel, "date_from": date_from, "date_to": date_to}
 
 
 if FRONTEND_DIST.exists():
