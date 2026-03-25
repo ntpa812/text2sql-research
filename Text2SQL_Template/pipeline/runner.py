@@ -213,6 +213,7 @@ def run_pipeline(
     explain: bool = True,
     forced_domain: str | None = None,
     demo_mode: bool = False,
+    user_context: Dict[str, Any] | None = None,
 ) -> Dict[str, Any]:
     """
     Orchestrator chính.
@@ -386,6 +387,17 @@ def run_pipeline(
         logger.info("[Step 3] Entity Extraction")
         raw_entities = extract_entities_local(question, domain_id=domain_id)
         entities = normalize_entities(raw_entities)
+        # Inject user context: "tôi" / "của tôi" / "của mình" → current user
+        if user_context and not entities.get("employee_id") and not entities.get("employee_name"):
+            _q = question.lower()
+            _self_keywords = ["tôi", "của tôi", "của mình", "cho tôi", "cho mình", "toi", "cua toi"]
+            if any(kw in _q for kw in _self_keywords):
+                if user_context.get("employee_id"):
+                    entities["employee_id"] = user_context["employee_id"]
+                if user_context.get("employee_name"):
+                    entities["employee_name"] = user_context["employee_name"]
+                logger.info(f"[Step 3] Injected user context: {user_context.get('employee_id')}")
+
         log_entry["entities"] = entities
         timing["entity_extraction"] = round(time.time() - t0, 3)
         logger.info(f"[Step 3] Entities: {entities} ({timing['entity_extraction']}s)")

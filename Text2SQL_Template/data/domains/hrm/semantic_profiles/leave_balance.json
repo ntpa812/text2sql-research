@@ -1,0 +1,61 @@
+{
+  "table_name": "leave_balance",
+  "columns": [
+    {
+      "name": "balance_id",
+      "role": "IDENTITY",
+      "description": "Ma ban ghi so du phep.",
+      "suggested_keywords": ["balance id"],
+      "sql_logic": "",
+      "value_ref": null
+    },
+    {
+      "name": "employee_id",
+      "role": "IDENTITY",
+      "description": "Ma nhan vien.",
+      "suggested_keywords": ["ma nhan vien", "employee id"],
+      "sql_logic": "WHERE {col} = '{val}'",
+      "value_ref": null
+    },
+    {
+      "name": "leave_type_id",
+      "role": "IDENTITY",
+      "description": "Ma loai phep lien ket bang leave_type.",
+      "suggested_keywords": ["ma loai phep", "leave type"],
+      "sql_logic": "WHERE {col} = '{val}'",
+      "value_ref": null
+    },
+    {
+      "name": "year",
+      "role": "TEMPORAL",
+      "description": "Nam ap dung so du phep.",
+      "suggested_keywords": ["nam", "year", "nam nay"],
+      "sql_logic": "WHERE {col} = {val}",
+      "value_ref": null
+    },
+    {
+      "name": "total_days",
+      "role": "MEASURE",
+      "description": "Tong so ngay phep duoc cap trong nam.",
+      "suggested_keywords": ["tong ngay phep", "total days"],
+      "sql_logic": "",
+      "value_ref": null
+    },
+    {
+      "name": "used_days",
+      "role": "MEASURE",
+      "description": "So ngay phep da su dung.",
+      "suggested_keywords": ["da su dung", "da nghi", "used days"],
+      "sql_logic": "",
+      "value_ref": null
+    },
+    {
+      "name": "remaining_days",
+      "role": "MEASURE",
+      "description": "So ngay phep con lai chua su dung.",
+      "suggested_keywords": ["con lai", "ngay phep con", "remaining days", "con bao nhieu ngay phep"],
+      "sql_logic": "",
+      "value_ref": null
+    }
+  ]
+}

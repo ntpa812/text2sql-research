@@ -162,8 +162,20 @@
         "chấm công|attendance|checkin|checkout|ngày công": [
           "attendance"
         ],
-        "nghỉ phép|leave|xin nghỉ": [
-          "attendance"
+        "nghỉ phép|leave|xin nghỉ|đơn nghỉ|đăng ký nghỉ": [
+          "leave_request",
+          "leave_balance"
+        ],
+        "ngày phép|số ngày phép|phép còn lại|leave balance|phép năm|phép ốm": [
+          "leave_balance",
+          "leave_type"
+        ],
+        "đơn nghỉ phép|leave request|đơn xin nghỉ|chờ duyệt|duyệt đơn": [
+          "leave_request",
+          "leave_type"
+        ],
+        "loại phép|leave type|phép đặc biệt|phép thai sản": [
+          "leave_type"
         ]
       },
       "entity_table_map": {
@@ -174,6 +186,14 @@
         "department_name": [
           "department",
           "department_name"
+        ],
+        "leave_type_id": [
+          "leave_type",
+          "leave_type_id"
+        ],
+        "leave_status": [
+          "leave_request",
+          "status"
         ]
       },
       "known_enums": {
@@ -185,6 +205,25 @@
             "REMOTE",
             "LATE",
             "ON_LEAVE"
+          ]
+        },
+        "leave_request_status": {
+          "column": "status",
+          "valid_values": [
+            "PENDING",
+            "APPROVED",
+            "REJECTED",
+            "CANCELLED"
+          ]
+        },
+        "leave_type": {
+          "column": "leave_type_id",
+          "valid_values": [
+            "AL",
+            "SL",
+            "CL",
+            "ML",
+            "UL"
           ]
         }
       }

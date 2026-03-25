@@ -1,0 +1,77 @@
+{
+  "table_name": "leave_request",
+  "columns": [
+    {
+      "name": "request_id",
+      "role": "IDENTITY",
+      "description": "Ma don xin nghi phep.",
+      "suggested_keywords": ["ma don nghi", "request id"],
+      "sql_logic": "",
+      "value_ref": null
+    },
+    {
+      "name": "employee_id",
+      "role": "IDENTITY",
+      "description": "Ma nhan vien nop don.",
+      "suggested_keywords": ["ma nhan vien", "employee id"],
+      "sql_logic": "WHERE {col} = '{val}'",
+      "value_ref": null
+    },
+    {
+      "name": "leave_type_id",
+      "role": "IDENTITY",
+      "description": "Ma loai phep lien ket bang leave_type.",
+      "suggested_keywords": ["ma loai phep", "leave type"],
+      "sql_logic": "WHERE {col} = '{val}'",
+      "value_ref": null
+    },
+    {
+      "name": "start_date",
+      "role": "TEMPORAL",
+      "description": "Ngay bat dau nghi phep.",
+      "suggested_keywords": ["ngay bat dau", "tu ngay", "start date", "nghi tu"],
+      "sql_logic": "WHERE {col} BETWEEN '{start}' AND '{end}'",
+      "value_ref": null
+    },
+    {
+      "name": "end_date",
+      "role": "TEMPORAL",
+      "description": "Ngay ket thuc nghi phep.",
+      "suggested_keywords": ["ngay ket thuc", "den ngay", "end date", "nghi den"],
+      "sql_logic": "",
+      "value_ref": null
+    },
+    {
+      "name": "total_days",
+      "role": "MEASURE",
+      "description": "Tong so ngay nghi trong don.",
+      "suggested_keywords": ["so ngay nghi", "nghi may ngay", "total days"],
+      "sql_logic": "",
+      "value_ref": null
+    },
+    {
+      "name": "reason",
+      "role": "DIMENSION",
+      "description": "Ly do xin nghi phep.",
+      "suggested_keywords": ["ly do", "reason", "ly do nghi"],
+      "sql_logic": "",
+      "value_ref": null
+    },
+    {
+      "name": "status",
+      "role": "DIMENSION",
+      "description": "Trang thai don: PENDING, APPROVED, REJECTED, CANCELLED.",
+      "suggested_keywords": ["trang thai don", "cho duyet", "da duyet", "tu choi"],
+      "sql_logic": "WHERE {col} = '{val}'",
+      "value_ref": "LEAVE_REQUEST_STATUS"
+    },
+    {
+      "name": "created_at",
+      "role": "TEMPORAL",
+      "description": "Thoi diem tao don xin nghi phep.",
+      "suggested_keywords": ["ngay tao don", "created at", "ngay nop don"],
+      "sql_logic": "",
+      "value_ref": null
+    }
+  ]
+}

@@ -7,7 +7,7 @@ Output: data/mock/hrm.db
 import sqlite3
 import os
 import random
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "hrm.db")
 
@@ -40,6 +40,38 @@ CREATE TABLE IF NOT EXISTS attendance (
     check_out_time  TEXT,              -- HH:MM:SS
     status          TEXT NOT NULL,     -- PRESENT | LATE | REMOTE | ABSENT | ON_LEAVE
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
+);
+
+CREATE TABLE IF NOT EXISTS leave_type (
+    leave_type_id     TEXT PRIMARY KEY,
+    leave_type_name   TEXT NOT NULL,
+    max_days_per_year INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS leave_balance (
+    balance_id      INTEGER PRIMARY KEY AUTOINCREMENT,
+    employee_id     TEXT NOT NULL,
+    leave_type_id   TEXT NOT NULL,
+    year            INTEGER NOT NULL,
+    total_days      REAL NOT NULL,
+    used_days       REAL NOT NULL DEFAULT 0,
+    remaining_days  REAL NOT NULL,
+    FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
+    FOREIGN KEY (leave_type_id) REFERENCES leave_type(leave_type_id)
+);
+
+CREATE TABLE IF NOT EXISTS leave_request (
+    request_id      INTEGER PRIMARY KEY AUTOINCREMENT,
+    employee_id     TEXT NOT NULL,
+    leave_type_id   TEXT NOT NULL,
+    start_date      TEXT NOT NULL,     -- YYYY-MM-DD
+    end_date        TEXT NOT NULL,     -- YYYY-MM-DD
+    total_days      REAL NOT NULL,
+    reason          TEXT,
+    status          TEXT NOT NULL DEFAULT 'PENDING',  -- PENDING | APPROVED | REJECTED | CANCELLED
+    created_at      TEXT NOT NULL,     -- YYYY-MM-DD HH:MM:SS
+    FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
+    FOREIGN KEY (leave_type_id) REFERENCES leave_type(leave_type_id)
 );
 """
 
@@ -220,7 +252,90 @@ def gen_attendance(employees, start: date, end: date):
     return rows
 
 
-# ── 6. Main ──────────────────────────────────────────────────────────────────
+# ── 6. Loại nghỉ phép ────────────────────────────────────────────────────────
+
+LEAVE_TYPES = [
+    ("AL", "Phép năm",       12),
+    ("SL", "Phép ốm",        30),
+    ("CL", "Phép đặc biệt",   5),
+    ("ML", "Phép thai sản",  180),
+    ("UL", "Nghỉ không lương", 0),
+]
+
+
+# ── 7. Sinh dữ liệu leave_balance ────────────────────────────────────────────
+
+def gen_leave_balances(employees, year=2026):
+    """Sinh số dư phép cho NV ACTIVE/PROBATION.
+    EMP001 khớp với leave_request APPROVED (AL=2, SL=2, CL=0)."""
+    rows = []
+    active = [e for e in employees if e[4] in ("ACTIVE", "PROBATION")]
+    cfg = [("AL", 12, 5), ("SL", 30, 3), ("CL", 5, 2)]
+    emp001_used = {"AL": 2.0, "SL": 2.0, "CL": 0.0}
+
+    for emp in active:
+        eid = emp[0]
+        rng_seed = hash(f"balance-{eid}") & 0xFFFFFF
+        random.seed(rng_seed)
+        for lt_id, total, max_used in cfg:
+            if eid == "EMP001":
+                used = emp001_used[lt_id]
+            else:
+                used = float(random.randint(0, max_used))
+            rows.append((eid, lt_id, year, float(total), used, float(total) - used))
+    return rows
+
+
+# ── 8. Sinh dữ liệu leave_request ────────────────────────────────────────────
+
+def gen_leave_requests(employees):
+    """Sinh ~20 đơn nghỉ phép Q1/2026.
+    EMP001: 2 APPROVED + 1 PENDING. Còn lại random."""
+    rows = []
+
+    # Đơn cố định cho EMP001
+    rows.append(("EMP001", "AL", "2026-01-13", "2026-01-14", 2.0,
+                 "Nghỉ giải quyết việc gia đình", "APPROVED", "2026-01-10 09:00:00"))
+    rows.append(("EMP001", "SL", "2026-02-17", "2026-02-18", 2.0,
+                 "Bị ốm cần nghỉ dưỡng", "APPROVED", "2026-02-16 14:30:00"))
+    rows.append(("EMP001", "AL", "2026-03-27", "2026-03-28", 2.0,
+                 "Đưa con đi khám bệnh", "PENDING", "2026-03-20 08:15:00"))
+
+    # Random cho NV ACTIVE khác
+    active_others = [e[0] for e in employees if e[4] == "ACTIVE" and e[0] != "EMP001"]
+    random.seed(42)
+    reasons = [
+        "Nghỉ phép cá nhân", "Về quê thăm gia đình", "Đi khám bệnh định kỳ",
+        "Giải quyết việc riêng", "Nghỉ ốm", "Tham dự đám cưới",
+        "Chăm con ốm", "Nghỉ phép du lịch",
+    ]
+    statuses = ["APPROVED"] * 3 + ["PENDING"] + ["REJECTED"]
+
+    for _ in range(17):
+        eid = random.choice(active_others)
+        lt = random.choice(["AL", "AL", "SL", "SL", "CL"])
+        st = random.choice(statuses)
+        month = random.randint(1, 3)
+        day = random.randint(1, 25)
+        start = date(2026, month, day)
+        while start.weekday() >= 5:
+            start += timedelta(days=1)
+        dur = random.randint(1, 4)
+        end = start
+        cnt = 1
+        while cnt < dur:
+            end += timedelta(days=1)
+            if end.weekday() < 5:
+                cnt += 1
+        created = datetime(start.year, start.month, start.day,
+                           random.randint(8, 17), random.randint(0, 59), 0)
+        created -= timedelta(days=random.randint(1, 5))
+        rows.append((eid, lt, start.isoformat(), end.isoformat(), float(dur),
+                     random.choice(reasons), st, created.strftime("%Y-%m-%d %H:%M:%S")))
+    return rows
+
+
+# ── 9. Main ──────────────────────────────────────────────────────────────────
 
 def main():
     if os.path.exists(DB_PATH):
@@ -256,6 +371,26 @@ def main():
         att_rows,
     )
 
+    # Leave types
+    cur.executemany(
+        "INSERT INTO leave_type VALUES (?, ?, ?)",
+        LEAVE_TYPES,
+    )
+
+    # Leave balances
+    bal_rows = gen_leave_balances(EMPLOYEES)
+    cur.executemany(
+        "INSERT INTO leave_balance (employee_id, leave_type_id, year, total_days, used_days, remaining_days) VALUES (?, ?, ?, ?, ?, ?)",
+        bal_rows,
+    )
+
+    # Leave requests
+    req_rows = gen_leave_requests(EMPLOYEES)
+    cur.executemany(
+        "INSERT INTO leave_request (employee_id, leave_type_id, start_date, end_date, total_days, reason, status, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        req_rows,
+    )
+
     conn.commit()
     conn.close()
 
@@ -263,6 +398,9 @@ def main():
     print(f"     Departments : {len(DEPARTMENTS)}")
     print(f"     Employees   : {len(EMPLOYEES)}")
     print(f"     Attendance  : {len(att_rows)} records")
+    print(f"     Leave types : {len(LEAVE_TYPES)}")
+    print(f"     Leave bal.  : {len(bal_rows)} records")
+    print(f"     Leave req.  : {len(req_rows)} records")
 
 
 if __name__ == "__main__":

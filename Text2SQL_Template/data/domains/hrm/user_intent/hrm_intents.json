@@ -203,5 +203,62 @@
       "resigned"
     ],
     "metadata": "SELECT e.employee_id, e.employee_name, d.department_name, e.job_title, e.employment_status, e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.employment_status = '{employment_status}'\nORDER BY d.department_name, e.employee_name ASC\nLIMIT 100;"
+  },
+  {
+    "document": "getLeaveBalance | Tra cứu số ngày phép còn lại của nhân viên",
+    "description": "Người dùng muốn xem số ngày phép còn lại (phép năm, phép ốm, phép đặc biệt) của một nhân viên.",
+    "examples": [
+      "Tôi còn bao nhiêu ngày phép",
+      "Xem số ngày phép còn lại của nhân viên EMP001",
+      "Nhân viên EMP010 còn bao nhiêu ngày phép năm",
+      "Kiểm tra phép còn lại của tôi",
+      "Số ngày nghỉ phép còn lại năm 2026"
+    ],
+    "keywords": [
+      "ngày phép còn lại",
+      "số ngày phép",
+      "phép năm",
+      "leave balance",
+      "còn bao nhiêu ngày phép"
+    ],
+    "metadata": "SELECT lb.employee_id, e.employee_name, lt.leave_type_name, lb.total_days, lb.used_days, lb.remaining_days\nFROM leave_balance lb\nJOIN employee e ON lb.employee_id = e.employee_id\nJOIN leave_type lt ON lb.leave_type_id = lt.leave_type_id\nWHERE lb.employee_id = '{employee_id}'\nAND lb.year = 2026\nORDER BY lt.leave_type_id\nLIMIT 100;"
+  },
+  {
+    "document": "getLeaveHistory | Tra cứu lịch sử nghỉ phép của nhân viên",
+    "description": "Người dùng muốn xem lịch sử các đơn nghỉ phép đã nộp của một nhân viên.",
+    "examples": [
+      "Lịch sử nghỉ phép của tôi",
+      "Xem các đơn nghỉ phép của nhân viên EMP001",
+      "Danh sách đơn nghỉ phép đã nộp",
+      "Tôi đã nghỉ phép những ngày nào",
+      "Tra cứu đơn xin nghỉ của nhân viên EMP015"
+    ],
+    "keywords": [
+      "lịch sử nghỉ phép",
+      "đơn nghỉ phép",
+      "danh sách nghỉ phép",
+      "leave history",
+      "leave request"
+    ],
+    "metadata": "SELECT lr.request_id, lr.employee_id, e.employee_name, lt.leave_type_name, lr.start_date, lr.end_date, lr.total_days, lr.reason, lr.status, lr.created_at\nFROM leave_request lr\nJOIN employee e ON lr.employee_id = e.employee_id\nJOIN leave_type lt ON lr.leave_type_id = lt.leave_type_id\nWHERE lr.employee_id = '{employee_id}'\nORDER BY lr.created_at DESC\nLIMIT 100;"
+  },
+  {
+    "document": "getLeaveRequestsByStatus | Danh sách đơn nghỉ phép theo trạng thái",
+    "description": "Người dùng muốn xem danh sách đơn nghỉ phép theo trạng thái (chờ duyệt, đã duyệt, từ chối).",
+    "examples": [
+      "Danh sách đơn nghỉ phép đang chờ duyệt",
+      "Đơn nghỉ phép nào đã được duyệt",
+      "Xem các đơn nghỉ phép bị từ chối",
+      "Có bao nhiêu đơn nghỉ phép pending",
+      "Liệt kê đơn xin nghỉ chưa duyệt"
+    ],
+    "keywords": [
+      "đơn nghỉ phép chờ duyệt",
+      "đơn nghỉ phép đã duyệt",
+      "trạng thái đơn nghỉ",
+      "pending leave",
+      "approved leave"
+    ],
+    "metadata": "SELECT lr.request_id, lr.employee_id, e.employee_name, d.department_name, lt.leave_type_name, lr.start_date, lr.end_date, lr.total_days, lr.reason, lr.status, lr.created_at\nFROM leave_request lr\nJOIN employee e ON lr.employee_id = e.employee_id\nJOIN department d ON e.department_id = d.department_id\nJOIN leave_type lt ON lr.leave_type_id = lt.leave_type_id\nWHERE lr.status = '{leave_status}'\nORDER BY lr.created_at DESC\nLIMIT 100;"
   }
 ]

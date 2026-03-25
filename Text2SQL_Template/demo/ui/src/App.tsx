@@ -102,6 +102,21 @@ type Attendance = {
   status: string;
 };
 
+type LeaveBalance = {
+  leave_type_id: string; leave_type_name: string;
+  total_days: number; used_days: number; remaining_days: number;
+};
+
+type LeaveRequest = {
+  request_id: number; leave_type_name: string;
+  start_date: string; end_date: string; total_days: number;
+  reason: string; status: string; created_at: string;
+};
+
+type LeaveType = { leave_type_id: string; leave_type_name: string; max_days_per_year: number };
+
+type CurrentUser = { employee_id: string; employee_name: string; department_name: string; job_title: string };
+
 // ── Session helpers ────────────────────────────────────────────────────────────
 
 const SESSION_KEY = 'text2sql-demo-sessions';
@@ -132,6 +147,7 @@ const STATUS_COLOR: Record<string, string> = {
   ACTIVE: 'green', PROBATION: 'blue', RESIGNED: 'default',
   SUSPENDED: 'red', PRESENT: 'green', LATE: 'orange',
   REMOTE: 'cyan', ABSENT: 'red', ON_LEAVE: 'purple',
+  PENDING: 'gold', APPROVED: 'green', REJECTED: 'red', CANCELLED: 'default',
 };
 
 // ── Main App ──────────────────────────────────────────────────────────────────
@@ -160,6 +176,19 @@ export default function App() {
   const [filterDept, setFilterDept] = useState<string | undefined>();
   const [filterStatus, setFilterStatus] = useState<string | undefined>();
 
+  // ── Leave state ────────────────────────────────────────────────────────────
+  const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
+  const [leaveBalances, setLeaveBalances] = useState<LeaveBalance[]>([]);
+  const [leaveRequests, setLeaveRequests] = useState<LeaveRequest[]>([]);
+  const [leaveTypes, setLeaveTypes] = useState<LeaveType[]>([]);
+  const [leaveLoading, setLeaveLoading] = useState(false);
+  const [leaveFormType, setLeaveFormType] = useState('AL');
+  const [leaveFormStart, setLeaveFormStart] = useState('');
+  const [leaveFormEnd, setLeaveFormEnd] = useState('');
+  const [leaveFormReason, setLeaveFormReason] = useState('');
+  const [leaveSubmitting, setLeaveSubmitting] = useState(false);
+  const [leaveMsg, setLeaveMsg] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
   // ── Effects ─────────────────────────────────────────────────────────────────
   useEffect(() => { saveSessions(sessions); }, [sessions]);
 
@@ -181,6 +210,47 @@ export default function App() {
       setAttendance((a as { attendance: Attendance[] }).attendance);
     }).catch(() => {}).finally(() => setHrmLoading(false));
   }, [view]);
+
+  // ── Leave data fetch ──────────────────────────────────────────────────────
+  useEffect(() => {
+    fetch('/api/hrm/current-user').then((r) => r.json())
+      .then((d) => setCurrentUser(d.user)).catch(() => {});
+  }, []);
+
+  const fetchLeaveData = () => {
+    setLeaveLoading(true);
+    Promise.all([
+      fetch('/api/hrm/leave-balance').then((r) => r.json()),
+      fetch('/api/hrm/leave-requests').then((r) => r.json()),
+      fetch('/api/hrm/leave-types').then((r) => r.json()),
+    ]).then(([b, r, t]) => {
+      setLeaveBalances(b.balances ?? []);
+      setLeaveRequests(r.requests ?? []);
+      setLeaveTypes(t.leave_types ?? []);
+    }).catch(() => {}).finally(() => setLeaveLoading(false));
+  };
+
+  useEffect(() => {
+    if (view === 'hrm' && hrmTab === 'leave') fetchLeaveData();
+  }, [view, hrmTab]);
+
+  const handleLeaveSubmit = async () => {
+    if (!leaveFormStart || !leaveFormEnd) return;
+    setLeaveSubmitting(true); setLeaveMsg(null);
+    try {
+      const res = await fetch('/api/hrm/leave-request', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ leave_type_id: leaveFormType, start_date: leaveFormStart, end_date: leaveFormEnd, reason: leaveFormReason }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setLeaveMsg({ type: 'success', text: data.message });
+        setLeaveFormStart(''); setLeaveFormEnd(''); setLeaveFormReason('');
+        fetchLeaveData();
+      } else { setLeaveMsg({ type: 'error', text: data.error }); }
+    } catch (err) { setLeaveMsg({ type: 'error', text: String(err) }); }
+    finally { setLeaveSubmitting(false); }
+  };
 
   // ── Derived ─────────────────────────────────────────────────────────────────
   const activeSession = useMemo(
@@ -439,6 +509,7 @@ export default function App() {
                 { key: 'departments', icon: <ApartmentOutlined />, label: 'Phòng Ban' },
                 { key: 'employees',   icon: <UserOutlined />,      label: 'Nhân Viên' },
                 { key: 'attendance',  icon: <CalendarOutlined />,  label: 'Chấm Công' },
+                { key: 'leave',       icon: <CalendarOutlined />,  label: 'Nghỉ Phép' },
               ].map((item) => (
                 <div
                   key={item.key}
@@ -449,6 +520,25 @@ export default function App() {
                 </div>
               ))}
             </>
+          )}
+
+          {/* Current user card */}
+          {navOpen && currentUser && (
+            <div style={{ padding: '8px 12px', borderTop: '1px solid #f0f0f0', marginTop: 'auto' }}>
+              <Card size="small" style={{ background: '#f0f5ff', border: '1px solid #adc6ff' }}>
+                <Space direction="vertical" size={2} style={{ width: '100%' }}>
+                  <Space>
+                    <UserOutlined />
+                    <Text strong style={{ fontSize: 13 }}>{currentUser.employee_name}</Text>
+                  </Space>
+                  <div>
+                    <Tag color="blue" style={{ fontSize: 11 }}>{currentUser.employee_id}</Tag>
+                    <Text type="secondary" style={{ fontSize: 11 }}>{currentUser.department_name}</Text>
+                  </div>
+                  <Text type="secondary" style={{ fontSize: 11 }}>{currentUser.job_title}</Text>
+                </Space>
+              </Card>
+            </div>
           )}
         </Sider>
 
@@ -599,6 +689,83 @@ export default function App() {
                           bordered
                         />
                       </>
+                    ),
+                  },
+                  {
+                    key: 'leave',
+                    label: <span><CalendarOutlined /> Nghỉ Phép</span>,
+                    children: leaveLoading ? (
+                      <div className="loading-block"><Spin size="large" /></div>
+                    ) : (
+                      <Space direction="vertical" size={16} style={{ width: '100%' }}>
+                        <div>
+                          <Title level={5} style={{ marginBottom: 8 }}>Số ngày phép còn lại (2026)</Title>
+                          <Space wrap>
+                            {leaveBalances.map((b) => (
+                              <Card key={b.leave_type_id} size="small" style={{ minWidth: 180 }}>
+                                <Text strong>{b.leave_type_name}</Text>
+                                <div style={{ marginTop: 4 }}>
+                                  <Text style={{ fontSize: 24, fontWeight: 700, color: b.remaining_days > 0 ? '#52c41a' : '#ff4d4f' }}>
+                                    {b.remaining_days}
+                                  </Text>
+                                  <Text type="secondary"> / {b.total_days} ngày</Text>
+                                </div>
+                                <Text type="secondary" style={{ fontSize: 12 }}>Đã dùng: {b.used_days}</Text>
+                              </Card>
+                            ))}
+                          </Space>
+                        </div>
+
+                        <Card title="Đăng ký nghỉ phép" size="small">
+                          {leaveMsg && (
+                            <Alert type={leaveMsg.type} message={leaveMsg.text} showIcon closable
+                              onClose={() => setLeaveMsg(null)} style={{ marginBottom: 12 }} />
+                          )}
+                          <Space wrap size={12}>
+                            <div>
+                              <Text type="secondary" style={{ display: 'block', fontSize: 12, marginBottom: 4 }}>Loại phép</Text>
+                              <Select value={leaveFormType} onChange={setLeaveFormType} style={{ width: 180 }}
+                                options={leaveTypes.filter((t) => t.leave_type_id !== 'ML').map((t) => ({
+                                  value: t.leave_type_id, label: t.leave_type_name,
+                                }))} />
+                            </div>
+                            <div>
+                              <Text type="secondary" style={{ display: 'block', fontSize: 12, marginBottom: 4 }}>Từ ngày</Text>
+                              <Input type="date" value={leaveFormStart} onChange={(e) => setLeaveFormStart(e.target.value)} style={{ width: 160 }} />
+                            </div>
+                            <div>
+                              <Text type="secondary" style={{ display: 'block', fontSize: 12, marginBottom: 4 }}>Đến ngày</Text>
+                              <Input type="date" value={leaveFormEnd} onChange={(e) => setLeaveFormEnd(e.target.value)} style={{ width: 160 }} />
+                            </div>
+                            <div>
+                              <Text type="secondary" style={{ display: 'block', fontSize: 12, marginBottom: 4 }}>Lý do</Text>
+                              <Input value={leaveFormReason} onChange={(e) => setLeaveFormReason(e.target.value)}
+                                placeholder="Nhập lý do nghỉ phép" style={{ width: 260 }} />
+                            </div>
+                            <div style={{ paddingTop: 18 }}>
+                              <Button type="primary" onClick={() => void handleLeaveSubmit()} loading={leaveSubmitting}>Gửi đơn</Button>
+                            </div>
+                          </Space>
+                        </Card>
+
+                        <div>
+                          <Title level={5} style={{ marginBottom: 8 }}>Lịch sử đơn nghỉ phép</Title>
+                          <Table dataSource={leaveRequests} rowKey="request_id" size="small"
+                            pagination={{ pageSize: 10, showSizeChanger: false }} bordered
+                            columns={[
+                              { title: '#', dataIndex: 'request_id', key: 'request_id', width: 50 },
+                              { title: 'Loại Phép', dataIndex: 'leave_type_name', key: 'leave_type_name', width: 120 },
+                              { title: 'Từ Ngày', dataIndex: 'start_date', key: 'start_date', width: 110 },
+                              { title: 'Đến Ngày', dataIndex: 'end_date', key: 'end_date', width: 110 },
+                              { title: 'Số Ngày', dataIndex: 'total_days', key: 'total_days', width: 80 },
+                              { title: 'Lý Do', dataIndex: 'reason', key: 'reason' },
+                              { title: 'Trạng Thái', dataIndex: 'status', key: 'status', width: 110,
+                                render: (v: string) => <Tag color={STATUS_COLOR[v] ?? 'default'}>{v}</Tag> },
+                              { title: 'Ngày Tạo', dataIndex: 'created_at', key: 'created_at', width: 150 },
+                            ]}
+                          />
+                        </div>
+                      </Space>
                     ),
                   },
                 ]}

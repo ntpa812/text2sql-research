@@ -6,6 +6,7 @@ Chay API demo mode, bo qua DB that va tra ve debug context day du.
 from __future__ import annotations
 
 import sqlite3
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -51,10 +52,21 @@ app.add_middleware(
 )
 
 
+# ── Current demo user ─────────────────────────────────────────────────────────
+DEMO_CURRENT_USER = "EMP001"  # Nguyễn Văn An
+
+
 class ChatRequest(BaseModel):
     message: str = Field(..., min_length=1)
     forced_domain: str | None = None
     use_embedding: bool = False
+
+
+class LeaveRequestBody(BaseModel):
+    leave_type_id: str = Field(..., pattern=r"^(AL|SL|CL|ML|UL)$")
+    start_date: str = Field(..., pattern=r"^\d{4}-\d{2}-\d{2}$")
+    end_date: str = Field(..., pattern=r"^\d{4}-\d{2}-\d{2}$")
+    reason: str = Field(default="")
 
 
 def _build_assistant_message(result: Dict[str, Any]) -> str:
@@ -96,12 +108,18 @@ def get_meta():
 
 @app.post("/api/chat")
 def chat(req: ChatRequest):
+    # Inject current user context so "tôi" resolves to Nguyễn Văn An
+    _user_ctx = {
+        "employee_id": DEMO_CURRENT_USER,
+        "employee_name": "Nguyễn Văn An",
+    }
     result = run_pipeline(
         req.message,
         use_embedding=req.use_embedding,
         explain=True,
         forced_domain=req.forced_domain,
         demo_mode=True,
+        user_context=_user_ctx,
     )
     return {
         "assistant_message": _build_assistant_message(result),
@@ -164,6 +182,127 @@ def hrm_attendance(
         LIMIT 300
     """, (date_from, date_to))
     return {"attendance": rows, "date_from": date_from, "date_to": date_to}
+
+
+# ── Leave endpoints (luồng riêng, không qua pipeline) ─────────────────────────
+
+@app.get("/api/hrm/current-user")
+def hrm_current_user():
+    rows = _hrm_query("""
+        SELECT e.employee_id, e.employee_name, d.department_name, e.job_title
+        FROM employee e
+        JOIN department d ON e.department_id = d.department_id
+        WHERE e.employee_id = ?
+    """, (DEMO_CURRENT_USER,))
+    return {"user": rows[0] if rows else None}
+
+
+@app.get("/api/hrm/leave-balance")
+def hrm_leave_balance(employee_id: str = Query(default=DEMO_CURRENT_USER)):
+    rows = _hrm_query("""
+        SELECT lb.employee_id, e.employee_name, lt.leave_type_id,
+               lt.leave_type_name, lb.total_days, lb.used_days, lb.remaining_days
+        FROM leave_balance lb
+        JOIN employee e ON lb.employee_id = e.employee_id
+        JOIN leave_type lt ON lb.leave_type_id = lt.leave_type_id
+        WHERE lb.employee_id = ? AND lb.year = 2026
+        ORDER BY lt.leave_type_id
+    """, (employee_id,))
+    return {"balances": rows, "employee_id": employee_id}
+
+
+@app.get("/api/hrm/leave-requests")
+def hrm_leave_requests(employee_id: str = Query(default=DEMO_CURRENT_USER)):
+    rows = _hrm_query("""
+        SELECT lr.request_id, lr.employee_id, e.employee_name,
+               lt.leave_type_name, lr.start_date, lr.end_date,
+               lr.total_days, lr.reason, lr.status, lr.created_at
+        FROM leave_request lr
+        JOIN employee e ON lr.employee_id = e.employee_id
+        JOIN leave_type lt ON lr.leave_type_id = lt.leave_type_id
+        WHERE lr.employee_id = ?
+        ORDER BY lr.created_at DESC
+    """, (employee_id,))
+    return {"requests": rows, "employee_id": employee_id}
+
+
+@app.get("/api/hrm/leave-types")
+def hrm_leave_types():
+    rows = _hrm_query("SELECT * FROM leave_type ORDER BY leave_type_id")
+    return {"leave_types": rows}
+
+
+def _count_working_days(start_str: str, end_str: str) -> float:
+    """Count business days between two dates (inclusive)."""
+    s = date.fromisoformat(start_str)
+    e = date.fromisoformat(end_str)
+    days = 0
+    cur = s
+    while cur <= e:
+        if cur.weekday() < 5:
+            days += 1
+        cur += timedelta(days=1)
+    return float(days)
+
+
+def _hrm_write(sql: str, params: tuple = ()) -> int:
+    """Execute a write query on HRM DB, return lastrowid."""
+    conn = sqlite3.connect(HRM_DB_PATH)
+    try:
+        cur = conn.execute(sql, params)
+        conn.commit()
+        return cur.lastrowid
+    finally:
+        conn.close()
+
+
+@app.post("/api/hrm/leave-request")
+def create_leave_request(body: LeaveRequestBody):
+    """Tạo đơn nghỉ phép mới — ghi thẳng vào DB với status PENDING."""
+    employee_id = DEMO_CURRENT_USER
+    total_days = _count_working_days(body.start_date, body.end_date)
+
+    if total_days <= 0:
+        return {"success": False, "error": "Ngày bắt đầu phải trước hoặc bằng ngày kết thúc."}
+
+    # Check remaining balance
+    bal = _hrm_query("""
+        SELECT remaining_days FROM leave_balance
+        WHERE employee_id = ? AND leave_type_id = ? AND year = 2026
+    """, (employee_id, body.leave_type_id))
+
+    if bal and body.leave_type_id != "UL":
+        remaining = bal[0]["remaining_days"]
+        if total_days > remaining:
+            return {
+                "success": False,
+                "error": f"Không đủ ngày phép. Còn lại {remaining} ngày, yêu cầu {total_days} ngày."
+            }
+
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    request_id = _hrm_write("""
+        INSERT INTO leave_request
+            (employee_id, leave_type_id, start_date, end_date, total_days, reason, status, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, 'PENDING', ?)
+    """, (employee_id, body.leave_type_id, body.start_date, body.end_date,
+          total_days, body.reason, now))
+
+    return {
+        "success": True,
+        "request_id": request_id,
+        "message": f"Đã tạo đơn nghỉ phép #{request_id} thành công. Trạng thái: PENDING.",
+        "data": {
+            "request_id": request_id,
+            "employee_id": employee_id,
+            "leave_type_id": body.leave_type_id,
+            "start_date": body.start_date,
+            "end_date": body.end_date,
+            "total_days": total_days,
+            "reason": body.reason,
+            "status": "PENDING",
+            "created_at": now,
+        }
+    }
 
 
 # ── Banking endpoints ──────────────────────────────────────────────────────────

@@ -1,0 +1,29 @@
+{
+  "table_name": "leave_type",
+  "columns": [
+    {
+      "name": "leave_type_id",
+      "role": "IDENTITY",
+      "description": "Ma loai phep (AL, SL, CL, ML, UL).",
+      "suggested_keywords": ["ma loai phep", "leave type id"],
+      "sql_logic": "WHERE {col} = '{val}'",
+      "value_ref": null
+    },
+    {
+      "name": "leave_type_name",
+      "role": "DIMENSION",
+      "description": "Ten loai phep: phep nam, phep om, phep dac biet, phep thai san, nghi khong luong.",
+      "suggested_keywords": ["loai phep", "ten loai phep", "phep nam", "phep om"],
+      "sql_logic": "WHERE {col} LIKE '%{val}%'",
+      "value_ref": null
+    },
+    {
+      "name": "max_days_per_year",
+      "role": "MEASURE",
+      "description": "So ngay phep toi da duoc cap moi nam.",
+      "suggested_keywords": ["so ngay toi da", "ngay phep toi da", "max days"],
+      "sql_logic": "",
+      "value_ref": null
+    }
+  ]
+}
