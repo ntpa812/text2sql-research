@@ -384,7 +384,7 @@ def run_pipeline(
         # ─── Step 3: Entity Extraction ──────────────────────
         t0 = time.time()
         logger.info("[Step 3] Entity Extraction")
-        raw_entities = extract_entities_local(question)
+        raw_entities = extract_entities_local(question, domain_id=domain_id)
         entities = normalize_entities(raw_entities)
         log_entry["entities"] = entities
         timing["entity_extraction"] = round(time.time() - t0, 3)

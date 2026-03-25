@@ -28,5 +28,80 @@
         "created_at": "2026-03-24T16:04:31"
       }
     ]
+  },
+  "1423268167020dcd9481": {
+    "question": "số tiền chuyển trong tháng 1",
+    "domain": "banking",
+    "rows": [
+      {
+        "demo_id": "14232681",
+        "domain": "banking",
+        "intent": "Tra cứu giao dịch chuyển tiền theo số tiền",
+        "tables": "customer, transaction, customer_account",
+        "preview_sql": "SELECT SUM(amount_transfer) AS total_transfer_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1;",
+        "note": "Demo mode: ket qua duoc luu local cache, khong truy cap DB that.",
+        "created_at": "2026-03-25T13:45:01"
+      }
+    ]
+  },
+  "215baad50619b2c54a8e": {
+    "question": "tra cuu giao dịch chuyen tien trong thang nay",
+    "domain": "banking",
+    "rows": [
+      {
+        "demo_id": "215baad5",
+        "domain": "banking",
+        "intent": "Tra cứu giao dịch chuyển tiền theo thời gian",
+        "tables": "transaction, customer_account",
+        "preview_sql": "SELECT trans_id, trans_time, amount_transfer, from_account_no, to_account_no\n    FROM transaction\n    WHERE trans_time >= DATE_FORMAT(CURDATE(), '%Y-%m-01')\n   ",
+        "note": "Demo mode: ket qua duoc luu local cache, khong truy cap DB that.",
+        "created_at": "2026-03-25T13:58:46"
+      }
+    ]
+  },
+  "2cb5e50ef721a5dd688e": {
+    "question": "giờ vào chấm công của Nguyễn Văn An ngày 24/3/2026",
+    "domain": "hrm",
+    "rows": [
+      {
+        "demo_id": "2cb5e50e",
+        "domain": "hrm",
+        "intent": "Tra cứu chấm công theo nhân viên và thời gian",
+        "tables": "attendance, employee",
+        "preview_sql": "SELECT\n            a.attendance_id,\n            a.employee_id,\n            e.employee_name,\n            a.attendance_date,\n            a.check_in_time,\n        ",
+        "note": "Demo mode: ket qua duoc luu local cache, khong truy cap DB that.",
+        "created_at": "2026-03-25T14:00:22"
+      }
+    ]
+  },
+  "f9f8ea67a798f2a96463": {
+    "question": "giờ vào chấm công của Nguyễn Văn An ngày 23/3/2026",
+    "domain": "hrm",
+    "rows": [
+      {
+        "demo_id": "f9f8ea67",
+        "domain": "hrm",
+        "intent": "Tra cứu chấm công theo nhân viên và thời gian",
+        "tables": "attendance, employee",
+        "preview_sql": "SELECT\n        a.attendance_id,\n        a.employee_id,\n        e.employee_name,\n        a.attendance_date,\n        a.check_in_time,\n        a.check_out_time,\n  ",
+        "note": "Demo mode: ket qua duoc luu local cache, khong truy cap DB that.",
+        "created_at": "2026-03-25T14:03:36"
+      }
+    ]
+  },
+  "8e08da84877ad3173316": {
+    "question": "tổng tiền chuyển đi trong tháng 3",
+    "domain": "banking",
+    "rows": [
+      {
+        "demo_id": "8e08da84",
+        "domain": "banking",
+        "intent": "Thống kê giao dịch chuyển tiền",
+        "tables": "transaction, customer",
+        "preview_sql": "SELECT SUM(amount_transfer) AS total_amount\n    FROM transaction\n    WHERE YEAR(trans_time) = YEAR(CURRENT_DATE())\n      AND MONTH(trans_time) = 3\n      AND tra",
+        "note": "Demo mode: ket qua duoc luu local cache, khong truy cap DB that.",
+        "created_at": "2026-03-25T14:24:45"
+      }
+    ]
   }
 }

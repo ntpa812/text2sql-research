@@ -1,4 +1,3 @@
-SELECT COUNT(*) AS total_transactions
+SELECT SUM(amount_transfer) AS total_transfer_amount
 FROM transaction
-WHERE trans_time >= DATE_SUB(CURDATE(), INTERVAL 1 DAY)
-  AND trans_time < CURDATE();
+WHERE MONTH(trans_time) = 1;

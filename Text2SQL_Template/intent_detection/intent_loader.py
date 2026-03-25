@@ -33,15 +33,21 @@ def _resolve_intent_path(path: Optional[str] = None, domain_id: Optional[str] = 
         return path
 
     domain_id = domain_id or DEFAULT_DOMAIN_ID
-    domain_candidate = os.path.join(
+
+    # Tìm trong data/domains/{domain_id}/user_intent/ — bất kỳ file .json nào
+    domain_dir = os.path.join(
         os.path.dirname(os.path.dirname(LEGACY_INTENT_DATASET_PATH)),
         "domains",
         domain_id,
         "user_intent",
-        os.path.basename(LEGACY_INTENT_DATASET_PATH),
     )
-    if os.path.isfile(domain_candidate):
-        return domain_candidate
+    if os.path.isdir(domain_dir):
+        import glob as _glob
+        json_files = sorted(_glob.glob(os.path.join(domain_dir, "*.json")))
+        if json_files:
+            return json_files[0]
+
+    # Fallback: legacy path (banking default)
     return LEGACY_INTENT_DATASET_PATH
 
 

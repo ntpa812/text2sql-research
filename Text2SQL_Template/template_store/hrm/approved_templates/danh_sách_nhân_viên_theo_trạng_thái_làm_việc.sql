@@ -7,6 +7,6 @@ SELECT
     e.hire_date
 FROM employee e
 JOIN department d ON e.department_id = d.department_id
-WHERE e.employment_status = '{employment_status}'
+WHERE e.employment_status = 'PROBATION'
 ORDER BY d.department_name, e.employee_name ASC
 LIMIT 100;
