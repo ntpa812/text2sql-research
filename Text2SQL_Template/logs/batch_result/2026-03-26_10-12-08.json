@@ -1,0 +1,1510 @@
+[
+  {
+    "question": "Xem tất cả giao dịch của tài khoản 123456 trong tháng 1 năm 2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "123456",
+      "start_date": "2024-01-01",
+      "end_date": "2024-01-31"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '123456')\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.83,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.001,
+      "schema_router": 0.031,
+      "intent_detection": 0.007,
+      "entity_extraction": 1.434,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.112,
+      "execution": 0.011,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Tổng số tiền tôi đã chuyển đi trong tháng 2",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {
+      "start_date": "2026-02-01",
+      "end_date": "2026-02-28",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 0.9,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.195,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.01,
+      "intent_detection": 0.006,
+      "entity_extraction": 1.455,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.117,
+      "execution": 0.018,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Tôi đã nhận bao nhiêu tiền vào ngày 15/03/2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "start_date": "2024-03-15",
+      "end_date": "2024-03-15"
+    },
+    "sql": "SELECT SUM(t.to_amount) AS total_received\n    FROM transaction t\n    JOIN customer_account c ON t.to_account_no = c.account_no\n    WHERE c.account_no = '123456789'\n      AND t.trans_time = '2024-03-15'\n      AND t.to_amount IS NOT NULL;",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 0.9,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.002,
+      "schema_router": 0.017,
+      "intent_detection": 0.006,
+      "entity_extraction": 1.445,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 135.963,
+      "execution": 0.004,
+      "explain": 0.0
+    },
+    "semantic_warnings": [
+      "Câu hỏi yêu cầu đếm (COUNT) nhưng SQL thiếu COUNT()"
+    ]
+  },
+  {
+    "question": "Liệt kê các giao dịch chuyển khoản của tài khoản 987654 trong tuần này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "987654",
+      "start_date": "2026-03-23",
+      "end_date": "2026-03-26",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT *\n            FROM transaction\n            WHERE from_account_no = '987654' OR to_account_no = '987654'\n              AND trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.78,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.282,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.001,
+      "schema_router": 0.038,
+      "intent_detection": 0.007,
+      "entity_extraction": 1.422,
+      "template_fill": 0.001,
+      "sql_generation": 0.0,
+      "validation": 135.934,
+      "execution": 0.01,
+      "explain": 0.0
+    },
+    "semantic_warnings": [
+      "Câu hỏi có thời gian nhưng SQL thiếu filter thời gian"
+    ]
+  },
+  {
+    "question": "Cho tôi xem lịch sử giao dịch từ ngày 01/01/2024 đến 31/01/2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_đơn_vị_tiền_tệ",
+    "entities": {
+      "start_date": "2024-01-01",
+      "end_date": "2024-01-31"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n           from_account_no, to_account_no,\n           amount_transfer, amount_currency,\n           trans_status, trans_desc\n    FROM transaction\n    WHERE trans_time >= '2024-01-01'\n      AND trans_time <= '2024-01-31'\n    ORDER BY trans_time DESC\n    LIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.9,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 70.003,
+      "validation": 0.007,
+      "execution": 0.009,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Có bao nhiêu giao dịch trên 10 triệu trong tháng này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_vay_và_tín_dụng_theo_số_tiền",
+    "entities": {
+      "start_date": "2026-03-01",
+      "end_date": "2026-03-26",
+      "amount_min": "10000000"
+    },
+    "sql": "SELECT COUNT(*) FROM transaction WHERE amount_transfer > 10000000 AND trans_time >= '2026-03-01' AND trans_time <= '2026-03-26' LIMIT 100;",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 1.0,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 21.449,
+      "validation": 65.701,
+      "execution": 0.009,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Giao dịch gần nhất của tài khoản 123456 là gì",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "123456"
+    },
+    "sql": "SELECT \n  trans_id, trans_time, trans_type, trans_name,\n  from_account_no, to_account_no,\n  amount_transfer, amount_currency,\n  trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%FOREIGN_CURRENCY%'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 50,
+    "confidence": {
+      "score": 0.93,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.006,
+      "execution": 0.009,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Liệt kê các giao dịch nạp tiền vào tài khoản của tôi",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "transaction_type": "DEPOSIT"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%EWALLET_%' OR category_code = 'TOPUP'\nAND from_account_no = 'your_account_number'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 57,
+    "confidence": {
+      "score": 0.93,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.005,
+      "execution": 0.012,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Tổng số giao dịch trong ngày hôm qua",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {
+      "start_date": "2026-03-25",
+      "end_date": "2026-03-25"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_transfer_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1;",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 0.9,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.195,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.004,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.006,
+      "execution": 0.008,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Xem các giao dịch chuyển tiền trên 5 triệu trong tháng 3",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {
+      "start_date": "2026-03-01",
+      "end_date": "2026-03-31",
+      "amount_min": "5000000",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_transfer_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1;",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 0.9,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.195,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.005,
+      "execution": 0.008,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Tài khoản 456789 đã chuyển bao nhiêu tiền trong tuần qua",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "customer_account",
+      "transaction",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "account_no": "456789",
+      "start_date": "2026-03-16",
+      "end_date": "2026-03-22",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transfer\nFROM transaction t\nJOIN customer_account c ON t.from_account_no = c.account_no\nWHERE c.account_no = '456789'\nAND t.trans_type = 'TRANSFER'\nAND t.trans_time >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)\nAND t.trans_time < CURDATE();",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 0.88,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.282,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.004,
+      "intent_detection": 0.011,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 64.543,
+      "execution": 0.005,
+      "explain": 0.0
+    },
+    "semantic_warnings": [
+      "Câu hỏi yêu cầu đếm (COUNT) nhưng SQL thiếu COUNT()",
+      "Câu hỏi có thời gian nhưng SQL thiếu filter thời gian"
+    ]
+  },
+  {
+    "question": "Những giao dịch nào diễn ra vào ngày 20/02/2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_dòng_tiền",
+    "entities": {
+      "start_date": "2024-02-20",
+      "end_date": "2024-02-20"
+    },
+    "sql": "SELECT \n  *\nFROM \n  transaction\nWHERE \n  trans_time >= '2024-02-20'\nORDER BY \n  trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 100,
+    "confidence": {
+      "score": 1.0,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.004,
+      "intent_detection": 0.01,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.006,
+      "execution": 0.013,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Liệt kê 10 giao dịch gần nhất của tài khoản 111222",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "111222"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '111222')\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.83,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.003,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.006,
+      "execution": 0.01,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Tổng số tiền đã nhận trong tháng 4",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {
+      "start_date": "2026-04-01",
+      "end_date": "2026-04-30"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 0.9,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.195,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.005,
+      "execution": 0.008,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Xem lịch sử giao dịch của tài khoản 333444 trong 7 ngày qua",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "333444",
+      "start_date": "2026-03-19",
+      "end_date": "2026-03-26"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '333444')\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.83,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.006,
+      "execution": 0.008,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Các giao dịch có giá trị dưới 1 triệu trong tháng này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_số_tiền",
+    "entities": {
+      "start_date": "2026-03-01",
+      "end_date": "2026-03-26",
+      "amount_max": "1000000"
+    },
+    "sql": "SELECT trans_code, from_account_no, to_account_no, amount_transfer, amount_currency, trans_time\n    FROM transaction\n    WHERE trans_time >= '2026-03-01'\n      AND trans_time <= '2026-03-26'\n      AND amount_transfer < 1000000\n    LIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.9,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 65.81,
+      "validation": 0.007,
+      "execution": 0.009,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Tôi đã thực hiện bao nhiêu giao dịch trong tháng 6",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_kênh_thực_hiện",
+    "entities": {
+      "start_date": "2026-06-01",
+      "end_date": "2026-06-30"
+    },
+    "sql": "SELECT COUNT(*) \nFROM transaction \nWHERE EXTRACT(MONTH FROM transaction.trans_time) = MONTH(CURRENT_DATE) AND trans_type = 'DIMENSION' AND channel_receiver = 'DIMENSION' \nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 0.93,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.003,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.007,
+      "execution": 0.01,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Xem các giao dịch chuyển khoản ra ngoài ngân hàng",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_đích",
+    "entities": {
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.004,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 65.727
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  },
+  {
+    "question": "Có giao dịch nào trên 50 triệu trong năm 2024 không",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_vay_và_tín_dụng_theo_số_tiền",
+    "entities": {
+      "start_date": "2024-01-01",
+      "end_date": "2024-12-31",
+      "amount_min": "50000000"
+    },
+    "sql": "SELECT COUNT(*) FROM transaction WHERE amount_transfer > 10000000 AND trans_time >= '2026-03-01' AND trans_time <= '2026-03-26' LIMIT 100;",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 1.0,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.006,
+      "execution": 0.015,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Liệt kê các giao dịch vào ngày hôm nay",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "thống_kê_giao_dịch_vay",
+    "entities": {
+      "start_date": "2026-03-26",
+      "end_date": "2026-03-26"
+    },
+    "sql": "SELECT *\nFROM transaction\nWHERE DATE(trans_time) = '2026-03-26'\nLIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.8,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.195,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 12.474,
+      "validation": 0.007,
+      "execution": 0.014,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Tổng số tiền giao dịch của tài khoản 888999 trong tháng này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "888999",
+      "start_date": "2026-03-01",
+      "end_date": "2026-03-26"
+    },
+    "sql": "SELECT query.\n        6.  Limit result to 100 rows.\n        7.  Dialect: MySQL / MariaDB.\n    *   **User Question:** \"Tổng số tiền giao dịch của tài khoản 888999 trong tháng này\" (Total transaction amount of account 888999 this month).\n    *   **Intent:** `tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn` (Investigate money transfer transactions by source account number).\n    *   **Extracted Entities:** `account_no`: \"888999\", `start_date`: \"2026-03-01\", `end_date`: \"2026-03-26\".\n    *   **Template Hint:** Provides a SELECT structure filtering by `from_account_no` and `category_code`.\n    *   **Schema:** `transaction`, `customer_account`, `customer`.\n\n2.  **Evaluate the User Question vs. Intent vs. Schema:**\n    *   **Question:** \"Tổng số tiền giao dịch của tài khoản 888999 trong tháng này\" (Total transaction amount of account 888999 this month).\n        *   This implies an aggregation (SUM) of amounts.\n        *   It specifies an account number (888999).\n        *   It specifies a time range (\"this month\", but the extracted entities provide specific dates: 2026-03-01 to 2026-03-26).\n    *   **Intent:** `tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn` (Investigate money transfer transactions by source account number).\n        *   This suggests filtering by `from_account_no` in the `transaction` table.\n        *   The template hint also uses `from_account_no`.\n    *   **Schema:**\n        *   `transaction` table has `from_account_no`, `amount_transfer`, `amount_currency`, `trans_time`, `trans_status`, etc.\n        *   `customer_account` table has `account_no`.\n        *   The extracted entities explicitly provide `account_no` as \"888999\" and dates.\n    *   **Conflict/Adjustment:**\n        *   The user asks for \"Tổng số tiền\" (Total amount), which implies `SUM(amount_transfer)`.\n        *   The intent description says \"tra cứu lịch sử giao dịch\" (investigate transaction history), but the question asks for \"Tổng số tiền\" (Total amount). Usually, if the intent is fixed, I should follow the intent's logic but adapt to the specific question's aggregation if possible, or follow the template hint's structure if it's a strict constraint.\n        *   However, the rule says \"Write the final SQL query\" based on the user question. The intent and template hint are guidance.\n        *   The template hint selects individual rows (`SELECT trans_id, ...`). The question asks for \"Tổng số tiền\" (Total amount).\n        *   If I strictly follow the template hint, I get a list of transactions. If I answer the question \"Total amount\", I should aggregate.\n        *   Looking at the \"Extracted Entities\", it provides `start_date` and `end_date`.\n        *   Looking at the \"Template Hint\", it selects specific columns and filters by `category_code` and `from_account_no`.\n        *   Looking at the \"Intent\", it says \"tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn\" (Investigate transfer transactions by source account).\n        *   There is a slight mismatch between \"Total amount\" (Aggregation) and \"Investigate history\" (List).\n        *   However, often in these tasks, the \"Intent\" and \"Template Hint\" define the expected structure of the query (e.g., which table to join, which columns to select).\n        *   But the User Question explicitly asks for \"Tổng số tiền\" (Total amount).\n        *   Let's check the rules again: \"Write the final SQL query.\"\n        *   If I return a list of transactions, it doesn't answer \"Total amount\".\n        *   If I return a sum, it answers the question.\n        *   However, the Template Hint suggests a specific SELECT list.\n        *   Let's look at the \"Extracted Entities\". It has `start_date` and `end_date`.\n        *   The question says \"trong tháng này\" (this month). The entities provide specific dates (2026-03-01 to 2026-03-26). I should use these dates.\n        *   The question asks for \"Tổng số tiền\" (Total amount).\n        *   The Intent says \"tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn\".\n        *   Usually, when there is a specific question like \"Total amount\", the SQL should aggregate. But if the system expects the template structure, I might need to balance.\n        *   Wait, the instruction says \"You MUST follow these rules... 3. Use entities provided in the entity list.\"\n        *   The entities include `account_no`, `start_date`, `end_date`.\n        *   The template hint uses `category_code`. Is `category_code` in the `transaction` table? Yes.\n        *   The template hint filters by `category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER'`.\n        *   The user question is general \"giao dịch\" (transaction), but the intent is \"chuyển tiền\" (transfer). I should follow the intent's logic regarding transaction type if possible, or stick to the template hint's filter logic as it defines the \"Transfer\" context.\n        *   Crucially, the question asks for \"Tổng số tiền\" (Total amount). A query returning a list of rows (like the template hint) does not provide a total.\n        *   However, sometimes these prompts expect the template structure to be followed closely even if the question implies aggregation, OR they expect the aggregation based on the question.\n        *   Given the explicit instruction \"Write the final SQL query\" based on the \"USER QUESTION\", I should prioritize answering the question. But the \"TEMPLATE HINT\" is a strong signal for the schema usage.\n        *   Let's look at the \"INTENT DESCRIPTION\": \"Người dùng muốn tra cứu lịch sử giao dịch chuyển tiền theo số tài khoản nguồn.\" (User wants to investigate transfer transaction history by source account number). This contradicts \"Tổng số tiền\" (Total amount).\n        *   If I follow the Intent Description, I should list transactions. If I follow the User Question, I should sum them.\n        *   Usually, in these specific prompt engineering setups (like SQL generation tasks), the \"Template Hint\" is the ground truth for the query structure, and the \"User Question\" is the natural language trigger. However, the \"Extracted Entities\" contain specific dates.\n        *   If I change the SELECT to `SUM(amount_transfer)`, it deviates from the Template Hint's SELECT list.\n        *   If I keep the Template Hint's SELECT list, I am not answering \"Total amount\".\n        *   Let's check the constraint: \"Only generate a SELECT query.\"\n        *   Let's check the constraint: \"Limit the result to 100 rows.\"\n        *   If I use `SUM()`, `LIMIT 100` doesn't make much sense (unless I group by something).\n        *   If I use the template hint structure, `LIMIT 100` makes sense.\n        *   There is a conflict between the Question (\"Total amount\") and the Template Hint/Intent (\"List transactions\").\n        *   In many of these specific evaluation benchmarks, the \"Template Hint\" is the intended output structure, and the \"User Question\" is just the trigger. However, the \"Extracted Entities\" suggest specific filtering.\n        *   Wait, looking closely at the prompt structure: It provides \"INTENT\", \"INTENT DESCRIPTION\", \"EXTRACTED ENTITIES\", \"TEMPLATE HINT\".\n        *   The \"TEMPLATE HINT\" is usually the expected pattern.\n        *   However, the User Question is \"Tổng số tiền...\" (Total amount).\n        *   If I write `SELECT SUM(amount_transfer) ...`, it is valid SQL.\n        *   If I write `SELECT ... FROM transaction ... LIMIT 100`, it matches the template.\n        *   Let's consider the \"Extracted Entities\". It has `start_date` and `end_date`.\n        *   The Template Hint does *not* use dates in the WHERE clause, it uses `category_code`.\n        *   The User Question says \"trong tháng này\" (this month).\n        *   The",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0
+    },
+    "error": "EXPLAIN failed: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '6.  Limit result to 100 rows.\n        7.  Dialect: MySQL / MariaDB.\n    *   *...' at line 2"
+  },
+  {
+    "question": "Các giao dịch chuyển tiền vào tài khoản 123456 trong tháng trước",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "account_no": "123456",
+      "start_date": "2026-02-01",
+      "end_date": "2026-02-28",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT t.trans_id, t.trans_time, t.amount_transfer, t.to_account_no\n        FROM transaction t\n        WHERE t.to_account_no = '123456'\n          AND t.category_code LIKE 'TRANSFER_%'\n          AND t.trans_time >= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')\n          AND t.trans_time < DATE_FORMAT(CURDATE(), '%Y-%m-01')\n        ORDER BY t.trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.78,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.282,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.004,
+      "intent_detection": 0.011,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 131.239,
+      "execution": 0.008,
+      "explain": 0.0
+    },
+    "semantic_warnings": [
+      "Câu hỏi có thời gian nhưng SQL thiếu filter thời gian"
+    ]
+  },
+  {
+    "question": "Xem các giao dịch từ ngày 10/02/2024 đến 20/02/2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_trạng_thái",
+    "entities": {
+      "start_date": "2024-02-10",
+      "end_date": "2024-02-20"
+    },
+    "sql": "SELECT ...\n            FROM transaction\n            WHERE trans_time BETWEEN '2024-02-10' AND '2024-02-20'\n            LIMIT 100;",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.004,
+      "intent_detection": 0.011,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 65.37
+    },
+    "error": "Validation failed after 2 retries: Expected SELECT, got UNKNOWN"
+  },
+  {
+    "question": "Có bao nhiêu giao dịch chuyển khoản trong tuần này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {
+      "start_date": "2026-03-23",
+      "end_date": "2026-03-26",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_transfer_amount FROM transaction WHERE MONTH(trans_time) = 1 GROUP BY amount_transfer, total_transfer_amount ;",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.004,
+      "intent_detection": 0.011,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0
+    },
+    "semantic_warnings": [
+      "Câu hỏi yêu cầu đếm (COUNT) nhưng SQL thiếu COUNT()"
+    ],
+    "error": "EXPLAIN failed: 1056 (42000): Can't group on 'total_transfer_amount'"
+  },
+  {
+    "question": "Giao dịch có giá trị lớn nhất trong tháng 5 là gì",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tỷ_giá_áp_dụng",
+    "entities": {
+      "start_date": "2026-05-01",
+      "end_date": "2026-05-31"
+    },
+    "sql": "SELECT \n    reference_id,\n    trans_id,\n    trans_code,\n    user_name,\n    trans_time,\n    trans_type,\n    COALESCE(amount_transfer, 0) AS amount_transfer,\n    amount_currency,\n    amount_rate,\n    to_amount,\n    to_account_currency\nFROM transaction\nWHERE trans_time >= '2026-05-01' \n    AND trans_time <= '2026-05-31'\n    AND amount_transfer IS NOT NULL\n    AND amount_transfer > 0\nORDER BY amount_transfer DESC\nLIMIT 1;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.73,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.004,
+      "intent_detection": 0.011,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 23.195,
+      "validation": 13.414,
+      "execution": 0.008,
+      "explain": 0.0
+    },
+    "semantic_warnings": [
+      "Câu hỏi yêu cầu MAX nhưng SQL thiếu MAX()"
+    ]
+  },
+  {
+    "question": "Cho tôi danh sách giao dịch của tài khoản 555666",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "555666"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%EWALLET_%' OR category_code = 'TOPUP'\nAND from_account_no = 'your_account_number'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 57,
+    "confidence": {
+      "score": 1.0,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.006,
+      "execution": 0.01,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Các giao dịch rút tiền trong tháng này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_thời_gian",
+    "entities": {
+      "start_date": "2026-03-01",
+      "end_date": "2026-03-26",
+      "transaction_type": "WITHDRAWAL"
+    },
+    "sql": "SELECT\n      reference_id,\n      trans_id,\n      from_account_no,\n      to_account_no,\n      amount_transfer,\n      amount_currency,\n      trans_time,\n      trans_type\n    FROM transaction\n    WHERE trans_time BETWEEN '2026-03-01' AND '2026-03-26'\n      AND trans_type = 'WITHDRAWAL'\n    LIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.88,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.276,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 64.619,
+      "validation": 0.007,
+      "execution": 0.009,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Xem lịch sử chuyển tiền của tài khoản 222333",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "222333",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '222333')\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.83,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.006,
+      "execution": 0.008,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Tổng tiền đã chuyển trong ngày hôm nay",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {
+      "start_date": "2026-03-26",
+      "end_date": "2026-03-26",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 0.9,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.195,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.004,
+      "execution": 0.006,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Liệt kê các giao dịch có số tiền từ 2 triệu đến 10 triệu",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_số_tiền",
+    "entities": {
+      "amount_min": "2000000",
+      "amount_max": "10000000"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n           from_account_no, to_account_no,\n           amount_transfer, amount_currency,\n           trans_status, trans_desc\n    FROM transaction\n    WHERE category_code LIKE 'INVEST_%'\n      AND amount_transfer BETWEEN 2000000 AND 10000000\n    ORDER BY trans_time DESC\n    LIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.9,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 64.834,
+      "validation": 0.006,
+      "execution": 0.007,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Có bao nhiêu giao dịch trong ngày 01/03/2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_dòng_tiền",
+    "entities": {
+      "start_date": "2024-03-01",
+      "end_date": "2024-03-01"
+    },
+    "sql": "SELECT COUNT(*)\n    FROM transaction\n    WHERE trans_time >= '2024-03-01' AND trans_time < '2024-03-02'",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 1.0,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.004,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 64.877,
+      "execution": 0.009,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Xem các giao dịch nhận tiền từ tài khoản 777888",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "777888"
+    },
+    "sql": "SELECT \n  trans_id, trans_time, trans_type, trans_name,\n  from_account_no, to_account_no,\n  amount_transfer, amount_currency,\n  trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%FOREIGN_CURRENCY%'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 50,
+    "confidence": {
+      "score": 0.93,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.225,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.006,
+      "execution": 0.009,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Giao dịch đầu tiên trong tháng này là gì",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_số_tiền",
+    "entities": {
+      "start_date": "2026-03-01",
+      "end_date": "2026-03-26"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE trans_time >= '2026-03-01'\n  AND trans_time <= '2026-03-26'\nORDER BY trans_time ASC\nLIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.9,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 46.153,
+      "validation": 0.005,
+      "execution": 0.006,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Những giao dịch nào có số tiền trên 20 triệu",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_số_tiền",
+    "entities": {
+      "amount_min": "20000000"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) AND amount_transfer > 2000000;",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 1.0,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 0.005,
+      "execution": 0.011,
+      "explain": 0.0
+    }
+  },
+  {
+    "question": "Xem lịch sử giao dịch của tôi trong 30 ngày gần nhất",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "start_date": "2026-02-24",
+      "end_date": "2026-03-26"
+    },
+    "sql": "",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.001,
+      "template_fill": 0.0,
+      "sql_generation": 61.901
+    },
+    "error": "Validation failed after 2 retries: Empty SQL query"
+  }
+]

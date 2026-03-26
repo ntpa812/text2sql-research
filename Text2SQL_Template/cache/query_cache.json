@@ -298,5 +298,1546 @@
     "entities": {},
     "sql": "SELECT * FROM transaction WHERE MONTH(trans_time) = 3 ORDER BY trans_time DESC LIMIT 100;",
     "validator": "PASS"
+  },
+  "banking:90a0fb2122580eab": {
+    "question": "Xem tất cả giao dịch của tài khoản 123456 trong tháng 1 năm 2024",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "123456",
+      "start_date": "2024-01-01",
+      "end_date": "2024-01-31"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '123456')\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY"
+  },
+  "banking:2a3cdaa0197a9908": {
+    "question": "Tổng số tiền tôi đã chuyển đi trong tháng 2",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {
+      "start_date": "2026-02-01",
+      "end_date": "2026-02-28",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "banking:ea1b3e9bd4adc146": {
+    "question": "Cho tôi xem lịch sử giao dịch từ ngày 01/01/2024 đến 31/01/2024",
+    "domain": "banking",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_đơn_vị_tiền_tệ",
+    "entities": {
+      "start_date": "2024-01-01",
+      "end_date": "2024-01-31"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n           from_account_no, to_account_no,\n           amount_transfer, amount_currency,\n           trans_status, trans_desc\n    FROM transaction\n    WHERE trans_time >= '2024-01-01'\n      AND trans_time <= '2024-01-31'\n    ORDER BY trans_time DESC\n    LIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "banking:bc597b0177706407": {
+    "question": "Giao dịch gần nhất của tài khoản 123456 là gì",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "123456"
+    },
+    "sql": "SELECT \n  trans_id, trans_time, trans_type, trans_name,\n  from_account_no, to_account_no,\n  amount_transfer, amount_currency,\n  trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%FOREIGN_CURRENCY%'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "banking:12e95dd7967f6056": {
+    "question": "Liệt kê các giao dịch nạp tiền vào tài khoản của tôi",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "transaction_type": "DEPOSIT"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%EWALLET_%' OR category_code = 'TOPUP'\nAND from_account_no = 'your_account_number'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "banking:b5d8adb2cc5a2db0": {
+    "question": "Tổng số giao dịch trong ngày hôm qua",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {
+      "start_date": "2026-03-25",
+      "end_date": "2026-03-25"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_transfer_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1;",
+    "validator": "PASS"
+  },
+  "banking:7ef17cac7795d7a5": {
+    "question": "Xem các giao dịch chuyển tiền trên 5 triệu trong tháng 3",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {
+      "start_date": "2026-03-01",
+      "end_date": "2026-03-31",
+      "amount_min": "5000000",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_transfer_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1;",
+    "validator": "PASS"
+  },
+  "banking:601874c7888498c5": {
+    "question": "Có bao nhiêu giao dịch trên 10 triệu trong tháng này",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_vay_và_tín_dụng_theo_số_tiền",
+    "entities": {
+      "start_date": "2026-03-01",
+      "end_date": "2026-03-26",
+      "amount_min": "10000000"
+    },
+    "sql": "SELECT COUNT(*) FROM transaction WHERE amount_transfer > 10000000 AND trans_time >= '2026-03-01' AND trans_time <= '2026-03-26' LIMIT 100;",
+    "validator": "PASS"
+  },
+  "banking:c4c94076fac6e29d": {
+    "question": "Những giao dịch nào diễn ra vào ngày 20/02/2024",
+    "domain": "banking",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_dòng_tiền",
+    "entities": {
+      "start_date": "2024-02-20",
+      "end_date": "2024-02-20"
+    },
+    "sql": "SELECT \n  *\nFROM \n  transaction\nWHERE \n  trans_time >= '2024-02-20'\nORDER BY \n  trans_time DESC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "banking:d7d279d9421fc6e6": {
+    "question": "Liệt kê 10 giao dịch gần nhất của tài khoản 111222",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "111222"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '111222')\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY"
+  },
+  "banking:9bafde1a95a21f77": {
+    "question": "Tổng số tiền đã nhận trong tháng 4",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {
+      "start_date": "2026-04-01",
+      "end_date": "2026-04-30"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "banking:041552c8e4b46460": {
+    "question": "Xem lịch sử giao dịch của tài khoản 333444 trong 7 ngày qua",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "333444",
+      "start_date": "2026-03-19",
+      "end_date": "2026-03-26"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '333444')\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY"
+  },
+  "banking:74dde7e37d804736": {
+    "question": "Tài khoản 456789 đã chuyển bao nhiêu tiền trong tuần qua",
+    "domain": "banking",
+    "tables": [
+      "customer_account",
+      "transaction",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "account_no": "456789",
+      "start_date": "2026-03-16",
+      "end_date": "2026-03-22",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transfer\nFROM transaction t\nJOIN customer_account c ON t.from_account_no = c.account_no\nWHERE c.account_no = '456789'\nAND t.trans_type = 'TRANSFER'\nAND t.trans_time >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)\nAND t.trans_time < CURDATE();",
+    "validator": "PASS"
+  },
+  "banking:fd169c5a1786b2f0": {
+    "question": "Tôi đã thực hiện bao nhiêu giao dịch trong tháng 6",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_kênh_thực_hiện",
+    "entities": {
+      "start_date": "2026-06-01",
+      "end_date": "2026-06-30"
+    },
+    "sql": "SELECT COUNT(*) \nFROM transaction \nWHERE EXTRACT(MONTH FROM transaction.trans_time) = MONTH(CURRENT_DATE) AND trans_type = 'DIMENSION' AND channel_receiver = 'DIMENSION' \nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "banking:1d95fc524f31f4ff": {
+    "question": "Liệt kê các giao dịch chuyển khoản của tài khoản 987654 trong tuần này",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "987654",
+      "start_date": "2026-03-23",
+      "end_date": "2026-03-26",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT *\n            FROM transaction\n            WHERE from_account_no = '987654' OR to_account_no = '987654'\n              AND trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)",
+    "validator": "PASS_EMPTY"
+  },
+  "banking:b5005a917d987543": {
+    "question": "Tôi đã nhận bao nhiêu tiền vào ngày 15/03/2024",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "start_date": "2024-03-15",
+      "end_date": "2024-03-15"
+    },
+    "sql": "SELECT SUM(t.to_amount) AS total_received\n    FROM transaction t\n    JOIN customer_account c ON t.to_account_no = c.account_no\n    WHERE c.account_no = '123456789'\n      AND t.trans_time = '2024-03-15'\n      AND t.to_amount IS NOT NULL;",
+    "validator": "PASS"
+  },
+  "banking:b3d87f656f0b5242": {
+    "question": "Có giao dịch nào trên 50 triệu trong năm 2024 không",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_vay_và_tín_dụng_theo_số_tiền",
+    "entities": {
+      "start_date": "2024-01-01",
+      "end_date": "2024-12-31",
+      "amount_min": "50000000"
+    },
+    "sql": "SELECT COUNT(*) FROM transaction WHERE amount_transfer > 10000000 AND trans_time >= '2026-03-01' AND trans_time <= '2026-03-26' LIMIT 100;",
+    "validator": "PASS"
+  },
+  "banking:3c076d4041a2a9e9": {
+    "question": "Liệt kê các giao dịch vào ngày hôm nay",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "thống_kê_giao_dịch_vay",
+    "entities": {
+      "start_date": "2026-03-26",
+      "end_date": "2026-03-26"
+    },
+    "sql": "SELECT *\nFROM transaction\nWHERE DATE(trans_time) = '2026-03-26'\nLIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "banking:eca6524915a54292": {
+    "question": "Các giao dịch có giá trị dưới 1 triệu trong tháng này",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_số_tiền",
+    "entities": {
+      "start_date": "2026-03-01",
+      "end_date": "2026-03-26",
+      "amount_max": "1000000"
+    },
+    "sql": "SELECT trans_code, from_account_no, to_account_no, amount_transfer, amount_currency, trans_time\n    FROM transaction\n    WHERE trans_time >= '2026-03-01'\n      AND trans_time <= '2026-03-26'\n      AND amount_transfer < 1000000\n    LIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "banking:e6efd87c7c85227b": {
+    "question": "Các giao dịch chuyển tiền vào tài khoản 123456 trong tháng trước",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "account_no": "123456",
+      "start_date": "2026-02-01",
+      "end_date": "2026-02-28",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT t.trans_id, t.trans_time, t.amount_transfer, t.to_account_no\n        FROM transaction t\n        WHERE t.to_account_no = '123456'\n          AND t.category_code LIKE 'TRANSFER_%'\n          AND t.trans_time >= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')\n          AND t.trans_time < DATE_FORMAT(CURDATE(), '%Y-%m-01')\n        ORDER BY t.trans_time DESC;",
+    "validator": "PASS_EMPTY"
+  },
+  "banking:4aa63974a7868469": {
+    "question": "Giao dịch có giá trị lớn nhất trong tháng 5 là gì",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tỷ_giá_áp_dụng",
+    "entities": {
+      "start_date": "2026-05-01",
+      "end_date": "2026-05-31"
+    },
+    "sql": "SELECT \n    reference_id,\n    trans_id,\n    trans_code,\n    user_name,\n    trans_time,\n    trans_type,\n    COALESCE(amount_transfer, 0) AS amount_transfer,\n    amount_currency,\n    amount_rate,\n    to_amount,\n    to_account_currency\nFROM transaction\nWHERE trans_time >= '2026-05-01' \n    AND trans_time <= '2026-05-31'\n    AND amount_transfer IS NOT NULL\n    AND amount_transfer > 0\nORDER BY amount_transfer DESC\nLIMIT 1;",
+    "validator": "PASS_EMPTY"
+  },
+  "banking:b29b685ac8e28079": {
+    "question": "Cho tôi danh sách giao dịch của tài khoản 555666",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "555666"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%EWALLET_%' OR category_code = 'TOPUP'\nAND from_account_no = 'your_account_number'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "banking:40cdf2b646087705": {
+    "question": "Xem lịch sử chuyển tiền của tài khoản 222333",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "222333",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '222333')\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY"
+  },
+  "banking:7aab6393f7af9ce6": {
+    "question": "Tổng tiền đã chuyển trong ngày hôm nay",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {
+      "start_date": "2026-03-26",
+      "end_date": "2026-03-26",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "banking:0485c76654e24353": {
+    "question": "Các giao dịch rút tiền trong tháng này",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_thời_gian",
+    "entities": {
+      "start_date": "2026-03-01",
+      "end_date": "2026-03-26",
+      "transaction_type": "WITHDRAWAL"
+    },
+    "sql": "SELECT\n      reference_id,\n      trans_id,\n      from_account_no,\n      to_account_no,\n      amount_transfer,\n      amount_currency,\n      trans_time,\n      trans_type\n    FROM transaction\n    WHERE trans_time BETWEEN '2026-03-01' AND '2026-03-26'\n      AND trans_type = 'WITHDRAWAL'\n    LIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "banking:0dbca25cf1953a28": {
+    "question": "Xem các giao dịch nhận tiền từ tài khoản 777888",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "777888"
+    },
+    "sql": "SELECT \n  trans_id, trans_time, trans_type, trans_name,\n  from_account_no, to_account_no,\n  amount_transfer, amount_currency,\n  trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%FOREIGN_CURRENCY%'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "banking:c9295dea962acbed": {
+    "question": "Liệt kê các giao dịch có số tiền từ 2 triệu đến 10 triệu",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_số_tiền",
+    "entities": {
+      "amount_min": "2000000",
+      "amount_max": "10000000"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n           from_account_no, to_account_no,\n           amount_transfer, amount_currency,\n           trans_status, trans_desc\n    FROM transaction\n    WHERE category_code LIKE 'INVEST_%'\n      AND amount_transfer BETWEEN 2000000 AND 10000000\n    ORDER BY trans_time DESC\n    LIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "banking:b52e4b810dbefcf2": {
+    "question": "Những giao dịch nào có số tiền trên 20 triệu",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_số_tiền",
+    "entities": {
+      "amount_min": "20000000"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) AND amount_transfer > 2000000;",
+    "validator": "PASS"
+  },
+  "banking:14d1c5a0c86e1a6b": {
+    "question": "Có bao nhiêu giao dịch trong ngày 01/03/2024",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_dòng_tiền",
+    "entities": {
+      "start_date": "2024-03-01",
+      "end_date": "2024-03-01"
+    },
+    "sql": "SELECT COUNT(*)\n    FROM transaction\n    WHERE trans_time >= '2024-03-01' AND trans_time < '2024-03-02'",
+    "validator": "PASS"
+  },
+  "banking:612eaec96fd13828": {
+    "question": "Giao dịch đầu tiên trong tháng này là gì",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_số_tiền",
+    "entities": {
+      "start_date": "2026-03-01",
+      "end_date": "2026-03-26"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE trans_time >= '2026-03-01'\n  AND trans_time <= '2026-03-26'\nORDER BY trans_time ASC\nLIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "banking:14f92c2343d3e303": {
+    "question": "Cho tôi xem giao dịch chuyển tiền tài khoản 123456789 trong tháng 3 năm 2025",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "123456789",
+      "start_date": "2025-03-01",
+      "end_date": "2025-03-31",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '123456789')\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "candidate_domains": [
+      "banking"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "chuyển tiền",
+            "giao dịch",
+            "giao dịch|chuyển tiền|chuyển khoản|thanh toán|sao kê|số dư|tk|stk|ngân hàng",
+            "tiền",
+            "tiền|nhận tiền|gửi tiền|rút tiền|nạp tiền|số tiền|khoản tiền|chi tiêu|thu chi",
+            "tài khoản"
+          ]
+        },
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 0.0199,
+          "keyword_score": 0.0199,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "banking",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "banking": [
+        "transaction",
+        "customer_account",
+        "customer"
+      ]
+    },
+    "execution_time": 0.013,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.005,
+      "intent_detection": 0.007
+    }
+  },
+  "banking:a8fc3d84285cb81b": {
+    "question": "Tổng số tiền tôi đã nhận trong tuần này",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {
+      "start_date": "2026-03-23",
+      "end_date": "2026-03-26"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1\nLIMIT 100;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "banking"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "số tiền",
+            "tiền",
+            "tiền|nhận tiền|gửi tiền|rút tiền|nạp tiền|số tiền|khoản tiền|chi tiêu|thu chi"
+          ]
+        },
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 0.0811,
+          "keyword_score": 0.0811,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "banking",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "banking": [
+        "transaction",
+        "customer",
+        "customer_account"
+      ]
+    },
+    "execution_time": 0.008,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006
+    }
+  },
+  "banking:23b649cf911864c0": {
+    "question": "Liệt kê các giao dịch trên 50 triệu trong năm 2024",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_vay_và_tín_dụng_theo_số_tiền",
+    "entities": {
+      "start_date": "2024-01-01",
+      "end_date": "2024-12-31",
+      "amount_min": "50000000"
+    },
+    "sql": "SELECT COUNT(*) FROM transaction WHERE amount_transfer > 10000000 AND trans_time >= '2026-03-01' AND trans_time <= '2026-03-26' LIMIT 100;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "banking"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "giao dịch",
+            "giao dịch|chuyển tiền|chuyển khoản|thanh toán|sao kê|số dư|tk|stk|ngân hàng"
+          ]
+        },
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 0.1111,
+          "keyword_score": 0.1111,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "banking",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "banking": [
+        "transaction",
+        "customer_account"
+      ]
+    },
+    "execution_time": 0.009,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006
+    }
+  },
+  "banking:eb2c6307beb6ebe4": {
+    "question": "Giao dịch ngoại tệ USD của tài khoản 9876543210",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "9876543210",
+      "transaction_type": "FX",
+      "currency": "USD"
+    },
+    "sql": "SELECT \n  trans_id, trans_time, trans_type, trans_name,\n  from_account_no, to_account_no,\n  amount_transfer, amount_currency,\n  trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%FOREIGN_CURRENCY%'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "banking"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "giao dịch",
+            "giao dịch|chuyển tiền|chuyển khoản|thanh toán|sao kê|số dư|tk|stk|ngân hàng",
+            "ngoại tệ",
+            "tài khoản"
+          ]
+        },
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 0.0,
+          "keyword_score": 0.0,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "banking",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "banking": [
+        "transaction",
+        "customer_account"
+      ]
+    },
+    "execution_time": 0.008,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006
+    }
+  },
+  "banking:e4ff706d76b4b0f7": {
+    "question": "Xem giao dịch từ 01/01/2025 đến 31/03/2025 có số tiền từ 5 triệu đến 20 triệu",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_số_tiền",
+    "entities": {
+      "start_date": "2025-01-01",
+      "end_date": "2025-03-31",
+      "amount_min": "5000000",
+      "amount_max": "20000000"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n           from_account_no, to_account_no,\n           amount_transfer, amount_currency,\n           trans_status, trans_desc\n    FROM transaction\n    WHERE trans_time BETWEEN '2025-01-01' AND '2025-03-31'\n      AND amount_transfer BETWEEN 5000000 AND 20000000\n    ORDER BY trans_time DESC\n    LIMIT 100;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "banking"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "giao dịch",
+            "giao dịch|chuyển tiền|chuyển khoản|thanh toán|sao kê|số dư|tk|stk|ngân hàng",
+            "số tiền",
+            "tiền",
+            "tiền|nhận tiền|gửi tiền|rút tiền|nạp tiền|số tiền|khoản tiền|chi tiêu|thu chi"
+          ]
+        },
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 0.0246,
+          "keyword_score": 0.0246,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "banking",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "banking": [
+        "transaction",
+        "customer_account"
+      ]
+    },
+    "execution_time": 0.01,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.008
+    }
+  },
+  "banking:664ddbad1fb881e6": {
+    "question": "Tài khoản 555666 đã chuyển bao nhiêu tiền trong 7 ngày gần nhất",
+    "domain": "banking",
+    "tables": [
+      "customer_account",
+      "transaction",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "account_no": "555666",
+      "start_date": "2026-03-19",
+      "end_date": "2026-03-26",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transfer\n    FROM transaction t\n    JOIN customer_account c ON t.from_account_no = c.account_no\n    WHERE c.account_no = '555666'\n      AND t.trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)\n      AND t.category_code = 'TRANSFER'",
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "banking"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "tiền",
+            "tiền|nhận tiền|gửi tiền|rút tiền|nạp tiền|số tiền|khoản tiền|chi tiêu|thu chi",
+            "tài khoản"
+          ]
+        },
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 0.0,
+          "keyword_score": 0.0,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "banking",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "banking": [
+        "customer_account",
+        "transaction",
+        "customer"
+      ]
+    },
+    "execution_time": 0.01,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007
+    }
+  },
+  "banking:5d993d7968911615": {
+    "question": "Xem lịch sử giao dịch tiết kiệm tài khoản 111222333",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "111222333",
+      "transaction_type": "SAVING"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE 'SAVING_%'\nAND from_account_no = '111222333'\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "candidate_domains": [
+      "banking"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "giao dịch",
+            "giao dịch|chuyển tiền|chuyển khoản|thanh toán|sao kê|số dư|tk|stk|ngân hàng",
+            "tiết kiệm",
+            "tiết kiệm|loan|fx|foreign exchange|bill payment",
+            "tài khoản"
+          ]
+        },
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 0.0448,
+          "keyword_score": 0.0448,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "banking",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "banking": [
+        "transaction",
+        "customer_account"
+      ]
+    },
+    "execution_time": 0.009,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007
+    }
+  },
+  "hrm:101dccf172c9362c": {
+    "question": "Danh sách nhân viên phòng kinh doanh",
+    "domain": "hrm",
+    "tables": [
+      "employee"
+    ],
+    "intent": "liệt_kê_nhân_viên_theo_phòng_ban",
+    "entities": {
+      "department_name": "kinh doanh"
+    },
+    "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE d.department_name LIKE '%kinh doanh%'\nORDER BY e.employee_name ASC\nLIMIT 100;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0,
+          "keyword_score": 0.0,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee"
+      ]
+    },
+    "execution_time": 0.002,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.001,
+      "intent_detection": 0.001
+    }
+  },
+  "banking:524dd0acbf8f5072": {
+    "question": "Tổng tiền chuyển khoản qua internet banking hôm nay",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_kênh_giao_dịch",
+    "entities": {
+      "start_date": "2026-03-26",
+      "end_date": "2026-03-26",
+      "transaction_type": "TRANSFER",
+      "channel": "INTERNET_BANKING"
+    },
+    "sql": "SELECT SUM(amount_transfer)\n    FROM transaction\n    WHERE trans_time >= '2026-03-26' AND trans_time < '2026-03-27'\n      AND request_channel = 'INTERNET_BANKING'\n      AND trans_type = 'TRANSFER'\n    LIMIT 100;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "banking"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "chuyển khoản",
+            "giao dịch|chuyển tiền|chuyển khoản|thanh toán|sao kê|số dư|tk|stk|ngân hàng",
+            "tiền",
+            "tiền|nhận tiền|gửi tiền|rút tiền|nạp tiền|số tiền|khoản tiền|chi tiêu|thu chi"
+          ]
+        },
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 0.0571,
+          "keyword_score": 0.0571,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "banking",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "banking": [
+        "transaction",
+        "customer_account"
+      ]
+    },
+    "execution_time": 0.009,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007
+    }
+  },
+  "hrm:8169aa4bb3fe0b39": {
+    "question": "Liệt kê nhân viên có lương trên 15 triệu",
+    "domain": "hrm",
+    "tables": [
+      "employee",
+      "attendance"
+    ],
+    "intent": "thống_kê_số_lượng_nhân_viên_theo_phòng_ban",
+    "entities": {
+      "salary_min": "15000000"
+    },
+    "sql": "SELECT d.department_id, d.department_name, COUNT(e.employee_id) as count\n    FROM department d\n    LEFT JOIN employee e ON d.department_id = e.department_id\n    GROUP BY d.department_id, d.department_name\n    ORDER BY count DESC\n    LIMIT 100;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "lương",
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0375,
+          "keyword_score": 0.0375,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee",
+        "attendance"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
+  },
+  "hrm:3a633c24b5ee78fd": {
+    "question": "Nhân viên nào nghỉ phép hôm nay",
+    "domain": "hrm",
+    "tables": [
+      "leave_balance",
+      "leave_request",
+      "employee",
+      "attendance"
+    ],
+    "intent": "danh_sách_nhân_viên_vắng_mặt_theo_ngày",
+    "entities": {
+      "attendance_date": "2026-03-26"
+    },
+    "sql": "SELECT\n            e.employee_id,\n            e.employee_name,\n            lr.start_date,\n            lr.end_date\n        FROM leave_request lr\n        JOIN employee e ON lr.employee_id = e.employee_id\n        WHERE lr.status = 'APPROVED'\n          AND lr.start_date <= CURRENT_DATE\n          AND lr.end_date >= CURRENT_DATE\n        ORDER BY e.employee_name;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nghỉ phép",
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0361,
+          "keyword_score": 0.0361,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "leave_balance",
+        "leave_request",
+        "employee",
+        "attendance"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
+  },
+  "hrm:9201228e2e0de7e6": {
+    "question": "Xem lịch sử chấm công của nhân viên EMP001 trong tháng 3",
+    "domain": "hrm",
+    "tables": [
+      "employee",
+      "attendance"
+    ],
+    "intent": "tra_cứu_chấm_công_theo_nhân_viên_và_thời_gian",
+    "entities": {
+      "employee_id": "EMP001",
+      "year_month": "2026-03"
+    },
+    "sql": "SELECT\n            a.attendance_id,\n            a.employee_id,\n            e.employee_name,\n            a.attendance_date,\n            a.check_in_time,\n            a.check_out_time,\n            a.status\n        FROM attendance a\n        JOIN employee e ON a.employee_id = e.employee_id\n        WHERE a.employee_id = 'EMP001'\n          AND strftime('%Y', a.attendance_date) = 2026\n          AND strftime('%m', a.attendance_date) = 3\n        ORDER BY a.attendance_date DESC\n        LIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "chấm công",
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.1011,
+          "keyword_score": 0.1011,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee",
+        "attendance"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
+  },
+  "hrm:c6fcd56dd911076b": {
+    "question": "Nhân viên nữ đang thử việc trong công ty",
+    "domain": "hrm",
+    "tables": [
+      "employee"
+    ],
+    "intent": "danh_sách_nhân_viên_theo_trạng_thái_làm_việc",
+    "entities": {
+      "employment_status": "PROBATION",
+      "gender": "FEMALE"
+    },
+    "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.employment_status = 'PROBATION'\nORDER BY d.department_name, e.employee_name ASC\nLIMIT 100;",
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0,
+          "keyword_score": 0.0,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
+  },
+  "hrm:a74311ed5b2448df": {
+    "question": "Tổng số ngày phép còn lại của nhân viên Nguyễn Văn An",
+    "domain": "hrm",
+    "tables": [
+      "leave_balance",
+      "employee",
+      "leave_type",
+      "leave_request",
+      "attendance"
+    ],
+    "intent": "tra_cứu_số_ngày_phép_còn_lại_của_nhân_viên",
+    "entities": {
+      "employee_name": "Nguyễn Văn An"
+    },
+    "sql": "SELECT SUM(lb.remaining_days) as total_remaining_days\n            FROM leave_balance lb\n            JOIN employee e ON lb.employee_id = e.employee_id\n            WHERE e.employee_name = 'Nguyễn Văn An'",
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0556,
+          "keyword_score": 0.0556,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "leave_balance",
+        "employee",
+        "leave_type",
+        "leave_request",
+        "attendance"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
+  },
+  "banking:b2aff1d550e51f3b": {
+    "question": "Các giao dịch rút tiền qua ATM trong tháng trước",
+    "domain": "banking",
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_thời_gian",
+    "entities": {
+      "start_date": "2026-02-01",
+      "end_date": "2026-02-28",
+      "transaction_type": "WITHDRAWAL",
+      "channel": "ATM"
+    },
+    "sql": "SELECT\n      reference_id,\n      trans_id,\n      amount_transfer,\n      amount_currency,\n      trans_time,\n      trans_type,\n      request_channel\n    FROM transaction\n    WHERE trans_time BETWEEN '2026-02-01' AND '2026-02-28'\n      AND trans_type = 'WITHDRAWAL'\n      AND request_channel = 'ATM'\n    LIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "banking:a25bb94ae69025cb": {
+    "question": "Liệt kê giao dịch từ 2 triệu đến 10 triệu đô la trong tháng này",
+    "domain": "banking",
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "thống_kê_giao_dịch_nạp_hoặc_rút_tiền",
+    "entities": {
+      "start_date": "2026-03-01",
+      "end_date": "2026-03-26",
+      "amount_min": "2000000",
+      "amount_max": "10000000"
+    },
+    "sql": "SELECT trans_id, trans_time, amount_transfer, amount_currency, user_name\n    FROM transaction\n    WHERE amount_currency = 'USD'\n      AND amount_transfer BETWEEN 2000000 AND 10000000\n      AND EXTRACT(MONTH FROM trans_time) = EXTRACT(MONTH FROM CURRENT_DATE)\n      AND EXTRACT(YEAR FROM trans_time) = EXTRACT(YEAR FROM CURRENT_DATE)",
+    "validator": "PASS_EMPTY"
+  },
+  "hrm:8482fa107c42b02d": {
+    "question": "tôi còn bao nhiêu ngày nghỉ phép",
+    "domain": "hrm",
+    "tables": [
+      "leave_balance",
+      "leave_request",
+      "leave_type"
+    ],
+    "intent": "tra_cứu_số_ngày_phép_còn_lại_của_nhân_viên",
+    "entities": {
+      "employee_id": "EMP001",
+      "employee_name": "Nguyễn Văn An"
+    },
+    "sql": "",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nghỉ phép",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0,
+          "keyword_score": 0.0,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "leave_balance",
+        "leave_request",
+        "leave_type"
+      ]
+    },
+    "execution_time": 0.002,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.001,
+      "intent_detection": 0.001
+    }
+  },
+  "hrm:6509babc282f8eeb": {
+    "question": "số ngày nghỉ phép năm còn lại của tôi",
+    "domain": "hrm",
+    "tables": [
+      "leave_balance",
+      "leave_type",
+      "leave_request"
+    ],
+    "intent": "tra_cứu_số_ngày_phép_còn_lại_của_nhân_viên",
+    "entities": {
+      "employee_name": "tôi"
+    },
+    "sql": "SELECT SUM(lb.remaining_days) as total_remaining_days\n            FROM leave_balance lb\n            JOIN employee e ON lb.employee_id = e.employee_id\n            WHERE e.employee_name = 'Nguyễn Văn An'",
+    "validator": "PASS"
+  },
+  "hrm:feb72637435ef96e": {
+    "question": "tôi còn bao nhiêu ngày nghỉ phép năm",
+    "domain": "hrm",
+    "tables": [
+      "leave_balance",
+      "leave_type",
+      "leave_request"
+    ],
+    "intent": "tra_cứu_số_ngày_phép_còn_lại_của_nhân_viên",
+    "entities": {
+      "employee_id": "EMP001",
+      "employee_name": "Nguyễn Văn An"
+    },
+    "sql": "",
+    "validator": "PASS_EMPTY"
   }
 }

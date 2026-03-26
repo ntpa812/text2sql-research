@@ -1,0 +1,925 @@
+[
+  {
+    "question": "Xem tất cả giao dịch của tài khoản 123456 trong tháng 1 năm 2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "amount": "123456000000"
+    },
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.002,
+      "schema_router": 0.016,
+      "intent_detection": 0.009,
+      "entity_extraction": 0.002,
+      "template_fill": 0.003
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Tổng số tiền tôi đã chuyển đi trong tháng 2",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.013,
+      "intent_detection": 0.009,
+      "entity_extraction": 0.009,
+      "template_fill": 0.006
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Tôi đã nhận bao nhiêu tiền vào ngày 15/03/2024",
+    "domain": null,
+    "candidate_domains": [
+      "banking",
+      "hrm"
+    ],
+    "tables": [],
+    "intent": null,
+    "entities": {},
+    "sql": null,
+    "validator": "DOMAIN_AMBIGUOUS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.04,
+      "intent_detection": 0.008
+    },
+    "error": "Domain routing ambiguous for question: [{'domain_id': 'banking', 'display_name': 'banking', 'domain_score': 1.0, 'table_score': 1.0, 'intent_score': 1.0, 'final_score': 1.0}, {'domain_id': 'hrm', 'display_name': 'hrm', 'domain_score': 1.0, 'table_score': 1.0, 'intent_score': 1.0, 'final_score': 1.0}]"
+  },
+  {
+    "question": "Liệt kê các giao dịch chuyển khoản của tài khoản 987654 trong tuần này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "amount": "987654000000"
+    },
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.032,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.007,
+      "template_fill": 0.003
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Cho tôi xem lịch sử giao dịch từ ngày 01/01/2024 đến 31/01/2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_đơn_vị_tiền_tệ",
+    "entities": {
+      "amount": "2024"
+    },
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Có bao nhiêu giao dịch trên 10 triệu trong tháng này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_vay_và_tín_dụng_theo_số_tiền",
+    "entities": {
+      "amount": "10000000"
+    },
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Giao dịch gần nhất của tài khoản 123456 là gì",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_nguồn",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Liệt kê các giao dịch nạp tiền vào tài khoản của tôi",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Tổng số giao dịch trong ngày hôm qua",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.004,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Xem các giao dịch chuyển tiền trên 5 triệu trong tháng 3",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {
+      "amount": "5000000"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_transfer_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1  GROUP BY amount_transfer, total_transfer_amount ;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Tài khoản 456789 đã chuyển bao nhiêu tiền trong tuần qua",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "customer_account",
+      "transaction",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "amount": "456789"
+    },
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transfer\n    FROM transaction t\n    WHERE t.trans_time >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)\n      AND t.trans_time < CURDATE()\n      GROUP BY t, amount_transfer LIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0
+    },
+    "semantic_warnings": [
+      "Câu hỏi yêu cầu đếm (COUNT) nhưng SQL thiếu COUNT()"
+    ],
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Những giao dịch nào diễn ra vào ngày 20/02/2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_dòng_tiền",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.004,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Liệt kê 10 giao dịch gần nhất của tài khoản 111222",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Tổng số tiền đã nhận trong tháng 4",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Xem lịch sử giao dịch của tài khoản 333444 trong 7 ngày qua",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "amount": "333444000000"
+    },
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Các giao dịch có giá trị dưới 1 triệu trong tháng này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_mua_sắm_theo_số_tiền",
+    "entities": {
+      "amount": "1000000"
+    },
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Tôi đã thực hiện bao nhiêu giao dịch trong tháng 6",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_kênh_thực_hiện",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Xem các giao dịch chuyển khoản ra ngoài ngân hàng",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_đích",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Có giao dịch nào trên 50 triệu trong năm 2024 không",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_vay_và_tín_dụng_theo_số_tiền",
+    "entities": {
+      "amount": "2024000"
+    },
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+    "question": "Liệt kê các giao dịch vào ngày hôm nay",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "thống_kê_giao_dịch_vay",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  },
+  {
+    "question": "Tổng số tiền giao dịch của tài khoản 888999 trong tháng này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "amount": "888999000000"
+    },
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  },
+  {
+    "question": "Các giao dịch chuyển tiền vào tài khoản 123456 trong tháng trước",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "amount": "123456000000"
+    },
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transfer\n    FROM transaction t\n    WHERE t.trans_time >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)\n      AND t.trans_time < CURDATE()\n      GROUP BY t, amount_transfer LIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  },
+  {
+    "question": "Xem các giao dịch từ ngày 10/02/2024 đến 20/02/2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_trạng_thái",
+    "entities": {
+      "amount": "2024"
+    },
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.004,
+      "intent_detection": 0.009,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  },
+  {
+    "question": "Có bao nhiêu giao dịch chuyển khoản trong tuần này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tiền",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.005,
+      "intent_detection": 0.008,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  },
+  {
+    "question": "Giao dịch có giá trị lớn nhất trong tháng 5 là gì",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tỷ_giá_áp_dụng",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.003,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  },
+  {
+    "question": "Cho tôi danh sách giao dịch của tài khoản 555666",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  },
+  {
+    "question": "Các giao dịch rút tiền trong tháng này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_thời_gian",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.003,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  },
+  {
+    "question": "Xem lịch sử chuyển tiền của tài khoản 222333",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.003,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  },
+  {
+    "question": "Tổng tiền đã chuyển trong ngày hôm nay",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.006,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  },
+  {
+    "question": "Liệt kê các giao dịch có số tiền từ 2 triệu đến 10 triệu",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_số_tiền",
+    "entities": {
+      "amount": "10000000"
+    },
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  },
+  {
+    "question": "Có bao nhiêu giao dịch trong ngày 01/03/2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_dòng_tiền",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  },
+  {
+    "question": "Xem các giao dịch nhận tiền từ tài khoản 777888",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_nguồn",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  },
+  {
+    "question": "Giao dịch đầu tiên trong tháng này là gì",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_số_tiền",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  },
+  {
+    "question": "Những giao dịch nào có số tiền trên 20 triệu",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_số_tiền",
+    "entities": {
+      "amount": "20000000"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) AND amount_transfer > 2000000  GROUP BY amount_transfer, total_amount ;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.004,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  },
+  {
+    "question": "Xem lịch sử giao dịch của tôi trong 30 ngày gần nhất",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {},
+    "sql": null,
+    "validator": null,
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.002,
+      "intent_detection": 0.007,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0
+    },
+    "error": "Ollama not reachable at http://localhost:11434. Make sure Ollama is running (`ollama serve`) and model is pulled (`ollama pull llama3:8b`). Error: HTTP Error 404: Not Found"
+  }
+]

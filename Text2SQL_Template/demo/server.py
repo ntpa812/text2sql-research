@@ -16,6 +16,8 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
+import re
+
 from pipeline.domain_router.registry_loader import load_domain_registry
 from pipeline.runner import run_pipeline
 from pipeline.sql_generation.llm_sql_generator import get_generation_config
@@ -106,6 +108,200 @@ def get_meta():
     }
 
 
+# ── Leave registration via chat ──────────────────────────────────────────────
+
+_LEAVE_REGISTER_PATTERN = re.compile(
+    r'(?:đăng\s*ký|xin|đơn|tạo|gửi|nộp)\s*(?:đơn\s*)?(?:nghỉ\s*phép|nghi\s*phep|nghỉ|phép)',
+    re.IGNORECASE,
+)
+
+_LEAVE_TYPE_KEYWORDS = {
+    "phép năm": "AL", "annual": "AL", "năm": "AL",
+    "phép ốm": "SL", "ốm": "SL", "sick": "SL", "bệnh": "SL",
+    "phép đặc biệt": "CL", "đặc biệt": "CL", "casual": "CL",
+    "thai sản": "ML", "maternity": "ML",
+    "không lương": "UL", "unpaid": "UL",
+}
+
+_LEAVE_TYPE_NAMES = {
+    "AL": "Phép năm", "SL": "Phép ốm", "CL": "Phép đặc biệt",
+    "ML": "Phép thai sản", "UL": "Nghỉ không lương",
+}
+
+
+def _detect_leave_registration(message: str) -> bool:
+    """Check if the message is a leave registration request."""
+    return bool(_LEAVE_REGISTER_PATTERN.search(message))
+
+
+def _extract_leave_dates(message: str) -> tuple:
+    """Extract start_date and end_date from the message."""
+    today = date.today()
+
+    # "từ DD/MM/YYYY đến DD/MM/YYYY" or "từ DD/MM đến DD/MM"
+    m = re.search(
+        r'từ\s+(\d{1,2})[/-](\d{1,2})(?:[/-](\d{4}))?\s+(?:đến|tới)\s+(\d{1,2})[/-](\d{1,2})(?:[/-](\d{4}))?',
+        message, re.IGNORECASE,
+    )
+    if m:
+        y1 = m.group(3) or str(today.year)
+        y2 = m.group(6) or y1
+        start = f"{y1}-{m.group(2).zfill(2)}-{m.group(1).zfill(2)}"
+        end = f"{y2}-{m.group(5).zfill(2)}-{m.group(4).zfill(2)}"
+        return start, end
+
+    # "ngày DD/MM/YYYY" or "ngày DD/MM" (single day)
+    m = re.search(r'(?:ngày|ngay)\s+(\d{1,2})[/-](\d{1,2})(?:[/-](\d{4}))?', message, re.IGNORECASE)
+    if m:
+        y = m.group(3) or str(today.year)
+        d = f"{y}-{m.group(2).zfill(2)}-{m.group(1).zfill(2)}"
+        return d, d
+
+    # "DD/MM/YYYY" bare date
+    dates_found = re.findall(r'(\d{1,2})[/-](\d{1,2})[/-](\d{4})', message)
+    if len(dates_found) >= 2:
+        d1 = f"{dates_found[0][2]}-{dates_found[0][1].zfill(2)}-{dates_found[0][0].zfill(2)}"
+        d2 = f"{dates_found[1][2]}-{dates_found[1][1].zfill(2)}-{dates_found[1][0].zfill(2)}"
+        return d1, d2
+    if len(dates_found) == 1:
+        d = f"{dates_found[0][2]}-{dates_found[0][1].zfill(2)}-{dates_found[0][0].zfill(2)}"
+        return d, d
+
+    # "ngày mai", "hôm nay"
+    q = message.lower()
+    if "ngày mai" in q or "ngay mai" in q:
+        tmr = today + timedelta(days=1)
+        return str(tmr), str(tmr)
+    if "hôm nay" in q or "hom nay" in q:
+        return str(today), str(today)
+
+    return None, None
+
+
+def _extract_leave_type(message: str) -> str:
+    """Extract leave type from message. Default: AL (Phép năm)."""
+    q = message.lower()
+    best_type, best_len = "AL", 0
+    for keyword, lt_id in _LEAVE_TYPE_KEYWORDS.items():
+        if keyword in q and len(keyword) > best_len:
+            best_type, best_len = lt_id, len(keyword)
+    return best_type
+
+
+def _extract_reason(message: str) -> str:
+    """Extract reason from message if present."""
+    m = re.search(r'(?:lý do|vì|do|reason)[:\s]+(.+?)(?:\.|$)', message, re.IGNORECASE)
+    return m.group(1).strip() if m else ""
+
+
+def _handle_leave_registration(message: str, employee_id: str) -> dict:
+    """Handle leave registration via chat. Returns chat response dict."""
+    start_date, end_date = _extract_leave_dates(message)
+
+    if not start_date:
+        return {
+            "assistant_message": (
+                "Bạn muốn đăng ký nghỉ phép ngày nào? "
+                "Vui lòng cung cấp ngày, ví dụ: "
+                "\"Đăng ký nghỉ phép ngày 28/03/2026\" hoặc "
+                "\"Xin nghỉ từ 28/03 đến 30/03\"."
+            ),
+            "result": {"action": "leave_register", "status": "need_date"},
+        }
+
+    leave_type = _extract_leave_type(message)
+    reason = _extract_reason(message)
+    total_days = _count_working_days(start_date, end_date)
+
+    if start_date > end_date:
+        return {
+            "assistant_message": "Ngày bắt đầu phải trước hoặc bằng ngày kết thúc. Vui lòng kiểm tra lại.",
+            "result": {"action": "leave_register", "status": "invalid_date"},
+        }
+
+    if total_days <= 0:
+        return {
+            "assistant_message": (
+                f"Khoảng thời gian {start_date} đến {end_date} không có ngày làm việc "
+                f"(rơi vào cuối tuần). Vui lòng chọn ngày khác."
+            ),
+            "result": {"action": "leave_register", "status": "no_working_days"},
+        }
+
+    # Check remaining balance
+    if leave_type != "UL":
+        bal = _hrm_query("""
+            SELECT remaining_days FROM leave_balance
+            WHERE employee_id = ? AND leave_type_id = ? AND year = ?
+        """, (employee_id, leave_type, date.today().year))
+
+        if bal:
+            remaining = bal[0]["remaining_days"]
+            if total_days > remaining:
+                type_name = _LEAVE_TYPE_NAMES.get(leave_type, leave_type)
+                return {
+                    "assistant_message": (
+                        f"Không đủ ngày phép. {type_name} còn lại {remaining} ngày, "
+                        f"nhưng bạn yêu cầu {total_days} ngày."
+                    ),
+                    "result": {"action": "leave_register", "status": "insufficient_balance"},
+                }
+
+    # Insert leave request
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    insert_sql = (
+        "INSERT INTO leave_request"
+        " (employee_id, leave_type_id, start_date, end_date, total_days, reason, status, created_at)"
+        f" VALUES ('{employee_id}', '{leave_type}', '{start_date}', '{end_date}',"
+        f" {total_days}, '{reason}', 'PENDING', '{now}')"
+    )
+    request_id = _hrm_write("""
+        INSERT INTO leave_request
+            (employee_id, leave_type_id, start_date, end_date, total_days, reason, status, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, 'PENDING', ?)
+    """, (employee_id, leave_type, start_date, end_date, total_days, reason, now))
+
+    type_name = _LEAVE_TYPE_NAMES.get(leave_type, leave_type)
+    date_display = start_date if start_date == end_date else f"{start_date} đến {end_date}"
+
+    return {
+        "assistant_message": (
+            f"Đã ghi đơn nghỉ phép #{request_id} thành công!\n\n"
+            f"- Loại phép: {type_name}\n"
+            f"- Ngày nghỉ: {date_display}\n"
+            f"- Số ngày: {total_days} ngày làm việc\n"
+            f"- Trạng thái: PENDING (chờ HR duyệt)\n"
+            + (f"- Lý do: {reason}\n" if reason else "")
+        ),
+        "result": {
+            "question": message,
+            "domain": "hrm",
+            "tables": ["leave_request", "leave_balance"],
+            "intent": "đăng_ký_nghỉ_phép",
+            "intent_name": "Đăng ký nghỉ phép",
+            "entities": {
+                "employee_id": employee_id,
+                "leave_type_id": leave_type,
+                "start_date": start_date,
+                "end_date": end_date,
+                **({"reason": reason} if reason else {}),
+            },
+            "sql": insert_sql,
+            "validator": "PASS",
+            "rows": 1,
+            "action": "leave_register",
+            "request_id": request_id,
+            "confidence": {"score": 1.0, "passed": True},
+            "model_info": {"active_model": "rule-based", "active_backend": "direct-write"},
+            "explain": (
+                f"Đã tạo đơn nghỉ phép #{request_id} cho nhân viên {employee_id}. "
+                f"Loại: {type_name}, ngày: {date_display}, "
+                f"số ngày: {total_days}. Trạng thái: PENDING."
+            ),
+        },
+    }
+
+
 @app.post("/api/chat")
 def chat(req: ChatRequest):
     # Inject current user context so "tôi" resolves to Nguyễn Văn An
@@ -113,6 +309,11 @@ def chat(req: ChatRequest):
         "employee_id": DEMO_CURRENT_USER,
         "employee_name": "Nguyễn Văn An",
     }
+
+    # Check for leave registration intent first (write operation, bypass pipeline)
+    if _detect_leave_registration(req.message):
+        return _handle_leave_registration(req.message, DEMO_CURRENT_USER)
+
     result = run_pipeline(
         req.message,
         use_embedding=req.use_embedding,
