@@ -37,15 +37,16 @@ def print_result(result: dict, show_timing: bool = True):
     if result.get("domain_routing", {}).get("arbitration_reason"):
         print(f"→ Domain Routing: {result['domain_routing']['arbitration_reason']}")
 
-    if result.get("error"):
-        print(f"→ Error: {result['error']}")
-    elif validator == "PASS_EMPTY":
+    if validator == "PASS_EMPTY":
         print(f"→ Result: 0 rows (dữ liệu không tồn tại, SQL hợp lệ)")
     elif validator == "DATA_ERROR":
         dv = result.get("data_validation", {})
         print(f"→ Result: DATA_ERROR — {dv.get('message', '')}")
     else:
         print(f"→ Result: {result.get('rows', 0)} rows")
+
+    if result.get("error"):
+        print(f"→ Error: {result['error']}")
 
     # Confidence score
     conf = result.get("confidence", {})

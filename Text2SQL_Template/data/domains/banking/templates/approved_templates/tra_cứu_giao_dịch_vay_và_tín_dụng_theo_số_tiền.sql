@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM transaction WHERE amount_transfer > 10000000 AND trans_time >= '2026-03-01' AND trans_time <= '2026-03-26' LIMIT 100;

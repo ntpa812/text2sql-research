@@ -20,11 +20,26 @@
         "tiết kiệm",
         "vay",
         "ngoại tệ",
-        "khách hàng ngân hàng"
+        "khách hàng ngân hàng",
+        "tiền",
+        "nhận tiền",
+        "số tiền",
+        "khoản tiền",
+        "gửi tiền",
+        "rút tiền",
+        "nạp tiền",
+        "thanh toán",
+        "đầu tư",
+        "chi tiêu",
+        "thu chi",
+        "ngân hàng",
+        "biên lai",
+        "hóa đơn"
       ],
       "keyword_patterns": [
         "giao dịch|chuyển tiền|chuyển khoản|thanh toán|sao kê|số dư|tk|stk|ngân hàng",
-        "tiết kiệm|loan|fx|foreign exchange|bill payment"
+        "tiết kiệm|loan|fx|foreign exchange|bill payment",
+        "tiền|nhận tiền|gửi tiền|rút tiền|nạp tiền|số tiền|khoản tiền|chi tiêu|thu chi"
       ],
       "examples": [
         "Tra cứu giao dịch chuyển tiền trong tháng này",
