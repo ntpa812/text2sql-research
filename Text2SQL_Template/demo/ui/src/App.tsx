@@ -265,8 +265,11 @@ export default function App() {
 
   const modelLabel = useMemo(() => {
     const mi = activeResult?.model_info;
-    if (mi && typeof mi.active_model === 'string')
-      return mi.used_fallback ? `${mi.active_model} (fallback)` : String(mi.active_model);
+    if (mi && typeof mi.active_model === 'string') {
+      const model = String(mi.active_model);
+      if (model === 'rule-based' || model === 'direct-write') return meta?.models.primary_model ?? 'N/A';
+      return mi.used_fallback ? `${model} (fallback)` : model;
+    }
     return meta?.models.primary_model ?? 'loading...';
   }, [activeResult, meta]);
 

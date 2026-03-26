@@ -93,6 +93,11 @@ def _check_entities_exist(
 
     entity_table_map = (domain_context or {}).get("entity_table_map", ENTITY_TABLE_MAP)
 
+    # Detect DB engine for correct placeholder
+    db_config = (domain_context or {}).get("db_config", {})
+    db_engine = db_config.get("engine", "mysql") if isinstance(db_config, dict) else "mysql"
+    placeholder = "?" if db_engine == "sqlite" else "%s"
+
     invalid_entities: List[str] = []
 
     for key, value in entities.items():
@@ -110,7 +115,7 @@ def _check_entities_exist(
 
         # Check trong DB nếu có executor
         if executor_fn:
-            check_sql = f"SELECT 1 FROM {table} WHERE {column} = %s LIMIT 1"
+            check_sql = f"SELECT 1 FROM {table} WHERE {column} = {placeholder} LIMIT 1"
             try:
                 success, rows, err = executor_fn(check_sql, params=[value])
                 exists = success and rows and len(rows) > 0
