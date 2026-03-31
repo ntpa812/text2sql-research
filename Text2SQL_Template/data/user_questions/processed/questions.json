@@ -1,82 +1,202 @@
 [
   {
     "id": "q001",
-    "question": "Cho tôi xem giao dịch chuyển tiền tài khoản 123456789 trong tháng 3 năm 2025"
+    "question": "Cho tôi xem các giao dịch chuyển tiền trong tháng 3 năm 2026"
   },
   {
     "id": "q002",
-    "question": "Tổng số tiền tôi đã nhận trong tuần này"
+    "question": "Tra cứu lịch sử chuyển khoản từ ngày 15/01/2025 đến 28/02/2025"
   },
   {
     "id": "q003",
-    "question": "Liệt kê các giao dịch trên 50 triệu trong năm 2024"
+    "question": "Liệt kê giao dịch chuyển tiền trong 10 ngày gần nhất"
   },
   {
     "id": "q004",
-    "question": "Giao dịch ngoại tệ USD của tài khoản 9876543210"
+    "question": "Xem lịch sử chuyển tiền đi của tài khoản 0011223344"
   },
   {
     "id": "q005",
-    "question": "Các giao dịch rút tiền qua ATM trong tháng trước"
+    "question": "Tài khoản 9988776655 đã chuyển khoản những giao dịch nào"
   },
   {
     "id": "q006",
-    "question": "Xem giao dịch từ 01/01/2025 đến 31/03/2025 có số tiền từ 5 triệu đến 20 triệu"
+    "question": "Tra cứu giao dịch chuyển tiền từ STK 1234567890 trong quý 1"
   },
   {
     "id": "q007",
-    "question": "Tài khoản 555666 đã chuyển bao nhiêu tiền trong 7 ngày gần nhất"
+    "question": "Tôi muốn xem các giao dịch chuyển tiền tới số tài khoản 5566778899"
   },
   {
     "id": "q008",
-    "question": "Giao dịch thất bại trong quý 1 năm 2025"
+    "question": "Lọc giao dịch chuyển khoản đến tài khoản người nhận 1122334455 trong tháng này"
   },
   {
     "id": "q009",
-    "question": "Tổng tiền chuyển khoản qua internet banking hôm nay"
+    "question": "Có bao nhiêu giao dịch chuyển tiền tới tài khoản 9876501234"
   },
   {
     "id": "q010",
-    "question": "Xem lịch sử giao dịch tiết kiệm tài khoản 111222333"
+    "question": "Tra cứu các giao dịch chuyển tiền cho Nguyễn Thị Hồng"
   },
   {
     "id": "q011",
-    "question": "Danh sách nhân viên phòng kinh doanh"
+    "question": "Cho tôi xem lịch sử chuyển khoản gửi cho Phạm Minh Tuấn trong năm 2025"
   },
   {
     "id": "q012",
-    "question": "Xem lịch sử chấm công của nhân viên EMP001 trong tháng 3"
+    "question": "Liệt kê các lần chuyển tiền cho Lê Hoàng Nam"
   },
   {
     "id": "q013",
-    "question": "Nhân viên nào nghỉ phép hôm nay"
+    "question": "Xem danh sách giao dịch chuyển tiền thất bại trong tháng 2 năm 2026"
   },
   {
     "id": "q014",
-    "question": "Tổng số ngày phép còn lại của nhân viên Nguyễn Văn An"
+    "question": "Cho tôi biết các giao dịch chuyển khoản đang chờ xử lý"
   },
   {
     "id": "q015",
-    "question": "Liệt kê nhân viên có lương trên 15 triệu"
+    "question": "Tra cứu giao dịch chuyển tiền thành công từ tài khoản 0123456789"
   },
   {
     "id": "q016",
-    "question": "Số nhân viên đi làm muộn trong tuần trước"
+    "question": "Tra cứu giao dịch chuyển tiền trên 100 triệu đồng trong quý 1 năm 2026"
   },
   {
     "id": "q017",
-    "question": "Xem đơn nghỉ phép chờ duyệt của phòng kỹ thuật"
+    "question": "Liệt kê các giao dịch chuyển khoản có số tiền từ 5 triệu đến 50 triệu"
   },
   {
     "id": "q018",
-    "question": "Nhân viên nữ đang thử việc trong công ty"
+    "question": "Xem giao dịch chuyển tiền đúng 10 triệu đồng trong tháng này"
   },
   {
     "id": "q019",
-    "question": "Thống kê chấm công tháng 2 năm 2025 phòng nhân sự"
+    "question": "Tra cứu các giao dịch chuyển tiền qua Mobile Banking trong tuần này"
   },
   {
     "id": "q020",
-    "question": "Ai có nhiều ngày nghỉ phép nhất năm nay"
+    "question": "Cho tôi xem giao dịch chuyển khoản tại quầy trong tháng 1 năm 2026"
+  },
+  {
+    "id": "q021",
+    "question": "Liệt kê giao dịch chuyển tiền qua Internet Banking từ tài khoản 5544332211"
+  },
+  {
+    "id": "q022",
+    "question": "Tra cứu giao dịch chuyển tiền có mã giao dịch TXN20260301"
+  },
+  {
+    "id": "q023",
+    "question": "Kiểm tra trạng thái giao dịch chuyển khoản mã REF998877"
+  },
+  {
+    "id": "q024",
+    "question": "Tra cứu các giao dịch chuyển tiền sang ngân hàng Vietcombank trong tháng 3"
+  },
+  {
+    "id": "q025",
+    "question": "Liệt kê giao dịch chuyển khoản tới ngân hàng BIDV"
+  },
+  {
+    "id": "q026",
+    "question": "Tổng số tiền tôi đã chuyển đi trong tháng này là bao nhiêu"
+  },
+  {
+    "id": "q027",
+    "question": "Tài khoản 6677889900 đã chuyển bao nhiêu tiền trong năm 2025"
+  },
+  {
+    "id": "q028",
+    "question": "Có bao nhiêu giao dịch chuyển tiền thành công trong quý 1 năm 2026"
+  },
+  {
+    "id": "q029",
+    "question": "Tra cứu giao dịch ngoại tệ EUR của tài khoản 1234509876"
+  },
+  {
+    "id": "q030",
+    "question": "Xem lịch sử giao dịch tiết kiệm tài khoản 7788990011"
+  },
+  {
+    "id": "q031",
+    "question": "Tìm thông tin nhân viên có mã EMP015"
+  },
+  {
+    "id": "q032",
+    "question": "Danh sách nhân viên phòng kỹ thuật"
+  },
+  {
+    "id": "q033",
+    "question": "Tìm nhân viên tên Trần Thị Hương"
+  },
+  {
+    "id": "q034",
+    "question": "Liệt kê tất cả các trưởng phòng trong công ty"
+  },
+  {
+    "id": "q035",
+    "question": "Danh sách nhân viên đang thử việc"
+  },
+  {
+    "id": "q036",
+    "question": "Nhân viên mới vào làm từ tháng 1 đến tháng 3 năm 2026"
+  },
+  {
+    "id": "q037",
+    "question": "Mỗi phòng ban có bao nhiêu nhân viên đang làm việc"
+  },
+  {
+    "id": "q038",
+    "question": "Phòng nào có nhiều nhân viên nhất"
+  },
+  {
+    "id": "q039",
+    "question": "Xem chấm công của nhân viên EMP010 trong tháng 3 năm 2026"
+  },
+  {
+    "id": "q040",
+    "question": "Tổng hợp ngày công tháng 2 năm 2026 của nhân viên EMP005"
+  },
+  {
+    "id": "q041",
+    "question": "Hôm nay ai vắng mặt"
+  },
+  {
+    "id": "q042",
+    "question": "Bao nhiêu nhân viên đi muộn trong tuần trước"
+  },
+  {
+    "id": "q043",
+    "question": "Thống kê chấm công tháng 3 năm 2026 của tất cả nhân viên"
+  },
+  {
+    "id": "q044",
+    "question": "Nhân viên EMP001 còn bao nhiêu ngày phép năm"
+  },
+  {
+    "id": "q045",
+    "question": "Xem lịch sử nghỉ phép của nhân viên EMP020"
+  },
+  {
+    "id": "q046",
+    "question": "Danh sách đơn nghỉ phép đang chờ duyệt"
+  },
+  {
+    "id": "q047",
+    "question": "Ai nghỉ phép nhiều nhất từ đầu năm đến nay"
+  },
+  {
+    "id": "q048",
+    "question": "Xem đơn nghỉ phép bị từ chối của phòng kinh doanh"
+  },
+  {
+    "id": "q049",
+    "question": "Tìm nhân viên lương trên 20 triệu ở phòng marketing"
+  },
+  {
+    "id": "q050",
+    "question": "Nhân viên nữ đang active trong phòng nhân sự"
   }
 ]
