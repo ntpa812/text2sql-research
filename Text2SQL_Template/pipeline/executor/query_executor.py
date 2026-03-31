@@ -80,6 +80,7 @@ def _execute_sqlite(
     row_limit: int,
 ) -> Tuple[bool, Any, str]:
     start_time = time.time()
+    conn = None
     try:
         conn = sqlite3.connect(db_path)
         conn.row_factory = sqlite3.Row          # trả về dict-like rows
@@ -95,7 +96,6 @@ def _execute_sqlite(
         elapsed = time.time() - start_time
 
         cur.close()
-        conn.close()
         logger.info(f"[Executor][SQLite] {len(rows)} rows in {elapsed:.2f}s")
         return True, rows, ""
 
@@ -104,6 +104,9 @@ def _execute_sqlite(
         error_msg = str(e)
         logger.error(f"[Executor][SQLite] Error after {elapsed:.2f}s: {error_msg}")
         return False, None, error_msg
+    finally:
+        if conn:
+            conn.close()
 
 
 # ── MySQL backend ─────────────────────────────────────────────────────────────

@@ -197,8 +197,5 @@ def _score_operators(sql: str, question: str) -> float:
         if agg in sql_upper:
             found += 1
 
-    if len(required_aggs) == 0:
-        return 0.25
-
     ratio = found / len(required_aggs)
     return round(0.25 * ratio, 3)

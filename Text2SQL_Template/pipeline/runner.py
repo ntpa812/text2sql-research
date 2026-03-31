@@ -385,7 +385,7 @@ def run_pipeline(
         # ─── Step 3: Entity Extraction ──────────────────────
         t0 = time.time()
         logger.info("[Step 3] Entity Extraction")
-        raw_entities = extract_entities_local(question, domain_id=domain_id)
+        raw_entities = extract_entities_local(question, domain_id=final_domain)
         entities = normalize_entities(raw_entities)
         # Inject user context: "tôi" / "của tôi" / "của mình" → current user
         if user_context and not entities.get("employee_id") and not entities.get("employee_name"):

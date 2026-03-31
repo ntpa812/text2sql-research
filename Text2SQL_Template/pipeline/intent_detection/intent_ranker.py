@@ -208,7 +208,7 @@ def detect_intent(
 
 def _common_words(text1: str, text2: str) -> int:
     """Đếm số từ chung giữa 2 text (loại bỏ stopwords ngắn)."""
-    stopwords = {"của", "và", "là", "các", "cho", "trong", "từ", "đến", "với", "theo", "tôi", "tôi", "có", "được", "để", "hay", "hoặc", "xem", "tra", "cứu"}
+    stopwords = {"của", "và", "là", "các", "cho", "trong", "từ", "đến", "với", "theo", "tôi", "có", "được", "để", "hay", "hoặc", "xem", "tra", "cứu"}
     words1 = set(_normalize_text(text1).split()) - stopwords
     words2 = set(_normalize_text(text2).split()) - stopwords
     return len(words1 & words2)

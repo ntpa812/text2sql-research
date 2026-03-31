@@ -117,7 +117,7 @@ def _repair_missing_where(sql: str, error: str, question: str, entities: dict) -
     where_conditions = []
     
     if "account_no" in entities:
-        account = entities["account_no"]
+        account = str(entities["account_no"]).replace("'", "''")
         where_conditions.append(f"account_no = '{account}'")
     
     if "amount" in entities:

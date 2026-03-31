@@ -7,6 +7,7 @@ Chuẩn hoá output thành dict entity chuẩn cho pipeline.
 import os
 import sys
 import re
+import calendar
 import logging
 import datetime
 from typing import Dict, List, Optional
@@ -148,10 +149,9 @@ _BK_YEARMONTH = re.compile(
     r'|tháng\s+(\d{1,2})(?!\s*[/-]\s*\d)',
     re.IGNORECASE,
 )
-# "năm 2025" (standalone) — resolved at runtime to skip "tháng X năm Y"
+# "năm 2025" (standalone / fallback) — resolved at runtime to skip "tháng X năm Y"
 _BK_YEAR_ONLY = re.compile(r'\bnăm\s+(\d{4})\b', re.IGNORECASE)
-# Fallback: "năm 2025" anywhere
-_BK_YEAR_FALLBACK = re.compile(r'\bnăm\s+(\d{4})\b', re.IGNORECASE)
+_BK_YEAR_FALLBACK = _BK_YEAR_ONLY
 
 # ── Transaction type ─────────────────────────────────────────────────────────
 _BK_TRANS_TYPE_MAP: Dict[str, str] = {
@@ -662,7 +662,6 @@ def _resolve_named_period(q_lower: str, today: datetime.date) -> Optional[tuple]
 
 def _last_day_of_month(year: int, month: int) -> int:
     """Return last day of the given month."""
-    import calendar
     return calendar.monthrange(year, month)[1]
 
 
