@@ -1,0 +1,599 @@
+[
+  {
+    "question": "Cho tôi xem giao dịch chuyển tiền tài khoản 123456789 trong tháng 3 năm 2025",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "123456789",
+      "start_date": "2025-03-01",
+      "end_date": "2025-03-31",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name, from_account_no, to_account_no, amount_transfer, amount_currency, trans_status, trans_desc\nFROM transaction\nWHERE (category_code LIKE 'TRANSFER_%' OR category_code = 'REQUEST_TRANSFER')\nAND (from_account_no = '123456789')\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.001,
+      "schema_router": 0.012,
+      "intent_detection": 0.012
+    }
+  },
+  {
+    "question": "Tổng số tiền tôi đã nhận trong tuần này",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer",
+      "customer_account"
+    ],
+    "intent": "thống_kê_giao_dịch_chuyển_tiền",
+    "entities": {
+      "start_date": "2026-03-23",
+      "end_date": "2026-03-26"
+    },
+    "sql": "SELECT SUM(amount_transfer) AS total_amount\nFROM transaction\nWHERE MONTH(trans_time) = 1\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.013,
+      "intent_detection": 0.019
+    }
+  },
+  {
+    "question": "Liệt kê các giao dịch trên 50 triệu trong năm 2024",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_vay_và_tín_dụng_theo_số_tiền",
+    "entities": {
+      "start_date": "2024-01-01",
+      "end_date": "2024-12-31",
+      "amount_min": "50000000"
+    },
+    "sql": "SELECT COUNT(*) FROM transaction WHERE amount_transfer > 10000000 AND trans_time >= '2026-03-01' AND trans_time <= '2026-03-26' LIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.017,
+      "intent_detection": 0.027
+    }
+  },
+  {
+    "question": "Giao dịch ngoại tệ USD của tài khoản 9876543210",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_ngoại_tệ_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "9876543210",
+      "transaction_type": "FX",
+      "currency": "USD"
+    },
+    "sql": "SELECT \n  trans_id, trans_time, trans_type, trans_name,\n  from_account_no, to_account_no,\n  amount_transfer, amount_currency,\n  trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE '%FOREIGN_CURRENCY%'\nORDER BY trans_time DESC\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.014,
+      "intent_detection": 0.021
+    }
+  },
+  {
+    "question": "Các giao dịch rút tiền qua ATM trong tháng trước",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_giao_dịch_nạp_hoặc_rút_tiền_theo_thời_gian",
+    "entities": {
+      "start_date": "2026-02-01",
+      "end_date": "2026-02-28",
+      "transaction_type": "WITHDRAWAL",
+      "channel": "ATM"
+    },
+    "sql": "SELECT\n      reference_id,\n      trans_id,\n      amount_transfer,\n      amount_currency,\n      trans_time,\n      trans_type,\n      request_channel\n    FROM transaction\n    WHERE trans_time BETWEEN '2026-02-01' AND '2026-02-28'\n      AND trans_type = 'WITHDRAWAL'\n      AND request_channel = 'ATM'\n    LIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.003,
+      "intent_detection": 0.011
+    }
+  },
+  {
+    "question": "Xem giao dịch từ 01/01/2025 đến 31/03/2025 có số tiền từ 5 triệu đến 20 triệu",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_đầu_tư_theo_số_tiền",
+    "entities": {
+      "start_date": "2025-01-01",
+      "end_date": "2025-03-31",
+      "amount_min": "5000000",
+      "amount_max": "20000000"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n           from_account_no, to_account_no,\n           amount_transfer, amount_currency,\n           trans_status, trans_desc\n    FROM transaction\n    WHERE trans_time BETWEEN '2025-01-01' AND '2025-03-31'\n      AND amount_transfer BETWEEN 5000000 AND 20000000\n    ORDER BY trans_time DESC\n    LIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.005,
+      "intent_detection": 0.014
+    }
+  },
+  {
+    "question": "Tài khoản 555666 đã chuyển bao nhiêu tiền trong 7 ngày gần nhất",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "customer_account",
+      "transaction",
+      "customer"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_số_tài_khoản_người_nhận",
+    "entities": {
+      "account_no": "555666",
+      "start_date": "2026-03-19",
+      "end_date": "2026-03-26",
+      "transaction_type": "TRANSFER"
+    },
+    "sql": "SELECT SUM(t.amount_transfer) AS total_transfer\n    FROM transaction t\n    JOIN customer_account c ON t.from_account_no = c.account_no\n    WHERE c.account_no = '555666'\n      AND t.trans_time >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)\n      AND t.category_code = 'TRANSFER'",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.005,
+      "intent_detection": 0.02
+    }
+  },
+  {
+    "question": "Giao dịch thất bại trong quý 1 năm 2025",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction"
+    ],
+    "intent": "tra_cứu_danh_sách_giao_dịch_nạp_hoặc_rút_tiền_theo_trạng_thái",
+    "entities": {
+      "start_date": "2026-01-01",
+      "end_date": "2026-03-31",
+      "status": "FAILED"
+    },
+    "sql": "SELECT\n  reference_id,\n  trans_id,\n  from_account_no,\n  to_account_no,\n  amount_transfer,\n  amount_currency,\n  trans_status,\n  category_code,\n  trans_time\nFROM transaction\nWHERE category_code LIKE '%EWALLET%'\n  AND trans_status = 'FAILED'\n  AND trans_time >= '2025-01-01'\n  AND trans_time <= '2025-03-31'\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {
+      "score": 0.3,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.001,
+      "schema_router": 0.007,
+      "intent_detection": 0.021,
+      "entity_extraction": 0.02,
+      "template_fill": 0.001,
+      "sql_generation": 4.076,
+      "validation": 0.003
+    },
+    "error": "DB execution failed (connection): mysql-connector-python not installed"
+  },
+  {
+    "question": "Tổng tiền chuyển khoản qua internet banking hôm nay",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_chuyển_tiền_theo_kênh_giao_dịch",
+    "entities": {
+      "start_date": "2026-03-26",
+      "end_date": "2026-03-26",
+      "transaction_type": "TRANSFER",
+      "channel": "INTERNET_BANKING"
+    },
+    "sql": "SELECT SUM(amount_transfer)\n    FROM transaction\n    WHERE trans_time >= '2026-03-26' AND trans_time < '2026-03-27'\n      AND request_channel = 'INTERNET_BANKING'\n      AND trans_type = 'TRANSFER'\n    LIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.003,
+      "intent_detection": 0.007
+    }
+  },
+  {
+    "question": "Xem lịch sử giao dịch tiết kiệm tài khoản 111222333",
+    "domain": "banking",
+    "candidate_domains": [
+      "banking"
+    ],
+    "tables": [
+      "transaction",
+      "customer_account"
+    ],
+    "intent": "tra_cứu_giao_dịch_tiết_kiệm_theo_tài_khoản_nguồn",
+    "entities": {
+      "account_no": "111222333",
+      "transaction_type": "SAVING"
+    },
+    "sql": "SELECT trans_id, trans_time, trans_type, trans_name,\n       from_account_no, to_account_no,\n       amount_transfer, amount_currency,\n       trans_status, trans_desc\nFROM transaction\nWHERE category_code LIKE 'SAVING_%'\nAND from_account_no = '111222333'\nORDER BY trans_time DESC;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.005,
+      "intent_detection": 0.013
+    }
+  },
+  {
+    "question": "Danh sách nhân viên phòng kinh doanh",
+    "domain": "hrm",
+    "candidate_domains": [
+      "hrm"
+    ],
+    "tables": [
+      "employee"
+    ],
+    "intent": "liệt_kê_nhân_viên_theo_phòng_ban",
+    "entities": {
+      "department_name": "kinh doanh"
+    },
+    "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE d.department_name LIKE '%kinh doanh%'\nORDER BY e.employee_name ASC\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.021,
+      "intent_detection": 0.001
+    }
+  },
+  {
+    "question": "Xem lịch sử chấm công của nhân viên EMP001 trong tháng 3",
+    "domain": "hrm",
+    "candidate_domains": [
+      "hrm"
+    ],
+    "tables": [
+      "employee",
+      "attendance"
+    ],
+    "intent": "tra_cứu_chấm_công_theo_nhân_viên_và_thời_gian",
+    "entities": {
+      "employee_id": "EMP001",
+      "year_month": "2026-03"
+    },
+    "sql": "SELECT\n            a.attendance_id,\n            a.employee_id,\n            e.employee_name,\n            a.attendance_date,\n            a.check_in_time,\n            a.check_out_time,\n            a.status\n        FROM attendance a\n        JOIN employee e ON a.employee_id = e.employee_id\n        WHERE a.employee_id = 'EMP001'\n          AND strftime('%Y', a.attendance_date) = 2026\n          AND strftime('%m', a.attendance_date) = 3\n        ORDER BY a.attendance_date DESC\n        LIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.003,
+      "intent_detection": 0.001
+    }
+  },
+  {
+    "question": "Nhân viên nào nghỉ phép hôm nay",
+    "domain": "hrm",
+    "candidate_domains": [
+      "hrm"
+    ],
+    "tables": [
+      "leave_balance",
+      "leave_request",
+      "employee",
+      "attendance"
+    ],
+    "intent": "danh_sách_nhân_viên_vắng_mặt_theo_ngày",
+    "entities": {
+      "attendance_date": "2026-03-26"
+    },
+    "sql": "SELECT\n            e.employee_id,\n            e.employee_name,\n            lr.start_date,\n            lr.end_date\n        FROM leave_request lr\n        JOIN employee e ON lr.employee_id = e.employee_id\n        WHERE lr.status = 'APPROVED'\n          AND lr.start_date <= CURRENT_DATE\n          AND lr.end_date >= CURRENT_DATE\n        ORDER BY e.employee_name;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.007,
+      "intent_detection": 0.001
+    }
+  },
+  {
+    "question": "Tổng số ngày phép còn lại của nhân viên Nguyễn Văn An",
+    "domain": "hrm",
+    "candidate_domains": [
+      "hrm"
+    ],
+    "tables": [
+      "leave_balance",
+      "employee",
+      "leave_type",
+      "leave_request",
+      "attendance"
+    ],
+    "intent": "tra_cứu_số_ngày_phép_còn_lại_của_nhân_viên",
+    "entities": {
+      "employee_name": "Nguyễn Văn An"
+    },
+    "sql": "SELECT SUM(lb.remaining_days) as total_remaining_days\n            FROM leave_balance lb\n            JOIN employee e ON lb.employee_id = e.employee_id\n            WHERE e.employee_name = 'Nguyễn Văn An'",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.001,
+      "schema_router": 0.001,
+      "intent_detection": 0.001
+    }
+  },
+  {
+    "question": "Liệt kê nhân viên có lương trên 15 triệu",
+    "domain": "hrm",
+    "candidate_domains": [
+      "hrm"
+    ],
+    "tables": [
+      "employee",
+      "attendance"
+    ],
+    "intent": "thống_kê_số_lượng_nhân_viên_theo_phòng_ban",
+    "entities": {
+      "salary_min": "15000000"
+    },
+    "sql": "SELECT d.department_id, d.department_name, COUNT(e.employee_id) as count\n    FROM department d\n    LEFT JOIN employee e ON d.department_id = e.department_id\n    GROUP BY d.department_id, d.department_name\n    ORDER BY count DESC\n    LIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
+  },
+  {
+    "question": "Số nhân viên đi làm muộn trong tuần trước",
+    "domain": "hrm",
+    "candidate_domains": [
+      "hrm"
+    ],
+    "tables": [
+      "employee",
+      "leave_request",
+      "leave_balance",
+      "attendance"
+    ],
+    "intent": "tra_cứu_thông_tin_nhân_viên_theo_mã_nhân_viên",
+    "entities": {},
+    "sql": "SELECT COUNT(*) AS late_count\nFROM attendance a\nJOIN employee e ON a.employee_id = e.employee_id\nWHERE a.attendance_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)\n  AND a.attendance_date < CURDATE()\n  AND a.check_in_time > DATE_FORMAT(a.attendance_date, '%Y-%m-%d')\nGROUP BY a.attendance_date;",
+    "validator": "FAIL",
+    "rows": 0,
+    "confidence": {
+      "score": 0.2,
+      "passed": false,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.0,
+        "structure": 0.0,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.001,
+      "schema_router": 0.001,
+      "intent_detection": 0.001,
+      "entity_extraction": 0.002,
+      "template_fill": 0.001,
+      "sql_generation": 4.091
+    },
+    "semantic_warnings": [
+      "Câu hỏi có thời gian nhưng SQL thiếu filter thời gian"
+    ],
+    "error": "EXPLAIN failed: near \"7\": syntax error"
+  },
+  {
+    "question": "Xem đơn nghỉ phép chờ duyệt của phòng kỹ thuật",
+    "domain": "hrm",
+    "candidate_domains": [
+      "hrm"
+    ],
+    "tables": [
+      "leave_request",
+      "leave_balance",
+      "leave_type"
+    ],
+    "intent": "danh_sách_đơn_nghỉ_phép_theo_trạng_thái",
+    "entities": {
+      "department_name": "kỹ thuật"
+    },
+    "sql": "SELECT lr.request_id, lr.employee_id, e.employee_name, d.department_name,\n       lt.leave_type_name, lr.start_date, lr.end_date, lr.total_days,\n       lr.reason, lr.status, lr.created_at\nFROM leave_request lr\nJOIN employee e ON lr.employee_id = e.employee_id\nJOIN department d ON e.department_id = d.department_id\nJOIN leave_type lt ON lr.leave_type_id = lt.leave_type_id\nWHERE lr.status = 'Chờ duyệt'\n  AND d.department_name = 'kỹ thuật'\nORDER BY lr.created_at DESC\nLIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.9,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001,
+      "entity_extraction": 0.001,
+      "template_fill": 0.002,
+      "sql_generation": 4.694,
+      "validation": 0.0,
+      "execution": 0.0
+    }
+  },
+  {
+    "question": "Nhân viên nữ đang thử việc trong công ty",
+    "domain": "hrm",
+    "candidate_domains": [
+      "hrm"
+    ],
+    "tables": [
+      "employee"
+    ],
+    "intent": "danh_sách_nhân_viên_theo_trạng_thái_làm_việc",
+    "entities": {
+      "employment_status": "PROBATION",
+      "gender": "FEMALE"
+    },
+    "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.employment_status = 'PROBATION'\nORDER BY d.department_name, e.employee_name ASC\nLIMIT 100;",
+    "validator": "PASS",
+    "rows": 0,
+    "confidence": {},
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
+  },
+  {
+    "question": "Thống kê chấm công tháng 2 năm 2025 phòng nhân sự",
+    "domain": "hrm",
+    "candidate_domains": [
+      "hrm"
+    ],
+    "tables": [
+      "attendance",
+      "employee",
+      "leave_balance"
+    ],
+    "intent": "tổng_hợp_ngày_công_tất_cả_nhân_viên_theo_tháng",
+    "entities": {
+      "department_name": "nhân sự",
+      "year_month": "2025-02"
+    },
+    "sql": "SELECT\n    a.employee_id,\n    e.employee_name,\n    d.department_name,\n    a.attendance_date AS month,\n    SUM(CASE WHEN a.status = 'PRESENT'  THEN 1 ELSE 0 END)        AS present_days,\n    SUM(CASE WHEN a.status = 'LATE'     THEN 1 ELSE 0 END)        AS late_days,\n    SUM(CASE WHEN a.status = 'REMOTE'   THEN 1 ELSE 0 END)        AS remote_days,\n    SUM(CASE WHEN a.status = 'ABSENT'   THEN 1 ELSE 0 END)        AS absent_days,\n    SUM(CASE WHEN a.status = 'ON_LEAVE' THEN 1 ELSE 0 END)        AS on_leave_days,\n    COUNT(*)                                                       AS total_working_days\nFROM attendance a\nJOIN employee e ON a.employee_id = e.employee_id\nJOIN department d ON e.department_id = d.department_id\nWHERE a.attendance_date = '2025-02'\nGROUP BY a.employee_id, e.employee_name, d.department_name, a.attendance_date\nORDER BY d.department_name, e.employee_name\nLIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "rows": 0,
+    "confidence": {
+      "score": 0.9,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.1,
+        "has_rows": 0.0
+      }
+    },
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 0.0,
+      "validation": 16.482,
+      "execution": 0.002
+    }
+  },
+  {
+    "question": "Ai có nhiều ngày nghỉ phép nhất năm nay",
+    "domain": "hrm",
+    "candidate_domains": [
+      "hrm"
+    ],
+    "tables": [
+      "leave_balance",
+      "leave_request",
+      "leave_type",
+      "attendance"
+    ],
+    "intent": "danh_sách_nhân_viên_vắng_mặt_theo_ngày",
+    "entities": {},
+    "sql": "SELECT\n    lb.employee_id,\n    lb.total_days,\n    lb.used_days,\n    lb.remaining_days,\n    lt.leave_type_name\nFROM leave_balance lb\nJOIN leave_type lt ON lb.leave_type_id = lt.leave_type_id\nWHERE lb.year = CAST(STRFTIME('%Y', CURRENT_DATE) AS INTEGER)\nORDER BY lb.remaining_days DESC\nLIMIT 1;",
+    "validator": "PASS",
+    "rows": 1,
+    "confidence": {
+      "score": 0.9,
+      "passed": true,
+      "threshold": 0.6,
+      "breakdown": {
+        "sql_executable": 0.3,
+        "structure": 0.3,
+        "entity_valid": 0.2,
+        "semantic_ok": 0.0,
+        "has_rows": 0.1
+      }
+    },
+    "timing": {
+      "domain_router": 0.001,
+      "schema_router": 0.002,
+      "intent_detection": 0.001,
+      "entity_extraction": 0.0,
+      "template_fill": 0.0,
+      "sql_generation": 2.554,
+      "validation": 5.134,
+      "execution": 0.001
+    },
+    "semantic_warnings": [
+      "Câu hỏi có thời gian nhưng SQL thiếu filter thời gian"
+    ]
+  }
+]

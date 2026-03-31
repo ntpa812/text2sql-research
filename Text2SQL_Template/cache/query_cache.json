@@ -1947,7 +1947,55 @@
       "department_name": "kỹ thuật"
     },
     "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE d.department_name LIKE '%kinh doanh%'\nORDER BY e.employee_name ASC\nLIMIT 100;",
-    "validator": "PASS"
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0,
+          "keyword_score": 0.0,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
   },
   "hrm:bf3459556c876198": {
     "question": "Tìm thông tin nhân viên có mã EMP015",
@@ -1963,7 +2011,58 @@
       "employee_id": "EMP015"
     },
     "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nWHERE e.employee_id = 'EMP015'\nLIMIT 100;",
-    "validator": "PASS"
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0455,
+          "keyword_score": 0.0455,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee",
+        "attendance",
+        "leave_request",
+        "leave_balance"
+      ]
+    },
+    "execution_time": 0.002,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.001,
+      "intent_detection": 0.001
+    }
   },
   "hrm:1c1f0d8ab245ab55": {
     "question": "Danh sách nhân viên đang thử việc",
@@ -1976,7 +2075,55 @@
       "employment_status": "PROBATION"
     },
     "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.employment_status = 'PROBATION'\nORDER BY d.department_name, e.employee_name ASC\nLIMIT 100;",
-    "validator": "PASS"
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0,
+          "keyword_score": 0.0,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee"
+      ]
+    },
+    "execution_time": 0.006,
+    "timing": {
+      "domain_router": 0.001,
+      "schema_router": 0.002,
+      "intent_detection": 0.004
+    }
   },
   "hrm:a92276109797c1db": {
     "question": "Tìm nhân viên tên Trần Thị Hương",
@@ -1987,7 +2134,55 @@
     "intent": "tìm_kiếm_nhân_viên_theo_tên",
     "entities": {},
     "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    e.department_id,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nWHERE e.employee_name LIKE '%Trần Thị Hương%'\nORDER BY e.employee_name ASC\nLIMIT 100;",
-    "validator": "PASS_EMPTY"
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0,
+          "keyword_score": 0.0,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
   },
   "hrm:5a86e1678870e479": {
     "question": "Mỗi phòng ban có bao nhiêu nhân viên đang làm việc",
@@ -2004,7 +2199,59 @@
       "department_name": "ban có bao nhiêu nhân"
     },
     "sql": "SELECT d.department_id, d.department_name, COUNT(e.employee_id) as count\n    FROM department d\n    LEFT JOIN employee e ON d.department_id = e.department_id\n    GROUP BY d.department_id, d.department_name\n    ORDER BY count DESC\n    LIMIT 100;",
-    "validator": "PASS"
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm",
+            "phòng ban"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0,
+          "keyword_score": 0.0,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee",
+        "department",
+        "leave_balance",
+        "attendance"
+      ]
+    },
+    "execution_time": 0.002,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
   },
   "hrm:b1b629db4c9d3178": {
     "question": "Phòng nào có nhiều nhân viên nhất",
@@ -2017,7 +2264,55 @@
       "department_name": "nào có nhiều nhân viên"
     },
     "sql": "SELECT d.department_id, d.department_name, COUNT(e.employee_id) as count\n    FROM department d\n    LEFT JOIN employee e ON d.department_id = e.department_id\n    GROUP BY d.department_id, d.department_name\n    ORDER BY count DESC\n    LIMIT 100;",
-    "validator": "PASS"
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0,
+          "keyword_score": 0.0,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
   },
   "hrm:1f57a63e15815bad": {
     "question": "Liệt kê tất cả các trưởng phòng trong công ty",
@@ -2032,7 +2327,54 @@
       "department_name": "trong công ty"
     },
     "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE d.department_name = 'trong công ty'\nORDER BY d.department_name, e.employee_name ASC\nLIMIT 100;",
-    "validator": "PASS_EMPTY"
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": []
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.25,
+          "keyword_score": 0.25,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee",
+        "department",
+        "attendance"
+      ]
+    },
+    "execution_time": 0.007,
+    "timing": {
+      "domain_router": 0.001,
+      "schema_router": 0.002,
+      "intent_detection": 0.004
+    }
   },
   "hrm:72668010bc9f4450": {
     "question": "Nhân viên mới vào làm từ tháng 1 đến tháng 3 năm 2026",
@@ -2047,7 +2389,57 @@
       "year_month": "2026-01"
     },
     "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    e.department_id,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nWHERE e.hire_date BETWEEN '2026-01-01' AND '2026-03-31'\nORDER BY e.hire_date DESC\nLIMIT 100;",
-    "validator": "PASS"
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0556,
+          "keyword_score": 0.0556,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee",
+        "leave_request",
+        "attendance"
+      ]
+    },
+    "execution_time": 0.005,
+    "timing": {
+      "domain_router": 0.001,
+      "schema_router": 0.001,
+      "intent_detection": 0.003
+    }
   },
   "hrm:741510d6e7da426c": {
     "question": "Bao nhiêu nhân viên đi muộn trong tuần trước",
@@ -2059,7 +2451,56 @@
     "intent": "thống_kê_số_lượng_nhân_viên_theo_phòng_ban",
     "entities": {},
     "sql": "SELECT e.employee_id, e.employee_name\nFROM employee e\nJOIN leave_balance lb ON e.employee_id = lb.employee_id\nWHERE lb.year = CAST(STRFTIME('%Y', CURRENT_DATE) AS INTEGER) - 1\n  AND lb.used_days > 0\nLIMIT 100;",
-    "validator": "PASS_EMPTY"
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0,
+          "keyword_score": 0.0,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee",
+        "leave_balance"
+      ]
+    },
+    "execution_time": 0.007,
+    "timing": {
+      "domain_router": 0.001,
+      "schema_router": 0.002,
+      "intent_detection": 0.004
+    }
   },
   "hrm:59d2d260e243cb1e": {
     "question": "Nhân viên EMP001 còn bao nhiêu ngày phép năm",
@@ -2074,7 +2515,57 @@
       "employee_id": "EMP001"
     },
     "sql": "SELECT lb.remaining_days\nFROM leave_balance lb\nJOIN employee e ON lb.employee_id = e.employee_id\nWHERE e.employee_name = 'Nguyễn Văn An';",
-    "validator": "PASS"
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0,
+          "keyword_score": 0.0,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "leave_balance",
+        "employee",
+        "leave_type"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
   },
   "hrm:badb7de4a13f9667": {
     "question": "Xem lịch sử nghỉ phép của nhân viên EMP020",
@@ -2090,7 +2581,59 @@
       "employee_id": "EMP020"
     },
     "sql": "SELECT lr.request_id, lr.employee_id, e.employee_name, lt.leave_type_name, lr.start_date, lr.end_date, lr.total_days, lr.reason, lr.status, lr.created_at\nFROM leave_request lr\nJOIN employee e ON lr.employee_id = e.employee_id\nJOIN leave_type lt ON lr.leave_type_id = lt.leave_type_id\nWHERE lr.employee_id = 'EMP020'\nORDER BY lr.created_at DESC\nLIMIT 100;",
-    "validator": "PASS_EMPTY"
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nghỉ phép",
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0723,
+          "keyword_score": 0.0723,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee",
+        "leave_balance",
+        "leave_request",
+        "attendance"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
   },
   "hrm:5b914ef63dad3c90": {
     "question": "Danh sách đơn nghỉ phép đang chờ duyệt",
@@ -2103,7 +2646,57 @@
     "intent": "danh_sách_đơn_nghỉ_phép_theo_trạng_thái",
     "entities": {},
     "sql": "SELECT lr.request_id, lr.employee_id, lr.leave_type_id, lr.start_date, lr.end_date, lr.total_days, lr.reason, lr.status, lr.created_at\nFROM leave_request lr\nWHERE lr.status = 'pending'\nORDER BY lr.created_at DESC\nLIMIT 100;",
-    "validator": "PASS_EMPTY"
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nghỉ phép",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0,
+          "keyword_score": 0.0,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "leave_request",
+        "leave_balance",
+        "leave_type"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
   },
   "hrm:0d27c993eca6a642": {
     "question": "Ai nghỉ phép nhiều nhất từ đầu năm đến nay",
@@ -2115,7 +2708,56 @@
     "intent": "danh_sách_đơn_nghỉ_phép_theo_trạng_thái",
     "entities": {},
     "sql": "SELECT lr.request_id, lr.employee_id, lr.start_date, lr.end_date, lr.total_days, lr.reason, lr.status\nFROM leave_request lr\nWHERE lr.start_date >= CURRENT_DATE\nORDER BY lr.total_days DESC\nLIMIT 100;",
-    "validator": "PASS"
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nghỉ phép",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0556,
+          "keyword_score": 0.0556,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "leave_request",
+        "leave_balance"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
   },
   "hrm:dd5c1d550f1ef895": {
     "question": "Xem chấm công của nhân viên EMP010 trong tháng 3 năm 2026",
@@ -2130,7 +2772,57 @@
       "year_month": "2026-03"
     },
     "sql": "SELECT\n    a.employee_id,\n    e.employee_name,\n    d.department_name,\n    a.attendance_date,\n    SUM(CASE WHEN a.status = 'PRESENT'  THEN 1 ELSE 0 END)        AS present_days,\n    SUM(CASE WHEN a.status = 'LATE'     THEN 1 ELSE 0 END)        AS late_days,\n    SUM(CASE WHEN a.status = 'REMOTE'   THEN 1 ELSE 0 END)        AS remote_days,\n    SUM(CASE WHEN a.status = 'ABSENT'   THEN 1 ELSE 0 END)        AS absent_days,\n    SUM(CASE WHEN a.status = 'ON_LEAVE' THEN 1 ELSE 0 END)        AS on_leave_days,\n    COUNT(*)                                                       AS total_working_days\nFROM attendance a\nJOIN employee e ON a.employee_id = e.employee_id\nJOIN department d ON e.department_id = d.department_id\nWHERE a.attendance_date = '2026-03'\nGROUP BY a.employee_id, e.employee_name, d.department_name, a.attendance_date\nORDER BY d.department_name, e.employee_name\nLIMIT 100;",
-    "validator": "PASS_EMPTY"
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "chấm công",
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0375,
+          "keyword_score": 0.0375,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "attendance",
+        "employee"
+      ]
+    },
+    "execution_time": 0.002,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
   },
   "hrm:0b65da251c7db0f6": {
     "question": "Tìm nhân viên lương trên 20 triệu ở phòng marketing",
@@ -2144,7 +2836,56 @@
       "salary_min": "20000000"
     },
     "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE d.department_name LIKE '%kinh doanh%'\nORDER BY e.employee_name ASC\nLIMIT 100;",
-    "validator": "PASS"
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "lương",
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0,
+          "keyword_score": 0.0,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
   },
   "hrm:6d0c31bb0e2c2531": {
     "question": "Nhân viên nữ đang active trong phòng nhân sự",
@@ -2159,7 +2900,55 @@
       "gender": "FEMALE"
     },
     "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.employment_status = 'PROBATION'\nORDER BY d.department_name, e.employee_name ASC\nLIMIT 100;",
-    "validator": "PASS"
+    "validator": "PASS",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0526,
+          "keyword_score": 0.0526,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "employee"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
   },
   "hrm:8b229720c7730ff0": {
     "question": "Xem đơn nghỉ phép bị từ chối của phòng kinh doanh",
@@ -2174,7 +2963,57 @@
       "department_name": "kinh doanh"
     },
     "sql": "SELECT lr.request_id, lr.employee_id, e.employee_name, lt.leave_type_name, lr.start_date, lr.end_date, lr.total_days, lr.reason, lr.status, lr.created_at\nFROM leave_request lr\nJOIN employee e ON lr.employee_id = e.employee_id\nJOIN leave_type lt ON lr.leave_type_id = lt.leave_type_id\nJOIN department d ON e.department_id = d.department_id\nWHERE lr.status = 'rejected'\n  AND d.department_name = 'kinh doanh'\nORDER BY lr.created_at DESC\nLIMIT 100;",
-    "validator": "PASS_EMPTY"
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "nghỉ phép",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.0,
+          "keyword_score": 0.0,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "leave_request",
+        "leave_balance",
+        "leave_type"
+      ]
+    },
+    "execution_time": 0.001,
+    "timing": {
+      "domain_router": 0.0,
+      "schema_router": 0.0,
+      "intent_detection": 0.001
+    }
   },
   "hrm:e9d60dfe2eb3e57d": {
     "question": "Thống kê chấm công tháng 3 năm 2026 của tất cả nhân viên",
@@ -2188,6 +3027,334 @@
       "year_month": "2026-03"
     },
     "sql": "SELECT\n    a.employee_id,\n    e.employee_name,\n    d.department_name,\n    a.attendance_date,\n    SUM(CASE WHEN a.status = 'PRESENT'  THEN 1 ELSE 0 END)        AS present_days,\n    SUM(CASE WHEN a.status = 'LATE'     THEN 1 ELSE 0 END)        AS late_days,\n    SUM(CASE WHEN a.status = 'REMOTE'   THEN 1 ELSE 0 END)        AS remote_days,\n    SUM(CASE WHEN a.status = 'ABSENT'   THEN 1 ELSE 0 END)        AS absent_days,\n    SUM(CASE WHEN a.status = 'ON_LEAVE' THEN 1 ELSE 0 END)        AS on_leave_days,\n    COUNT(*)                                                       AS total_working_days\nFROM attendance a\nJOIN employee e ON a.employee_id = e.employee_id\nJOIN department d ON e.department_id = d.department_id\nWHERE a.attendance_date = '2026-03'\nGROUP BY a.employee_id, e.employee_name, d.department_name, a.attendance_date\nORDER BY d.department_name, e.employee_name\nLIMIT 100;",
+    "validator": "PASS_EMPTY",
+    "cache_hit": true,
+    "candidate_domains": [
+      "hrm"
+    ],
+    "domain_routing": {
+      "ranked_domains": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "score": 1.0,
+          "keyword_score": 1.0,
+          "matched_keywords": [
+            "chấm công",
+            "nhân viên",
+            "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm"
+          ]
+        },
+        {
+          "domain_id": "banking",
+          "display_name": "banking",
+          "score": 0.1047,
+          "keyword_score": 0.1047,
+          "matched_keywords": []
+        }
+      ],
+      "selected_domain": "hrm",
+      "arbitration_reason": "single_candidate",
+      "arbitration_scores": [
+        {
+          "domain_id": "hrm",
+          "display_name": "hrm",
+          "domain_score": 1.0,
+          "table_score": 1.0,
+          "intent_score": 1.0,
+          "final_score": 1.0
+        }
+      ]
+    },
+    "domain_tables": {
+      "hrm": [
+        "attendance",
+        "employee"
+      ]
+    },
+    "execution_time": 0.008,
+    "timing": {
+      "domain_router": 0.001,
+      "schema_router": 0.002,
+      "intent_detection": 0.005
+    }
+  },
+  "hrm:b3bc51fd7d667261": {
+    "question": "Ai đang làm việc ở phòng marketing",
+    "domain": "hrm",
+    "tables": [
+      "employee"
+    ],
+    "intent": "liệt_kê_nhân_viên_theo_phòng_ban",
+    "entities": {
+      "employment_status": "ACTIVE",
+      "department_name": "marketing"
+    },
+    "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE d.department_name LIKE '%kinh doanh%'\nORDER BY e.employee_name ASC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "hrm:504658e25a8e733a": {
+    "question": "Liệt kê nhân viên đã nghỉ việc trong năm 2025",
+    "domain": "hrm",
+    "tables": [
+      "employee",
+      "leave_balance",
+      "leave_request"
+    ],
+    "intent": "danh_sách_nhân_viên_theo_trạng_thái_làm_việc",
+    "entities": {
+      "employment_status": "RESIGNED",
+      "year_only": "2025"
+    },
+    "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.employment_status = 'PROBATION'\nORDER BY d.department_name, e.employee_name ASC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "hrm:4446f439c625281c": {
+    "question": "Danh sách các chuyên viên nhân sự đang active",
+    "domain": "hrm",
+    "tables": [
+      "employee",
+      "leave_balance",
+      "leave_request",
+      "attendance"
+    ],
+    "intent": "danh_sách_nhân_viên_theo_trạng_thái_làm_việc",
+    "entities": {
+      "employment_status": "ACTIVE"
+    },
+    "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.employment_status = 'PROBATION'\nORDER BY d.department_name, e.employee_name ASC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "hrm:0078683c25f398e5": {
+    "question": "Tổng số nhân viên toàn công ty hiện tại là bao nhiêu",
+    "domain": "hrm",
+    "tables": [
+      "employee",
+      "leave_balance",
+      "leave_request"
+    ],
+    "intent": "tổng_hợp_ngày_công_tất_cả_nhân_viên_theo_tháng",
+    "entities": {},
+    "sql": "SELECT COUNT(*) AS total_employees FROM employee WHERE employment_status = 'ACTIVE';",
+    "validator": "PASS"
+  },
+  "hrm:483a422b15424fb7": {
+    "question": "Cho tôi xem hồ sơ nhân viên mã EMP030",
+    "domain": "hrm",
+    "tables": [
+      "employee",
+      "leave_request",
+      "leave_balance"
+    ],
+    "intent": "tra_cứu_thông_tin_nhân_viên_theo_mã_nhân_viên",
+    "entities": {
+      "employee_id": "EMP030"
+    },
+    "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_id,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.employee_id = 'EMP030'\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "hrm:d0a2057fff99a598": {
+    "question": "Tìm kiếm nhân viên họ Nguyễn trong phòng kinh doanh",
+    "domain": "hrm",
+    "tables": [
+      "employee"
+    ],
+    "intent": "tìm_kiếm_nhân_viên_theo_tên",
+    "entities": {
+      "department_name": "kinh doanh"
+    },
+    "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.employee_name LIKE '%Nguyễn%'\n    AND d.department_name = 'kinh doanh'\nORDER BY e.employee_name ASC\nLIMIT 100;",
     "validator": "PASS_EMPTY"
+  },
+  "hrm:2b499870d29834c3": {
+    "question": "Tổng hợp ngày công tháng 2 năm 2026 của nhân viên EMP005",
+    "domain": "hrm",
+    "tables": [
+      "employee",
+      "attendance",
+      "leave_balance",
+      "leave_request"
+    ],
+    "intent": "tổng_hợp_ngày_công_tất_cả_nhân_viên_theo_tháng",
+    "entities": {
+      "employee_id": "EMP005",
+      "year_month": "2026-02"
+    },
+    "sql": "SELECT employee.employee_name, COUNT(attendance.attendance_id) AS total_days\nFROM employee\nJOIN attendance ON employee.employee_id = attendance.employee_id\nWHERE employee.employee_id = 'EMP005'\n  AND attendance.attendance_date >= '2026-02-01'\n  AND attendance.attendance_date < '2026-03-01'\nGROUP BY employee.employee_name;",
+    "validator": "PASS"
+  },
+  "hrm:68ac2748321f5066": {
+    "question": "Số ngày phép còn lại của nhân viên Nguyễn Văn An",
+    "domain": "hrm",
+    "tables": [
+      "leave_balance",
+      "employee",
+      "leave_type",
+      "leave_request",
+      "attendance"
+    ],
+    "intent": "tra_cứu_số_ngày_phép_còn_lại_của_nhân_viên",
+    "entities": {
+      "employee_name": "Nguyễn Văn An"
+    },
+    "sql": "SELECT SUM(lb.remaining_days) as total_remaining_days\n            FROM leave_balance lb\n            JOIN employee e ON lb.employee_id = e.employee_id\n            WHERE e.employee_name = 'Nguyễn Văn An'",
+    "validator": "PASS"
+  },
+  "hrm:bfd501d0e45f840c": {
+    "question": "Xem lịch sử chấm công của nhân viên EMP020 từ 01/03/2026 đến 15/03/2026",
+    "domain": "hrm",
+    "tables": [
+      "employee",
+      "attendance",
+      "leave_request"
+    ],
+    "intent": "tra_cứu_chấm_công_theo_nhân_viên_và_thời_gian",
+    "entities": {
+      "employee_id": "EMP020",
+      "start_date": "2026-03-01",
+      "end_date": "2026-03-15"
+    },
+    "sql": "SELECT\n    a.attendance_id,\n    a.employee_id,\n    e.employee_name,\n    a.attendance_date,\n    a.check_in_time,\n    a.check_out_time,\n    a.status\nFROM attendance a\nJOIN employee e ON a.employee_id = e.employee_id\nWHERE e.employee_id = 'EMP020'\n    AND a.attendance_date BETWEEN '2026-03-01' AND '2026-03-15'\nORDER BY a.attendance_date DESC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "hrm:e05c187ce3e5a8fe": {
+    "question": "Liệt kê đơn nghỉ phép đã được duyệt trong tháng 3",
+    "domain": "hrm",
+    "tables": [
+      "leave_request",
+      "leave_balance",
+      "leave_type"
+    ],
+    "intent": "danh_sách_đơn_nghỉ_phép_theo_trạng_thái",
+    "entities": {
+      "year_month": "2026-03"
+    },
+    "sql": "SELECT lr.request_id, lr.employee_id, lr.start_date, lr.end_date, lr.total_days, lr.reason, lr.status\nFROM leave_request lr\nWHERE lr.start_date >= CURRENT_DATE\nORDER BY lr.total_days DESC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "hrm:966672dfab80e78c": {
+    "question": "Tra cứu đơn xin nghỉ của nhân viên EMP012 năm 2026",
+    "domain": "hrm",
+    "tables": [
+      "leave_request",
+      "employee",
+      "leave_balance",
+      "leave_type"
+    ],
+    "intent": "tra_cứu_lịch_sử_nghỉ_phép_của_nhân_viên",
+    "entities": {
+      "employee_id": "EMP012",
+      "year_only": "2026"
+    },
+    "sql": "SELECT lr.request_id, lr.employee_id, e.employee_name, lt.leave_type_name, lr.start_date, lr.end_date, lr.total_days, lr.reason, lr.status, lr.created_at\nFROM leave_request lr\nJOIN employee e ON lr.employee_id = e.employee_id\nJOIN leave_type lt ON lr.leave_type_id = lt.leave_type_id\nWHERE lr.employee_id = 'EMP012'\nORDER BY lr.created_at DESC\nLIMIT 100;",
+    "validator": "PASS_EMPTY"
+  },
+  "hrm:cd324a071ebecdda": {
+    "question": "Liệt kê nhân viên có lương từ 10 triệu đến 30 triệu",
+    "domain": "hrm",
+    "tables": [
+      "employee",
+      "leave_request",
+      "attendance"
+    ],
+    "intent": "thống_kê_số_lượng_nhân_viên_theo_phòng_ban",
+    "entities": {
+      "salary_min": "10000000"
+    },
+    "sql": "SELECT d.department_id, d.department_name, COUNT(e.employee_id) as count\n    FROM department d\n    LEFT JOIN employee e ON d.department_id = e.department_id\n    GROUP BY d.department_id, d.department_name\n    ORDER BY count DESC\n    LIMIT 100;",
+    "validator": "PASS"
+  },
+  "hrm:2a280e30278565dd": {
+    "question": "Nhân viên phòng IT vào làm trước năm 2024",
+    "domain": "hrm",
+    "tables": [
+      "employee",
+      "attendance"
+    ],
+    "intent": "liệt_kê_nhân_viên_theo_phòng_ban",
+    "entities": {
+      "department_name": "IT vào làm trước năm",
+      "year_only": "2024"
+    },
+    "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE d.department_name LIKE '%kinh doanh%'\nORDER BY e.employee_name ASC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "hrm:4711c7ce47bef733": {
+    "question": "Danh sách nhân viên nam đang thử việc ở phòng kỹ thuật",
+    "domain": "hrm",
+    "tables": [
+      "employee"
+    ],
+    "intent": "danh_sách_nhân_viên_theo_trạng_thái_làm_việc",
+    "entities": {
+      "employment_status": "PROBATION",
+      "department_name": "kỹ thuật",
+      "gender": "MALE"
+    },
+    "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    d.department_name,\n    e.job_title,\n    e.employment_status,\n    e.hire_date\nFROM employee e\nJOIN department d ON e.department_id = d.department_id\nWHERE e.employment_status = 'PROBATION'\nORDER BY d.department_name, e.employee_name ASC\nLIMIT 100;",
+    "validator": "PASS"
+  },
+  "hrm:fd714389845373a9": {
+    "question": "Nhân viên nào đang nghỉ phép hôm nay",
+    "domain": "hrm",
+    "tables": [
+      "leave_balance",
+      "employee",
+      "leave_request",
+      "attendance"
+    ],
+    "intent": "danh_sách_nhân_viên_vắng_mặt_theo_ngày",
+    "entities": {
+      "attendance_date": "2026-03-31"
+    },
+    "sql": "SELECT\n    e.employee_id,\n    e.employee_name,\n    lr.start_date,\n    lr.end_date,\n    lr.status\nFROM employee e\nJOIN leave_request lr ON e.employee_id = lr.employee_id\nWHERE lr.status = 'APPROVED'\n  AND lr.start_date <= CURRENT_DATE\n  AND lr.end_date >= CURRENT_DATE\nORDER BY lr.start_date DESC;",
+    "validator": "PASS_EMPTY"
+  },
+  "hrm:c20e5d8b80c54728": {
+    "question": "Có bao nhiêu đơn nghỉ phép pending hiện tại",
+    "domain": "hrm",
+    "tables": [
+      "leave_request",
+      "leave_balance",
+      "leave_type"
+    ],
+    "intent": "danh_sách_đơn_nghỉ_phép_theo_trạng_thái",
+    "entities": {},
+    "sql": "SELECT COUNT(*) AS pending_count\nFROM leave_request lr\nWHERE lr.status = 'pending' AND lr.start_date >= CURRENT_DATE;",
+    "validator": "PASS"
+  },
+  "hrm:e7a9018e58996420": {
+    "question": "Tổng hợp ngày công và ngày nghỉ phép tháng 3 của nhân viên EMP003",
+    "domain": "hrm",
+    "tables": [
+      "attendance",
+      "employee",
+      "leave_request",
+      "leave_balance"
+    ],
+    "intent": "tổng_hợp_ngày_công_tất_cả_nhân_viên_theo_tháng",
+    "entities": {
+      "employee_id": "EMP003",
+      "year_month": "2026-03"
+    },
+    "sql": "SELECT \n    SUM(CASE WHEN a.status = 'PRESENT' THEN 1 ELSE 0 END) AS total_work_days,\n    SUM(CASE WHEN l.status = 'APPROVED' THEN l.total_days ELSE 0 END) AS total_leave_days\nFROM employee e\nLEFT JOIN attendance a ON e.employee_id = a.employee_id \n    AND a.attendance_date BETWEEN '2024-03-01' AND '2024-03-31'\nLEFT JOIN leave_request l ON e.employee_id = l.employee_id \n    AND l.start_date <= '2024-03-31' \n    AND l.end_date >= '2024-03-01'\n    AND l.status = 'APPROVED'\nWHERE e.employee_id = 'EMP003'\nGROUP BY e.employee_id;",
+    "validator": "PASS"
+  },
+  "hrm:cc21515a86adfa9d": {
+    "question": "Nhân viên EMP008 có mặt bao nhiêu ngày trong tháng 2 năm 2026",
+    "domain": "hrm",
+    "tables": [
+      "employee",
+      "leave_balance",
+      "attendance",
+      "leave_request"
+    ],
+    "intent": "tổng_hợp_ngày_công_nhân_viên_theo_tháng",
+    "entities": {
+      "employee_id": "EMP008",
+      "year_month": "2026-02"
+    },
+    "sql": "SELECT\n    a.employee_id,\n    e.employee_name,\n    a.attendance_date,\n    SUM(CASE WHEN a.status = 'PRESENT'  THEN 1 ELSE 0 END)        AS present_days,\n    SUM(CASE WHEN a.status = 'LATE'     THEN 1 ELSE 0 END)        AS late_days,\n    SUM(CASE WHEN a.status = 'REMOTE'   THEN 1 ELSE 0 END)        AS remote_days,\n    SUM(CASE WHEN a.status = 'ABSENT'   THEN 1 ELSE 0 END)        AS absent_days,\n    SUM(CASE WHEN a.status = 'ON_LEAVE' THEN 1 ELSE 0 END)        AS on_leave_days,\n    COUNT(*)                                                       AS total_working_days\nFROM attendance a\nJOIN employee e ON a.employee_id = e.employee_id\nWHERE a.employee_id = 'EMP008'\n  AND a.attendance_date LIKE '2026-02%'\nGROUP BY a.employee_id, e.employee_name, a.attendance_date\nLIMIT 100;",
+    "validator": "PASS"
   }
 }

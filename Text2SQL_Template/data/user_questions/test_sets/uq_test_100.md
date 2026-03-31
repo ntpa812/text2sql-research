@@ -1,0 +1,101 @@
+- Cho tôi xem các giao dịch chuyển tiền trong tháng 3 năm 2026
+- Tra cứu lịch sử chuyển khoản từ ngày 01/02/2025 đến 28/02/2025
+- Liệt kê giao dịch chuyển tiền trong 7 ngày gần nhất
+- Xem giao dịch chuyển tiền hôm qua
+- Tôi muốn kiểm tra các giao dịch chuyển khoản trong quý 2 năm 2025
+- Xem lịch sử chuyển tiền đi của tài khoản 0011223344
+- Tài khoản 9988776655 đã chuyển khoản những giao dịch nào
+- Tra cứu giao dịch chuyển tiền từ STK 1234567890 trong quý 1
+- Cho tôi xem giao dịch chuyển tiền từ tài khoản 5566001122 hôm nay
+- Liệt kê toàn bộ giao dịch chuyển tiền xuất phát từ tài khoản 0246813579
+- Tôi muốn xem các giao dịch chuyển tiền tới số tài khoản 5566778899
+- Lọc giao dịch chuyển khoản đến tài khoản người nhận 1122334455 trong tháng này
+- Có bao nhiêu giao dịch chuyển tiền tới tài khoản 9876501234
+- Tra cứu giao dịch chuyển tiền đến số tài khoản người nhận 7788001122 trong năm 2025
+- Cho tôi danh sách các giao dịch chuyển tiền tới số tài khoản 3344556677
+- Tra cứu các giao dịch chuyển tiền cho Nguyễn Thị Hồng
+- Cho tôi xem lịch sử chuyển khoản gửi cho Phạm Minh Tuấn trong năm 2025
+- Liệt kê các lần chuyển tiền cho Lê Hoàng Nam
+- Tôi đã chuyển tiền cho Trần Văn Bình những giao dịch nào
+- Tra cứu giao dịch chuyển khoản có người nhận là Vũ Thu Trang trong tháng 2
+- Xem danh sách giao dịch chuyển tiền thất bại trong tháng 2 năm 2026
+- Cho tôi biết các giao dịch chuyển khoản đang chờ xử lý
+- Tra cứu giao dịch chuyển tiền thành công từ tài khoản 0123456789
+- Liệt kê các giao dịch chuyển tiền bị từ chối trong quý 1
+- Giao dịch chuyển tiền nào đang ở trạng thái chờ duyệt
+- Tra cứu giao dịch chuyển tiền trên 100 triệu đồng trong quý 1 năm 2026
+- Liệt kê các giao dịch chuyển khoản có số tiền từ 5 triệu đến 50 triệu
+- Xem giao dịch chuyển tiền đúng 10 triệu đồng trong tháng này
+- Tìm các giao dịch chuyển tiền dưới 1 triệu trong tuần trước
+- Cho tôi xem giao dịch chuyển khoản có số tiền trên 500 triệu
+- Tra cứu các giao dịch chuyển tiền qua Mobile Banking trong tuần này
+- Cho tôi xem giao dịch chuyển khoản tại quầy trong tháng 1 năm 2026
+- Liệt kê giao dịch chuyển tiền qua Internet Banking từ tài khoản 5544332211
+- Giao dịch chuyển tiền nào được thực hiện qua ATM trong tháng 3
+- Tra cứu lịch sử chuyển tiền qua ứng dụng ngân hàng trong 30 ngày qua
+- Tra cứu giao dịch chuyển tiền có mã giao dịch TXN20260301
+- Kiểm tra trạng thái giao dịch chuyển khoản mã REF998877
+- Cho tôi xem chi tiết giao dịch chuyển tiền mã GD202603150001
+- Giao dịch chuyển tiền có mã TRANS556677 hiện trạng thế nào
+- Tra cứu các giao dịch chuyển tiền sang ngân hàng Vietcombank trong tháng 3
+- Liệt kê giao dịch chuyển khoản tới ngân hàng BIDV
+- Cho tôi xem lịch sử chuyển tiền sang ngân hàng Techcombank trong năm 2025
+- Tôi đã chuyển tiền sang MB Bank bao nhiêu lần trong quý 1
+- Tổng số tiền tôi đã chuyển đi trong tháng này là bao nhiêu
+- Tài khoản 6677889900 đã chuyển bao nhiêu tiền trong năm 2025
+- Có bao nhiêu giao dịch chuyển tiền thành công trong quý 1 năm 2026
+- Tổng tiền chuyển khoản qua Internet Banking hôm nay là bao nhiêu
+- Thống kê số lượng giao dịch chuyển tiền theo từng tháng trong năm 2025
+- Tra cứu giao dịch ngoại tệ EUR của tài khoản 1234509876
+- Xem lịch sử giao dịch tiết kiệm tài khoản 7788990011
+- Giao dịch ngoại tệ USD trong tháng 3 năm 2026
+- Tra cứu các giao dịch rút tiền qua ATM trong tháng trước
+- Liệt kê giao dịch nạp tiền vào tài khoản 4455667788 trong tuần này
+- Xem sao kê giao dịch chuyển tiền từ ngày 10/03/2026 đến 20/03/2026
+- Tìm giao dịch chuyển khoản có nội dung thanh toán hóa đơn
+- Cho tôi xem 5 giao dịch chuyển tiền gần nhất của tài khoản 1122009988
+- Giao dịch chuyển tiền lớn nhất trong tháng này là bao nhiêu
+- Tài khoản 3344556677 nhận được bao nhiêu tiền trong tuần trước
+- Tra cứu giao dịch chuyển tiền từ 01/01/2025 đến 31/12/2025 có số tiền từ 10 triệu đến 100 triệu
+- Liệt kê giao dịch chuyển tiền thất bại qua Mobile Banking trong tháng 2
+- Tìm thông tin nhân viên có mã EMP015
+- Danh sách nhân viên phòng kỹ thuật
+- Tìm nhân viên tên Trần Thị Hương
+- Cho tôi xem hồ sơ nhân viên mã EMP030
+- Ai đang làm việc ở phòng marketing
+- Tìm kiếm nhân viên họ Nguyễn trong phòng kinh doanh
+- Liệt kê tất cả các trưởng phòng trong công ty
+- Danh sách nhân viên đang thử việc
+- Nhân viên mới vào làm từ tháng 1 đến tháng 3 năm 2026
+- Những ai đang giữ chức giám đốc hoặc phó giám đốc
+- Liệt kê nhân viên đã nghỉ việc trong năm 2025
+- Danh sách các chuyên viên nhân sự đang active
+- Mỗi phòng ban có bao nhiêu nhân viên đang làm việc
+- Phòng nào có nhiều nhân viên nhất
+- Tổng số nhân viên toàn công ty hiện tại là bao nhiêu
+- Xem chấm công của nhân viên EMP010 trong tháng 3 năm 2026
+- Tổng hợp ngày công tháng 2 năm 2026 của nhân viên EMP005
+- Hôm nay ai vắng mặt
+- Bao nhiêu nhân viên đi muộn trong tuần trước
+- Thống kê chấm công tháng 3 năm 2026 của tất cả nhân viên
+- Xem lịch sử chấm công của nhân viên EMP020 từ 01/03/2026 đến 15/03/2026
+- Nhân viên EMP008 có mặt bao nhiêu ngày trong tháng 2 năm 2026
+- Báo cáo vắng mặt ngày 25 tháng 3 năm 2026
+- Ai đi làm muộn nhiều nhất tháng này
+- Thống kê chuyên cần phòng kế toán tháng 3 năm 2026
+- Nhân viên EMP001 còn bao nhiêu ngày phép năm
+- Xem lịch sử nghỉ phép của nhân viên EMP020
+- Danh sách đơn nghỉ phép đang chờ duyệt
+- Ai nghỉ phép nhiều nhất từ đầu năm đến nay
+- Xem đơn nghỉ phép bị từ chối của phòng kinh doanh
+- Số ngày phép còn lại của nhân viên Nguyễn Văn An
+- Nhân viên nào đang nghỉ phép hôm nay
+- Có bao nhiêu đơn nghỉ phép pending hiện tại
+- Liệt kê đơn nghỉ phép đã được duyệt trong tháng 3
+- Tra cứu đơn xin nghỉ của nhân viên EMP012 năm 2026
+- Tìm nhân viên lương trên 20 triệu ở phòng marketing
+- Nhân viên nữ đang active trong phòng nhân sự
+- Liệt kê nhân viên có lương từ 10 triệu đến 30 triệu
+- Nhân viên phòng IT vào làm trước năm 2024
+- Danh sách nhân viên nam đang thử việc ở phòng kỹ thuật
+- Tổng hợp ngày công và ngày nghỉ phép tháng 3 của nhân viên EMP003
