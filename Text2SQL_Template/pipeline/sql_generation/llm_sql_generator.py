@@ -110,6 +110,7 @@ def _generate_openai_compatible(
         ],
         "temperature": temperature,
         "max_tokens": max_tokens,
+        "chat_template_kwargs": {"enable_thinking": False},
     }).encode("utf-8")
 
     headers = {

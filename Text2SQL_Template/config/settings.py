@@ -41,7 +41,7 @@ LLM_OLLAMA_MODEL = "llama3:8b"
 
 # Transformers fallback
 LLM_MODEL_PATH = ""             # HF path (only for transformers backend)
-LLM_MAX_NEW_TOKENS = 2048        # Increased to handle extended thinking + SQL generation
+LLM_MAX_NEW_TOKENS = 512         # SQL queries rarely exceed 200 tokens
 LLM_TEMPERATURE = 0.0
 
 # ─── NER (in 6804_DDQ) ─────────────────────────────────────
