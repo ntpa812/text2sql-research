@@ -277,7 +277,7 @@ export default function App() {
     const mi = activeResult?.model_info;
     if (mi && typeof mi.active_model === 'string') {
       const model = String(mi.active_model);
-      if (model === 'rule-based' || model === 'direct-write') return meta?.models.primary_model ?? 'N/A';
+      if (model === 'rule-based' || model === 'direct-write' || model === 'template-first') return meta?.models.primary_model ?? 'N/A';
       return mi.used_fallback ? `${model} (fallback)` : model;
     }
     return meta?.models.primary_model ?? 'loading...';
