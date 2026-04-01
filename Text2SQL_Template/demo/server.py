@@ -302,8 +302,23 @@ def _handle_leave_registration(message: str, employee_id: str) -> dict:
     }
 
 
+_CHITCHAT_PATTERNS = re.compile(
+    r"^(chào|hello|hi|hey|xin chào|good morning|good afternoon|good evening"
+    r"|chào buổi sáng|chào buổi chiều|chào buổi tối|cảm ơn|thanks|thank you"
+    r"|bye|tạm biệt|ok|ừ|vâng|dạ|haha|lol|hmm|uh|à|ờ)[\s!.?]*$",
+    re.IGNORECASE,
+)
+
+
 @app.post("/api/chat")
 def chat(req: ChatRequest):
+    # Chitchat detection — skip pipeline for greetings and non-SQL messages
+    if _CHITCHAT_PATTERNS.match(req.message.strip()):
+        return {
+            "assistant_message": "Xin chào! Tôi là trợ lý Text2SQL. Hãy hỏi tôi về dữ liệu nhân sự (HRM) hoặc ngân hàng (Banking), ví dụ:\n\n• *Tôi còn bao nhiêu ngày nghỉ phép?*\n• *Liệt kê nhân viên phòng kinh doanh*\n• *Tổng tiền chuyển đi tháng 3*",
+            "result": {"question": req.message, "domain": None, "validator": "CHITCHAT"},
+        }
+
     # Inject current user context so "tôi" resolves to Nguyễn Văn An
     _user_ctx = {
         "employee_id": DEMO_CURRENT_USER,

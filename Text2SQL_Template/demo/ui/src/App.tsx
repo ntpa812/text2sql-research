@@ -19,6 +19,7 @@ import {
   Tabs,
   Tooltip,
   Typography,
+  message,
 } from 'antd';
 import {
   ApartmentOutlined,
@@ -132,13 +133,23 @@ function loadSessions(): Session[] {
   catch { return [createSession()]; }
 }
 
-function saveSessions(s: Session[]) { window.localStorage.setItem(SESSION_KEY, JSON.stringify(s)); }
+const MAX_SESSIONS = 50;
+function saveSessions(s: Session[]) { window.localStorage.setItem(SESSION_KEY, JSON.stringify(s.slice(0, MAX_SESSIONS))); }
 
 function buildColumns(rows: Array<Record<string, unknown>>) {
   return Object.keys(rows[0]).map((key) => ({
     title: key, dataIndex: key, key, ellipsis: true,
     render: (v: unknown) => String(v ?? ''),
   }));
+}
+
+async function fetchJson<T>(url: string, init?: RequestInit): Promise<T> {
+  const res = await fetch(url, init);
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({ detail: `HTTP ${res.status}` }));
+    throw new Error(body.detail || body.error || `Request failed (${res.status})`);
+  }
+  return res.json() as Promise<T>;
 }
 
 // ── Status badge helper ───────────────────────────────────────────────────────
@@ -193,7 +204,7 @@ export default function App() {
   useEffect(() => { saveSessions(sessions); }, [sessions]);
 
   useEffect(() => {
-    fetch('/api/meta').then((r) => r.json()).then((d: MetaResponse) => setMeta(d))
+    fetchJson<MetaResponse>('/api/meta').then((d) => setMeta(d))
       .catch((e) => setError(`Không tải được metadata: ${String(e)}`));
   }, []);
 
@@ -201,33 +212,33 @@ export default function App() {
     if (view !== 'hrm') return;
     setHrmLoading(true);
     Promise.all([
-      fetch('/api/hrm/departments').then((r) => r.json()),
-      fetch('/api/hrm/employees').then((r) => r.json()),
-      fetch('/api/hrm/attendance').then((r) => r.json()),
+      fetchJson<{ departments: Department[] }>('/api/hrm/departments'),
+      fetchJson<{ employees: Employee[] }>('/api/hrm/employees'),
+      fetchJson<{ attendance: Attendance[] }>('/api/hrm/attendance'),
     ]).then(([d, e, a]) => {
-      setDepartments((d as { departments: Department[] }).departments);
-      setEmployees((e as { employees: Employee[] }).employees);
-      setAttendance((a as { attendance: Attendance[] }).attendance);
-    }).catch(() => {}).finally(() => setHrmLoading(false));
+      setDepartments(d.departments);
+      setEmployees(e.employees);
+      setAttendance(a.attendance);
+    }).catch((err) => message.error('Không tải được dữ liệu HRM')).finally(() => setHrmLoading(false));
   }, [view]);
 
   // ── Leave data fetch ──────────────────────────────────────────────────────
   useEffect(() => {
-    fetch('/api/hrm/current-user').then((r) => r.json())
-      .then((d) => setCurrentUser(d.user)).catch(() => {});
+    fetchJson<{ user: string }>('/api/hrm/current-user')
+      .then((d) => setCurrentUser(d.user)).catch((err) => message.error('Không tải được thông tin user'));
   }, []);
 
   const fetchLeaveData = () => {
     setLeaveLoading(true);
     Promise.all([
-      fetch('/api/hrm/leave-balance').then((r) => r.json()),
-      fetch('/api/hrm/leave-requests').then((r) => r.json()),
-      fetch('/api/hrm/leave-types').then((r) => r.json()),
+      fetchJson<{ balances: unknown[] }>('/api/hrm/leave-balance'),
+      fetchJson<{ requests: unknown[] }>('/api/hrm/leave-requests'),
+      fetchJson<{ leave_types: unknown[] }>('/api/hrm/leave-types'),
     ]).then(([b, r, t]) => {
       setLeaveBalances(b.balances ?? []);
       setLeaveRequests(r.requests ?? []);
       setLeaveTypes(t.leave_types ?? []);
-    }).catch(() => {}).finally(() => setLeaveLoading(false));
+    }).catch((err) => message.error('Không tải được dữ liệu nghỉ phép')).finally(() => setLeaveLoading(false));
   };
 
   useEffect(() => {
@@ -238,11 +249,10 @@ export default function App() {
     if (!leaveFormStart || !leaveFormEnd) return;
     setLeaveSubmitting(true); setLeaveMsg(null);
     try {
-      const res = await fetch('/api/hrm/leave-request', {
+      const data = await fetchJson<{ success: boolean; message: string; error?: string }>('/api/hrm/leave-request', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ leave_type_id: leaveFormType, start_date: leaveFormStart, end_date: leaveFormEnd, reason: leaveFormReason }),
       });
-      const data = await res.json();
       if (data.success) {
         setLeaveMsg({ type: 'success', text: data.message });
         setLeaveFormStart(''); setLeaveFormEnd(''); setLeaveFormReason('');
@@ -300,8 +310,7 @@ export default function App() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message }) });
-      const data = (await res.json()) as ChatApiResponse;
+      const data = await fetchJson<ChatApiResponse>('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message }) });
       const assistMsg: Message = { id: crypto.randomUUID(), role: 'assistant', content: data.assistant_message, result: data.result };
       setSessions((prev) => prev.map((s) =>
         s.id === activeSession.id ? { ...s, messages: [...s.messages, assistMsg], updatedAt: new Date().toISOString() } : s,
@@ -334,7 +343,7 @@ export default function App() {
             <Text type="secondary" style={{ fontSize: 12 }}>Intent</Text>
             <Paragraph className="code-panel" style={{ marginTop: 4 }}>{activeResult.intent_name ?? activeResult.intent ?? 'N/A'}</Paragraph>
           </div>
-          {activeResult.debug?.domain_routing && (
+          {Boolean(activeResult.debug?.domain_routing) && (
             <div>
               <Text type="secondary" style={{ fontSize: 12 }}>Routing scores</Text>
               <Paragraph className="code-panel" style={{ marginTop: 4 }}>{JSON.stringify(activeResult.debug.domain_routing, null, 2)}</Paragraph>
@@ -357,13 +366,13 @@ export default function App() {
             <Text type="secondary" style={{ fontSize: 12 }}>Bảng được sử dụng</Text>
             <Paragraph className="code-panel" style={{ marginTop: 4 }}>{(activeResult.tables ?? []).join(', ') || 'N/A'}</Paragraph>
           </div>
-          {activeResult.debug?.schema_description && (
+          {Boolean(activeResult.debug?.schema_description) && (
             <div>
               <Text type="secondary" style={{ fontSize: 12 }}>Schema description</Text>
               <Paragraph className="code-panel" style={{ marginTop: 4 }}>{String(activeResult.debug.schema_description)}</Paragraph>
             </div>
           )}
-          {activeResult.debug?.entities && (
+          {Boolean(activeResult.debug?.entities) && (
             <div>
               <Text type="secondary" style={{ fontSize: 12 }}>Entities</Text>
               <Paragraph className="code-panel" style={{ marginTop: 4 }}>{JSON.stringify(activeResult.debug.entities, null, 2)}</Paragraph>

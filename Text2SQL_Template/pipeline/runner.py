@@ -46,7 +46,7 @@ from pipeline.explain.explain_engine import format_result_table, generate_explai
 from pipeline.retry_handler import RetryHandler
 from pipeline.query_cache import cache_result, get_cached_result
 from pipeline.test_mock import inject_test_account
-from pipeline.demo_cache import get_demo_rows
+from pipeline.demo_cache import get_demo_rows, _adapt_sql_for_sqlite
 
 logger = logging.getLogger(__name__)
 
@@ -388,9 +388,13 @@ def run_pipeline(
         raw_entities = extract_entities_local(question, domain_id=final_domain)
         entities = normalize_entities(raw_entities)
         # Inject user context: "tôi" / "của tôi" / "của mình" → current user
-        if user_context and not entities.get("employee_id") and not entities.get("employee_name"):
+        # Also override when NER mistakenly extracts "tôi" as employee_name
+        _self_keywords = ["tôi", "của tôi", "của mình", "cho tôi", "cho mình", "toi", "cua toi"]
+        _extracted_name = (entities.get("employee_name") or "").lower().strip()
+        _name_is_self = _extracted_name in ("tôi", "toi", "của tôi", "cua toi", "tôi là gì")
+        _needs_inject = not entities.get("employee_id") and (not entities.get("employee_name") or _name_is_self)
+        if user_context and _needs_inject:
             _q = question.lower()
-            _self_keywords = ["tôi", "của tôi", "của mình", "cho tôi", "cho mình", "toi", "cua toi"]
             if any(kw in _q for kw in _self_keywords):
                 if user_context.get("employee_id"):
                     entities["employee_id"] = user_context["employee_id"]
@@ -460,6 +464,9 @@ def run_pipeline(
             log_entry["model_info"] = model_info
 
         sql = inject_test_account(sql)
+        # Demo mode: convert MySQL syntax → SQLite before validation
+        if demo_mode and sql:
+            sql = _adapt_sql_for_sqlite(sql)
         log_entry["sql"] = sql
         timing["sql_generation"] = round(time.time() - t0, 3)
         logger.info(f"[Step 5] ({timing['sql_generation']}s)")
@@ -815,7 +822,16 @@ def run_pipeline(
                 # When template was filled via slot-fill, save the parameterized
                 # template (with {placeholders}) not the filled SQL, so future
                 # queries with different values can reuse it correctly.
-                sql_to_save = template_sql if template_complete and template_sql else sql
+                # Do NOT overwrite an existing parameterized template with
+                # LLM-generated SQL that lacks placeholders.
+                _has_existing_template = bool(template_sql and "{" in template_sql)
+                if template_complete and template_sql:
+                    sql_to_save = template_sql
+                elif _has_existing_template:
+                    sql_to_save = template_sql  # keep original parameterized template
+                    logger.info(f"[Step 7] Keeping existing parameterized template for {intent_id}")
+                else:
+                    sql_to_save = sql
                 save_approved_template(
                     intent_id,
                     sql_to_save,

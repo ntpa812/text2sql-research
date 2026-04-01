@@ -8,7 +8,7 @@ SELECT
     a.status
 FROM attendance a
 JOIN employee e ON a.employee_id = e.employee_id
-WHERE e.employee_id = 'EMP020'
-    AND a.attendance_date BETWEEN '2026-03-01' AND '2026-03-15'
+WHERE e.employee_id = '{employee_id}'
+    AND a.attendance_date BETWEEN '{start_date}' AND '{end_date}'
 ORDER BY a.attendance_date DESC
 LIMIT 100;

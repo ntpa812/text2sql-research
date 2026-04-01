@@ -48,7 +48,13 @@ def validate_schema(
     for c in used_columns:
         if c.lower() not in all_columns:
             # Skip SQL functions / aliases / numbers
-            if c.upper() in ("COUNT", "SUM", "AVG", "MAX", "MIN", "DISTINCT", "AS", "ASC", "DESC", "NULL", "LIMIT"):
+            if c.upper() in (
+                "COUNT", "SUM", "AVG", "MAX", "MIN", "DISTINCT", "AS", "ASC", "DESC", "NULL", "LIMIT",
+                "CAST", "COALESCE", "IFNULL", "LENGTH", "LOWER", "UPPER", "TRIM", "REPLACE", "SUBSTR",
+                "DATE", "DATETIME", "STRFTIME", "JULIANDAY", "ROUND", "ABS", "TOTAL", "GROUP_CONCAT",
+                "DATE_FORMAT", "MONTH", "YEAR", "DAY", "CURDATE", "NOW", "EXTRACT",
+                "INTEGER", "TEXT", "REAL", "CASE", "WHEN", "THEN", "ELSE", "END",
+            ):
                 continue
             if c.isdigit():
                 continue
@@ -98,8 +104,13 @@ def _extract_columns(sql: str) -> List[str]:
         if select_part != "*":
             for part in select_part.split(','):
                 part = part.strip()
-                # Handle "col AS alias", "table.col", "COUNT(col)"
-                col_match = re.match(r'(?:\w+\.)?([\w]+)', part)
+                # Skip "expr AS alias" — only validate the source column, not alias
+                if re.search(r'\bAS\s+\w+', part, re.IGNORECASE):
+                    # Extract column before AS, skip function calls
+                    source = re.split(r'\bAS\b', part, flags=re.IGNORECASE)[0].strip()
+                    col_match = re.match(r'(?:\w+\.)?([\w]+)', source)
+                else:
+                    col_match = re.match(r'(?:\w+\.)?([\w]+)', part)
                 if col_match:
                     columns.append(col_match.group(1))
 

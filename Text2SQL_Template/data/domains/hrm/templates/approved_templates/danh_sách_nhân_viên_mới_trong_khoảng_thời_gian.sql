@@ -6,6 +6,6 @@ SELECT
     e.employment_status,
     e.hire_date
 FROM employee e
-WHERE e.hire_date BETWEEN '2026-01-01' AND '2026-03-31'
+WHERE e.hire_date BETWEEN '{start_date}' AND '{end_date}'
 ORDER BY e.hire_date DESC
 LIMIT 100;

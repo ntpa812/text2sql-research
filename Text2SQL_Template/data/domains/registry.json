@@ -142,14 +142,22 @@
         "chấm công",
         "ngày công",
         "nghỉ phép",
+        "ngày phép",
+        "phép năm",
+        "phép còn lại",
         "lương",
         "hrm",
         "employee",
         "department",
-        "attendance"
+        "attendance",
+        "tôi là ai",
+        "thông tin cá nhân",
+        "hồ sơ cá nhân"
       ],
       "keyword_patterns": [
         "nhân viên|phòng ban|chấm công|nghỉ phép|hồ sơ nhân sự|hrm",
+        "ngày phép|phép năm|phép còn lại|số ngày phép|phép ốm|phép đặc biệt",
+        "tôi là ai|thông tin của tôi|hồ sơ của tôi|thông tin cá nhân",
         "employee|department|attendance|leave request|payroll"
       ],
       "examples": [

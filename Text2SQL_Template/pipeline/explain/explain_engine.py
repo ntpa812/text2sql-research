@@ -169,6 +169,23 @@ def generate_explain(
             lines.append(f"  ... và {row_count - 10} bản ghi khác.")
         return "\n".join(lines)
 
+    # Số ngày phép còn lại
+    if "remaining_days" in cols or "leave_type_name" in cols:
+        name = result_rows[0].get("employee_name", "Nhân viên")
+        lines = [f"Số ngày phép còn lại của **{name}**:\n"]
+        for r in result_rows[:10]:
+            lt = r.get("leave_type_name", "")
+            remain = r.get("remaining_days", "")
+            total = r.get("total_days", "")
+            used = r.get("used_days", "")
+            entry = f"  • **{lt}**: còn **{remain}**"
+            if total:
+                entry += f"/{total} ngày"
+            if used:
+                entry += f" (đã dùng {used})"
+            lines.append(entry)
+        return "\n".join(lines)
+
     # Danh sách nhân viên
     if "employee_name" in cols:
         lines = [f"Tìm thấy **{row_count}** nhân viên:\n"]
